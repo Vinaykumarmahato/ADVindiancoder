@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { PlayCircle, GraduationCap, ArrowRight, Code, Users, Youtube } from 'lucide-react';
+import { PlayCircle, GraduationCap, ArrowRight, Code, Users, Youtube, Linkedin, Instagram, Github, Send } from 'lucide-react';
 import { HERO_STATS, FEATURED_COMPANIES, WHY_CHOOSE_US_FEATURES, SOCIAL_LINKS } from '../constants';
 import PageWrapper from '../components/PageWrapper';
 import { MotionDiv, MotionH1, MotionP } from '../components/motion';
