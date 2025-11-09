@@ -104,7 +104,7 @@ const HomePage = () => {
                         <Link to="/masterclass" className="flex items-center justify-center bg-secondary text-dark-bg font-bold py-3 px-8 rounded-full transition duration-300 shadow-lg transform hover:scale-105 hover:animate-shadow-glow-secondary">
                             <GraduationCap className="mr-2" /> Join ₹9 Masterclass
                         </Link>
-                         <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center bg-red-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 shadow-lg transform hover:scale-105 hover:shadow-[0_0_20px_#EF4444]">
+                         <a href={"https://www.youtube.com/@ADVIndianCoder-i9y"} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center bg-red-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 shadow-lg transform hover:scale-105 hover:shadow-[0_0_20px_#EF4444]">
                            <Youtube className="mr-2" /> Watch on YouTube
                         </a>
                     </MotionDiv>
