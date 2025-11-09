@@ -19,7 +19,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                     <div className="col-span-1 md:col-span-2">
                         <Link to="/" className="inline-block mb-4">
-                            <img src="/logo.png" alt="ADV Indian Coder Logo" className="h-16" />
+                            <img src="/assets/ADV Indian Coder Logo.png" alt="ADV Indian Coder Logo" className="h-16" />
                         </Link>
                         <p className="text-sm text-gray-600 dark:text-gray-400">Made with ❤️ by Vinay Kumar – ADV Indian Coder 2026</p>
                         <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">Powered by Inoglle IT Services</p>
@@ -50,9 +50,8 @@ const Footer = () => {
                     <div className="col-span-1">
                         <h3 className="font-semibold mb-4">Trust & Recognition</h3>
                         <div className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-                           <p className="flex items-center"><ShieldCheck size={16} className="mr-2 text-green-500"/> Recognized by MSME</p>
+                           <p className="flex items-center"><ShieldCheck size={16} className="mr-2 text-green-500"/> Recognized by MSME Startup India</p>
                            <p className="flex items-center"><ShieldCheck size={16} className="mr-2 text-green-500"/> ISO Certified</p>
-                           <p className="flex items-center"><ShieldCheck size={16} className="mr-2 text-green-500"/> Startup India</p>
                         </div>
                     </div>
                 </div>

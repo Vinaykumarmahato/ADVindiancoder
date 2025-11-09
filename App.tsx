@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 import HomePage from './pages/HomePage';
 import CoursesPage from './pages/CoursesPage';
 import MasterclassPage from './pages/MasterclassPage';
@@ -19,34 +20,38 @@ const AnimatedRoutes = () => {
     const location = useLocation();
     return (
         <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/courses" element={<CoursesPage />} />
-                <Route path="/masterclass" element={<MasterclassPage />} />
-                <Route path="/resources" element={<ResourcesPage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/community" element={<CommunityPage />} />
-                <Route path="/career" element={<CareerPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-            </Routes>
+            <React.Fragment key={location.pathname}>
+                <Routes location={location}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/courses" element={<CoursesPage />} />
+                    <Route path="/masterclass" element={<MasterclassPage />} />
+                    <Route path="/resources" element={<ResourcesPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/community" element={<CommunityPage />} />
+                    <Route path="/career" element={<CareerPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                </Routes>
+            </React.Fragment>
         </AnimatePresence>
     );
 };
 
 const App = () => {
     return (
-        <ThemeProvider>
-            <HashRouter>
-                <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
-                    <Header />
-                    <main className="pt-20">
-                        <AnimatedRoutes />
-                    </main>
-                    <Footer />
-                    <Chatbot />
-                </div>
-            </HashRouter>
-        </ThemeProvider>
+        <ErrorBoundary>
+            <ThemeProvider>
+                <HashRouter>
+                    <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+                        <Header />
+                        <main className="pt-20">
+                            <AnimatedRoutes />
+                        </main>
+                        <Footer />
+                        <Chatbot />
+                    </div>
+                </HashRouter>
+            </ThemeProvider>
+        </ErrorBoundary>
     );
 };
 

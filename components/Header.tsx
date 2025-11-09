@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { NAV_LINKS } from '../constants';
+import { MotionDiv } from './motion';
 
 const Header = () => {
     const { theme, toggleTheme } = useTheme();
@@ -24,7 +24,7 @@ const Header = () => {
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div className="relative flex items-center justify-between bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 rounded-full px-6 py-3 shadow-lg">
                     <Link to="/" className="flex items-center">
-                         <img src="/logo.png" alt="ADV Indian Coder Logo" className="h-12" />
+                         <img src="/assets/ADV Indian Coder Logo.png" alt="ADV Indian Coder Logo" className="h-10" />
                     </Link>
 
                     <div className="hidden lg:flex items-center space-x-6">
@@ -57,7 +57,7 @@ const Header = () => {
                 </div>
 
                 {isMenuOpen && (
-                    <motion.div
+                    <MotionDiv
                         variants={menuVariants}
                         initial="hidden"
                         animate="visible"
@@ -65,7 +65,7 @@ const Header = () => {
                     >
                         <div className="flex flex-col space-y-4">
                             {NAV_LINKS.map((link) => (
-                                <motion.div key={link.name} variants={menuItemVariants}>
+                                <MotionDiv key={link.name} variants={menuItemVariants}>
                                     <NavLink
                                         to={link.path}
                                         onClick={() => setIsMenuOpen(false)}
@@ -75,10 +75,10 @@ const Header = () => {
                                     >
                                         {link.name}
                                     </NavLink>
-                                </motion.div>
+                                </MotionDiv>
                             ))}
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 )}
             </nav>
         </header>

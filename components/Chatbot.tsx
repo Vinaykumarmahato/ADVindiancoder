@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Bot, X } from 'lucide-react';
+import { MotionDiv } from './motion';
 
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <motion.div
+        <MotionDiv
             className="fixed bottom-6 right-6 z-50"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -20,7 +20,7 @@ const Chatbot = () => {
                 {isOpen ? <X className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
             </button>
             {/* Placeholder for chat window */}
-        </motion.div>
+        </MotionDiv>
     );
 };
 
