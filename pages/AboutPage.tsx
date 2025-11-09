@@ -43,7 +43,7 @@ const AboutPage = () => {
                             />
                         </MotionDiv>
                         <h1 className="text-3xl font-bold">Vinay Kumar Mahato</h1>
-                        <p className="text-primary font-semibold">Software Engineer)</p>
+                        <p className="text-primary font-semibold">(Software Engineer)</p>
                         <div className="flex space-x-4 mt-6">
                             <MotionDiv 
                                 whileHover={{ scale: 1.1 }} 
@@ -112,13 +112,28 @@ const AboutPage = () => {
                         transition={{ duration: 0.7, delay: 0.2 }}
                     >
                         <div className="mb-8">
-                            <h2 className="text-2xl font-bold mb-4">Bio</h2>
-                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Founder of ADV Indian Coder, Inoglle IT Services, Elevtern, and ADV SparkTech. 
-                                I am a passionate educator and technologist on a mission to democratize technical education. 
-                                With a background in Information Technology, I strive to create content that is not only informative but also practical and accessible to learners from all backgrounds.
-                            </p>
-                        </div>
+  <h2 className="text-2xl font-bold mb-4">Bio</h2>
+  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+    Founder of <strong>ADV Indian Coder</strong>, <strong>Inoglle IT Services</strong>, 
+    <strong> Elevtern</strong>, and <strong>ADV SparkTech</strong>. 
+    I am a passionate educator and technologist on a mission to democratize technical education. 
+    With a background in <strong>Information Technology</strong>, I strive to create content that is 
+    not only informative but also practical and accessible to learners from all backgrounds.
+  </p>
+</div>
+
+<div className="mb-8">
+  <h2 className="text-2xl font-bold mb-4">Achievements</h2>
+  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 leading-relaxed space-y-2">
+    <li>Founded <strong>Inoglle</strong>, <strong>Elevtern</strong>, <strong>ADV Indian Coder</strong>, <strong>ADV SparkTech</strong>, and <strong>ADV HopeHaven</strong> — empowering 10,000+ learners and communities.</li>
+    <li>Created <strong>150+ coding tutorials</strong> and mentored <strong>2,000+ students</strong> to achieve certifications and tech jobs.</li>
+    <li>Led <strong>10+ workshops & hackathons</strong>, guiding <strong>500+ developers</strong> in real-world project building.</li>
+    <li>Trained <strong>100+ interns</strong> through hands-on programs in <strong>Java, Python</strong>, and <strong>Cloud technologies</strong>.</li>
+    <li>Received <strong>Motivational Speech</strong> & <strong>Singing Awards</strong> from <strong>DSCET College (Anna University)</strong>.</li>
+    <li>Ranked among the <strong>Top 5% Canva Designers</strong> globally for creative digital design excellence.</li>
+  </ul>
+</div>
+
                         
                         <div className="mb-8">
                              <h2 className="text-2xl font-bold mb-4 flex items-center"><Eye className="mr-2"/> Vision</h2>
