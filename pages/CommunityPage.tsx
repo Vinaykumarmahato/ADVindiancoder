@@ -15,15 +15,16 @@ const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: nu
 
         const incrementTime = (duration * 1000) / end;
         const timer = setInterval(() => {
-            start += 1;
+            start += Math.ceil(end/200);
+            if (start > end) start = end;
             setCount(start);
             if (start === end) clearInterval(timer);
-        }, incrementTime);
+        }, incrementTime > 1 ? incrementTime : 1);
 
         return () => clearInterval(timer);
     }, [value, duration]);
 
-    return <span>{count}</span>;
+    return <span>{count.toLocaleString()}</span>;
 };
 
 const CommunityPage = () => {
@@ -42,20 +43,35 @@ const CommunityPage = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 text-center">
-                    <motion.a href={SOCIAL_LINKS.discord} className="block p-8 bg-indigo-500/10 dark:bg-indigo-500/20 rounded-2xl hover:bg-indigo-500/20 transition-colors" whileHover={{ scale: 1.05 }}>
-                        <Disc className="h-16 w-16 mx-auto text-indigo-400 mb-4" />
+                    <motion.a 
+                        href={SOCIAL_LINKS.discord} 
+                        className="block p-8 rounded-2xl" 
+                        style={{ backgroundColor: '#5865F220' }}
+                        whileHover={{ scale: 1.05, backgroundColor: '#5865F240' }}
+                    >
+                        <Disc className="h-16 w-16 mx-auto mb-4" style={{ color: '#5865F2' }} />
                         <h2 className="text-2xl font-bold">Join Discord</h2>
-                        <p className="text-indigo-300">For coding discussions & help.</p>
+                        <p className="text-gray-300">For coding discussions & help.</p>
                     </motion.a>
-                    <motion.a href={SOCIAL_LINKS.telegram} className="block p-8 bg-sky-500/10 dark:bg-sky-500/20 rounded-2xl hover:bg-sky-500/20 transition-colors" whileHover={{ scale: 1.05 }}>
-                        <Send className="h-16 w-16 mx-auto text-sky-400 mb-4" />
+                    <motion.a 
+                        href={SOCIAL_LINKS.telegram} 
+                        className="block p-8 rounded-2xl" 
+                        style={{ backgroundColor: '#2AABEE20' }}
+                        whileHover={{ scale: 1.05, backgroundColor: '#2AABEE40' }}
+                    >
+                        <Send className="h-16 w-16 mx-auto mb-4" style={{ color: '#2AABEE' }} />
                         <h2 className="text-2xl font-bold">Telegram Channel</h2>
-                        <p className="text-sky-300">For daily job updates.</p>
+                        <p className="text-gray-300">For daily job updates.</p>
                     </motion.a>
-                    <motion.a href={SOCIAL_LINKS.whatsapp} className="block p-8 bg-green-500/10 dark:bg-green-500/20 rounded-2xl hover:bg-green-500/20 transition-colors" whileHover={{ scale: 1.05 }}>
-                        <Users className="h-16 w-16 mx-auto text-green-400 mb-4" />
+                    <motion.a 
+                        href={SOCIAL_LINKS.whatsapp} 
+                        className="block p-8 rounded-2xl" 
+                        style={{ backgroundColor: '#25D36620' }}
+                        whileHover={{ scale: 1.05, backgroundColor: '#25D36640' }}
+                    >
+                        <Users className="h-16 w-16 mx-auto mb-4" style={{ color: '#25D366' }} />
                         <h2 className="text-2xl font-bold">WhatsApp Group</h2>
-                        <p className="text-green-300">For masterclass attendees.</p>
+                        <p className="text-gray-300">For masterclass attendees.</p>
                     </motion.a>
                 </div>
                 

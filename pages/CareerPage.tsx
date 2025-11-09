@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Map, Download, Linkedin, Play } from 'lucide-react';
+import { Map, Download, Linkedin, Play, Youtube } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 
 const roadmaps = [
@@ -52,7 +52,7 @@ const CareerPage = () => {
                     </div>
                 </section>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     {/* Resume Templates */}
                     <section>
                          <h2 className="text-3xl font-bold mb-8 flex items-center"><Download className="mr-3 text-green-500"/> Resume Templates</h2>
@@ -77,6 +77,21 @@ const CareerPage = () => {
                          </div>
                     </section>
                 </div>
+
+                {/* Embedded Videos */}
+                <section>
+                    <h2 className="text-3xl font-bold mb-8 flex items-center"><Youtube className="mr-3 text-red-500"/> Career Playlist</h2>
+                    <div className="aspect-w-16 aspect-h-9 bg-black/20 rounded-xl overflow-hidden">
+                        <iframe 
+                            className="w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PLp5qI-5smITk3-P2kda2y-tO92DqNfa_L" 
+                            title="YouTube video player" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowFullScreen>
+                        </iframe>
+                    </div>
+                </section>
             </div>
         </PageWrapper>
     );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Award, FileText } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Award, FileText, TrendingUp } from 'lucide-react';
 import { MASTERCLASSES, TESTIMONIALS } from '../constants';
 import PageWrapper from '../components/PageWrapper';
 
@@ -66,22 +66,26 @@ const MasterclassPage = () => {
                         <motion.div
                             key={mc.id}
                             className="bg-white/5 dark:bg-black/20 border border-white/10 rounded-2xl p-6 shadow-lg flex flex-col justify-between"
-                             whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(0, 120, 255, 0.25)" }}
+                             whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(255, 193, 7, 0.25)" }}
                              transition={{ duration: 0.3 }}
                         >
                             <div>
-                                <h3 className="text-2xl font-bold mb-2 text-primary">{mc.title}</h3>
+                                <h3 className="text-2xl font-bold mb-2 text-secondary">{mc.title}</h3>
                                 <p className="text-gray-600 dark:text-gray-400 mb-4">{mc.description}</p>
                                 <div className="my-4 pt-4 border-t border-white/10">
                                     <h4 className="font-semibold mb-3 text-white">What you'll get:</h4>
                                     <ul className="space-y-2 text-sm text-gray-300">
                                         <li className="flex items-center">
-                                            <FileText className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                                            <span>Notes after completion</span>
+                                            <Award className="w-4 h-4 mr-2 text-yellow-400 flex-shrink-0" />
+                                            <span>Official Certificate of Completion</span>
                                         </li>
                                         <li className="flex items-center">
-                                            <Award className="w-4 h-4 mr-2 text-yellow-400 flex-shrink-0" />
-                                            <span>Participant Certificate</span>
+                                            <FileText className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                                            <span>Downloadable Notes & Scripts</span>
+                                        </li>
+                                         <li className="flex items-center">
+                                            <TrendingUp className="w-4 h-4 mr-2 text-blue-400 flex-shrink-0" />
+                                            <span>1-on-1 Career Support Access</span>
                                         </li>
                                     </ul>
                                 </div>

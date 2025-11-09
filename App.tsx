@@ -13,6 +13,7 @@ import AboutPage from './pages/AboutPage';
 import CommunityPage from './pages/CommunityPage';
 import CareerPage from './pages/CareerPage';
 import ContactPage from './pages/ContactPage';
+import Chatbot from './components/Chatbot';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -42,6 +43,7 @@ const App = () => {
                         <AnimatedRoutes />
                     </main>
                     <Footer />
+                    <Chatbot />
                 </div>
             </HashRouter>
         </ThemeProvider>
