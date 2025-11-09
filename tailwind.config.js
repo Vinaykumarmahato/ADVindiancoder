@@ -17,8 +17,27 @@ module.exports = {
         'shadow-glow-primary': 'glow 2s ease-in-out infinite',
         'shadow-glow-secondary': 'glow 2s ease-in-out infinite',
         'gradient-bg': 'gradient 15s ease infinite',
+        'dynamic-glow': 'dynamicGlow 4s ease-in-out infinite',
       },
       keyframes: {
+        dynamicGlow: {
+          '0%': {
+            boxShadow: '0 0 20px #3B82F6, 0 0 40px #3B82F6',
+            filter: 'hue-rotate(0deg)',
+          },
+          '33%': {
+            boxShadow: '0 0 25px #8B5CF6, 0 0 50px #8B5CF6',
+            filter: 'hue-rotate(120deg)',
+          },
+          '66%': {
+            boxShadow: '0 0 30px #EC4899, 0 0 60px #EC4899',
+            filter: 'hue-rotate(240deg)',
+          },
+          '100%': {
+            boxShadow: '0 0 20px #3B82F6, 0 0 40px #3B82F6',
+            filter: 'hue-rotate(360deg)',
+          }
+        },
         glow: {
           '0%, 100%': {
             boxShadow: '0 0 20px var(--tw-shadow-color)',
