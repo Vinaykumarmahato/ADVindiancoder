@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import type { ComponentType, PropsWithChildren } from 'react';
+import type { ComponentType, HTMLProps, PropsWithChildren } from 'react';
 
-type MotionProps = {
-    className?: string;
+interface MotionProps extends HTMLProps<HTMLElement> {
     initial?: any;
     animate?: any;
     exit?: any;
@@ -14,10 +13,7 @@ type MotionProps = {
     whileTap?: any;
     whileInView?: any;
     viewport?: any;
-    style?: React.CSSProperties;
-    key?: string | number;
-    href?: string;
-};
+}
 
 export const MotionDiv = motion.div as ComponentType<PropsWithChildren<MotionProps>>;
 export const MotionSection = motion.section as ComponentType<PropsWithChildren<MotionProps>>;

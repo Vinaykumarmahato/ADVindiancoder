@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { PlayCircle, GraduationCap, ArrowRight, Code, Users, Youtube } from 'lucide-react';
 import { HERO_STATS, FEATURED_COMPANIES, WHY_CHOOSE_US_FEATURES, SOCIAL_LINKS } from '../constants';
 import PageWrapper from '../components/PageWrapper';
+import { MotionDiv, MotionH1, MotionP } from '../components/motion';
 
 
 const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: number }) => {
@@ -54,35 +54,45 @@ const HomePage = () => {
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm0-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm0-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm0-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}></div>
                 <div className="relative z-10 flex flex-col items-center">
-                    <motion.div 
-                        className="relative rounded-full p-1 mb-6 shadow-lg shadow-primary/50 animate-shadow-glow-primary"
+                    <MotionDiv 
+                        className="relative rounded-full p-2 mb-6"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.5, type: 'spring' }}
+                        whileHover={{ scale: 1.05 }}
                     >
-                         <img 
-                            src="https://picsum.photos/seed/vinay/150/150" 
-                            alt="Vinay Kumar Mahato"
-                            className="relative rounded-full w-32 h-32 md:w-40 md:h-40 border-4 border-dark-bg"
-                        />
-                    </motion.div>
-                    <motion.h1 
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-blue-500 to-purple-600 animate-spin-slow opacity-75"></div>
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-blue-500 to-purple-600 animate-spin-slow opacity-50" style={{ animationDirection: 'reverse', animationDuration: '6s' }}></div>
+                        <MotionDiv
+                            className="relative rounded-full p-1 bg-dark-bg"
+                            initial={{ rotate: -180 }}
+                            animate={{ rotate: 0 }}
+                            transition={{ duration: 0.7, type: 'spring' }}
+                        >
+                            <img 
+                                src="/assets/ADV Indian Coder Profile.png" 
+                                alt="Vinay Kumar Mahato"
+                                className="relative rounded-full w-32 h-32 md:w-40 md:h-40 object-cover border-2 border-white/10 z-10 shadow-2xl"
+                            />
+                        </MotionDiv>
+                    </MotionDiv>
+                    <MotionH1 
                         className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 tracking-tight"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.2 }}
                     >
                         Code Karein, Chill Karein 🚀
-                    </motion.h1>
-                    <motion.p 
+                    </MotionH1>
+                    <MotionP 
                         className="max-w-2xl text-lg md:text-xl text-gray-300 mb-8"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.4 }}
                     >
-                        Let’s transform your passion for coding into a successful career.
-                    </motion.p>
-                    <motion.div 
+                        Let's transform your passion for coding into a successful career.
+                    </MotionP>
+                    <MotionDiv 
                         className="flex flex-col sm:flex-row items-center justify-center flex-wrap gap-4"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -97,21 +107,21 @@ const HomePage = () => {
                          <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center bg-red-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 shadow-lg transform hover:scale-105 hover:shadow-[0_0_20px_#EF4444]">
                            <Youtube className="mr-2" /> Watch on YouTube
                         </a>
-                    </motion.div>
+                    </MotionDiv>
                 </div>
             </section>
             
             {/* About & Stats */}
             <section className="py-20 px-4">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+                    <MotionDiv initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
                         <h2 className="text-3xl font-bold mb-4">About ADV Indian Coder</h2>
                         <p className="text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400 font-semibold mb-6">"To simplify coding and help aspiring developers become tech leaders."</p>
                         <p className="text-gray-600 dark:text-gray-400">Founded by Vinay Kumar Mahato, ADV Indian Coder is on a mission to make tech education accessible to everyone. We provide high-quality, practical, and 100% free tutorials to empower the next generation of coders.</p>
-                    </motion.div>
+                    </MotionDiv>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         {HERO_STATS.map((stat, index) => (
-                            <motion.div 
+                            <MotionDiv 
                                 key={index} 
                                 className="p-6 bg-white/10 dark:bg-black/20 border border-white/20 rounded-2xl text-center backdrop-blur-sm"
                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -121,7 +131,7 @@ const HomePage = () => {
                             >
                                 <p className="text-3xl font-bold text-primary"><AnimatedCounter value={parseInt(stat.value.replace(/[+,%]/g, ''))} />{stat.value.includes('+') ? '+' : ''}{stat.value.includes('%') ? '%' : ''}</p>
                                 <p className="text-gray-600 dark:text-gray-400">{stat.label}</p>
-                            </motion.div>
+                            </MotionDiv>
                         ))}
                     </div>
                 </div>
@@ -133,7 +143,7 @@ const HomePage = () => {
                     <h2 className="text-3xl font-bold mb-12">Why Choose Us?</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {WHY_CHOOSE_US_FEATURES.map((feature, index) => (
-                            <motion.div
+                            <MotionDiv
                                 key={index}
                                 className="group p-8 bg-white dark:bg-gray-800/20 rounded-2xl shadow-lg border border-transparent hover:border-primary transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20"
                                 variants={cardVariants}
@@ -146,7 +156,7 @@ const HomePage = () => {
                                    {iconMap[feature]}
                                 </div>
                                 <h3 className="text-xl font-semibold">{feature}</h3>
-                            </motion.div>
+                            </MotionDiv>
                         ))}
                     </div>
                 </div>
