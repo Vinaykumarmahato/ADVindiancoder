@@ -91,6 +91,7 @@ const AboutPage = () => {
                                 whileHover={{ scale: 1.1 }} 
                                 className="group"
                             >
+                                
                                 <a 
                                     href={SOCIAL_LINKS.personalInstagram} 
                                     target="_blank" 
