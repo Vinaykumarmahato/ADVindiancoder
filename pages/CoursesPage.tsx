@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MotionButton, MotionDiv } from '../components/motion';
 import { Youtube, Clock } from 'lucide-react';
 
 // (NavBar removed) Header is provided globally by `components/Header` in App.tsx
@@ -27,8 +28,8 @@ const LIVE_VIDEOS: Course[] = [
         description: 'The Dark Truth No One Talks About: 83% job loss and 83% useless jobs!',
         category: 'Career', 
         tags: ['Career', 'Engineering', 'Jobs'],
-        youtubeLink: 'https://www.youtube.com/watch?v=BvWw8t-17Sc&list=PLc345p52Gj3hU1Ym9yQ5-4-9M0Y-p-5wS',
-        thumbnail: 'https://img.youtube.com/vi/BvWw8t-17Sc/maxresdefault.jpg', 
+        youtubeLink: 'https://youtu.be/NFhKdwdBvyw',
+        thumbnail: '/assets/ENGINEERING TRAP.png', 
     },
     {
         id: 102,
@@ -36,8 +37,8 @@ const LIVE_VIDEOS: Course[] = [
         description: 'Get Selected in GSoC 2026 | Get 2.5 Lakh by Google',
         category: 'Career', 
         tags: ['GSOC', 'Internship', 'Google'],
-        youtubeLink: 'https://www.youtube.com/watch?v=placeholder_gsoc_id',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/f87171?text=GSoC+Guide', 
+        youtubeLink: 'https://youtu.be/QQvae70PC_k',
+        thumbnail: '/assets/How To Crack GSOC in 2026.png', 
     },
     {
         id: 103,
@@ -45,8 +46,8 @@ const LIVE_VIDEOS: Course[] = [
         description: 'BECOME a Top 1% | 1st, 2nd & 3rd YEAR ENGINEERING STUDENT',
         category: 'Career', 
         tags: ['Self-Improvement', 'Student', 'System'],
-        youtubeLink: 'https://www.youtube.com/watch?v=placeholder_learner_id',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/f87171?text=Top+1%25+Learner+System',
+        youtubeLink: 'https://youtu.be/XuyH-f-0-_8',
+        thumbnail: '/assets/Blue  and Yellow Modern Reaction YouTube Thumbnail.png',
     },
     {
         id: 104,
@@ -54,8 +55,26 @@ const LIVE_VIDEOS: Course[] = [
         description: 'DATA ANALYST ROADMAP 2026 | The Truth No One Tells You About',
         category: 'Career', 
         tags: ['Data Analyst', 'Roadmap', 'Jobs'],
-        youtubeLink: 'https://www.youtube.com/watch?v=placeholder_datanalyst_id',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/f87171?text=Data+Analyst+Roadmap',
+        youtubeLink: 'https://youtu.be/SQ5molhb4GY',
+        thumbnail: '/assets/Data Analytics Roadmap 2026.jpg',
+    },
+    {
+        id: 105,
+        title: 'LinkedIn Masterclass',
+        description: 'Complete LinkedIn profile and growth masterclass for professionals.',
+        category: 'Career',
+        tags: ['LinkedIn', 'Career', 'Profile'],
+        youtubeLink: 'https://youtu.be/2DwvB9gsVw0',
+        thumbnail: '/assets/Linkedin account crreation.png',
+    },
+    {
+        id: 106,
+        title: 'How to Create an ATS Friendly Resume',
+        description: 'Step-by-step guide to make your resume ATS friendly and get more interviews.',
+        category: 'Career',
+        tags: ['Resume', 'Career', 'ATS'],
+        youtubeLink: 'https://youtu.be/yIahHYjkIjs',
+        thumbnail: 'https://placehold.co/1280x720/1e293b/f87171?text=ATS+Resume+Guide',
     },
     {
         id: 107,
@@ -63,8 +82,8 @@ const LIVE_VIDEOS: Course[] = [
         description: 'FROM NOTHING TO TECH FOUNDER | Vinay Kumar\'s Real Story',
         category: 'Career', 
         tags: ['Startup', 'Founder', 'Inspiration'],
-        youtubeLink: 'https://www.youtube.com/watch?v=placeholder_startup_id',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/f87171?text=Tech+Founder+Story',
+        youtubeLink: 'https://youtu.be/nZCTzkV0QAY',
+        thumbnail: '/assets/From nothing to tech founder.png',
     },
 ];
 
@@ -128,7 +147,7 @@ const CoursesPage = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                     
                     {/* Header Section - Themed and High-Impact */}
-                    <motion.div 
+                    <MotionDiv 
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
@@ -148,11 +167,11 @@ const CoursesPage = () => {
                                 <Youtube className="mr-1 h-5 w-5" /> Subscribe to the channel
                             </a>
                         </p>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Filter Buttons */}
                     <div className="flex justify-center flex-wrap gap-3 mb-12">
-                        <motion.button
+                        <MotionButton
                             onClick={() => setActiveCategory('All')}
                             className={`px-5 py-2 text-sm font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg ${
                                 activeCategory === 'All' 
@@ -162,9 +181,9 @@ const CoursesPage = () => {
                             whileTap={{ scale: 0.95 }}
                         >
                             Live Videos (ALL)
-                        </motion.button>
+                        </MotionButton>
                         {categories.map(category => (
-                            <motion.button
+                            <MotionButton
                                 key={category}
                                 onClick={() => setActiveCategory(category)}
                                 className={`px-5 py-2 text-sm font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg ${
@@ -175,9 +194,9 @@ const CoursesPage = () => {
                                 whileTap={{ scale: 0.95 }}
                             >
                                 {category}
-                            </motion.button>
+                            </MotionButton>
                         ))}
-                        <motion.button
+                        <MotionButton
                             onClick={() => setActiveCategory('Coming Soon')}
                             className={`px-5 py-2 text-sm font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg ${
                                 activeCategory === 'Coming Soon' 
@@ -187,11 +206,11 @@ const CoursesPage = () => {
                             whileTap={{ scale: 0.95 }}
                         >
                             <Clock className="inline h-4 w-4 mr-1" /> Coming Soon
-                        </motion.button>
+                        </MotionButton>
                     </div>
 
                     {/* Course Grid */}
-                    <motion.div
+                    <MotionDiv
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
@@ -199,7 +218,7 @@ const CoursesPage = () => {
                     >
                         <AnimatePresence>
                             {filteredCourses.map(course => (
-                                <motion.div
+                                <MotionDiv
                                     key={course.id}
                                     variants={itemVariants}
                                     layout
@@ -279,10 +298,10 @@ const CoursesPage = () => {
                                             <strong>Subscribe Channel</strong> for more content like this
                                         </a>
                                     </div>
-                                </motion.div>
+                                </MotionDiv>
                             ))}
                         </AnimatePresence>
-                    </motion.div>
+                    </MotionDiv>
                     
                     {/* Global Subscription CTA - High-Impact Footer (Dangerous replaced with Advanced) */}
                     <div className="text-center mt-20 p-10 bg-red-100 dark:bg-red-900/20 rounded-2xl border-4 border-red-600 dark:border-red-600 shadow-2xl dark:shadow-red-800/50 shadow-red-300/50 backdrop-blur-sm">
