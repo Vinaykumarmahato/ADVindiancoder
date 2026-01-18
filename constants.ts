@@ -19,9 +19,11 @@ export const HERO_STATS: Stat[] = [
 ];
 
 export const FEATURED_COMPANIES: Company[] = [
-    { id: 1, name: 'Inoglle IT Services', logo: '/inoglle-logo.svg', tagline: 'Innovating Technology with Passion', link: '#' },
-    { id: 2, name: 'Elevtern', logo: '/elevtern-logo.svg', tagline: 'Empowering Internships & Real-World Training', link: '#' },
-    { id: 3, name: 'ADV SparkTech', logo: '/adv-sparktech-logo.svg', tagline: 'Shaping the Future of Tech Learning', link: '#' },
+    { id: 1, name: 'Inoglle IT Services', logo: '/ventures/inoglle.png', tagline: 'Innovating Technology with Passion', link: '#' },
+    { id: 2, name: 'Elevtern', logo: '/ventures/elevtern.jpg', tagline: 'Empowering Internships & Real-World Training', link: '#' },
+    { id: 3, name: 'ADV SparkTech', logo: '/ventures/adv-sparktech.jpg', tagline: 'Shaping the Future of Tech Learning', link: '#' },
+    { id: 4, name: 'ADV Indian Coder', logo: '/ventures/adv-indian-coder.png', tagline: 'Master Coding with Real-World Projects', link: '#' },
+    { id: 5, name: 'ADV Hope Haven', logo: '/ventures/adv-hopehaven.jpg', tagline: 'Empowering Lives through Education', link: '#' },
 ];
 
 export const WHY_CHOOSE_US_FEATURES = [
@@ -43,10 +45,26 @@ export const COURSES: Course[] = [
 ];
 
 export const MASTERCLASSES: Masterclass[] = [
-    { id: 1, title: 'Java REST API in 1 Hour', description: 'Build a production-ready REST API using Java and Spring Boot in just 60 minutes.', price: 9, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 2, title: 'Portfolio Website using HTML, CSS, JS', description: 'Create a stunning personal portfolio from scratch to showcase your skills.', price: 9, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 3, title: 'Data Analyst Roadmap 2026', description: 'Your step-by-step guide to becoming a Data Analyst in the modern tech landscape.', price: 9, enrollLink: '#', countdownTarget: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 4, title: 'Resume & LinkedIn Optimization', description: 'Learn the secrets to crafting a resume that beats ATS and a LinkedIn profile that attracts recruiters.', price: 9, enrollLink: '#', countdownTarget: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 1, title: 'Java Mastery in 2 Hours (Zero to Core Concepts)', description: 'Master Java from scratch with this comprehensive course.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 2, title: 'Multithreading Made Easy in 2 Hours', description: 'Understand multithreading concepts simply and effectively.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 3, title: 'Spring Boot Crash Course in 2 Hours', description: 'Quickly get up to speed with Spring Boot framework.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 4, title: 'Microservices Fundamentals in 2 Hours', description: 'Learn the core principles of microservices architecture.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 5, title: 'AI Tools for Students – Learn & Use in 2 Hours', description: 'Discover essential AI tools to boost your productivity.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 6, title: 'Build Your First AI Project in 2 Hours', description: 'Hands-on guide to creating your first AI application.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 7, title: 'Become Industry-Ready in 2 Hours', description: 'Essential skills and tips to prepare for the tech industry.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 8, title: 'Career Roadmap 2025 in 2 Hours', description: 'Plan your career path with the latest industry trends.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 9, title: 'Communication Skills Booster in 2 Hours', description: 'Improve your communication skills for professional success.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 10, title: 'Public Speaking Confidence in 2 Hours', description: 'Gain confidence and master the art of public speaking.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 11, title: 'Leadership Skills for Beginners in 2 Hours', description: 'Start your journey to becoming an effective leader.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 12, title: 'Start Your Startup in 2 Hours (Idea to Plan)', description: 'Turn your startup idea into a solid actionable plan.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 13, title: 'Personal Branding Crash Course in 2 Hours', description: 'Build a strong personal brand to stand out.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 14, title: 'YouTube Growth in 2 Hours – From Zero to Strategy', description: 'Strategies to grow your YouTube channel from scratch.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 15, title: 'Create Viral Thumbnails in 2 Hours', description: 'Learn design techniques for high-click-through thumbnails.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 16, title: 'SQL Essentials in 2 Hours (Joins + Queries)', description: 'Master essential SQL queries and joins quickly.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 17, title: 'Database Design in 2 Hours', description: 'Learn the fundamentals of designing efficient databases.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 18, title: 'Web + AI Integration in 2 Hours', description: 'Integrate AI capabilities into your web applications.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 19, title: 'Build a Real Project in 2 Hours (Java + SQL)', description: 'Build a complete project using Java and SQL.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 20, title: 'Master Productivity & Focus in 2 Hours', description: 'Techniques to maximize your productivity and focus.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
 ];
 
 export const RESOURCES: Resource[] = [
@@ -75,6 +93,6 @@ export const SOCIAL_LINKS = {
     personalLinkedin: 'https://www.linkedin.com/in/vinay-kumar860964/',
     personalInstagram: 'https://www.instagram.com/vinay_software_engineer/',
     telegram: 'https://t.me/advindiancoder',
-    discord: '#',
-    whatsapp: '#',
+    discord: 'https://discord.gg/qApjKDjk',
+    whatsapp: 'https://whatsapp.com/channel/0029VaPmCNEFcow7oeWCwh3c',
 };

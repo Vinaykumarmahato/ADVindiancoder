@@ -1,12 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { MotionButton, MotionDiv } from '../components/motion';
 import { Youtube, Clock } from 'lucide-react';
-
-// (NavBar removed) Header is provided globally by `components/Header` in App.tsx
-
-
-// --- Placeholder Data & Types ---
+import CourseNavBar from '../components/CourseNavBar';
 
 interface Course {
     id: number;
@@ -26,37 +22,37 @@ const LIVE_VIDEOS: Course[] = [
         id: 101,
         title: 'Engineering in India is a Trap No One Talks About This!',
         description: 'The Dark Truth No One Talks About: 83% job loss and 83% useless jobs!',
-        category: 'Career', 
+        category: 'Career',
         tags: ['Career', 'Engineering', 'Jobs'],
         youtubeLink: 'https://youtu.be/NFhKdwdBvyw',
-        thumbnail: '/assets/ENGINEERING TRAP.png', 
+        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=Engineering+Trap',
     },
     {
         id: 102,
         title: 'GSoC 2026 Full Guide: How to Apply, Timeline, Skills, & Secret Tips',
         description: 'Get Selected in GSoC 2026 | Get 2.5 Lakh by Google',
-        category: 'Career', 
+        category: 'Career',
         tags: ['GSOC', 'Internship', 'Google'],
         youtubeLink: 'https://youtu.be/QQvae70PC_k',
-        thumbnail: '/assets/How To Crack GSOC in 2026.png', 
+        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=GSoC+2026+Guide',
     },
     {
         id: 103,
         title: 'Become a Top 1% Learner by 2026 - Just Follow This System',
         description: 'BECOME a Top 1% | 1st, 2nd & 3rd YEAR ENGINEERING STUDENT',
-        category: 'Career', 
+        category: 'Career',
         tags: ['Self-Improvement', 'Student', 'System'],
         youtubeLink: 'https://youtu.be/XuyH-f-0-_8',
-        thumbnail: '/assets/Blue  and Yellow Modern Reaction YouTube Thumbnail.png',
+        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=Top+1%25+Learner',
     },
     {
         id: 104,
         title: 'Data Analyst Roadmap 2026 | The Truth No One Tells You About...',
         description: 'DATA ANALYST ROADMAP 2026 | The Truth No One Tells You About',
-        category: 'Career', 
+        category: 'Career',
         tags: ['Data Analyst', 'Roadmap', 'Jobs'],
         youtubeLink: 'https://youtu.be/SQ5molhb4GY',
-        thumbnail: '/assets/Data Analytics Roadmap 2026.jpg',
+        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=Data+Analyst+Roadmap',
     },
     {
         id: 105,
@@ -65,7 +61,7 @@ const LIVE_VIDEOS: Course[] = [
         category: 'Career',
         tags: ['LinkedIn', 'Career', 'Profile'],
         youtubeLink: 'https://youtu.be/2DwvB9gsVw0',
-        thumbnail: '/assets/Linkedin account crreation.png',
+        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=LinkedIn+Masterclass',
     },
     {
         id: 106,
@@ -80,10 +76,10 @@ const LIVE_VIDEOS: Course[] = [
         id: 107,
         title: 'From No Phone to Tech Startup Founder | Vinay Kumar\'s Real Story',
         description: 'FROM NOTHING TO TECH FOUNDER | Vinay Kumar\'s Real Story',
-        category: 'Career', 
+        category: 'Career',
         tags: ['Startup', 'Founder', 'Inspiration'],
         youtubeLink: 'https://youtu.be/nZCTzkV0QAY',
-        thumbnail: '/assets/From nothing to tech founder.png',
+        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=Startup+Founder+Story',
     },
 ];
 
@@ -101,7 +97,6 @@ const ALL_CONTENT: Course[] = [
 
 const categories: Course['category'][] = ['Programming', 'Web', 'Backend', 'DSA', 'Career'];
 
-
 // --- Main CoursesPage Component (Now including Theme Logic) ---
 
 const CoursesPage = () => {
@@ -116,11 +111,10 @@ const CoursesPage = () => {
         } else if (activeCategory === 'Coming Soon') {
             return list.filter(course => course.isComingSoon);
         }
-        
+
         return list.filter(course => course.category === activeCategory);
 
     }, [activeCategory]);
-
 
     // 3. Framer Motion Variants
     const containerVariants = {
@@ -141,80 +135,90 @@ const CoursesPage = () => {
     // 4. Component Render
     return (
         // Main container (theme handled globally by Header/ThemeContext)
-        <div className="min-h-screen font-sans transition-colors duration-500">
-            
-            <main className="pb-16" id="courses">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                    
-                    {/* Header Section - Themed and High-Impact */}
-                    <MotionDiv 
-                        initial={{ opacity: 0, y: -20 }}
+        <div className="min-h-screen font-sans transition-colors duration-500 bg-gray-50 dark:bg-black">
+            <CourseNavBar />
+            <main className="pb-16 relative" id="courses">
+                {/* Background decorative elements */}
+                <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-red-500/5 to-transparent pointer-events-none" />
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+
+                    {/* Header Section - Modern & Clean */}
+                    <MotionDiv
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-center mb-16 p-6 rounded-xl border-4 dark:border-red-800 border-red-200 shadow-2xl dark:shadow-red-900/40 shadow-red-200/50 dark:bg-gray-900 bg-white"
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
                     >
-                        <h1 className="text-5xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400 dark:from-red-500 dark:to-red-400 animate-pulse">
-                            FREE VIDEOS & <span className="text-gray-900 dark:text-white">COURSES</span>
+                        <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6">
+                            <span className="text-gray-900 dark:text-white">Free Videos & </span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600 dark:from-red-500 dark:to-orange-500">
+                                Premium Courses
+                            </span>
                         </h1>
-                        <p className="mt-4 text-xl text-gray-700 dark:text-gray-400">
-                            All videos and free courses are available on my YouTube channel. For more high-quality programming tutorials and full courses, visit the channel and subscribe.
-                            <a 
-                                href={YOUTUBE_CHANNEL_LINK} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="text-red-600 dark:text-red-500 hover:text-red-400 font-bold transition-colors inline-flex items-center ml-2 border-b border-dashed dark:border-red-500 border-red-600"
-                            >
-                                <Youtube className="mr-1 h-5 w-5" /> Subscribe to the channel
-                            </a>
+                        <p className="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Master programming with our extensive library of free tutorials.
+                            From basics to advanced concepts, everything you need is here.
                         </p>
+
+                        <div className="mt-8 flex justify-center">
+                            <a
+                                href={YOUTUBE_CHANNEL_LINK}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group inline-flex items-center px-8 py-3 text-lg font-bold text-white bg-red-600 rounded-full shadow-lg shadow-red-600/30 hover:bg-red-500 hover:scale-105 transition-all duration-300"
+                            >
+                                <Youtube className="mr-2 h-6 w-6 group-hover:animate-pulse" />
+                                Subscribe on YouTube
+                            </a>
+                        </div>
                     </MotionDiv>
 
-                    {/* Filter Buttons */}
-                    <div className="flex justify-center flex-wrap gap-3 mb-12">
+                    {/* Filter Buttons - Glassmorphic Pills */}
+                    <div className="flex justify-center flex-wrap gap-3 mb-16">
                         <MotionButton
                             onClick={() => setActiveCategory('All')}
-                            className={`px-5 py-2 text-sm font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                                activeCategory === 'All' 
-                                ? 'bg-red-600 text-white shadow-red-600/50' 
-                                : 'bg-gray-200 dark:bg-gray-800 dark:text-gray-300 hover:bg-red-100 dark:hover:bg-red-900/30'
-                            }`}
+                            className={`px-6 py-2.5 text-sm font-bold rounded-full transition-all duration-300 border ${activeCategory === 'All'
+                                ? 'bg-red-600 border-red-600 text-white shadow-lg shadow-red-600/25 scale-105'
+                                : 'bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:border-red-500/50 hover:text-red-500 backdrop-blur-sm'
+                                }`}
                             whileTap={{ scale: 0.95 }}
                         >
-                            Live Videos (ALL)
+                            All Videos
                         </MotionButton>
-                        {categories.map(category => (
-                            <MotionButton
-                                key={category}
-                                onClick={() => setActiveCategory(category)}
-                                className={`px-5 py-2 text-sm font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                                    activeCategory === category 
-                                    ? 'bg-red-600 text-white shadow-red-600/50' 
-                                    : 'bg-gray-200 dark:bg-gray-800 dark:text-gray-300 hover:bg-red-100 dark:hover:bg-red-900/30'
-                                }`}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                {category}
-                            </MotionButton>
-                        ))}
+                        {
+                            categories.map(category => (
+                                <MotionButton
+                                    key={category}
+                                    onClick={() => setActiveCategory(category)}
+                                    className={`px-6 py-2.5 text-sm font-bold rounded-full transition-all duration-300 border ${activeCategory === category
+                                        ? 'bg-red-600 border-red-600 text-white shadow-lg shadow-red-600/25 scale-105'
+                                        : 'bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:border-red-500/50 hover:text-red-500 backdrop-blur-sm'
+                                        } `}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    {category}
+                                </MotionButton>
+                            ))
+                        }
                         <MotionButton
                             onClick={() => setActiveCategory('Coming Soon')}
-                            className={`px-5 py-2 text-sm font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                                activeCategory === 'Coming Soon' 
-                                ? 'bg-yellow-500 text-gray-900 shadow-yellow-500/50' 
-                                : 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300 hover:bg-yellow-200 dark:hover:bg-yellow-800/70'
-                            }`}
+                            className={`px-6 py-2.5 text-sm font-bold rounded-full transition-all duration-300 border ${activeCategory === 'Coming Soon'
+                                ? 'bg-yellow-500 border-yellow-500 text-black shadow-lg shadow-yellow-500/25 scale-105'
+                                : 'bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:border-yellow-500/50 hover:text-yellow-500 backdrop-blur-sm'
+                                } `}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <Clock className="inline h-4 w-4 mr-1" /> Coming Soon
+                            <Clock className="inline h-4 w-4 mr-1.5" /> Coming Soon
                         </MotionButton>
-                    </div>
+                    </div >
 
-                    {/* Course Grid */}
-                    <MotionDiv
+                    {/* Course Grid - Modern Cards */}
+                    < MotionDiv
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     >
                         <AnimatePresence>
                             {filteredCourses.map(course => (
@@ -226,101 +230,99 @@ const CoursesPage = () => {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.3 }}
-                                    className={`rounded-2xl overflow-hidden shadow-2xl group relative transition-all duration-300 ease-in-out ${
-                                        course.isComingSoon 
-                                            ? 'bg-gray-100 dark:bg-gray-800/50 border border-yellow-600/40 hover:border-yellow-500/80' 
-                                            : 'bg-white dark:bg-gray-800 border border-red-700/50 hover:border-red-500/80 hover:scale-[1.02]'
-                                    }`}
+                                    className={`group relative rounded-3xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:border-red-500/30 dark:hover:border-red-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/10 ${course.isComingSoon ? 'opacity-75' : ''}`}
                                 >
                                     {/* Coming Soon Badge */}
                                     {course.isComingSoon && (
-                                        <div className="absolute top-0 right-0 bg-yellow-500 text-gray-900 text-xs font-black px-4 py-1 rounded-bl-xl z-10 transform rotate-1 transition duration-300 group-hover:bg-yellow-400">
-                                            <Clock className="inline h-3 w-3 mr-1" /> JALDI AA RAHA HAI (Coming Soon)
+                                        <div className="absolute top-4 right-4 bg-yellow-400/90 backdrop-blur-md text-black text-xs font-bold px-3 py-1 rounded-full z-20 shadow-lg">
+                                            <Clock className="inline h-3 w-3 mr-1" /> COMING SOON
                                         </div>
                                     )}
-                                    
-                                    {/* Thumbnail */}
-                                    <div className="relative h-48">
-                                        <img 
-                                            src={course.thumbnail} 
-                                            alt={course.title} 
-                                            className={`w-full h-full object-cover transition-transform duration-500 ${course.isComingSoon ? 'opacity-40 blur-sm' : 'group-hover:scale-110'}`} 
-                                            // Fallback for placeholder images
+
+                                    {/* Thumbnail Container */}
+                                    <div className="relative aspect-video overflow-hidden">
+                                        <img
+                                            src={course.thumbnail}
+                                            alt={course.title}
+                                            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${course.isComingSoon ? 'grayscale' : ''}`}
                                             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/1280x720/1e293b/f87171?text=Video+Loading+Error'; }}
                                         />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+
                                         {!course.isComingSoon && (
-                                            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                                                <Youtube className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="red" />
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100">
+                                                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/40 animate-pulse">
+                                                    <Youtube className="w-8 h-8 text-white" fill="white" />
+                                                </div>
                                             </div>
                                         )}
                                     </div>
 
                                     {/* Content */}
                                     <div className="p-6">
-                                        <div className="flex flex-wrap gap-2 mb-3">
-                                            <span className={`text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider ${
-                                                course.isComingSoon 
-                                                    ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' 
-                                                    : 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-300'
-                                            }`}>{course.category}</span>
-                                            {course.tags.map(tag => (
-                                                <span 
-                                                    key={tag} 
-                                                    className={`text-xs font-medium px-3 py-1 rounded-full ${
-                                                        course.isComingSoon 
-                                                            ? 'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400' 
-                                                            : 'bg-gray-200/50 text-gray-600 dark:bg-gray-700/50 dark:text-gray-300'
-                                                    }`}
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            <span className="text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wide bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400 border border-red-100 dark:border-red-900/30">
+                                                {course.category}
+                                            </span>
+                                            {course.tags.slice(0, 2).map(tag => (
+                                                <span
+                                                    key={tag}
+                                                    className="text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wide bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 border border-gray-200 dark:border-gray-700"
                                                 >
                                                     {tag}
                                                 </span>
                                             ))}
                                         </div>
-                                        <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{course.title}</h3>
-                                        <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">{course.description}</p>
-                                        
-                                        {/* Action Button */}
-                                        <a 
-                                            href={course.youtubeLink} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer" 
-                                            className={`w-full flex items-center justify-center font-black py-3 px-4 rounded-xl transition duration-300 uppercase transform ${
-                                                course.isComingSoon 
-                                                    ? 'bg-gray-400 text-gray-800 dark:bg-gray-600/50 dark:text-gray-300 cursor-not-allowed border dark:border-gray-500'
-                                                    : 'bg-red-600 hover:bg-red-500 text-white shadow-xl shadow-red-700/30 hover:shadow-red-500/50'
-                                            }`}
-                                        >
-                                            {course.isComingSoon ? 'Course Coming Soon' : <><Youtube className="mr-2 h-5 w-5" /> <strong>ABHI DEKHO (WATCH NOW)</strong></>}
-                                        </a>
 
-                                        {/* Subscribe CTA - Emphasis added with <strong> */}
-                                        <a href={YOUTUBE_CHANNEL_LINK} target="_blank" rel="noopener noreferrer" className="w-full mt-3 block text-center text-sm font-semibold text-red-600 dark:text-red-400 hover:text-red-500 dark:hover:text-red-300 transition-colors">
-                                            <strong>Subscribe Channel</strong> for more content like this
+                                        <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white line-clamp-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                                            {course.title}
+                                        </h3>
+                                        <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 line-clamp-2">
+                                            {course.description}
+                                        </p>
+
+                                        {/* Action Button */}
+                                        <a
+                                            href={course.youtubeLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`w-full flex items-center justify-center font-bold py-3 px-4 rounded-xl transition-all duration-300 ${course.isComingSoon
+                                                ? 'bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
+                                                : 'bg-gray-900 text-white dark:bg-white dark:text-black hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white shadow-lg hover:shadow-red-600/20'
+                                                } `}
+                                        >
+                                            {course.isComingSoon ? 'Coming Soon' : 'Watch Now'}
                                         </a>
                                     </div>
                                 </MotionDiv>
                             ))}
                         </AnimatePresence>
-                    </MotionDiv>
-                    
-                    {/* Global Subscription CTA - High-Impact Footer (Dangerous replaced with Advanced) */}
-                    <div className="text-center mt-20 p-10 bg-red-100 dark:bg-red-900/20 rounded-2xl border-4 border-red-600 dark:border-red-600 shadow-2xl dark:shadow-red-800/50 shadow-red-300/50 backdrop-blur-sm">
-                        <h2 className="text-4xl font-black mb-4 text-red-700 dark:text-red-400">For more advanced programming tutorials and courses</h2>
-                        <p className="text-xl mb-8 text-gray-700 dark:text-gray-200">
-                            All videos and many high-quality courses are on my YouTube channel. Subscribe to stay updated with new tutorials, course launches, and programming guides.
-                        </p>
-                        <a 
-                            href={YOUTUBE_CHANNEL_LINK} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="inline-flex items-center justify-center bg-red-600 hover:bg-red-500 text-white font-black py-4 px-10 rounded-full text-xl transition duration-300 transform hover:scale-105 shadow-2xl shadow-red-700/50 border-4 border-red-400"
-                        >
-                            <Youtube className="mr-3 h-6 w-6" /> Subscribe to ADV Indian Coder on YouTube
-                        </a>
+                    </MotionDiv >
+
+                    {/* Global Subscription CTA - Modern Glass Card */}
+                    <div className="relative mt-24 p-1 rounded-3xl bg-gradient-to-r from-red-600 via-orange-500 to-red-600 animate-gradient-x">
+                        <div className="bg-white dark:bg-gray-900 rounded-[22px] p-10 md:p-16 text-center backdrop-blur-xl relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+                            <h2 className="text-3xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white relative z-10">
+                                Ready to level up your skills?
+                            </h2>
+                            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto relative z-10">
+                                Join thousands of developers mastering the craft. Get access to exclusive content and community support.
+                            </p>
+                            <a
+                                href={YOUTUBE_CHANNEL_LINK}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative z-10 inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-red-600 rounded-full shadow-xl shadow-red-600/30 hover:bg-red-500 hover:scale-105 transition-all duration-300"
+                            >
+                                <Youtube className="mr-2 h-6 w-6" />
+                                Visit Channel
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </main>
-        </div>
+                </div >
+            </main >
+        </div >
     );
 };
 

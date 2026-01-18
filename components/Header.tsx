@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { Sun, Moon, Menu, X, LogOut, User } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '../contexts/AuthContext';
 import { NAV_LINKS } from '../constants';
 import { MotionDiv } from './motion';
 
 const Header = () => {
     const { theme, toggleTheme } = useTheme();
+    const { user, logout } = useAuth();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
 
     const menuVariants = {
         hidden: { opacity: 0, y: -20 },
@@ -24,7 +32,7 @@ const Header = () => {
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div className="relative flex items-center justify-between bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 rounded-full px-6 py-3 shadow-lg">
                     <Link to="/" className="flex items-center">
-                         <img src="/assets/ADV Indian Coder Logo.png" alt="ADV Indian Coder Logo" className="h-10" />
+                        <img src="/assets/ADV Indian Coder Logo.png" alt="ADV Indian Coder Logo" className="h-10" />
                     </Link>
 
                     <div className="hidden lg:flex items-center space-x-6">
@@ -33,7 +41,7 @@ const Header = () => {
                                 key={link.name}
                                 to={link.path}
                                 className={({ isActive }) =>
-                                    `text-sm font-medium transition-colors duration-300 ${isActive ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary'}`
+                                    `text-sm font-medium transition-colors duration-300 ${isActive ? 'text-red-600' : 'text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600'}`
                                 }
                             >
                                 {link.name}
@@ -45,11 +53,38 @@ const Header = () => {
                         <button
                             onClick={toggleTheme}
                             className="p-2 rounded-full bg-white/20 hover:bg-white/30 dark:bg-black/30 dark:hover:bg-black/50 transition-colors"
+                            aria-label="Toggle theme"
                         >
                             {theme === 'dark' ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-blue-500" />}
                         </button>
+
+                        {user ? (
+                            <div className="hidden lg:flex items-center space-x-2">
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Hi, {user.username}</span>
+                                <button
+                                    onClick={handleLogout}
+                                    className="p-2 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-500 transition-colors"
+                                    aria-label="Logout"
+                                >
+                                    <LogOut className="h-5 w-5" />
+                                </button>
+                            </div>
+                        ) : (
+                            <Link
+                                to="/auth"
+                                className="hidden lg:flex items-center px-4 py-2 rounded-full bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition-colors"
+                            >
+                                <User className="h-4 w-4 mr-2" />
+                                Sign Up / Login
+                            </Link>
+                        )}
+
                         <div className="lg:hidden">
-                            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-full">
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="p-2 rounded-full"
+                                aria-label="Toggle menu"
+                            >
                                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                             </button>
                         </div>
@@ -70,13 +105,40 @@ const Header = () => {
                                         to={link.path}
                                         onClick={() => setIsMenuOpen(false)}
                                         className={({ isActive }) =>
-                                            `block text-center py-2 rounded-md transition-colors duration-300 ${isActive ? 'bg-primary text-white' : 'text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700'}`
+                                            `block text-center py-2 rounded-md transition-colors duration-300 ${isActive ? 'bg-red-600 text-white' : 'text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700'}`
                                         }
                                     >
                                         {link.name}
                                     </NavLink>
                                 </MotionDiv>
                             ))}
+
+                            <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+                                {user ? (
+                                    <div className="flex flex-col items-center space-y-3">
+                                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Hi, {user.username}</span>
+                                        <button
+                                            onClick={() => {
+                                                handleLogout();
+                                                setIsMenuOpen(false);
+                                            }}
+                                            className="w-full py-2 px-4 rounded-md bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors flex items-center justify-center"
+                                        >
+                                            <LogOut className="h-4 w-4 mr-2" />
+                                            Logout
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <Link
+                                        to="/auth"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="w-full flex items-center justify-center py-2 px-4 rounded-md bg-red-600 text-white font-medium hover:bg-red-700 transition-colors"
+                                    >
+                                        <User className="h-4 w-4 mr-2" />
+                                        Sign Up / Login
+                                    </Link>
+                                )}
+                            </div>
                         </div>
                     </MotionDiv>
                 )}

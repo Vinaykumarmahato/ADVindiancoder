@@ -1,28 +1,34 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: 'class',
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./contexts/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+      },
       colors: {
-        primary: '#3B82F6',
-        secondary: '#FBBF24',
-        'dark-bg': '#0F172A',
+        primary: '#0078FF',
+        secondary: '#FFC107',
+        'dark-bg': '#0B1120',
       },
       animation: {
         'spin-slow': 'spin 8s linear infinite',
-        'shadow-glow-primary': 'glow 2s ease-in-out infinite',
-        'shadow-glow-secondary': 'glow 2s ease-in-out infinite',
-        'gradient-bg': 'gradient 15s ease infinite',
+        'shadow-glow-primary': 'shadow-glow-primary 1.5s ease-in-out infinite alternate',
+        'shadow-glow-secondary': 'shadow-glow-secondary 1.5s ease-in-out infinite alternate',
+        'gradient-bg': 'gradient-bg 15s ease infinite',
         'dynamic-glow': 'dynamicGlow 4s ease-in-out infinite',
       },
       keyframes: {
         dynamicGlow: {
           '0%': {
-            boxShadow: '0 0 20px #3B82F6, 0 0 40px #3B82F6',
+            boxShadow: '0 0 20px #0078FF, 0 0 40px #0078FF',
             filter: 'hue-rotate(0deg)',
           },
           '33%': {
@@ -34,22 +40,21 @@ module.exports = {
             filter: 'hue-rotate(240deg)',
           },
           '100%': {
-            boxShadow: '0 0 20px #3B82F6, 0 0 40px #3B82F6',
+            boxShadow: '0 0 20px #0078FF, 0 0 40px #0078FF',
             filter: 'hue-rotate(360deg)',
           }
         },
-        glow: {
-          '0%, 100%': {
-            boxShadow: '0 0 20px var(--tw-shadow-color)',
-          },
-          '50%': {
-            boxShadow: '0 0 10px var(--tw-shadow-color)',
-          },
+        'shadow-glow-primary': {
+          '0%': { 'box-shadow': '0 0 5px #0078FF, 0 0 10px #0078FF' },
+          '100%': { 'box-shadow': '0 0 20px #0078FF, 0 0 30px #0078FF' },
         },
-        gradient: {
-          '0%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-          '100%': { backgroundPosition: '0% 50%' },
+        'shadow-glow-secondary': {
+          '0%': { 'box-shadow': '0 0 5px #FFC107, 0 0 10px #FFC107' },
+          '100%': { 'box-shadow': '0 0 20px #FFC107, 0 0 30px #FFC107' },
+        },
+        'gradient-bg': {
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
         },
       },
     },

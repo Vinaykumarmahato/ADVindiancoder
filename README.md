@@ -1,20 +1,41 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# ADV Indian Coder - Full Stack Application
 
-# Run and deploy your AI Studio app
+This is a full-stack application built with **React (Vite + Tailwind CSS)** for the frontend and **Spring Boot (Java + MySQL)** for the backend.
 
-This contains everything you need to run your app locally.
+## Prerequisites
+- Node.js & npm
+- Java 21 (JDK)
+- Maven
+- MySQL Server
 
-View your app in AI Studio: https://ai.studio/apps/drive/17ejReom-pbo5tslI_aMqmiomVOuKSmIm
+## 🚀 How to Run
 
-## Run Locally
+### 1. Start the Backend (Spring Boot)
+The backend runs on port `8080`.
 
-**Prerequisites:**  Node.js
+```bash
+cd backend
+mvn spring-boot:run
+```
 
+### 2. Start the Frontend (React)
+The frontend runs on port `5173` (default Vite port).
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+# Open a new terminal
+npm install  # (Only need to run this once)
+npm run dev
+```
+
+## 📂 Project Structure
+- **frontend/** (Root): React application.
+- **backend/**: Spring Boot application.
+
+## 🔐 Credentials
+- **Database:** Update `backend/src/main/resources/application.properties` with your MySQL password.
+- **Default User:** You can create a new user via the Sign Up page.
+
+## ✅ Features
+- **Authentication:** Login/Signup with JWT.
+- **Responsive Design:** Fully responsive UI with Dark Mode.
+- **Animations:** Powered by Framer Motion.
