@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -17,6 +17,8 @@ const CareerPage = React.lazy(() => import('./pages/CareerPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const UpscSyllabusPage = React.lazy(() => import('./pages/UpscSyllabusPage'));
 const CourseTutorialPage = React.lazy(() => import('./pages/CourseTutorialPage'));
+const SuccessStoriesPage = React.lazy(() => import('./pages/SuccessStoriesPage'));
+const FaqPage = React.lazy(() => import('./pages/FaqPage'));
 
 // Course Pages
 const HtmlCoursePage = React.lazy(() => import('./pages/courses/HtmlCoursePage'));
@@ -70,6 +72,11 @@ const LoadingFallback = () => (
 
 const AnimatedRoutes = () => {
     const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
         <AnimatePresence mode="wait">
             <React.Fragment key={location.pathname}>
@@ -131,6 +138,8 @@ const AnimatedRoutes = () => {
                         <Route path="/community" element={<CommunityPage />} />
                         <Route path="/career" element={<CareerPage />} />
                         <Route path="/contact" element={<ContactPage />} />
+                        <Route path="/success-stories" element={<SuccessStoriesPage />} />
+                        <Route path="/faq" element={<FaqPage />} />
                         <Route path="/upsc-syllabus" element={<UpscSyllabusPage />} />
                     </Routes>
                 </Suspense>

@@ -1,326 +1,179 @@
-import React, { useState, useMemo } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { MotionButton, MotionDiv } from '../components/motion';
-import { Youtube, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { PlayCircle, Youtube, Search, ArrowRight } from 'lucide-react';
+import PageWrapper from '../components/PageWrapper';
+import { motion, AnimatePresence } from 'framer-motion';
+import { COURSES } from '../constants';
 
-interface Course {
-    id: number;
-    title: string;
-    description: string;
-    category: 'Programming' | 'Web' | 'Backend' | 'DSA' | 'Career';
-    tags: string[];
-    youtubeLink: string;
-    thumbnail: string;
-    isComingSoon?: boolean;
-}
+const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+};
 
-const YOUTUBE_CHANNEL_LINK = 'https://www.youtube.com/@ADVIndianCoder-i9y';
-
-const LIVE_VIDEOS: Course[] = [
-    {
-        id: 101,
-        title: 'Engineering in India is a Trap No One Talks About This!',
-        description: 'The Dark Truth No One Talks About: 83% job loss and 83% useless jobs!',
-        category: 'Career',
-        tags: ['Career', 'Engineering', 'Jobs'],
-        youtubeLink: 'https://youtu.be/NFhKdwdBvyw',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=Engineering+Trap',
-    },
-    {
-        id: 102,
-        title: 'GSoC 2026 Full Guide: How to Apply, Timeline, Skills, & Secret Tips',
-        description: 'Get Selected in GSoC 2026 | Get 2.5 Lakh by Google',
-        category: 'Career',
-        tags: ['GSOC', 'Internship', 'Google'],
-        youtubeLink: 'https://youtu.be/QQvae70PC_k',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=GSoC+2026+Guide',
-    },
-    {
-        id: 103,
-        title: 'Become a Top 1% Learner by 2026 - Just Follow This System',
-        description: 'BECOME a Top 1% | 1st, 2nd & 3rd YEAR ENGINEERING STUDENT',
-        category: 'Career',
-        tags: ['Self-Improvement', 'Student', 'System'],
-        youtubeLink: 'https://youtu.be/XuyH-f-0-_8',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=Top+1%25+Learner',
-    },
-    {
-        id: 104,
-        title: 'Data Analyst Roadmap 2026 | The Truth No One Tells You About...',
-        description: 'DATA ANALYST ROADMAP 2026 | The Truth No One Tells You About',
-        category: 'Career',
-        tags: ['Data Analyst', 'Roadmap', 'Jobs'],
-        youtubeLink: 'https://youtu.be/SQ5molhb4GY',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=Data+Analyst+Roadmap',
-    },
-    {
-        id: 105,
-        title: 'LinkedIn Masterclass',
-        description: 'Complete LinkedIn profile and growth masterclass for professionals.',
-        category: 'Career',
-        tags: ['LinkedIn', 'Career', 'Profile'],
-        youtubeLink: 'https://youtu.be/2DwvB9gsVw0',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=LinkedIn+Masterclass',
-    },
-    {
-        id: 106,
-        title: 'How to Create an ATS Friendly Resume',
-        description: 'Step-by-step guide to make your resume ATS friendly and get more interviews.',
-        category: 'Career',
-        tags: ['Resume', 'Career', 'ATS'],
-        youtubeLink: 'https://youtu.be/yIahHYjkIjs',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/f87171?text=ATS+Resume+Guide',
-    },
-    {
-        id: 107,
-        title: 'From No Phone to Tech Startup Founder | Vinay Kumar\'s Real Story',
-        description: 'FROM NOTHING TO TECH FOUNDER | Vinay Kumar\'s Real Story',
-        category: 'Career',
-        tags: ['Startup', 'Founder', 'Inspiration'],
-        youtubeLink: 'https://youtu.be/nZCTzkV0QAY',
-        thumbnail: 'https://placehold.co/1280x720/1e293b/ef4444?text=Startup+Founder+Story',
-    },
-];
-
-const COMING_SOON_COURSES: Course[] = [
-    { id: 201, title: 'Java Full Stack Development Roadmap', description: 'Complete roadmap and tutorial for Java Full Stack.', category: 'Web', tags: ['Java', 'Spring', 'Full Stack'], youtubeLink: YOUTUBE_CHANNEL_LINK, thumbnail: 'https://placehold.co/1280x720/0c4a6e/93c5fd?text=Java+Full+Stack', isComingSoon: true },
-    { id: 202, title: 'Data Science Masterclass', description: 'In-depth Data Science and Machine Learning concepts.', category: 'Programming', tags: ['Data Science', 'Python', 'ML'], youtubeLink: YOUTUBE_CHANNEL_LINK, thumbnail: 'https://placehold.co/1280x720/0c4a6e/93c5fd?text=Data+Science+ML', isComingSoon: true },
-    { id: 203, title: 'DSA in Java', description: 'Data Structures and Algorithms focused on Java.', category: 'DSA', tags: ['Java', 'DSA', 'Algorithms'], youtubeLink: YOUTUBE_CHANNEL_LINK, thumbnail: 'https://placehold.co/1280x720/0c4a6e/93c5fd?text=DSA+in+Java', isComingSoon: true },
-    { id: 204, title: 'Core Java Programming', description: 'Fundamental concepts of Java programming.', category: 'Programming', tags: ['Java', 'Programming', 'Basics'], youtubeLink: YOUTUBE_CHANNEL_LINK, thumbnail: 'https://placehold.co/1280x720/0c4a6e/93c5fd?text=Core+Java', isComingSoon: true },
-];
-
-const ALL_CONTENT: Course[] = [
-    ...LIVE_VIDEOS,
-    ...COMING_SOON_COURSES,
-];
-
-const categories: Course['category'][] = ['Programming', 'Web', 'Backend', 'DSA', 'Career'];
-
-// --- Main CoursesPage Component (Now including Theme Logic) ---
+const GlowingOrb = ({ className }: { className: string }) => (
+    <div className={`absolute rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse ${className}`}></div>
+);
 
 const CoursesPage = () => {
-    // Course Filtering Logic
-    const [activeCategory, setActiveCategory] = useState<Course['category'] | 'All' | 'Coming Soon'>('All');
+    const [activeCategory, setActiveCategory] = useState<string>('All');
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const filteredCourses = useMemo(() => {
-        let list = ALL_CONTENT;
+    const categories = ['All', ...Array.from(new Set(COURSES.map(c => c.category)))];
 
-        if (activeCategory === 'All') {
-            return list.filter(course => !course.isComingSoon);
-        } else if (activeCategory === 'Coming Soon') {
-            return list.filter(course => course.isComingSoon);
-        }
+    const filteredCourses = COURSES.filter(course => {
+        const matchesCategory = activeCategory === 'All' || course.category === activeCategory;
+        const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            course.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
 
-        return list.filter(course => course.category === activeCategory);
-
-    }, [activeCategory]);
-
-    // 3. Framer Motion Variants
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1 },
-    };
-
-    // 4. Component Render
     return (
-        // Main container (theme handled globally by Header/ThemeContext)
-        <div className="min-h-screen font-sans transition-colors duration-500 bg-gray-50 dark:bg-black">
-            <main className="pb-16 relative" id="courses">
-                {/* Background decorative elements */}
-                <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-red-500/5 to-transparent pointer-events-none" />
+        <PageWrapper>
+            <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden">
+                {/* Background Grid */}
+                <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+                {/* Header */}
+                <div className="relative z-10 pt-32 pb-20 text-center px-4">
+                    <GlowingOrb className="top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-600/20" />
+                    <div className="max-w-4xl mx-auto relative">
+                        <motion.span 
+                            initial={{ opacity: 0, y: -20 }} 
+                            animate={{ opacity: 1, y: 0 }} 
+                            className="bg-white/10 backdrop-blur-md border border-white/20 text-white font-mono text-sm tracking-widest py-2 px-6 rounded-full mb-6 inline-flex items-center gap-2 shadow-[0_0_20px_rgba(255,0,0,0.3)]"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            100% FREE TO WATCH
+                        </motion.span>
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1 }}
+                            className="text-5xl md:text-7xl font-black mb-6 tracking-tighter"
+                        >
+                            Open Source <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">Mastery.</span>
+                        </motion.h1>
+                        <motion.p 
+                            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1 }}
+                            className="text-lg md:text-2xl text-gray-400 max-w-2xl mx-auto font-light"
+                        >
+                            Access our entire catalog of past live masterclasses and zero-to-hero YouTube playlists without paying a single rupee.
+                        </motion.p>
+                    </div>
+                </div>
 
-                    {/* Header Section - Modern & Clean */}
-                    <MotionDiv
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-16"
-                    >
-                        <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6">
-                            <span className="text-gray-900 dark:text-white">Free Videos & </span>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600 dark:from-red-500 dark:to-orange-500">
-                                Premium Courses
-                            </span>
-                        </h1>
-                        <p className="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Master programming with our extensive library of free tutorials.
-                            From basics to advanced concepts, everything you need is here.
-                        </p>
-
-                        <div className="mt-8 flex justify-center">
-                            <a
-                                href={YOUTUBE_CHANNEL_LINK}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group inline-flex items-center px-8 py-3 text-lg font-bold text-white bg-red-600 rounded-full shadow-lg shadow-red-600/30 hover:bg-red-500 hover:scale-105 transition-all duration-300"
-                            >
-                                <Youtube className="mr-2 h-6 w-6 group-hover:animate-pulse" />
-                                Subscribe on YouTube
-                            </a>
+                {/* Filter & Search */}
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-12">
+                    <motion.div variants={fadeUp} initial="hidden" animate="show" className="flex flex-col md:flex-row gap-6 items-center justify-between">
+                        <div className="flex gap-3 w-full md:w-auto overflow-x-auto no-scrollbar pb-4 md:pb-0">
+                            {categories.map((cat) => (
+                                <button
+                                    key={cat}
+                                    onClick={() => setActiveCategory(cat)}
+                                    className={`px-6 py-3 rounded-full font-semibold whitespace-nowrap transition-all duration-300 backdrop-blur-xl border ${
+                                        activeCategory === cat
+                                            ? 'bg-white text-black border-transparent shadow-[0_0_20px_rgba(255,255,255,0.4)]'
+                                            : 'bg-white/5 text-gray-400 border-white/10 hover:border-white/30 hover:text-white'
+                                    }`}
+                                >
+                                    {cat}
+                                </button>
+                            ))}
                         </div>
-                    </MotionDiv>
+                        <div className="relative w-full md:w-96 group">
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500 group-focus-within:text-white transition-colors" />
+                            <input
+                                type="text"
+                                placeholder="Search the vault..."
+                                className="w-full pl-12 pr-4 py-4 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </div>
+                    </motion.div>
+                </div>
 
-                    {/* Filter Buttons - Glassmorphic Pills */}
-                    <div className="flex justify-center flex-wrap gap-3 mb-16">
-                        <MotionButton
-                            onClick={() => setActiveCategory('All')}
-                            className={`px-6 py-2.5 text-sm font-bold rounded-full transition-all duration-300 border ${activeCategory === 'All'
-                                ? 'bg-red-600 border-red-600 text-white shadow-lg shadow-red-600/25 scale-105'
-                                : 'bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:border-red-500/50 hover:text-red-500 backdrop-blur-sm'
-                                }`}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            All Videos
-                        </MotionButton>
-                        {
-                            categories.map(category => (
-                                <MotionButton
-                                    key={category}
-                                    onClick={() => setActiveCategory(category)}
-                                    className={`px-6 py-2.5 text-sm font-bold rounded-full transition-all duration-300 border ${activeCategory === category
-                                        ? 'bg-red-600 border-red-600 text-white shadow-lg shadow-red-600/25 scale-105'
-                                        : 'bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:border-red-500/50 hover:text-red-500 backdrop-blur-sm'
-                                        } `}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    {category}
-                                </MotionButton>
-                            ))
-                        }
-                        <MotionButton
-                            onClick={() => setActiveCategory('Coming Soon')}
-                            className={`px-6 py-2.5 text-sm font-bold rounded-full transition-all duration-300 border ${activeCategory === 'Coming Soon'
-                                ? 'bg-yellow-500 border-yellow-500 text-black shadow-lg shadow-yellow-500/25 scale-105'
-                                : 'bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:border-yellow-500/50 hover:text-yellow-500 backdrop-blur-sm'
-                                } `}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <Clock className="inline h-4 w-4 mr-1.5" /> Coming Soon
-                        </MotionButton>
-                    </div >
-
-                    {/* Course Grid - Modern Cards */}
-                    < MotionDiv
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    >
+                {/* Courses Grid */}
+                <div className="relative z-10 py-8 px-4 max-w-7xl mx-auto mb-32">
+                    <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <AnimatePresence>
-                            {filteredCourses.map(course => (
-                                <MotionDiv
+                            {filteredCourses.map((course) => (
+                                <motion.div
                                     key={course.id}
-                                    variants={itemVariants}
                                     layout
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.3 }}
-                                    className={`group relative rounded-3xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:border-red-500/30 dark:hover:border-red-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/10 ${course.isComingSoon ? 'opacity-75' : ''}`}
+                                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="bg-white/5 backdrop-blur-2xl rounded-[2rem] border border-white/10 hover:border-white/30 transition-all duration-500 overflow-hidden flex flex-col group shadow-2xl shadow-black/50 hover:-translate-y-2"
                                 >
-                                    {/* Coming Soon Badge */}
-                                    {course.isComingSoon && (
-                                        <div className="absolute top-4 right-4 bg-yellow-400/90 backdrop-blur-md text-black text-xs font-bold px-3 py-1 rounded-full z-20 shadow-lg">
-                                            <Clock className="inline h-3 w-3 mr-1" /> COMING SOON
+                                    <div className="relative h-56 overflow-hidden">
+                                        <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-500 z-10 flex items-center justify-center">
+                                            <PlayCircle className="w-16 h-16 text-white opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 shadow-2xl rounded-full drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]" />
                                         </div>
-                                    )}
-
-                                    {/* Thumbnail Container */}
-                                    <div className="relative aspect-video overflow-hidden">
-                                        <img
-                                            src={course.thumbnail}
-                                            alt={course.title}
-                                            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${course.isComingSoon ? 'grayscale' : ''}`}
-                                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/1280x720/1e293b/f87171?text=Video+Loading+Error'; }}
+                                        <img 
+                                            src={course.thumbnail} 
+                                            alt={course.title} 
+                                            className="w-full h-full object-cover transform group-hover:scale-110 group-hover:rotate-1 transition-all duration-700"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-
-                                        {!course.isComingSoon && (
-                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100">
-                                                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/40 animate-pulse">
-                                                    <Youtube className="w-8 h-8 text-white" fill="white" />
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="p-6">
-                                        <div className="flex flex-wrap gap-2 mb-4">
-                                            <span className="text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wide bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400 border border-red-100 dark:border-red-900/30">
-                                                {course.category}
+                                        <div className="absolute top-4 left-4 z-20">
+                                            <span className="bg-black/50 backdrop-blur-md border border-white/10 text-white text-xs font-mono px-3 py-1.5 rounded-full flex items-center gap-2">
+                                                <Youtube className="w-3 h-3 text-red-500" /> Free
                                             </span>
-                                            {course.tags.slice(0, 2).map(tag => (
-                                                <span
-                                                    key={tag}
-                                                    className="text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wide bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 border border-gray-200 dark:border-gray-700"
-                                                >
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="p-8 flex flex-col flex-grow relative">
+                                        <div className="absolute top-0 right-8 w-20 h-20 bg-primary/20 blur-[50px] group-hover:bg-primary/40 transition-colors"></div>
+                                        <div className="flex gap-2 mb-4 flex-wrap relative z-10">
+                                            {course.tags.map((tag, i) => (
+                                                <span key={i} className="text-xs font-semibold text-gray-300 bg-white/10 border border-white/5 px-2.5 py-1 rounded-md">
                                                     {tag}
                                                 </span>
                                             ))}
                                         </div>
-
-                                        <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white line-clamp-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                                            {course.title}
-                                        </h3>
-                                        <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 line-clamp-2">
+                                        <h3 className="text-2xl font-bold mb-3 text-white line-clamp-2 relative z-10">{course.title}</h3>
+                                        <p className="text-gray-400 mb-8 flex-grow line-clamp-3 font-light leading-relaxed relative z-10">
                                             {course.description}
                                         </p>
-
-                                        {/* Action Button */}
-                                        <a
-                                            href={course.youtubeLink}
-                                            target="_blank"
+                                        
+                                        <a 
+                                            href={course.youtubeLink} 
+                                            target="_blank" 
                                             rel="noopener noreferrer"
-                                            className={`w-full flex items-center justify-center font-bold py-3 px-4 rounded-xl transition-all duration-300 ${course.isComingSoon
-                                                ? 'bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
-                                                : 'bg-gray-900 text-white dark:bg-white dark:text-black hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white shadow-lg hover:shadow-red-600/20'
-                                                } `}
+                                            className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold py-4 rounded-xl transition duration-300 border border-white/5 relative z-10"
                                         >
-                                            {course.isComingSoon ? 'Coming Soon' : 'Watch Now'}
+                                            <PlayCircle className="w-5 h-5 text-red-500" /> Watch Now
                                         </a>
                                     </div>
-                                </MotionDiv>
+                                </motion.div>
                             ))}
                         </AnimatePresence>
-                    </MotionDiv >
-
-                    {/* Global Subscription CTA - Modern Glass Card */}
-                    <div className="relative mt-24 p-1 rounded-3xl bg-gradient-to-r from-red-600 via-orange-500 to-red-600 animate-gradient-x">
-                        <div className="bg-white dark:bg-gray-900 rounded-[22px] p-10 md:p-16 text-center backdrop-blur-xl relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-                            <h2 className="text-3xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white relative z-10">
-                                Ready to level up your skills?
-                            </h2>
-                            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto relative z-10">
-                                Join thousands of developers mastering the craft. Get access to exclusive content and community support.
-                            </p>
-                            <a
-                                href={YOUTUBE_CHANNEL_LINK}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="relative z-10 inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-red-600 rounded-full shadow-xl shadow-red-600/30 hover:bg-red-500 hover:scale-105 transition-all duration-300"
-                            >
-                                <Youtube className="mr-2 h-6 w-6" />
-                                Visit Channel
-                            </a>
+                    </motion.div>
+                    
+                    {filteredCourses.length === 0 && (
+                        <div className="text-center py-32 text-gray-500 border border-white/5 rounded-3xl bg-white/5 backdrop-blur-lg mt-8">
+                            <Search className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                            <p className="text-2xl font-light">No courses found matching your criteria.</p>
                         </div>
+                    )}
+                </div>
+                
+                {/* Upsell to Live Masterclass */}
+                <div className="relative py-24 px-4 overflow-hidden border-t border-white/10">
+                    <GlowingOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20" />
+                    <div className="max-w-4xl mx-auto text-center relative z-10">
+                        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+                            <h2 className="text-4xl md:text-6xl font-black mb-6">Need Live Feedback?</h2>
+                            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light">
+                                Pre-recorded videos are incredible for grasping basics. But true mastery comes from building alongside a seasoned mentor.
+                            </p>
+                            <Link to="/masterclass" className="inline-flex items-center gap-2 bg-white text-black font-extrabold text-lg h-16 px-10 rounded-full hover:scale-105 hover:bg-gray-100 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+                                See Live Masterclasses <ArrowRight className="w-5 h-5" />
+                            </Link>
+                        </motion.div>
                     </div>
-                </div >
-            </main >
-        </div >
+                </div>
+            </div>
+        </PageWrapper>
     );
 };
 

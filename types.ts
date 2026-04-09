@@ -21,9 +21,9 @@ export interface Masterclass {
 export interface Resource {
     id: number;
     title: string;
-    category: 'Class 10' | 'UPSC' | 'Technology' | 'General';
+    category: string;
     subject: string;
-    type: 'Notes' | 'Blog' | 'Project';
+    type: 'Notes' | 'Blog' | 'Project' | 'Service' | 'Material' | 'Package';
     link: string;
     description?: string;
     thumbnail?: string;

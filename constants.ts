@@ -3,12 +3,12 @@ import { Course, Masterclass, Resource, Testimonial, Company, Stat } from './typ
 
 export const NAV_LINKS = [
     { name: 'Home', path: '/' },
-    { name: 'Free Courses', path: '/courses' },
-    { name: '₹9 Masterclass', path: '/masterclass' },
-    { name: 'Resources', path: '/resources' },
+    { name: 'Courses', path: '/courses' },
+    { name: 'Live Masterclass', path: '/masterclass' },
+    { name: 'Notes', path: '/resources' },
+    { name: 'Success Stories', path: '/success-stories' },
     { name: 'About', path: '/about' },
-    { name: 'Community', path: '/community' },
-    { name: 'Career Support', path: '/career' },
+    { name: 'FAQ', path: '/faq' },
     { name: 'Contact', path: '/contact' },
 ];
 
@@ -45,56 +45,68 @@ export const COURSES: Course[] = [
 ];
 
 export const MASTERCLASSES: Masterclass[] = [
-    { id: 1, title: 'Java Mastery in 2 Hours (Zero to Core Concepts)', description: 'Master Java from scratch with this comprehensive course.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 2, title: 'Multithreading Made Easy in 2 Hours', description: 'Understand multithreading concepts simply and effectively.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 3, title: 'Spring Boot Crash Course in 2 Hours', description: 'Quickly get up to speed with Spring Boot framework.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 4, title: 'Microservices Fundamentals in 2 Hours', description: 'Learn the core principles of microservices architecture.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 5, title: 'AI Tools for Students – Learn & Use in 2 Hours', description: 'Discover essential AI tools to boost your productivity.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 6, title: 'Build Your First AI Project in 2 Hours', description: 'Hands-on guide to creating your first AI application.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 7, title: 'Become Industry-Ready in 2 Hours', description: 'Essential skills and tips to prepare for the tech industry.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 8, title: 'Career Roadmap 2025 in 2 Hours', description: 'Plan your career path with the latest industry trends.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 9, title: 'Communication Skills Booster in 2 Hours', description: 'Improve your communication skills for professional success.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 10, title: 'Public Speaking Confidence in 2 Hours', description: 'Gain confidence and master the art of public speaking.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 11, title: 'Leadership Skills for Beginners in 2 Hours', description: 'Start your journey to becoming an effective leader.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 12, title: 'Start Your Startup in 2 Hours (Idea to Plan)', description: 'Turn your startup idea into a solid actionable plan.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 13, title: 'Personal Branding Crash Course in 2 Hours', description: 'Build a strong personal brand to stand out.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 14, title: 'YouTube Growth in 2 Hours – From Zero to Strategy', description: 'Strategies to grow your YouTube channel from scratch.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 15, title: 'Create Viral Thumbnails in 2 Hours', description: 'Learn design techniques for high-click-through thumbnails.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 16, title: 'SQL Essentials in 2 Hours (Joins + Queries)', description: 'Master essential SQL queries and joins quickly.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 17, title: 'Database Design in 2 Hours', description: 'Learn the fundamentals of designing efficient databases.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 18, title: 'Web + AI Integration in 2 Hours', description: 'Integrate AI capabilities into your web applications.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 19, title: 'Build a Real Project in 2 Hours (Java + SQL)', description: 'Build a complete project using Java and SQL.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 20, title: 'Master Productivity & Focus in 2 Hours', description: 'Techniques to maximize your productivity and focus.', price: 49, enrollLink: '#', countdownTarget: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 1, title: 'Python Programming (30 Days Live Masterclass)', description: 'Master Python for Data, Automation & AI from scratch with daily live classes.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 2, title: 'SQL Mastery (30 Days Live Masterclass)', description: 'Master essential SQL queries, joins, and database design for data and backend roles.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 3, title: 'Java Masterclass (30 Days Live Masterclass)', description: 'Core Java, OOPs, Collections, and building real-world enterprise applications.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 4, title: 'Prompt Engineering (30 Days Live Masterclass)', description: 'Learn to use ChatGPT, Claude, and AI tools effectively for automation and productivity.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 5, title: 'DevOps Full Course (30 Days Live Masterclass)', description: 'Git, Docker, Kubernetes, Jenkins CI/CD, Terraform, and AWS Fundamentals.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 6, title: 'Software Testing QA (30 Days Live Masterclass)', description: 'Manual Testing, Jira, Selenium Automation, Postman API Testing, and Agile.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 7, title: 'Aptitude for Placements (30 Days Live Masterclass)', description: 'Crack the first round of MNC interviews. Quants, Logical Reasoning, and Speed Math.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
 ];
 
 export const RESOURCES: Resource[] = [
-    // --- CLASS 10 ---
-    { id: 1, title: 'Science: Complete Physics Notes', category: 'Class 10', subject: 'Science', type: 'Notes', link: '#', metadata: 'CBSE / ICSE', price: 99, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80' },
-    { id: 2, title: 'Mathematics: All Formula Sheet', category: 'Class 10', subject: 'Maths', type: 'Notes', link: '#', metadata: 'Board Exam Special', price: 49, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1543286386-713bcd534007?auto=format&fit=crop&w=400&q=80' },
-    { id: 3, title: 'History: Nationalism in India', category: 'Class 10', subject: 'SST', type: 'Notes', link: '#', metadata: 'Chapter 2 (Handwritten)', price: 29, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80' },
-    { id: 4, title: 'Geography: Resource & Development', category: 'Class 10', subject: 'SST', type: 'Notes', link: '#', metadata: 'Visual Maps included', price: 39, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80' },
-    { id: 5, title: 'English: Grammar & Writing Skills', category: 'Class 10', subject: 'English', type: 'Notes', link: '#', metadata: 'Complete Guide', price: 79, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=400&q=80' },
+    // --- TECH NOTES / DIGITAL (Free/Existing) ---
+    { id: 1, title: 'Python Basics & OOPs', category: 'Digital', subject: 'Python', type: 'Notes', link: '#', metadata: 'Free Download', price: 0, isPremium: false, thumbnail: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80' },
+    { id: 2, title: 'SQL Queries Cheat Sheet', category: 'Digital', subject: 'SQL', type: 'Notes', link: '#', metadata: 'Free Download', price: 0, isPremium: false, thumbnail: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=400&q=80' },
+    { id: 3, title: 'Java Core Concepts', category: 'Digital', subject: 'Java', type: 'Notes', link: '#', metadata: 'Free Download', price: 0, isPremium: false, thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80' },
+    
+    // --- TECH / HANDWRITTEN (Paid/Existing) ---
+    { id: 4, title: 'Complete Python Master Notes', category: 'Handwritten Notes', subject: 'Python', type: 'Notes', link: '#', metadata: 'Includes Projects', price: 99, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80' },
+    { id: 5, title: 'Advanced SQL + Joins', category: 'Handwritten Notes', subject: 'SQL', type: 'Notes', link: '#', metadata: 'Interview Special', price: 99, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80' },
+    { id: 6, title: 'Java + Advanced Topics', category: 'Handwritten Notes', subject: 'Java', type: 'Notes', link: '#', metadata: 'High Yield', price: 99, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=400&q=80' },
 
-    // --- UPSC PRELIMS ---
-    { id: 6, title: 'Ancient & Medieval History', category: 'UPSC', subject: 'History', type: 'Notes', link: '#', metadata: 'Timeline Based', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=400&q=80' },
-    { id: 7, title: 'Modern History: Spectrum Summary', category: 'UPSC', subject: 'History', type: 'Notes', link: '#', metadata: 'Last Minute Revision', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=400&q=80' },
-    { id: 8, title: 'Indian Polity: Laxmikanth Notes', category: 'UPSC', subject: 'Polity', type: 'Notes', link: '#', metadata: '7th Edition Updates', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1589262804704-c5aa9e6de381?auto=format&fit=crop&w=400&q=80' },
-    { id: 9, title: 'Physical & World Geography', category: 'UPSC', subject: 'Geography', type: 'Notes', link: '#', metadata: 'Diagram Oriented', price: 249, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=400&q=80' },
-    { id: 10, title: 'Economics: Core Concepts', category: 'UPSC', subject: 'Economy', type: 'Notes', link: '#', metadata: 'Budget & Survey 2024', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1611974717483-3600991e1642?auto=format&fit=crop&w=400&q=80' },
-    { id: 11, title: 'Environment & Ecology', category: 'UPSC', subject: 'Environment', type: 'Notes', link: '#', metadata: 'Shankar IAS Simplified', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80' },
-    { id: 12, title: 'CSAT: Logical Reasoning & Math', category: 'UPSC', subject: 'CSAT', type: 'Notes', link: '#', metadata: 'Short Tricks Included', price: 129, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1509228468518-180dd482180c?auto=format&fit=crop&w=400&q=80' },
+    // --- HANDWRITTEN ACADEMIC NOTES ---
+    { id: 101, title: 'Per Page (A4) Handwritten', category: 'Handwritten Notes', subject: 'Academic', type: 'Service', link: '#', metadata: 'Beautiful & Clear', price: 29, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&w=400&q=80' },
+    { id: 102, title: 'Short Notes (10-15 pages)', category: 'Handwritten Notes', subject: 'Academic', type: 'Notes', link: '#', metadata: 'Quick Read', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=400&q=80' },
+    { id: 103, title: 'Unit-wise Exam Notes', category: 'Handwritten Notes', subject: 'Academic', type: 'Notes', link: '#', metadata: 'Full Unit', price: 599, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=400&q=80' },
+    { id: 104, title: 'Revision Notes', category: 'Handwritten Notes', subject: 'Academic', type: 'Notes', link: '#', metadata: 'Last Minute', price: 399, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=400&q=80' },
+    { id: 105, title: 'Diagram-based Notes', category: 'Handwritten Notes', subject: 'Academic', type: 'Notes', link: '#', metadata: 'Per Page', price: 49, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1503694978374-8a2fa686963a?auto=format&fit=crop&w=400&q=80' },
 
-    // --- UPSC MAINS ---
-    { id: 13, title: 'Ethics, Integrity & Aptitude', category: 'UPSC', subject: 'GS-4', type: 'Notes', link: '#', metadata: 'Case Studies Masterclass', price: 349, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80' },
-    { id: 14, title: 'International Relations', category: 'UPSC', subject: 'IR', type: 'Notes', link: '#', metadata: 'Global Affairs 2024', price: 179, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=400&q=80' },
-    { id: 15, title: 'Social Justice & Governance', category: 'UPSC', subject: 'GS-2', type: 'Notes', link: '#', metadata: 'Scheme Summaries', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=400&q=80' },
-    { id: 16, title: 'Internal Security & Disaster', category: 'UPSC', subject: 'GS-3', type: 'Notes', link: '#', metadata: 'Critical Analysis', price: 129, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1454165833767-0274b19b6737?auto=format&fit=crop&w=400&q=80' },
+    // --- STUDENT / EDUCATOR SUPPORT ---
+    { id: 201, title: 'Notes Formatting & Cleaning', category: 'Support', subject: 'Formatting', type: 'Service', link: '#', metadata: 'Arrangement', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1515378960530-7c0da6229678?auto=format&fit=crop&w=400&q=80' },
+    { id: 202, title: 'Notes Rewriting / Correction', category: 'Support', subject: 'Writing', type: 'Service', link: '#', metadata: 'Correction', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&w=400&q=80' },
+    { id: 203, title: 'PDF Notes Creation', category: 'Support', subject: 'PDF', type: 'Service', link: '#', metadata: 'Digitalize', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=400&q=80' },
+    { id: 204, title: 'Printable Study Material', category: 'Support', subject: 'Print', type: 'Service', link: '#', metadata: 'Ready to Print', price: 399, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&w=400&q=80' },
+    { id: 205, title: 'Worksheet / Assignment Notes', category: 'Support', subject: 'Assignment', type: 'Service', link: '#', metadata: 'Guided', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80' },
 
-    // --- TECHNOLOGY ---
-    { id: 17, title: 'Complete DSA Roadmap', category: 'Technology', subject: 'DSA', type: 'Notes', link: '#', metadata: 'FAANG Interview Prep', price: 499, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=400&q=80' },
-    { id: 18, title: 'Java: Zero to Master', category: 'Technology', subject: 'Java', type: 'Notes', link: '#', metadata: 'Interview Questions', price: 399, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80' },
-    { id: 19, title: 'Python for AI & ML', category: 'Technology', subject: 'Python', type: 'Notes', link: '#', metadata: 'NumPy / Pandas / SciPy', price: 449, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80' },
-    { id: 20, title: 'Generative AI & LLMs', category: 'Technology', subject: 'AI', type: 'Notes', link: '#', metadata: 'Latest Concepts', price: 599, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80' },
+    // --- DIGITAL STUDY MATERIAL ---
+    { id: 301, title: 'One-page Formula Sheets', category: 'Digital', subject: 'Formulas', type: 'Material', link: '#', metadata: 'Quick Ref', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=400&q=80' },
+    { id: 302, title: 'Handwritten-style PDFs', category: 'Digital', subject: 'Stylized', type: 'Material', link: '#', metadata: 'PDF Format', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1506506200949-ed6a61cc52e1?auto=format&fit=crop&w=400&q=80' },
+    { id: 303, title: 'Exam Cheat Sheets', category: 'Digital', subject: 'Exams', type: 'Material', link: '#', metadata: 'Summary', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=400&q=80' },
+    { id: 304, title: 'Study Planners / Timetables', category: 'Digital', subject: 'Planning', type: 'Material', link: '#', metadata: 'Productivity', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=400&q=80' },
+
+    // --- ACADEMIC PAGE GROWTH ---
+    { id: 401, title: 'Page Audit & Suggestions', category: 'Growth', subject: 'Audit', type: 'Service', link: '#', metadata: 'Social Media', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1533749047139-189de3cf06d3?auto=format&fit=crop&w=400&q=80' },
+    { id: 402, title: 'Bio Optimization', category: 'Growth', subject: 'Profile', type: 'Service', link: '#', metadata: 'Setup', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=400&q=80' },
+    { id: 403, title: 'Highlight Setup (Icons)', category: 'Growth', subject: 'Design', type: 'Service', link: '#', metadata: 'Visuals', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80' },
+    { id: 404, title: 'Page Promotion (7 Days)', category: 'Growth', subject: 'Promo', type: 'Service', link: '#', metadata: 'Shoutouts', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&w=400&q=80' },
+    { id: 405, title: 'Page Promotion (15 Days)', category: 'Growth', subject: 'Promo', type: 'Service', link: '#', metadata: 'Extended Promo', price: 499, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&w=400&q=80' },
+
+    // --- CONTENT CREATION ---
+    { id: 501, title: 'Study Captions / Post Ideas', category: 'Content', subject: 'Social', type: 'Service', link: '#', metadata: 'Ideas', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=400&q=80' },
+    { id: 502, title: 'Reel Script (Study Niche)', category: 'Content', subject: 'Video', type: 'Service', link: '#', metadata: 'Scripts', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=400&q=80' },
+    { id: 503, title: 'Weekly Content Plan', category: 'Content', subject: 'Planning', type: 'Service', link: '#', metadata: '1 Week', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1506784951206-a8fdfc73abcb?auto=format&fit=crop&w=400&q=80' },
+    { id: 504, title: 'Monthly Content Plan', category: 'Content', subject: 'Planning', type: 'Service', link: '#', metadata: '1 Month', price: 599, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1506784951206-a8fdfc73abcb?auto=format&fit=crop&w=400&q=80' },
+
+    // --- EDUCATOR SERVICES ---
+    { id: 601, title: 'Teaching Notes Preparation', category: 'Educator', subject: 'Prep', type: 'Service', link: '#', metadata: 'Teachers', price: 499, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=400&q=80' },
+    { id: 602, title: 'Coaching Material Support', category: 'Educator', subject: 'Institute', type: 'Service', link: '#', metadata: 'Centers', price: 599, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80' },
+    { id: 603, title: 'Student Worksheets', category: 'Educator', subject: 'Practice', type: 'Service', link: '#', metadata: 'Custom', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&w=400&q=80' },
+
+    // --- COMBO PACKAGES ---
+    { id: 701, title: 'Notes + PDF + Formatting', category: 'Combo', subject: 'Bundle', type: 'Package', link: '#', metadata: 'Complete Set', price: 499, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80' },
+    { id: 702, title: 'Exam Prep Mini Bundle', category: 'Combo', subject: 'Bundle', type: 'Package', link: '#', metadata: 'Pre-Exam', price: 699, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80' },
+    { id: 703, title: 'Monthly Academic Support', category: 'Combo', subject: 'Subscription', type: 'Package', link: '#', metadata: 'VIP Priority', price: 999, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80' },
 ];
 
 export const TESTIMONIALS: Testimonial[] = [

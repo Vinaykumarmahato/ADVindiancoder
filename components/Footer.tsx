@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, Github, Youtube, Instagram, Send, Disc, ShieldCheck } from 'lucide-react';
+import { Linkedin, Github, Youtube, Instagram, Send, Disc, ShieldCheck, MessageCircle } from 'lucide-react';
 import { NAV_LINKS, SOCIAL_LINKS } from '../constants';
 
 const Footer = () => {
     const socialIcons = [
+        { icon: <MessageCircle size={20} />, link: SOCIAL_LINKS.whatsapp },
+        { icon: <Youtube size={20} />, link: SOCIAL_LINKS.youtube },
         { icon: <Linkedin size={20} />, link: SOCIAL_LINKS.linkedin },
         { icon: <Github size={20} />, link: SOCIAL_LINKS.github },
-        { icon: <Youtube size={20} />, link: SOCIAL_LINKS.youtube },
         { icon: <Instagram size={20} />, link: SOCIAL_LINKS.instagram },
         { icon: <Send size={20} />, link: SOCIAL_LINKS.telegram },
         { icon: <Disc size={20} />, link: SOCIAL_LINKS.discord },
