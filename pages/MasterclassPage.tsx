@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Award, FileText, TrendingUp, ArrowLeft, CheckCircle, Upload, AlertCircle, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import EnrollmentService from '../services/enrollment.service';
 import PageWrapper from '../components/PageWrapper';
 import { MASTERCLASSES, TESTIMONIALS } from '../constants';
 
 const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
+    // ... existing CountdownTimer implementation ...
     const calculateTimeLeft = () => {
         const difference = +new Date(targetDate) - +new Date();
-        let timeLeft = {};
+        let timeLeft: any = {};
         if (difference > 0) {
             timeLeft = {
                 days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -33,7 +32,7 @@ const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
 
     return (
         <div className="flex space-x-2 text-center">
-            {Object.entries(timeLeft).map(([unit, value]) => (
+            {Object.entries(timeLeft).map(([unit, value]: [string, any]) => (
                 <div key={unit} className="flex flex-col items-center bg-white/10 p-2 rounded-lg w-16">
                     <span className="text-2xl font-bold text-secondary">{String(value).padStart(2, '0')}</span>
                     <span className="text-xs uppercase">{unit}</span>
@@ -44,8 +43,6 @@ const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
 };
 
 const MasterclassPage = () => {
-    const { user } = useAuth();
-    const navigate = useNavigate();
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
     const [selectedMc, setSelectedMc] = useState<any>(null); // For modal
     const [formData, setFormData] = useState({
@@ -68,10 +65,6 @@ const MasterclassPage = () => {
     };
 
     const handleEnrollClick = (mc: any) => {
-        if (!user) {
-            navigate('/auth');
-            return;
-        }
         setSelectedMc(mc);
         setSuccess(false);
         setError('');

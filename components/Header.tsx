@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { Sun, Moon, Menu, X, LogOut, User } from 'lucide-react';
+import { NavLink, Link } from 'react-router-dom';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import { useAuth } from '../contexts/AuthContext';
 import { NAV_LINKS } from '../constants';
 import { MotionDiv } from './motion';
 
 const Header = () => {
     const { theme, toggleTheme } = useTheme();
-    const { user, logout } = useAuth();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        logout();
-        navigate('/login');
-    };
 
     const menuVariants = {
         hidden: { opacity: 0, y: -20 },
@@ -58,27 +50,6 @@ const Header = () => {
                             {theme === 'dark' ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-blue-500" />}
                         </button>
 
-                        {user ? (
-                            <div className="hidden lg:flex items-center space-x-2">
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Hi, {user.username}</span>
-                                <button
-                                    onClick={handleLogout}
-                                    className="p-2 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-500 transition-colors"
-                                    aria-label="Logout"
-                                >
-                                    <LogOut className="h-5 w-5" />
-                                </button>
-                            </div>
-                        ) : (
-                            <Link
-                                to="/auth"
-                                className="hidden lg:flex items-center px-4 py-2 rounded-full bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition-colors"
-                            >
-                                <User className="h-4 w-4 mr-2" />
-                                Sign Up / Login
-                            </Link>
-                        )}
-
                         <div className="lg:hidden">
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -112,33 +83,6 @@ const Header = () => {
                                     </NavLink>
                                 </MotionDiv>
                             ))}
-
-                            <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
-                                {user ? (
-                                    <div className="flex flex-col items-center space-y-3">
-                                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Hi, {user.username}</span>
-                                        <button
-                                            onClick={() => {
-                                                handleLogout();
-                                                setIsMenuOpen(false);
-                                            }}
-                                            className="w-full py-2 px-4 rounded-md bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors flex items-center justify-center"
-                                        >
-                                            <LogOut className="h-4 w-4 mr-2" />
-                                            Logout
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <Link
-                                        to="/auth"
-                                        onClick={() => setIsMenuOpen(false)}
-                                        className="w-full flex items-center justify-center py-2 px-4 rounded-md bg-red-600 text-white font-medium hover:bg-red-700 transition-colors"
-                                    >
-                                        <User className="h-4 w-4 mr-2" />
-                                        Sign Up / Login
-                                    </Link>
-                                )}
-                            </div>
                         </div>
                     </MotionDiv>
                 )}

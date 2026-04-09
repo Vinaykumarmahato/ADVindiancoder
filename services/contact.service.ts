@@ -1,15 +1,14 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8080/api/contact';
-
 interface ContactData {
     name: string;
     email: string;
     message: string;
 }
 
-const submitContactForm = (data: ContactData) => {
-    return axios.post(API_URL, data);
+const submitContactForm = async (data: ContactData) => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 800));
+    console.log('Static submission received:', data);
+    return { status: 200, data: { message: "Message sent successfully!" } };
 };
 
 const ContactService = {

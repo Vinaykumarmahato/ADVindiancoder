@@ -2,12 +2,10 @@ import React, { Suspense } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import Chatbot from './components/Chatbot';
-import ProtectedRoute from './components/ProtectedRoute';
 
 const HomePage = React.lazy(() => import('./pages/HomePage'));
 const CoursesPage = React.lazy(() => import('./pages/CoursesPage'));
@@ -17,8 +15,7 @@ const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const CommunityPage = React.lazy(() => import('./pages/CommunityPage'));
 const CareerPage = React.lazy(() => import('./pages/CareerPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
-const AuthPage = React.lazy(() => import('./pages/AuthPage'));
-const ResetPasswordPage = React.lazy(() => import('./pages/ResetPasswordPage'));
+const UpscSyllabusPage = React.lazy(() => import('./pages/UpscSyllabusPage'));
 const CourseTutorialPage = React.lazy(() => import('./pages/CourseTutorialPage'));
 
 // Course Pages
@@ -129,29 +126,12 @@ const AnimatedRoutes = () => {
                         <Route path="/course/:courseId" element={<CourseTutorialPage />} />
 
                         <Route path="/masterclass" element={<MasterclassPage />} />
-                        <Route
-                            path="/resources"
-                            element={
-                                <ProtectedRoute>
-                                    <ResourcesPage />
-                                </ProtectedRoute>
-                            }
-                        />
+                        <Route path="/resources" element={<ResourcesPage />} />
                         <Route path="/about" element={<AboutPage />} />
-                        <Route
-                            path="/community"
-                            element={
-                                <ProtectedRoute>
-                                    <CommunityPage />
-                                </ProtectedRoute>
-                            }
-                        />
+                        <Route path="/community" element={<CommunityPage />} />
                         <Route path="/career" element={<CareerPage />} />
                         <Route path="/contact" element={<ContactPage />} />
-                        <Route path="/auth" element={<AuthPage />} />
-                        <Route path="/login" element={<AuthPage />} />
-                        <Route path="/signup" element={<AuthPage />} />
-                        <Route path="/reset-password" element={<ResetPasswordPage />} />
+                        <Route path="/upsc-syllabus" element={<UpscSyllabusPage />} />
                     </Routes>
                 </Suspense>
             </React.Fragment>
@@ -163,18 +143,16 @@ const App = () => {
     return (
         <ErrorBoundary>
             <ThemeProvider>
-                <AuthProvider>
-                    <HashRouter>
-                        <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
-                            <Header />
-                            <main className="pt-20">
-                                <AnimatedRoutes />
-                            </main>
-                            <Footer />
-                            <Chatbot />
-                        </div>
-                    </HashRouter>
-                </AuthProvider>
+                <HashRouter>
+                    <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+                        <Header />
+                        <main className="pt-20">
+                            <AnimatedRoutes />
+                        </main>
+                        <Footer />
+                        <Chatbot />
+                    </div>
+                </HashRouter>
             </ThemeProvider>
         </ErrorBoundary>
     );

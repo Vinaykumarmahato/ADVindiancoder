@@ -1,13 +1,13 @@
-import axios from 'axios';
+const enroll = async (formData: FormData) => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 800));
 
-const API_URL = 'http://localhost:8080/api/enroll';
+    // Convert FormData to object for logging
+    const data: any = {};
+    formData.forEach((value, key) => { data[key] = value });
+    console.log('Static enrollment received:', data);
 
-const enroll = (formData: FormData) => {
-    return axios.post(API_URL, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+    return { status: 200, data: { message: "Enrolled successfully!" } };
 };
 
 const EnrollmentService = {

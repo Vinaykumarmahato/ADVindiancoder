@@ -1,6 +1,5 @@
 import React from 'react';
 import PageWrapper from './PageWrapper';
-import CourseNavBar from './CourseNavBar';
 import { BookOpen, Video, Code } from 'lucide-react';
 
 interface CoursePageLayoutProps {
@@ -47,7 +46,6 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
 
     return (
         <PageWrapper>
-            <CourseNavBar />
             <div className="min-h-screen bg-gray-50 dark:bg-black relative">
                 {/* Background decorative elements */}
                 <div className={`absolute top-0 right-0 w-1/2 h-96 bg-gradient-to-b ${colors.gradientFrom.replace('from-', 'from-')}/5 to-transparent pointer-events-none`} />

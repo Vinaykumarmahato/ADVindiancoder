@@ -68,15 +68,33 @@ export const MASTERCLASSES: Masterclass[] = [
 ];
 
 export const RESOURCES: Resource[] = [
-    { id: 1, title: 'Java Notes', type: 'Notes', link: '#' },
-    { id: 2, title: 'DSA Notes', type: 'Notes', link: '#' },
-    { id: 3, title: 'SQL Cheatsheet', type: 'Notes', link: '#' },
-    { id: 4, title: 'Spring Boot Summary', type: 'Notes', link: '#' },
-    { id: 5, title: 'Stop Relying on Motivation — Build a System Instead!', type: 'Blog', link: '#', description: 'Learn how to create sustainable habits for success.' },
-    { id: 6, title: 'Crack Your First Developer Job in 2026', type: 'Blog', link: '#', description: 'A practical guide for aspiring developers.' },
-    { id: 7, title: 'Top 10 Projects to Master Full Stack Development', type: 'Blog', link: '#', description: 'Project ideas that will make your portfolio stand out.' },
-    { id: 8, title: 'MySQL_Zero_to_Hero', type: 'Project', link: '#', techStack: ['MySQL', 'SQL'] },
-    { id: 9, title: 'E-Commerce Website', type: 'Project', link: '#', techStack: ['React', 'Spring Boot', 'MySQL'] },
+    // --- CLASS 10 ---
+    { id: 1, title: 'Science: Complete Physics Notes', category: 'Class 10', subject: 'Science', type: 'Notes', link: '#', metadata: 'CBSE / ICSE', price: 99, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80' },
+    { id: 2, title: 'Mathematics: All Formula Sheet', category: 'Class 10', subject: 'Maths', type: 'Notes', link: '#', metadata: 'Board Exam Special', price: 49, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1543286386-713bcd534007?auto=format&fit=crop&w=400&q=80' },
+    { id: 3, title: 'History: Nationalism in India', category: 'Class 10', subject: 'SST', type: 'Notes', link: '#', metadata: 'Chapter 2 (Handwritten)', price: 29, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80' },
+    { id: 4, title: 'Geography: Resource & Development', category: 'Class 10', subject: 'SST', type: 'Notes', link: '#', metadata: 'Visual Maps included', price: 39, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80' },
+    { id: 5, title: 'English: Grammar & Writing Skills', category: 'Class 10', subject: 'English', type: 'Notes', link: '#', metadata: 'Complete Guide', price: 79, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=400&q=80' },
+
+    // --- UPSC PRELIMS ---
+    { id: 6, title: 'Ancient & Medieval History', category: 'UPSC', subject: 'History', type: 'Notes', link: '#', metadata: 'Timeline Based', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=400&q=80' },
+    { id: 7, title: 'Modern History: Spectrum Summary', category: 'UPSC', subject: 'History', type: 'Notes', link: '#', metadata: 'Last Minute Revision', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=400&q=80' },
+    { id: 8, title: 'Indian Polity: Laxmikanth Notes', category: 'UPSC', subject: 'Polity', type: 'Notes', link: '#', metadata: '7th Edition Updates', price: 299, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1589262804704-c5aa9e6de381?auto=format&fit=crop&w=400&q=80' },
+    { id: 9, title: 'Physical & World Geography', category: 'UPSC', subject: 'Geography', type: 'Notes', link: '#', metadata: 'Diagram Oriented', price: 249, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=400&q=80' },
+    { id: 10, title: 'Economics: Core Concepts', category: 'UPSC', subject: 'Economy', type: 'Notes', link: '#', metadata: 'Budget & Survey 2024', price: 199, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1611974717483-3600991e1642?auto=format&fit=crop&w=400&q=80' },
+    { id: 11, title: 'Environment & Ecology', category: 'UPSC', subject: 'Environment', type: 'Notes', link: '#', metadata: 'Shankar IAS Simplified', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80' },
+    { id: 12, title: 'CSAT: Logical Reasoning & Math', category: 'UPSC', subject: 'CSAT', type: 'Notes', link: '#', metadata: 'Short Tricks Included', price: 129, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1509228468518-180dd482180c?auto=format&fit=crop&w=400&q=80' },
+
+    // --- UPSC MAINS ---
+    { id: 13, title: 'Ethics, Integrity & Aptitude', category: 'UPSC', subject: 'GS-4', type: 'Notes', link: '#', metadata: 'Case Studies Masterclass', price: 349, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80' },
+    { id: 14, title: 'International Relations', category: 'UPSC', subject: 'IR', type: 'Notes', link: '#', metadata: 'Global Affairs 2024', price: 179, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=400&q=80' },
+    { id: 15, title: 'Social Justice & Governance', category: 'UPSC', subject: 'GS-2', type: 'Notes', link: '#', metadata: 'Scheme Summaries', price: 149, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=400&q=80' },
+    { id: 16, title: 'Internal Security & Disaster', category: 'UPSC', subject: 'GS-3', type: 'Notes', link: '#', metadata: 'Critical Analysis', price: 129, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1454165833767-0274b19b6737?auto=format&fit=crop&w=400&q=80' },
+
+    // --- TECHNOLOGY ---
+    { id: 17, title: 'Complete DSA Roadmap', category: 'Technology', subject: 'DSA', type: 'Notes', link: '#', metadata: 'FAANG Interview Prep', price: 499, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=400&q=80' },
+    { id: 18, title: 'Java: Zero to Master', category: 'Technology', subject: 'Java', type: 'Notes', link: '#', metadata: 'Interview Questions', price: 399, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80' },
+    { id: 19, title: 'Python for AI & ML', category: 'Technology', subject: 'Python', type: 'Notes', link: '#', metadata: 'NumPy / Pandas / SciPy', price: 449, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80' },
+    { id: 20, title: 'Generative AI & LLMs', category: 'Technology', subject: 'AI', type: 'Notes', link: '#', metadata: 'Latest Concepts', price: 599, isPremium: true, thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80' },
 ];
 
 export const TESTIMONIALS: Testimonial[] = [

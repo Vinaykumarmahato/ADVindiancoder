@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MotionButton, MotionDiv } from '../components/motion';
 import { Youtube, Clock } from 'lucide-react';
-import CourseNavBar from '../components/CourseNavBar';
 
 interface Course {
     id: number;
@@ -136,7 +135,6 @@ const CoursesPage = () => {
     return (
         // Main container (theme handled globally by Header/ThemeContext)
         <div className="min-h-screen font-sans transition-colors duration-500 bg-gray-50 dark:bg-black">
-            <CourseNavBar />
             <main className="pb-16 relative" id="courses">
                 {/* Background decorative elements */}
                 <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-red-500/5 to-transparent pointer-events-none" />

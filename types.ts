@@ -15,15 +15,21 @@ export interface Masterclass {
     description: string;
     price: number;
     enrollLink: string;
-    countdownTarget: string; 
+    countdownTarget: string;
 }
 
 export interface Resource {
     id: number;
     title: string;
+    category: 'Class 10' | 'UPSC' | 'Technology' | 'General';
+    subject: string;
     type: 'Notes' | 'Blog' | 'Project';
     link: string;
     description?: string;
+    thumbnail?: string;
+    metadata?: string;
+    price?: number;
+    isPremium?: boolean;
     techStack?: string[];
 }
 

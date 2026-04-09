@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import PageWrapper from '../components/PageWrapper';
-import CourseNavBar from '../components/CourseNavBar';
 import { BookOpen, Video, Code, FileText } from 'lucide-react';
 
 const COURSE_DATA: Record<string, { title: string; description: string; topics: string[] }> = {
@@ -43,7 +42,6 @@ const CourseTutorialPage = () => {
 
     return (
         <PageWrapper>
-            <CourseNavBar />
             <div className="min-h-screen bg-gray-50 dark:bg-black relative">
                 {/* Background decorative elements */}
                 <div className="absolute top-0 right-0 w-1/2 h-96 bg-gradient-to-b from-red-500/5 to-transparent pointer-events-none" />
