@@ -39,7 +39,7 @@ const HomePage = () => {
             <div className="bg-[#050914] text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans">
                 
                 {/* 1. HERO SECTION */}
-                <section className="relative min-h-[100vh] flex items-center justify-center pt-24 sm:pt-28 md:pt-32 lg:pt-40 overflow-hidden">
+                <section className="relative min-h-[100vh] flex items-center justify-center pt-32 overflow-hidden">
                     {/* Background Effects */}
                     <div className="absolute inset-0 z-0">
                         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
