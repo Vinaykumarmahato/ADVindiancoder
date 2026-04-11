@@ -11,7 +11,6 @@ const Footer = () => {
         { icon: <Github size={20} />, link: SOCIAL_LINKS.github },
         { icon: <Instagram size={20} />, link: SOCIAL_LINKS.instagram },
         { icon: <Send size={20} />, link: SOCIAL_LINKS.telegram },
-        { icon: <Disc size={20} />, link: SOCIAL_LINKS.discord },
     ];
     
     return (

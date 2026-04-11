@@ -145,7 +145,7 @@ const ContactPage = () => {
                                     <p className="text-2xl mb-2 group-hover:scale-110 transition-transform">📸</p>
                                     <h3 className="font-black text-white group-hover:text-pink-500 transition-colors">Instagram</h3>
                                 </a>
-                                <a href="https://www.youtube.com/@ADVIndianCoder-i9y" target="_blank" rel="noopener noreferrer" className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2rem] hover:bg-red-500/10 hover:border-red-500/50 transition-all text-center block group">
+                                <a href="https://www.youtube.com/@ADVIndianCoder" target="_blank" rel="noopener noreferrer" className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2rem] hover:bg-red-500/10 hover:border-red-500/50 transition-all text-center block group">
                                     <p className="text-2xl mb-2 group-hover:scale-110 transition-transform">▶</p>
                                     <h3 className="font-black text-white group-hover:text-red-500 transition-colors">YouTube</h3>
                                 </a>

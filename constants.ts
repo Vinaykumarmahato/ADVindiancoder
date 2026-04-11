@@ -255,7 +255,7 @@ export const TESTIMONIALS: Testimonial[] = [
 export const SOCIAL_LINKS = {
     linkedin: 'https://www.linkedin.com/company/advindiancoder',
     github: 'https://github.com/Vinaykumarmahato',
-    youtube: 'https://www.youtube.com/@ADVIndianCoder-i9y',
+    youtube: 'https://www.youtube.com/@ADVIndianCoder',
     instagram: 'https://www.instagram.com/advindiancoder.official',
     personalLinkedin: 'https://www.linkedin.com/in/vinay-kumar860964/',
     personalInstagram: 'https://www.instagram.com/vinay_software_engineer/',
