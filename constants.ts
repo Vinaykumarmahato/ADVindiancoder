@@ -95,41 +95,32 @@ export const COURSES: Course[] = [
         youtubeLink: 'https://www.youtube.com/watch?v=xRF7ecu9xwY'
     },
     {
-        id: 3,
-        title: 'Placement Preparation Guide 2026 | Roadmap for MAANG',
-        description: 'Step-by-step placement preparation roadmap for landing jobs at MAANG and top product companies as a fresher.',
-        thumbnail: `https://img.youtube.com/vi/7G0R5_N0-0g/maxresdefault.jpg`,
-        tags: ['Placement', 'MAANG', 'Career'],
-        category: 'Career',
-        youtubeLink: 'https://www.youtube.com/watch?v=7G0R5_N0-0g'
-    },
-    {
         id: 4,
         title: 'Data Analyst Roadmap 2026 | How to Become a Data Analyst',
         description: 'Complete career roadmap for aspiring Data Analysts — SQL, Python, Excel, Power BI, and real-world projects.',
-        thumbnail: `https://img.youtube.com/vi/MInE7_H-01c/maxresdefault.jpg`,
+        thumbnail: `https://img.youtube.com/vi/SQ5molhb4GY/maxresdefault.jpg`,
         tags: ['Data', 'Roadmap', 'Career'],
         category: 'Career',
-        youtubeLink: 'https://www.youtube.com/watch?v=MInE7_H-01c'
+        youtubeLink: 'https://youtu.be/SQ5molhb4GY'
     },
     {
         id: 5,
         title: 'Engineering is a Trap? Reality of B.Tech in 2026',
         description: 'Honest career advice on Engineering, branch selection, and how to make the most of B.Tech in the current job market.',
-        thumbnail: `https://img.youtube.com/vi/_c7Y0H8vSGs/maxresdefault.jpg`,
+        thumbnail: `https://img.youtube.com/vi/NFhKdwdBvyw/maxresdefault.jpg`,
         tags: ['Career', 'Engineering', 'BeTech'],
         category: 'Career',
-        youtubeLink: 'https://www.youtube.com/watch?v=_c7Y0H8vSGs'
+        youtubeLink: 'https://youtu.be/NFhKdwdBvyw'
     },
     // ── Technical Tutorials ──
     {
         id: 6,
         title: 'Git & GitHub Full Course 2026 — No Command Line Needed',
         description: 'Master Git and GitHub using GitHub Desktop — version control, branching, pull requests, and collaboration. Zero terminal required!',
-        thumbnail: `https://img.youtube.com/vi/ZNo6f-N36r8/maxresdefault.jpg`,
+        thumbnail: `https://img.youtube.com/vi/jkmwed5GHho/maxresdefault.jpg`,
         tags: ['Git', 'GitHub', 'Free'],
         category: 'Programming',
-        youtubeLink: 'https://www.youtube.com/watch?v=ZNo6f-N36r8'
+        youtubeLink: 'https://youtu.be/jkmwed5GHho'
     },
     {
         id: 7,
@@ -153,10 +144,10 @@ export const COURSES: Course[] = [
         id: 9,
         title: 'Get Selected in GSoC 2026 | Complete Guide for Beginners',
         description: 'A comprehensive, step-by-step guide on how to apply and get selected in Google Summer of Code 2026 as a beginner.',
-        thumbnail: `https://img.youtube.com/vi/p2w5d0Z_U6Y/maxresdefault.jpg`,
+        thumbnail: `https://img.youtube.com/vi/QQvae70PC_k/maxresdefault.jpg`,
         tags: ['GSoC', 'Open Source', 'Google'],
         category: 'Career',
-        youtubeLink: 'https://www.youtube.com/watch?v=p2w5d0Z_U6Y'
+        youtubeLink: 'https://youtu.be/QQvae70PC_k'
     },
     // ── Resume & LinkedIn ──
     {
@@ -191,19 +182,10 @@ export const COURSES: Course[] = [
         id: 13,
         title: "YouTube Study Mistake: 90% Coders गलत वीडियो देख रहे हैं!",
         description: 'Are you watching the wrong YouTube videos? This video reveals the correct way to study programming and avoid the most common trap.',
-        thumbnail: `https://img.youtube.com/vi/Yk6hK9i7H3Y/maxresdefault.jpg`,
+        thumbnail: `https://img.youtube.com/vi/B_AJ01MTK2s/maxresdefault.jpg`,
         tags: ['Study', 'Mindset', 'Tips'],
         category: 'Mindset',
-        youtubeLink: 'https://www.youtube.com/watch?v=Yk6hK9i7H3Y'
-    },
-    {
-        id: 14,
-        title: "From No Phone to Tech Startup Founder | Vinay Kumar's Real Story",
-        description: "The inspiring real story of Vinay Kumar — from struggling with no smartphone to founding multiple tech ventures and building ADV Indian Coder.",
-        thumbnail: `https://img.youtube.com/vi/nZCTzkV0QAY/maxresdefault.jpg`,
-        tags: ['Story', 'Motivation', 'Startup'],
-        category: 'Mindset',
-        youtubeLink: 'https://www.youtube.com/watch?v=nZCTzkV0QAY'
+        youtubeLink: 'https://youtu.be/B_AJ01MTK2s'
     },
 ];
 
