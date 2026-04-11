@@ -39,7 +39,7 @@ const Footer = () => {
                     
                     <div className="col-span-1">
                         <h3 className="font-semibold mb-4">Connect</h3>
-                         <div className="flex space-x-4">
+                         <div className="flex flex-wrap gap-3">
                             {socialIcons.map((social, index) => (
                                 <a key={index} href={social.link} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/10 dark:bg-white/5 hover:bg-primary/20 transition-colors">
                                     {social.icon}
