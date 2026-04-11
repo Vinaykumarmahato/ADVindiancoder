@@ -191,6 +191,57 @@ const jobListings = [
             { q: 'What is the job location?', a: 'Bangalore, India.' }
         ],
         applyLink: 'https://careers.ibm.com/en_US/careers/JobDetail?jobId=106370&source=SN_LinkedIn'
+    },
+    {
+        id: 'salesforce-amts-2026',
+        title: 'Software Engineering AMTS',
+        company: 'Salesforce',
+        location: 'Hyderabad / Bangalore, India',
+        type: 'Full-Time',
+        salary: 'Not Disclosed',
+        experience: 'Fresher (0 Years)',
+        postedDate: 'New',
+        aboutCompany: 'Salesforce is a global leader in Customer Relationship Management (CRM) software. Known for its innovation in cloud technologies, the company provides solutions that help businesses connect with customers worldwide. With a strong presence in India and a reputation for excellent work culture, Salesforce is considered one of the best companies for fresh graduates.',
+        description: 'Salesforce Off Campus Drive 2026 is now open for Software Engineering AMTS (Associate Member of Technical Staff) roles. This opportunity is designed for 2026 batch engineering graduates who want to start their careers with a global leader in cloud computing and enterprise software. You will work on next-generation cloud products and gain hands-on experience in building scalable enterprise applications.',
+        responsibilities: [
+            'Design, develop, test, and deliver software components',
+            'Convert business requirements into technical solutions',
+            'Participate in code reviews and improve code quality',
+            'Write unit and integration tests',
+            'Identify and fix performance issues',
+            'Work in Agile teams and contribute to sprint activities'
+        ],
+        skills: [
+            'Data Structures & Algorithms',
+            'Java / Python / C++',
+            'Object-Oriented Programming (OOP)',
+            'System Design Concepts'
+        ],
+        eligibility: [
+            'B.E / B.Tech in Computer Science or related fields',
+            '2026 graduating batch',
+            'Minimum 7.5 CGPA with no active backlogs'
+        ],
+        benefits: [
+            'Competitive salary (above industry standards)',
+            'Health insurance and Employee stock purchase plans',
+            'Learning and development programs',
+            'Mentorship, wellness, and work-life balance initiatives'
+        ],
+        applicationProcess: [
+            'Online Application & Resume Upload',
+            'Online Coding Assessment',
+            'Technical Interview',
+            'HR Interview'
+        ],
+        faqs: [
+            { q: 'Who can apply?', a: '2026 batch engineering students with required CGPA.' },
+            { q: 'What is the expected salary?', a: 'Not disclosed, but generally high for freshers.' },
+            { q: 'What is the job location?', a: 'Hyderabad and Bangalore.' },
+            { q: 'What is the selection process?', a: 'Coding test → Technical Interview → HR Interview.' },
+            { q: 'Is this role for freshers?', a: 'Yes, this is specifically for fresh graduates.' }
+        ],
+        applyLink: 'https://salesforce.wd12.myworkdayjobs.com/External_Career_Site/job/India—Hyderabad/Software-Engineering-AMTS_JR334858'
     }
 ];
 

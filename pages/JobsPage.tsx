@@ -21,6 +21,14 @@ const WHATSAPP_JOBS = [
         location: "Bangalore, India",
         batch: "Fresher (Student)", 
         postedAt: "New",
+    },
+    {
+        id: "salesforce-amts-2026",
+        role: "Software Engineering AMTS",
+        company: "Salesforce",
+        location: "Hyderabad / Bangalore",
+        batch: "2026 Batch", 
+        postedAt: "New",
     }
 ];
 

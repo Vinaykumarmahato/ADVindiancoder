@@ -51,8 +51,7 @@ const Footer = () => {
                     <div className="col-span-1">
                         <h3 className="font-semibold mb-4">Trust & Recognition</h3>
                         <div className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-                           <p className="flex items-center"><ShieldCheck size={16} className="mr-2 text-green-500"/> Recognized by MSME Startup India</p>
-                           <p className="flex items-center"><ShieldCheck size={16} className="mr-2 text-green-500"/> ISO Certified</p>
+                           <p className="flex items-center"><ShieldCheck size={16} className="mr-2 text-green-500"/> Recognized by MSME</p>
                         </div>
                     </div>
                 </div>
