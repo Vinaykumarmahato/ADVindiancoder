@@ -19,6 +19,9 @@ const UpscSyllabusPage = React.lazy(() => import('./pages/UpscSyllabusPage'));
 const CourseTutorialPage = React.lazy(() => import('./pages/CourseTutorialPage'));
 const SuccessStoriesPage = React.lazy(() => import('./pages/SuccessStoriesPage'));
 const FaqPage = React.lazy(() => import('./pages/FaqPage'));
+const JobDetailsPage = React.lazy(() => import('./pages/JobDetailsPage'));
+const JobsPage = React.lazy(() => import('./pages/JobsPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
 // Course Pages
 const HtmlCoursePage = React.lazy(() => import('./pages/courses/HtmlCoursePage'));
@@ -66,7 +69,9 @@ const GitCoursePage = React.lazy(() => import('./pages/courses/GitCoursePage'));
 
 const LoadingFallback = () => (
     <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        <div className="w-16 h-16 rounded-full bg-primary/20 animate-dynamic-glow flex items-center justify-center border-2 border-primary">
+            <div className="w-8 h-8 rounded-full border-t-2 border-b-2 border-primary animate-spin"></div>
+        </div>
     </div>
 );
 
@@ -137,10 +142,16 @@ const AnimatedRoutes = () => {
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/community" element={<CommunityPage />} />
                         <Route path="/career" element={<CareerPage />} />
+                        <Route path="/career/:jobId" element={<JobDetailsPage />} />
+                        <Route path="/jobs" element={<JobsPage />} />
+                        <Route path="/jobs/:jobId" element={<JobDetailsPage />} />
                         <Route path="/contact" element={<ContactPage />} />
                         <Route path="/success-stories" element={<SuccessStoriesPage />} />
                         <Route path="/faq" element={<FaqPage />} />
                         <Route path="/upsc-syllabus" element={<UpscSyllabusPage />} />
+
+                        {/* Catch-all 404 Route */}
+                        <Route path="*" element={<NotFoundPage />} />
                     </Routes>
                 </Suspense>
             </React.Fragment>

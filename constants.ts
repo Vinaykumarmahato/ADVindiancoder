@@ -9,6 +9,7 @@ export const NAV_LINKS = [
     { name: 'Success Stories', path: '/success-stories' },
     { name: 'About', path: '/about' },
     { name: 'FAQ', path: '/faq' },
+    { name: 'Jobs', path: '/jobs' },
     { name: 'Contact', path: '/contact' },
 ];
 

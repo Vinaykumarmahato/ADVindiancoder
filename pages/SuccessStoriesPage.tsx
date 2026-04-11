@@ -9,7 +9,7 @@ const fadeUp = {
 };
 
 const GlowingOrb = ({ className }: { className: string }) => (
-    <div className={`absolute rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse ${className}`}></div>
+    <div className={`absolute pointer-events-none rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse ${className}`}></div>
 );
 
 const SuccessStoriesPage = () => {

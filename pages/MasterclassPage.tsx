@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, FileText, TrendingUp, ArrowLeft, CheckCircle, Upload, AlertCircle, ArrowRight, Zap, Target } from 'lucide-react';
+import { Award, FileText, TrendingUp, ArrowLeft, CheckCircle, Upload, AlertCircle, ArrowRight, Zap, Target, Github, Linkedin } from 'lucide-react';
 import EnrollmentService from '../services/enrollment.service';
 import PageWrapper from '../components/PageWrapper';
 import { MASTERCLASSES, TESTIMONIALS } from '../constants';
@@ -178,9 +178,20 @@ const MasterclassPage = () => {
                             >
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 <div className="relative z-10">
-                                    <div className="flex justify-between items-start mb-6">
-                                        <h3 className="text-3xl font-black">{mc.title}</h3>
-                                        <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-mono font-bold text-primary group-hover:bg-primary/20 transition-colors">₹{mc.price}</span>
+                                    <div className="flex flex-col mb-6 space-y-2">
+                                        <div className="flex justify-between items-start gap-4">
+                                            <h3 className="text-2xl lg:text-3xl font-black leading-tight flex-1">
+                                                {mc.title.split('(')[0].trim()}
+                                            </h3>
+                                            <span className="shrink-0 px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-sm font-mono font-bold text-primary group-hover:bg-primary/20 transition-colors border border-primary/20 group-hover:border-primary/50">
+                                                ₹{mc.price}
+                                            </span>
+                                        </div>
+                                        {mc.title.includes('(') && (
+                                            <span className="text-xs font-bold text-primary/80 uppercase tracking-widest bg-primary/10 inline-block px-3 py-1 rounded-md self-start border border-primary/20">
+                                                {mc.title.split('(')[1].replace(')', '').trim()}
+                                            </span>
+                                        )}
                                     </div>
                                     <p className="text-gray-400 mb-8 font-light leading-relaxed">{mc.description}</p>
                                     
@@ -189,6 +200,8 @@ const MasterclassPage = () => {
                                             <li className="flex items-center"><Award className="w-4 h-4 mr-3 text-yellow-400" /> Certificate of Completion</li>
                                             <li className="flex items-center"><FileText className="w-4 h-4 mr-3 text-green-400" /> Premium Source Code & Notes</li>
                                             <li className="flex items-center"><Target className="w-4 h-4 mr-3 text-blue-400" /> Interview & Resume Support</li>
+                                            <li className="flex items-center"><Github className="w-4 h-4 mr-3 text-white" /> Free GitHub Mastery</li>
+                                            <li className="flex items-center"><Linkedin className="w-4 h-4 mr-3 text-blue-500" /> Free LinkedIn Profile Mastery</li>
                                         </ul>
                                     </div>
                                 </div>

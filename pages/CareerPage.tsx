@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Map, Download, Linkedin, Play, Youtube, ListVideo } from 'lucide-react';
+import { Map, Download, Linkedin, Play, Youtube, ListVideo, Briefcase, Clock, MapPin, ArrowRight } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 
 const roadmaps = [
@@ -51,13 +52,39 @@ const CareerPage = () => {
                     </div>
                 </section>
 
+                {/* Open Positions */}
+                <section className="mb-16">
+                    <h2 className="text-3xl font-bold mb-8 flex items-center"><Briefcase className="mr-3 text-primary" /> Open Positions</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {[
+                            { id: 'full-stack-dev', title: 'Middle Full Stack Developer', type: 'Full-time', location: 'Remote / India' },
+                            { id: 'ui-ux-designer', title: 'Senior UI/UX Designer', type: 'Contract', location: 'Remote' }
+                        ].map((job) => (
+                            <Link key={job.id} to={`/career/${job.id}`} className="block group">
+                                <div className="p-6 bg-white/5 dark:bg-black/20 border border-white/10 rounded-xl hover:border-primary/50 transition-colors h-full flex flex-col justify-between shadow-lg hover:shadow-[0_0_15px_rgba(0,120,255,0.2)]">
+                                    <div>
+                                        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{job.title}</h3>
+                                        <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                                            <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {job.location}</span>
+                                            <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {job.type}</span>
+                                        </div>
+                                    </div>
+                                    <span className="text-primary font-semibold flex items-center transition-all group-hover:translate-x-1">
+                                        View Details <ArrowRight className="w-4 h-4 ml-1" />
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     {/* Resume Templates */}
                     <section>
                         <h2 className="text-3xl font-bold mb-8 flex items-center"><Download className="mr-3 text-green-500" /> Resume Templates</h2>
                         <div className="p-6 bg-white/5 dark:bg-black/20 border border-white/10 rounded-xl">
                             <p className="mb-4">Get access to ATS-friendly resume templates that have helped students land jobs at top companies.</p>
-                            <a href="#" className="font-semibold text-white bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg transition-colors inline-block">
+                            <a href="/public/assets/resume-template.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-white bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg transition-colors inline-block">
                                 Download Now
                             </a>
                         </div>
