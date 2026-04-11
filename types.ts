@@ -5,7 +5,7 @@ export interface Course {
     description: string;
     thumbnail: string;
     tags: string[];
-    category: 'Programming' | 'Web' | 'Backend' | 'DSA' | 'Career';
+    category: string;
     youtubeLink: string;
 }
 

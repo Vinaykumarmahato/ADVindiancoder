@@ -135,14 +135,23 @@ const CoursesPage = () => {
                                             {course.description}
                                         </p>
                                         
-                                        <a 
-                                            href={course.youtubeLink} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer"
-                                            className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold py-4 rounded-xl transition duration-300 border border-white/5 relative z-10"
-                                        >
-                                            <PlayCircle className="w-5 h-5 text-red-500" /> Watch Now
-                                        </a>
+                                        {course.youtubeLink.startsWith('/') ? (
+                                            <Link 
+                                                to={course.youtubeLink} 
+                                                className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-red-600 hover:border-red-500 text-white font-bold py-4 rounded-xl transition-all duration-300 border border-white/5 relative z-10 shadow-[0_0_15px_rgba(255,0,0,0)] hover:shadow-[0_0_20px_rgba(255,0,0,0.4)]"
+                                            >
+                                                <PlayCircle className="w-5 h-5 text-white" /> View Playlist
+                                            </Link>
+                                        ) : (
+                                            <a 
+                                                href={course.youtubeLink} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-red-600 hover:border-red-500 text-white font-bold py-4 rounded-xl transition-all duration-300 border border-white/5 relative z-10 shadow-[0_0_15px_rgba(255,0,0,0)] hover:shadow-[0_0_20px_rgba(255,0,0,0.4)]"
+                                            >
+                                                <Youtube className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" /> Watch on YouTube
+                                            </a>
+                                        )}
                                     </div>
                                 </motion.div>
                             ))}

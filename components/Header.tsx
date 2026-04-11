@@ -33,10 +33,19 @@ const Header = () => {
                                 key={link.name}
                                 to={link.path}
                                 className={({ isActive }) =>
-                                    `text-sm font-medium transition-colors duration-300 ${isActive ? 'text-red-600' : 'text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600'}`
+                                    `text-sm font-medium transition-colors duration-300 inline-flex items-center gap-1.5 ${isActive ? 'text-red-600' : 'text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600'}`
                                 }
                             >
+                                {link.name === 'Live Masterclass' && (
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                                    </span>
+                                )}
                                 {link.name}
+                                {link.name === 'Live Masterclass' && (
+                                    <span className="text-[9px] font-black tracking-widest bg-red-600 text-white px-1.5 py-0.5 rounded-full leading-none">LIVE</span>
+                                )}
                             </NavLink>
                         ))}
                     </div>

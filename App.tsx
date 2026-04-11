@@ -104,7 +104,7 @@ const AnimatedRoutes = () => {
                         <Route path="/course/sass" element={<SassCoursePage />} />
                         <Route path="/course/nodejs" element={<NodeJsCoursePage />} />
                         <Route path="/course/php" element={<PhpCoursePage />} />
-                        <Route path="/course/java" element={<JavaCoursePage />} />
+                        <Route path="/course/java" element={<CourseTutorialPage />} />
                         <Route path="/course/python" element={<PythonCoursePage />} />
                         <Route path="/course/django" element={<DjangoCoursePage />} />
                         <Route path="/course/asp" element={<AspCoursePage />} />
