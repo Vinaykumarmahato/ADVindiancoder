@@ -21,7 +21,7 @@ const AboutPage = () => {
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
                 {/* Hero Section */}
-                <div className="relative z-10 pt-32 pb-24 text-center px-4">
+                <div className="relative z-10 pt-10 md:pt-32 pb-24 text-center px-4">
                     <GlowingOrb className="top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/20" />
                     <div className="max-w-4xl mx-auto relative">
                         <motion.span initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="bg-blue-500/10 backdrop-blur-md border border-blue-500/30 text-blue-400 font-mono text-sm tracking-widest py-2 px-6 rounded-full mb-6 inline-flex shadow-[0_0_20px_rgba(59,130,246,0.2)]">

@@ -34,7 +34,7 @@ const CoursesPage = () => {
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
                 {/* Header */}
-                <div className="relative z-10 pt-32 pb-20 text-center px-4">
+                <div className="relative z-10 pt-10 md:pt-32 pb-20 text-center px-4">
                     <GlowingOrb className="top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-600/20" />
                     <div className="max-w-4xl mx-auto relative">
                         <motion.span 

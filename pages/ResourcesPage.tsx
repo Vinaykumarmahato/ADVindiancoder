@@ -39,7 +39,7 @@ const ResourcesPage = () => {
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
                 {/* Hero Section */}
-                <section className="relative pt-32 pb-16 overflow-hidden">
+                <section className="relative pt-10 md:pt-32 pb-16 overflow-hidden">
                     <GlowingOrb className="top-10 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-600/20" />
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                         <motion.h1 
