@@ -99,7 +99,7 @@ const MasterclassPage = () => {
                         <motion.span initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="bg-white/10 backdrop-blur-md border border-primary/30 text-primary font-mono text-sm tracking-widest py-2 px-6 rounded-full mb-6 inline-flex shadow-[0_0_20px_rgba(0,120,255,0.3)]">
                             INTENSIVE MENTORSHIP
                         </motion.span>
-                        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1 }} className="text-5xl md:text-7xl lg:text-[5rem] font-black leading-[1.1] tracking-tighter mb-8">
+                        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1 }} className="text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-black leading-[1.1] tracking-tighter mb-8">
                             Don't Just Watch.<br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-primary to-purple-500">Build with Us Live.</span>
                         </motion.h1>
@@ -136,21 +136,21 @@ const MasterclassPage = () => {
                             <div className="relative z-10">
                                 <h2 className="text-3xl font-extrabold mb-8 text-white flex items-center gap-3"><Zap className="text-yellow-400 fill-yellow-400" /> Next Batch Logistics</h2>
                                 <div className="space-y-6">
-                                    <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                                        <span className="text-gray-400 font-mono text-sm uppercase tracking-wider">Start Date</span>
-                                        <span className="font-bold text-xl">15th of Next Month</span>
+                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-white/10 pb-4 gap-1">
+                                        <span className="text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Start Date</span>
+                                        <span className="font-bold text-lg sm:text-xl">15th of Next Month</span>
                                     </div>
-                                    <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                                        <span className="text-gray-400 font-mono text-sm uppercase tracking-wider">Timing</span>
-                                        <span className="font-bold text-xl">7:00 PM - 9:00 PM IST</span>
+                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-white/10 pb-4 gap-1">
+                                        <span className="text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Timing</span>
+                                        <span className="font-bold text-lg sm:text-xl">7:00 PM - 9:00 PM IST</span>
                                     </div>
-                                    <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                                        <span className="text-gray-400 font-mono text-sm uppercase tracking-wider">Platform</span>
-                                        <span className="font-bold text-xl">Zoom Premium</span>
+                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-white/10 pb-4 gap-1">
+                                        <span className="text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Platform</span>
+                                        <span className="font-bold text-lg sm:text-xl">Zoom Premium</span>
                                     </div>
-                                    <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                                        <span className="text-gray-400 font-mono text-sm uppercase tracking-wider">Availability</span>
-                                        <span className="font-bold text-xl text-red-400">Strictly Limited Seats</span>
+                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-white/10 pb-4 gap-1">
+                                        <span className="text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Availability</span>
+                                        <span className="font-bold text-lg sm:text-xl text-red-400">Strictly Limited Seats</span>
                                     </div>
                                 </div>
                                 <div className="mt-10">

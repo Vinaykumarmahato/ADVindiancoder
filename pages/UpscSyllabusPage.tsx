@@ -129,7 +129,7 @@ const UpscSyllabusPage = () => {
                         <motion.h1
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white mb-6 tracking-tight"
+                            className="text-4xl sm:text-5xl md:text-7xl font-black text-gray-900 dark:text-white mb-6 tracking-tight"
                         >
                             UPSC <span className="text-primary italic">Syllabus</span>
                         </motion.h1>
@@ -152,13 +152,13 @@ const UpscSyllabusPage = () => {
                                 className="relative"
                             >
                                 <div className={`absolute top-0 left-0 w-2 h-full rounded-full ${section.color.replace('border-', 'bg-')}`} />
-                                <div className="pl-8">
+                                <div className="pl-4 sm:pl-8">
                                     <div className="flex items-center gap-4 mb-8">
                                         <div className={`p-4 rounded-2xl ${section.bgColor} shadow-sm`}>
                                             {section.icon}
                                         </div>
                                         <div>
-                                            <h2 className="text-3xl font-black text-gray-900 dark:text-white">{section.stage}</h2>
+                                            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 dark:text-white">{section.stage}</h2>
                                             <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">{section.description}</p>
                                         </div>
                                     </div>
