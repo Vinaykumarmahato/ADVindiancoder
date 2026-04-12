@@ -41,22 +41,31 @@ const Header = () => {
         visible: { opacity: 1, y: 0 },
     };
 
+    // Pages that are forced to dark background
+    const isDarkPage = location.pathname === '/' || 
+                       location.pathname === '/courses' || 
+                       location.pathname === '/masterclass' || 
+                       location.pathname === '/resources' ||
+                       location.pathname === '/about' ||
+                       location.pathname === '/community' ||
+                       location.pathname === '/career';
+
     return (
         <>
-            <header className="fixed top-0 left-0 right-0 z-[100]">
-                <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="relative flex items-center justify-between bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 rounded-full px-6 py-3 shadow-lg">
-                        <Link to="/" className="flex items-center">
-                            <img src="/assets/ADV Indian Coder Logo.png" alt="ADV Indian Coder Logo" className="h-10" />
+            <header className="fixed top-0 left-0 right-0 z-[1000]">
+                <nav className="max-w-7xl mx-auto px-4 py-2 md:py-4">
+                    <div className={`relative flex items-center justify-between backdrop-blur-lg border border-white/20 rounded-full px-4 md:px-6 py-2 md:py-3 shadow-lg ${isDarkPage ? 'bg-black/20 text-white' : 'bg-white/10 dark:bg-black/20 text-gray-800 dark:text-white'}`}>
+                        <Link to="/" className="flex items-center shrink-0">
+                            <img src="/assets/ADV Indian Coder Logo.png" alt="ADV Indian Coder Logo" className="h-8 md:h-10 w-auto max-w-[120px] md:max-w-none object-contain" />
                         </Link>
 
-                        <div className="hidden lg:flex items-center space-x-6">
+                        <div className="hidden xl:flex items-center space-x-6">
                             {NAV_LINKS.map((link) => (
                                 <NavLink
                                     key={link.name}
                                     to={link.path}
                                     className={({ isActive }) =>
-                                        `text-sm font-medium transition-colors duration-300 inline-flex items-center gap-1.5 ${isActive ? 'text-red-600' : 'text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600'}`
+                                        `text-sm font-medium transition-colors duration-300 inline-flex items-center gap-1.5 ${isActive ? 'text-red-500' : (isDarkPage ? 'text-gray-200 hover:text-red-400' : 'text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-600')}`
                                     }
                                 >
                                     {link.name === 'Live Masterclass' ? (
@@ -73,23 +82,23 @@ const Header = () => {
                             ))}
                         </div>
 
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-2 md:space-x-4">
                             <button
                                 onClick={toggleTheme}
                                 className="p-2 rounded-full bg-white/20 hover:bg-white/30 dark:bg-black/30 dark:hover:bg-black/50 transition-colors"
                                 aria-label="Toggle theme"
                             >
-                                {theme === 'dark' ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-blue-500" />}
+                                {theme === 'dark' || isDarkPage ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-blue-500" />}
                             </button>
 
-                            <div className="lg:hidden">
+                            <div className="xl:hidden">
                                 <button
                                     onClick={toggleMenu}
                                     className="relative p-2 rounded-full bg-white/20 hover:bg-white/30 dark:bg-black/30 dark:hover:bg-black/50 transition-colors"
                                     aria-label="Toggle menu"
                                     aria-expanded={isMenuOpen}
                                 >
-                                    {isMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
+                                    {isMenuOpen ? <X className={`h-6 w-6 ${isDarkPage ? 'text-white' : 'text-gray-800 dark:text-white'}`} /> : <Menu className={`h-6 w-6 ${isDarkPage ? 'text-white' : 'text-gray-800 dark:text-white'}`} />}
                                 </button>
                             </div>
                         </div>
@@ -102,7 +111,7 @@ const Header = () => {
                 <>
                     {/* Backdrop overlay */}
                     <div
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[998] lg:hidden"
+                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[1998] xl:hidden"
                         onClick={() => setIsMenuOpen(false)}
                         aria-hidden="true"
                     />
@@ -112,7 +121,7 @@ const Header = () => {
                         variants={menuVariants}
                         initial="hidden"
                         animate="visible"
-                        className="fixed top-[88px] left-4 right-4 z-[999] lg:hidden p-4 bg-white/95 dark:bg-[#0a0f1c]/95 backdrop-blur-xl rounded-2xl border border-white/20 dark:border-white/10 shadow-2xl max-h-[calc(100vh-120px)] overflow-y-auto"
+                        className="fixed top-[72px] md:top-[88px] left-4 right-4 z-[2000] xl:hidden p-4 bg-white/95 dark:bg-[#0a0f1c]/95 backdrop-blur-xl rounded-2xl border border-white/20 dark:border-white/10 shadow-2xl max-h-[calc(100vh-120px)] overflow-y-auto"
                     >
                         <div className="flex flex-col space-y-2">
                             {NAV_LINKS.map((link) => (
