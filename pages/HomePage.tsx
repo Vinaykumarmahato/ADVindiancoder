@@ -12,7 +12,7 @@ const fadeUp = {
 
 // Bento Grid Item
 const BentoCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) => (
-    <motion.div 
+    <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
@@ -37,9 +37,9 @@ const HomePage = () => {
     return (
         <PageWrapper>
             <div className="bg-[#050914] text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans overflow-x-hidden">
-                
+
                 {/* 1. HERO SECTION */}
-                <section className="relative min-h-[100vh] flex items-center justify-center pt-32 overflow-hidden">
+                <section className="relative min-h-[90vh] md:min-h-[100vh] flex items-start md:items-center justify-center pt-10 md:pt-32 overflow-hidden">
                     {/* Background Effects */}
                     <div className="absolute inset-0 z-0">
                         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
@@ -50,23 +50,23 @@ const HomePage = () => {
 
                     <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
                         <motion.div style={{ y: yTransform, opacity: opacityTransform }} className="flex flex-col items-center">
-                            
+
                             {/* Beta Tag */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
                                 className="mb-8"
                             >
                                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl">
                                     <span className="relative flex h-2.5 w-2.5">
-                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                                     </span>
                                     <span className="text-sm font-medium tracking-wide text-gray-300">Over 500+ Students Placed</span>
                                 </div>
                             </motion.div>
 
                             {/* Headline */}
-                            <motion.h1 
+                            <motion.h1
                                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.95]"
                             >
@@ -77,16 +77,16 @@ const HomePage = () => {
                             </motion.h1>
 
                             {/* Subheadline */}
-                            <motion.p 
+                            <motion.p
                                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="mt-8 text-xl md:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light"
                             >
-                                <strong className="text-white font-medium">You Don't Need a CS Degree. You Need the Right Mentor.</strong><br/>
+                                <strong className="text-white font-medium">You Don't Need a CS Degree. You Need the Right Mentor.</strong><br />
                                 No Fluff. No Theory Overload. Just Skills That Get You Hired.
                             </motion.p>
 
                             {/* CTA Buttons */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="mt-12 flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto"
                             >
@@ -103,7 +103,7 @@ const HomePage = () => {
                     </div>
 
                     {/* Scroll Indicator */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 1 }}
                         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
                     >
@@ -169,12 +169,12 @@ const HomePage = () => {
                 {/* 3. COURSES SHOWCASE */}
                 <section className="py-32 px-4 relative overflow-hidden">
                     <GlowingOrb className="top-1/2 left-0 w-[500px] h-[700px] bg-primary/20 -translate-y-1/2" />
-                    
+
                     <div className="max-w-7xl mx-auto relative z-10">
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                             <div>
                                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
-                                    Master The <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Tech Stack.</span>
+                                    Master The <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Tech Stack.</span>
                                 </h2>
                                 <p className="text-xl text-gray-400 max-w-xl">Zero fluff. Straight to the skills you need to land a job paying ₹5LPA to ₹15LPA+.</p>
                             </div>
@@ -190,7 +190,7 @@ const HomePage = () => {
                                 { title: "SQL Architecture", category: "Database", icon: "🗄️", color: "from-indigo-500/20 to-purple-500/20", border: "group-hover:border-indigo-500/50" },
                                 { title: "Prompt Engineering", category: "AI Future", icon: "⚡", color: "from-yellow-500/20 to-amber-500/20", border: "group-hover:border-yellow-500/50" }
                             ].map((course, idx) => (
-                                <motion.div 
+                                <motion.div
                                     key={idx}
                                     variants={fadeUp}
                                     initial="hidden"
@@ -226,7 +226,7 @@ const HomePage = () => {
                             { val: "100%", lbl: "Practical Output" },
                             { val: "24/7", lbl: "Community Access" }
                         ].map((stat, i) => (
-                            <motion.div 
+                            <motion.div
                                 key={i}
                                 variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                                 className="text-center"
@@ -241,17 +241,17 @@ const HomePage = () => {
                 {/* 5. FINALE CTA */}
                 <section className="py-40 px-4 relative overflow-hidden">
                     <GlowingOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20" />
-                    
+
                     <div className="max-w-4xl mx-auto text-center relative z-10">
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
                             <h2 className="text-5xl md:text-7xl font-black tracking-tight mb-8">
-                                The Code Doesn't Write Itself.<br className="hidden md:block"/>
+                                The Code Doesn't Write Itself.<br className="hidden md:block" />
                                 <span className="italic text-gray-500 font-light font-serif">Neither Does Your Career.</span>
                             </h2>
                             <p className="text-xl md:text-2xl text-gray-400 mb-12">
                                 Seats for the next live cohort are filling fast. Secure your spot and let's get you enterprise-ready.
                             </p>
-                            
+
                             <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
                                 <Link to="/masterclass" className="w-full sm:w-auto inline-flex items-center justify-center h-16 px-10 rounded-full bg-white text-black font-extrabold text-lg transition-transform hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.3)]">
                                     Join the Live Masterclass
