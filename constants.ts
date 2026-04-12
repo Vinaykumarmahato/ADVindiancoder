@@ -34,7 +34,7 @@ export const WHY_CHOOSE_US_FEATURES = [
     'Free Mentorship + Community Access',
 ];
 
-// ─── Java Full Course Playlist (All 36 Episodes) ────────────────────────────
+// ─── Java Full Course Playlist (All 37 Episodes) ────────────────────────────
 export const JAVA_PLAYLIST = [
     { id: 1,  title: "EP 01 – What is Programming? | Introduction to Programming | Java Full Course 2026 #1", thumbnail: `/Thumbnail/${encodeURIComponent("ep-01-programming-introduction-thumbnail.png")}`, tags: ['Java', 'Basics'], category: 'Java Series', youtubeLink: '#' },
     { id: 2,  title: "EP 02 – Low Level vs High Level Languages | Java Full Course 2026 #2", thumbnail: `/Thumbnail/${encodeURIComponent("ep-02-low-vs-high-level-thumbnail.png")}`, tags: ['Java', 'Theory'], category: 'Java Series', youtubeLink: '#' },
@@ -72,13 +72,14 @@ export const JAVA_PLAYLIST = [
     { id: 34, title: "EP 34 – Nested For Loop in Java | Complete Tutorial with Examples | Java Full Course 2026 #34", thumbnail: `/Thumbnail/${encodeURIComponent("ep-34-Nested For Loop in Java  Complete Tutorial with Examples.png")}`, tags: ['Java', 'Loops'], category: 'Java Series', youtubeLink: '#' },
     { id: 35, title: "EP 35 – ATM Machine Project in Java 💳 | Java Full Course 2026 #35", thumbnail: `/Thumbnail/${encodeURIComponent("ep-35-Can a Beginner Build an ATM in Java Yes — And So Can You 💳  Java Full Course.png")}`, tags: ['Java', 'Project'], category: 'Java Series', youtubeLink: '#' },
     { id: 36, title: "EP 36 – Don't Start Pattern Programming ❌ Watch This First | Java Full Course 2026 #36", thumbnail: `/Thumbnail/${encodeURIComponent("ep-36-Don't Start Pattern Programming ❌ Watch This First.png")}`, tags: ['Java', 'Patterns'], category: 'Java Series', youtubeLink: '#' },
+    { id: 37, title: "EP 37 – Need of OOPs in Java 🔥 | POP vs OOP | Why OOPs? | Java Full Course 2026 #37", thumbnail: `https://img.youtube.com/vi/Nfk5RzuZLRw/maxresdefault.jpg`, tags: ['Java', 'OOPs'], category: 'Java Series', youtubeLink: 'https://youtu.be/Nfk5RzuZLRw' },
 ];
 
 export const COURSES: Course[] = [
     {
         id: 1,
-        title: 'Java Full Course 2026 (36 Episodes)',
-        description: 'Complete zero-to-hero Java playlist: variables, OOP, loops, projects & more. 36 episodes absolutely free on YouTube.',
+        title: 'Java Full Course 2026 (37 Episodes)',
+        description: 'Complete zero-to-hero Java playlist: variables, OOP, loops, projects & more. 37 episodes absolutely free on YouTube.',
         thumbnail: `/Thumbnail/ep-01-programming-introduction-thumbnail.png`,
         tags: ['Java', 'Playlist', 'Free'],
         category: 'Programming',

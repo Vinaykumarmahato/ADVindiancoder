@@ -3,7 +3,7 @@ import PageWrapper from '../components/PageWrapper';
 import { PlayCircle, Library, ChevronLeft, BookOpen, Code2, Github, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// ─── All 36 episodes with YouTube IDs + complete notes ────────────────────────
+// ─── All 37 episodes with YouTube IDs + complete notes ────────────────────────
 const EPISODES = [
     {
         id: 1,
@@ -1552,6 +1552,122 @@ public class ConditionalOverview {
     }
 }`,
             interview: ["How do you approach a new pattern problem?", "What is the relationship between nested loops and patterns?"],
+        }
+    },
+    {
+        id: 37,
+        title: "EP 37 – Need of OOPs in Java 🔥 | POP vs OOP | Why OOPs?",
+        youtubeId: "Nfk5RzuZLRw",
+        thumbnail: "https://img.youtube.com/vi/Nfk5RzuZLRw/maxresdefault.jpg",
+        tags: ["Java", "OOPs"],
+        notes: {
+            intro: "OOPs का जन्म — 🔥 The most important turning point in your programming career! POP (Procedural Oriented Programming) में Data global था, कोई भी function बिना permission के access कर सकता था। OOPs ने Data और Functions को एक साथ bind किया — giving us security, structure, and real-world mapping.",
+            topics: [
+                "🔓 POP Problem #1: No Data Security — Global data accessible by ANY function",
+                "🚫 POP Problem #2: No Reusability — Copy-paste led to duplicate code and bugs",
+                "🌍 POP Problem #3: No Real-World Mapping — Data and functions were disconnected",
+                "📜 POP Problem #4: Large Code Chaos — Extremely lengthy and unreadable",
+                "🔧 POP Problem #5: Maintenance Nightmare — impossible to understand later",
+                "💡 The Birth of OOPs (1960s-1970s) — Binding Data + Functions together",
+                "🏗️ Class = Blueprint, Object = Real-world entity",
+                "🔒 Encapsulation — private keyword, controlled access via setters",
+                "🧬 Inheritance — extends keyword, code reusability",
+                "🎭 Polymorphism — same method name, different behaviors",
+                "🎨 Abstraction — hiding complexity, showing essentials",
+            ],
+            code: `// ════════════════════════════════════════════════════════════
+// ❌ POP APPROACH — The Problem (PopExample.java)
+// ════════════════════════════════════════════════════════════
+public class PopExample {
+
+    // 🌍 GLOBAL DATA — Accessible by EVERYONE, No Protection!
+    static String studentName = "Vinay";
+    static int studentAge = 20;
+    static int studentMarks = 85;
+
+    static void displayStudentInfo() {
+        System.out.println("📋 Name: " + studentName);
+        System.out.println("   Age: " + studentAge);
+        System.out.println("   Marks: " + studentMarks);
+    }
+
+    // ❌ No validation! Direct change!
+    static void updateMarks(int newMarks) {
+        studentMarks = newMarks;
+    }
+
+    // ⚠️ Data corruption — marks = -99, age = -5
+    static void corruptData() {
+        studentMarks = -99; // ❌ Invalid but accepted!
+        studentAge = -5;    // ❌ Invalid but accepted!
+    }
+
+    public static void main(String[] args) {
+        displayStudentInfo();
+        updateMarks(-99);     // ❌ Accepted silently!
+        corruptData();        // ❌ No error!
+        studentAge = -100;    // ❌ Direct global access!
+        displayStudentInfo(); // Data is CORRUPTED
+    }
+}
+
+// ════════════════════════════════════════════════════════════
+// ✅ OOP APPROACH — The Solution (OopSolution.java)
+// ════════════════════════════════════════════════════════════
+class Student {
+    // 🔒 PRIVATE DATA — No outside access!
+    private String name;
+    private int age;
+    private int marks;
+
+    public Student(String name, int age, int marks) {
+        this.name = name;
+        setAge(age);
+        setMarks(marks);
+    }
+
+    // ✅ Setter with VALIDATION
+    public void setMarks(int newMarks) {
+        if (newMarks >= 0 && newMarks <= 100) {
+            this.marks = newMarks;
+            System.out.println("   ✅ Marks updated to: " + newMarks);
+        } else {
+            System.out.println("   ❌ REJECTED! Invalid marks: " + newMarks);
+        }
+    }
+
+    public void setAge(int newAge) {
+        if (newAge > 0 && newAge <= 150) {
+            this.age = newAge;
+        } else {
+            System.out.println("   ❌ REJECTED! Invalid age: " + newAge);
+        }
+    }
+
+    public void displayInfo() {
+        System.out.println("📋 Name: " + name);
+        System.out.println("   Age: " + age + " | Marks: " + marks);
+    }
+}
+
+public class OopSolution {
+    public static void main(String[] args) {
+        Student s1 = new Student("Vinay", 20, 85);
+        s1.displayInfo();
+
+        s1.setMarks(-99);  // ❌ REJECTED!
+        s1.setAge(-5);     // ❌ REJECTED!
+        s1.setMarks(92);   // ✅ ACCEPTED!
+        s1.displayInfo();  // Data is SAFE! ✅
+    }
+}`,
+            interview: [
+                "What is the difference between POP and OOP?",
+                "Why was OOPs introduced? What problems did POP have?",
+                "Name the 4 pillars of OOPs.",
+                "What is Encapsulation and how does it solve data security?",
+                "Can you give a real-world example of why global data is dangerous?",
+            ],
         }
     },
 ];
