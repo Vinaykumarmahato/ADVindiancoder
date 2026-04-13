@@ -124,11 +124,36 @@ const HomePage = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[250px]">
                             {/* Large Feature 1 */}
-                            <BentoCard className="md:col-span-2 lg:col-span-2 row-span-2 p-10 flex flex-col justify-end" delay={0}>
+                            <BentoCard className="md:col-span-2 lg:col-span-2 row-span-2 p-10 flex flex-col justify-end group" delay={0}>
+                                {/* Visual Ornament */}
+                                <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
+                                    <div className="absolute top-[-10%] right-[-10%] w-[70%] h-[70%] opacity-20 group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110">
+                                        <img 
+                                            src="/assets/live-architecture.png" 
+                                            alt="Architecture Illustration" 
+                                            className="w-full h-full object-contain filter hue-rotate-15 blur-[1px] group-hover:blur-0 transition-all duration-700" 
+                                        />
+                                    </div>
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(0,120,255,0.15),transparent_50%)]"></div>
+                                </div>
+
+                                {/* Live Pulse Badge */}
+                                <div className="absolute top-8 right-8 flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 backdrop-blur-md">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                    </span>
+                                    <span className="text-[10px] font-bold tracking-widest text-red-500 uppercase">Live Now</span>
+                                </div>
+
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[100px] rounded-full"></div>
-                                <div className="mb-auto p-4 bg-primary/10 w-fit rounded-2xl border border-primary/20"><Users className="w-8 h-8 text-primary" /></div>
-                                <h3 className="text-3xl font-bold mb-3 mt-6">Live Interactive Architecture</h3>
-                                <p className="text-gray-400 text-lg">No dead recorded videos masquerading as a course. Ask questions in real-time, get unstuck immediately, and build alongside your mentor.</p>
+                                <div className="mb-auto p-4 bg-primary/10 w-fit rounded-2xl border border-primary/20 relative z-10">
+                                    <Users className="w-8 h-8 text-primary" />
+                                </div>
+                                <div className="relative z-10">
+                                    <h3 className="text-3xl font-bold mb-3 mt-6">Live Interactive Architecture</h3>
+                                    <p className="text-gray-400 text-lg leading-relaxed">No dead recorded videos masquerading as a course. Ask questions in real-time, get unstuck immediately, and build alongside your mentor.</p>
+                                </div>
                             </BentoCard>
 
                             {/* Small Feature 1 */}
