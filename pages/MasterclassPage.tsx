@@ -93,7 +93,7 @@ const MasterclassPage = () => {
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
                 {/* Header */}
-                <div className="relative z-10 pt-10 md:pt-32 pb-24 text-center px-4">
+                <div className="relative z-10 pt-10 md:pt-20 pb-16 text-center px-4">
                     <GlowingOrb className="top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20" />
                     <div className="max-w-5xl mx-auto relative">
                         <motion.span initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="bg-white/10 backdrop-blur-md border border-primary/30 text-primary font-mono text-sm tracking-widest py-2 px-6 rounded-full mb-6 inline-flex shadow-[0_0_20px_rgba(0,120,255,0.3)]">
@@ -111,7 +111,7 @@ const MasterclassPage = () => {
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                     {/* Info Sections - Bento Grid Style */}
-                    <div className="grid md:grid-cols-2 gap-8 mb-32">
+                    <div className="grid md:grid-cols-2 gap-8 mb-20">
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] relative overflow-hidden group hover:border-white/20 transition-all">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 blur-[80px] rounded-full group-hover:bg-green-500/20 transition-colors"></div>
                             <h2 className="text-3xl font-extrabold mb-8 text-white relative z-10">The Live Advantage</h2>
@@ -168,7 +168,7 @@ const MasterclassPage = () => {
                     </div>
 
                     {/* Masterclasses Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
                         {MASTERCLASSES.map((mc, idx) => (
                             <motion.div
                                 key={mc.id}

@@ -39,7 +39,7 @@ const ResourcesPage = () => {
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
                 {/* Hero Section */}
-                <section className="relative pt-10 md:pt-32 pb-16 overflow-hidden">
+                <section className="relative pt-10 md:pt-20 pb-16 overflow-hidden">
                     <GlowingOrb className="top-10 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-600/20" />
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                         <motion.h1 
@@ -129,7 +129,7 @@ const ResourcesPage = () => {
                 </section>
 
                 {/* Resources Grid */}
-                <section className="pb-32 relative z-10">
+                <section className="pb-16 relative z-10">
                     <GlowingOrb className="bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10" />
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -207,7 +207,7 @@ const ResourcesPage = () => {
                         </motion.div>
 
                         {filteredResources.length === 0 && (
-                            <div className="text-center py-32 border border-white/5 bg-white/5 backdrop-blur-md rounded-[2rem] mt-8">
+                            <div className="text-center py-20 border border-white/5 bg-white/5 backdrop-blur-md rounded-[2rem] mt-8">
                                 <Search className="w-16 h-16 mx-auto mb-4 opacity-30 text-white" />
                                 <h3 className="text-2xl font-light text-gray-400">No resources matched your search.</h3>
                             </div>
@@ -216,7 +216,7 @@ const ResourcesPage = () => {
                 </section>
                 
                 {/* Notice CTA */}
-                <section className="relative py-32 px-4 border-t border-white/5 overflow-hidden">
+                <section className="relative py-20 px-4 border-t border-white/5 overflow-hidden">
                     <GlowingOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-500/10" />
                     <div className="max-w-4xl mx-auto text-center relative z-10">
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[3rem] p-12 md:p-20 shadow-2xl">

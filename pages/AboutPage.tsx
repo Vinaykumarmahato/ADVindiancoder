@@ -21,7 +21,7 @@ const AboutPage = () => {
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
                 {/* Hero Section */}
-                <div className="relative z-10 pt-10 md:pt-32 pb-24 text-center px-4">
+                <div className="relative z-10 pt-10 md:pt-20 pb-16 text-center px-4">
                     <GlowingOrb className="top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/20" />
                     <div className="max-w-4xl mx-auto relative">
                         <motion.span initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="bg-blue-500/10 backdrop-blur-md border border-blue-500/30 text-blue-400 font-mono text-sm tracking-widest py-2 px-6 rounded-full mb-6 inline-flex shadow-[0_0_20px_rgba(59,130,246,0.2)]">
@@ -40,7 +40,7 @@ const AboutPage = () => {
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                     
                     {/* Vision Grid */}
-                    <motion.div variants={fadeUp} initial="hidden" animate="show" className="grid md:grid-cols-2 gap-16 items-center mb-40">
+                    <motion.div variants={fadeUp} initial="hidden" animate="show" className="grid md:grid-cols-2 gap-16 items-center mb-20">
                         <div className="relative">
                             <GlowingOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/20" />
                             <div className="relative z-10 bg-[#0a0f1c] border border-white/10 rounded-[3rem] p-10 shadow-2xl overflow-hidden group">
@@ -61,7 +61,7 @@ const AboutPage = () => {
                     </motion.div>
 
                     {/* Values */}
-                    <div className="mb-40 relative">
+                    <div className="mb-20 relative">
                         <GlowingOrb className="top-1/2 right-0 w-[500px] h-[500px] bg-purple-600/10" />
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
                             <h2 className="text-5xl font-black mb-4">The Directives</h2>
@@ -82,7 +82,7 @@ const AboutPage = () => {
                     </div>
 
                     {/* CTA */}
-                    <div className="text-center relative pb-20">
+                    <div className="text-center relative pb-12">
                         <GlowingOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10" />
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="relative z-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[3rem] p-16 shadow-2xl">
                             <h2 className="text-4xl md:text-5xl font-black mb-6">Join the Revolution</h2>

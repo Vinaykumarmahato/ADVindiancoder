@@ -39,7 +39,7 @@ const HomePage = () => {
             <div className="bg-[#050914] text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans overflow-x-hidden">
 
                 {/* 1. HERO SECTION */}
-                <section className="relative min-h-[90vh] md:min-h-[100vh] flex items-start md:items-center justify-center pt-10 md:pt-32 overflow-hidden">
+                <section className="relative min-h-[90vh] md:min-h-[100vh] flex items-start md:items-center justify-center pt-10 md:pt-20 overflow-hidden">
                     {/* Background Effects */}
                     <div className="absolute inset-0 z-0">
                         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
@@ -113,7 +113,7 @@ const HomePage = () => {
                 </section>
 
                 {/* 2. THE BENTO GRID (What Makes Us Different) */}
-                <section className="py-32 px-4 relative z-10 overflow-hidden">
+                <section className="py-20 px-4 relative z-10 overflow-hidden">
                     <div className="max-w-7xl mx-auto">
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mb-20">
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
@@ -192,7 +192,7 @@ const HomePage = () => {
                 </section>
 
                 {/* 3. COURSES SHOWCASE */}
-                <section className="py-32 px-4 relative overflow-hidden">
+                <section className="py-20 px-4 relative overflow-hidden">
                     <GlowingOrb className="top-1/2 left-0 w-[500px] h-[700px] bg-primary/20 -translate-y-1/2" />
 
                     <div className="max-w-7xl mx-auto relative z-10">
@@ -264,7 +264,7 @@ const HomePage = () => {
                 </section>
 
                 {/* 5. FINALE CTA */}
-                <section className="py-40 px-4 relative overflow-hidden">
+                <section className="py-24 px-4 relative overflow-hidden">
                     <GlowingOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20" />
 
                     <div className="max-w-4xl mx-auto text-center relative z-10">

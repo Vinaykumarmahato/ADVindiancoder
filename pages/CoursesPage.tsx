@@ -34,7 +34,7 @@ const CoursesPage = () => {
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
                 {/* Header */}
-                <div className="relative z-10 pt-10 md:pt-32 pb-20 text-center px-4">
+                <div className="relative z-10 pt-10 md:pt-20 pb-20 text-center px-4">
                     <GlowingOrb className="top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-600/20" />
                     <div className="max-w-4xl mx-auto relative">
                         <motion.span 
@@ -92,7 +92,7 @@ const CoursesPage = () => {
                 </div>
 
                 {/* Courses Grid */}
-                <div className="relative z-10 py-8 px-4 max-w-7xl mx-auto mb-32">
+                <div className="relative z-10 py-8 px-4 max-w-7xl mx-auto mb-20">
                     <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <AnimatePresence>
                             {filteredCourses.map((course) => (
@@ -159,7 +159,7 @@ const CoursesPage = () => {
                     </motion.div>
                     
                     {filteredCourses.length === 0 && (
-                        <div className="text-center py-32 text-gray-500 border border-white/5 rounded-3xl bg-white/5 backdrop-blur-lg mt-8">
+                        <div className="text-center py-20 text-gray-500 border border-white/5 rounded-3xl bg-white/5 backdrop-blur-lg mt-8">
                             <Search className="w-16 h-16 mx-auto mb-4 opacity-50" />
                             <p className="text-2xl font-light">No courses found matching your criteria.</p>
                         </div>
@@ -167,7 +167,7 @@ const CoursesPage = () => {
                 </div>
                 
                 {/* Upsell to Live Masterclass */}
-                <div className="relative py-24 px-4 overflow-hidden border-t border-white/10">
+                <div className="relative py-20 px-4 overflow-hidden border-t border-white/10">
                     <GlowingOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20" />
                     <div className="max-w-4xl mx-auto text-center relative z-10">
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
