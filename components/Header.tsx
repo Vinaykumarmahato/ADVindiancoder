@@ -1,14 +1,28 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, Search } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { NAV_LINKS } from '../constants';
 import { MotionDiv } from './motion';
+import GlobalSearch from './GlobalSearch';
 
 const Header = () => {
     const { theme, toggleTheme } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const location = useLocation();
+
+    // CMD+K Shortcut
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                setIsSearchOpen(true);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
 
     // Close menu on route change
     useEffect(() => {
@@ -77,12 +91,26 @@ const Header = () => {
                                             Live Masterclass
                                             <span className="text-[9px] font-black tracking-widest bg-red-600 text-white px-1.5 py-0.5 rounded-full leading-none">LIVE</span>
                                         </>
+                                    ) : link.name === 'Jobs' ? (
+                                        <>
+                                            Jobs
+                                            <span className="text-[9px] font-black tracking-widest bg-red-500 text-white px-1.5 py-0.5 rounded-full leading-none animate-pulse">NEW</span>
+                                        </>
                                     ) : link.name}
                                 </NavLink>
                             ))}
                         </div>
 
                         <div className="flex items-center space-x-2 md:space-x-4">
+                            <button
+                                onClick={() => setIsSearchOpen(true)}
+                                className="p-2 rounded-full bg-white/20 hover:bg-white/30 dark:bg-black/30 dark:hover:bg-black/50 transition-colors flex items-center gap-2 group"
+                                aria-label="Search"
+                            >
+                                <Search className={`h-5 w-5 ${isDarkPage ? 'text-white' : 'text-gray-800 dark:text-white'}`} />
+                                <span className="hidden md:block text-xs font-mono text-gray-400 group-hover:text-white">K</span>
+                            </button>
+
                             <button
                                 onClick={toggleTheme}
                                 className="p-2 rounded-full bg-white/20 hover:bg-white/30 dark:bg-black/30 dark:hover:bg-black/50 transition-colors"
@@ -145,6 +173,11 @@ const Header = () => {
                                                 Live Masterclass
                                                 <span className="text-[9px] font-black tracking-widest bg-red-500/20 text-red-300 px-1.5 py-0.5 rounded-full leading-none">LIVE</span>
                                             </span>
+                                        ) : link.name === 'Jobs' ? (
+                                            <span className="flex items-center gap-2 mx-auto">
+                                                Jobs
+                                                <span className="text-[9px] font-black tracking-widest bg-red-500 text-white px-1.5 py-0.5 rounded-full leading-none animate-pulse">NEW</span>
+                                            </span>
                                         ) : (
                                             <span className="mx-auto">{link.name}</span>
                                         )}
@@ -155,6 +188,7 @@ const Header = () => {
                     </MotionDiv>
                 </>
             )}
+            <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </>
     );
 };

@@ -83,7 +83,9 @@ export const COURSES: Course[] = [
         thumbnail: `/Thumbnail/ep-01-programming-introduction-thumbnail.png`,
         tags: ['Java', 'Playlist', 'Free'],
         category: 'Programming',
-        youtubeLink: '/course/java'
+        youtubeLink: '/course/java',
+        enrolledCount: 12450,
+        rating: 4.9
     },
     // ── Career & Roadmap Videos ──
     {
@@ -93,7 +95,9 @@ export const COURSES: Course[] = [
         thumbnail: `https://img.youtube.com/vi/xRF7ecu9xwY/maxresdefault.jpg`,
         tags: ['Java', 'Roadmap', 'Career'],
         category: 'Career',
-        youtubeLink: 'https://www.youtube.com/watch?v=xRF7ecu9xwY'
+        youtubeLink: 'https://www.youtube.com/watch?v=xRF7ecu9xwY',
+        enrolledCount: 8900,
+        rating: 4.8
     },
     {
         id: 4,
@@ -191,8 +195,8 @@ export const COURSES: Course[] = [
 ];
 
 export const MASTERCLASSES: Masterclass[] = [
-    { id: 1, title: 'Python Programming (30 Days Live Masterclass)', description: 'Master Python for Data, Automation & AI from scratch with daily live classes.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
-    { id: 2, title: 'SQL Mastery (30 Days Live Masterclass)', description: 'Master essential SQL queries, joins, and database design for data and backend roles.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
+    { id: 1, title: 'Python Programming (30 Days Live Masterclass)', description: 'Master Python for Data, Automation & AI from scratch with daily live classes.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(), enrolledCount: 450, rating: 4.9 },
+    { id: 2, title: 'SQL Mastery (30 Days Live Masterclass)', description: 'Master essential SQL queries, joins, and database design for data and backend roles.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(), enrolledCount: 380, rating: 4.8 },
     { id: 3, title: 'Java Masterclass (30 Days Live Masterclass)', description: 'Core Java, OOPs, Collections, and building real-world enterprise applications.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
     { id: 4, title: 'Prompt Engineering (30 Days Live Masterclass)', description: 'Learn to use ChatGPT, Claude, and AI tools effectively for automation and productivity.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },
     { id: 5, title: 'DevOps Full Course (30 Days Live Masterclass)', description: 'Git, Docker, Kubernetes, Jenkins CI/CD, Terraform, and AWS Fundamentals.', price: 499, enrollLink: '#', countdownTarget: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() },

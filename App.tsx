@@ -1,4 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -21,6 +22,7 @@ const SuccessStoriesPage = React.lazy(() => import('./pages/SuccessStoriesPage')
 const FaqPage = React.lazy(() => import('./pages/FaqPage'));
 const JobDetailsPage = React.lazy(() => import('./pages/JobDetailsPage'));
 const JobsPage = React.lazy(() => import('./pages/JobsPage'));
+const GenericCoursePage = React.lazy(() => import('./pages/GenericCoursePage'));
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
 // Course Pages
@@ -83,97 +85,95 @@ const AnimatedRoutes = () => {
     }, [location.pathname]);
 
     return (
-        <AnimatePresence mode="wait">
-            <React.Fragment key={location.pathname}>
-                <Suspense fallback={<LoadingFallback />}>
-                    <Routes location={location}>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/courses" element={<CoursesPage />} />
+        <Suspense fallback={<LoadingFallback />}>
+            <Routes location={location}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/courses" element={<CoursesPage />} />
 
-                        {/* Specific Course Routes */}
-                        <Route path="/course/html" element={<HtmlCoursePage />} />
-                        <Route path="/course/css" element={<CssCoursePage />} />
-                        <Route path="/course/javascript" element={<JavaScriptCoursePage />} />
-                        <Route path="/course/adv-css" element={<AdvCssCoursePage />} />
-                        <Route path="/course/bootstrap" element={<BootstrapCoursePage />} />
-                        <Route path="/course/react" element={<ReactCoursePage />} />
-                        <Route path="/course/jquery" element={<JQueryCoursePage />} />
-                        <Route path="/course/angular" element={<AngularCoursePage />} />
-                        <Route path="/course/angularjs" element={<AngularJSCoursePage />} />
-                        <Route path="/course/vue" element={<VueCoursePage />} />
-                        <Route path="/course/sass" element={<SassCoursePage />} />
-                        <Route path="/course/nodejs" element={<NodeJsCoursePage />} />
-                        <Route path="/course/php" element={<PhpCoursePage />} />
-                        <Route path="/course/java" element={<CourseTutorialPage />} />
-                        <Route path="/course/python" element={<PythonCoursePage />} />
-                        <Route path="/course/django" element={<DjangoCoursePage />} />
-                        <Route path="/course/asp" element={<AspCoursePage />} />
-                        <Route path="/course/go" element={<GoCoursePage />} />
-                        <Route path="/course/kotlin" element={<KotlinCoursePage />} />
-                        <Route path="/course/swift" element={<SwiftCoursePage />} />
-                        <Route path="/course/typescript" element={<TypeScriptCoursePage />} />
-                        <Route path="/course/csharp" element={<CSharpCoursePage />} />
-                        <Route path="/course/c" element={<CCoursePage />} />
-                        <Route path="/course/cpp" element={<CppCoursePage />} />
-                        <Route path="/course/rust" element={<RustCoursePage />} />
-                        <Route path="/course/bash" element={<BashCoursePage />} />
-                        <Route path="/course/r" element={<RCoursePage />} />
-                        <Route path="/course/sql" element={<SqlCoursePage />} />
-                        <Route path="/course/numpy" element={<NumpyCoursePage />} />
-                        <Route path="/course/pandas" element={<PandasCoursePage />} />
-                        <Route path="/course/scipy" element={<ScipyCoursePage />} />
-                        <Route path="/course/data-science" element={<DataScienceCoursePage />} />
-                        <Route path="/course/ai" element={<AiCoursePage />} />
-                        <Route path="/course/gen-ai" element={<GenAiCoursePage />} />
-                        <Route path="/course/mysql" element={<MySqlCoursePage />} />
-                        <Route path="/course/postgresql" element={<PostgreSqlCoursePage />} />
-                        <Route path="/course/mongodb" element={<MongoDbCoursePage />} />
-                        <Route path="/course/excel" element={<ExcelCoursePage />} />
-                        <Route path="/course/xml" element={<XmlCoursePage />} />
-                        <Route path="/course/cybersecurity" element={<CybersecurityCoursePage />} />
-                        <Route path="/course/dsa" element={<DsaCoursePage />} />
-                        <Route path="/course/git" element={<GitCoursePage />} />
+                {/* Specific Course Routes */}
+                <Route path="/course/html" element={<HtmlCoursePage />} />
+                <Route path="/course/css" element={<CssCoursePage />} />
+                <Route path="/course/javascript" element={<JavaScriptCoursePage />} />
+                <Route path="/course/adv-css" element={<AdvCssCoursePage />} />
+                <Route path="/course/bootstrap" element={<BootstrapCoursePage />} />
+                <Route path="/course/react" element={<ReactCoursePage />} />
+                <Route path="/course/jquery" element={<JQueryCoursePage />} />
+                <Route path="/course/angular" element={<AngularCoursePage />} />
+                <Route path="/course/angularjs" element={<AngularJSCoursePage />} />
+                <Route path="/course/vue" element={<VueCoursePage />} />
+                <Route path="/course/sass" element={<SassCoursePage />} />
+                <Route path="/course/nodejs" element={<NodeJsCoursePage />} />
+                <Route path="/course/php" element={<PhpCoursePage />} />
+                <Route path="/course/java" element={<CourseTutorialPage />} />
+                <Route path="/course/python" element={<PythonCoursePage />} />
+                <Route path="/course/django" element={<DjangoCoursePage />} />
+                <Route path="/course/asp" element={<AspCoursePage />} />
+                <Route path="/course/go" element={<GoCoursePage />} />
+                <Route path="/course/kotlin" element={<KotlinCoursePage />} />
+                <Route path="/course/swift" element={<SwiftCoursePage />} />
+                <Route path="/course/typescript" element={<TypeScriptCoursePage />} />
+                <Route path="/course/csharp" element={<CSharpCoursePage />} />
+                <Route path="/course/c" element={<CCoursePage />} />
+                <Route path="/course/cpp" element={<CppCoursePage />} />
+                <Route path="/course/rust" element={<RustCoursePage />} />
+                <Route path="/course/bash" element={<BashCoursePage />} />
+                <Route path="/course/r" element={<RCoursePage />} />
+                <Route path="/course/sql" element={<SqlCoursePage />} />
+                <Route path="/course/numpy" element={<NumpyCoursePage />} />
+                <Route path="/course/pandas" element={<PandasCoursePage />} />
+                <Route path="/course/scipy" element={<ScipyCoursePage />} />
+                <Route path="/course/data-science" element={<DataScienceCoursePage />} />
+                <Route path="/course/ai" element={<AiCoursePage />} />
+                <Route path="/course/gen-ai" element={<GenAiCoursePage />} />
+                <Route path="/course/mysql" element={<MySqlCoursePage />} />
+                <Route path="/course/postgresql" element={<PostgreSqlCoursePage />} />
+                <Route path="/course/mongodb" element={<MongoDbCoursePage />} />
+                <Route path="/course/excel" element={<ExcelCoursePage />} />
+                <Route path="/course/xml" element={<XmlCoursePage />} />
+                <Route path="/course/cybersecurity" element={<CybersecurityCoursePage />} />
+                <Route path="/course/dsa" element={<DsaCoursePage />} />
+                <Route path="/course/git" element={<GitCoursePage />} />
 
-                        {/* Dynamic Route for other courses */}
-                        <Route path="/course/:courseId" element={<CourseTutorialPage />} />
+                {/* Dynamic Route for other courses */}
+                <Route path="/course/:courseId" element={<GenericCoursePage />} />
 
-                        <Route path="/masterclass" element={<MasterclassPage />} />
-                        <Route path="/resources" element={<ResourcesPage />} />
-                        <Route path="/about" element={<AboutPage />} />
-                        <Route path="/community" element={<CommunityPage />} />
-                        <Route path="/career" element={<CareerPage />} />
-                        <Route path="/career/:jobId" element={<JobDetailsPage />} />
-                        <Route path="/jobs" element={<JobsPage />} />
-                        <Route path="/jobs/:jobId" element={<JobDetailsPage />} />
-                        <Route path="/contact" element={<ContactPage />} />
-                        <Route path="/success-stories" element={<SuccessStoriesPage />} />
-                        <Route path="/faq" element={<FaqPage />} />
-                        <Route path="/upsc-syllabus" element={<UpscSyllabusPage />} />
+                <Route path="/masterclass" element={<MasterclassPage />} />
+                <Route path="/resources" element={<ResourcesPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/community" element={<CommunityPage />} />
+                <Route path="/career" element={<CareerPage />} />
+                <Route path="/career/:jobId" element={<JobDetailsPage />} />
+                <Route path="/jobs" element={<JobsPage />} />
+                <Route path="/jobs/:jobId" element={<JobDetailsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/success-stories" element={<SuccessStoriesPage />} />
+                <Route path="/faq" element={<FaqPage />} />
+                <Route path="/upsc-syllabus" element={<UpscSyllabusPage />} />
 
-                        {/* Catch-all 404 Route */}
-                        <Route path="*" element={<NotFoundPage />} />
-                    </Routes>
-                </Suspense>
-            </React.Fragment>
-        </AnimatePresence>
+                {/* Catch-all 404 Route */}
+                <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+        </Suspense>
     );
 };
 
 const App = () => {
     return (
         <ErrorBoundary>
-            <ThemeProvider>
-                <HashRouter>
-                    <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
-                        <Header />
-                        <main className="pt-20">
-                            <AnimatedRoutes />
-                        </main>
-                        <Footer />
-                        <Chatbot />
-                    </div>
-                </HashRouter>
-            </ThemeProvider>
+            <HelmetProvider>
+                <ThemeProvider>
+                    <HashRouter>
+                        <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+                            <Header />
+                            <main className="pt-20">
+                                <AnimatedRoutes />
+                            </main>
+                            <Footer />
+                            <Chatbot />
+                        </div>
+                    </HashRouter>
+                </ThemeProvider>
+            </HelmetProvider>
         </ErrorBoundary>
     );
 };

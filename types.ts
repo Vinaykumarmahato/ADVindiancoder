@@ -7,6 +7,8 @@ export interface Course {
     tags: string[];
     category: string;
     youtubeLink: string;
+    enrolledCount?: number;
+    rating?: number;
 }
 
 export interface Masterclass {
@@ -16,6 +18,8 @@ export interface Masterclass {
     price: number;
     enrollLink: string;
     countdownTarget: string;
+    enrolledCount?: number;
+    rating?: number;
 }
 
 export interface Resource {

@@ -28,11 +28,21 @@ const Footer = () => {
                     <div className="col-span-1">
                         <h3 className="font-semibold mb-4">Quick Links</h3>
                         <ul className="space-y-2">
-                            {NAV_LINKS.slice(0, 5).map(link => (
+                            {NAV_LINKS.filter(link => ['Home', 'Courses', 'Notes', 'Live Masterclass'].includes(link.name)).map(link => (
                                 <li key={link.name}>
                                     <Link to={link.path} className="text-sm hover:text-primary transition-colors">{link.name}</Link>
                                 </li>
                             ))}
+                        </ul>
+                    </div>
+                    
+                    <div className="col-span-1">
+                        <h3 className="font-semibold mb-4">Career & More</h3>
+                        <ul className="space-y-2">
+                            <li><Link to="/jobs" className="text-sm hover:text-primary transition-colors font-medium flex items-center gap-2">Jobs <span className="text-[10px] bg-red-600 text-white px-1.5 py-0.5 rounded-full animate-pulse">NEW</span></Link></li>
+                            <li><Link to="/success-stories" className="text-sm hover:text-primary transition-colors">Success Stories</Link></li>
+                            <li><Link to="/about" className="text-sm hover:text-primary transition-colors">About Us</Link></li>
+                            <li><Link to="/contact" className="text-sm hover:text-primary transition-colors">Contact</Link></li>
                         </ul>
                     </div>
                     

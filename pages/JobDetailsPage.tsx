@@ -3,6 +3,7 @@ import { useParams, Link, useLocation } from 'react-router-dom';
 import { Briefcase, MapPin, Clock, DollarSign, Send, ArrowLeft, Building2, CheckCircle2, GraduationCap, Gift, ListChecks, HelpCircle, Share2, Linkedin, ChevronDown, ChevronUp } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../components/SEO';
 
 // Expanded Mock job database
 const jobListings = [
@@ -278,8 +279,46 @@ const JobDetailsPage = () => {
     const currentUrl = encodeURIComponent(window.location.href);
     const shareText = encodeURIComponent(`Check out this ${job.title} job at ${job.company}!`);
 
+    const jobSchema = {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": job.title,
+        "description": job.description,
+        "hiringOrganization": {
+            "@type": "Organization",
+            "name": job.company,
+            "sameAs": "https://advindiancoder.com"
+        },
+        "jobLocation": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": job.location,
+                "addressCountry": "IN"
+            }
+        },
+        "baseSalary": {
+            "@type": "MonetaryAmount",
+            "currency": "INR",
+            "value": {
+                "@type": "QuantitativeValue",
+                "value": job.salary,
+                "unitText": "YEAR"
+            }
+        },
+        "datePosted": "2026-04-13",
+        "validThrough": "2026-12-31",
+        "employmentType": job.type
+    };
+
     return (
         <PageWrapper>
+            <SEO 
+                title={`${job.title} at ${job.company}`} 
+                description={`Apply for the ${job.title} position at ${job.company}. Location: ${job.location}. Experience: ${job.experience}. Salary: ${job.salary}. Join our team via ADV Indian Coder.`}
+                ogType="article"
+                schema={jobSchema}
+            />
             <div className="bg-[#050914] min-h-screen text-white font-sans relative pb-24">
                 {/* Background Grid */}
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>

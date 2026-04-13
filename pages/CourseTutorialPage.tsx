@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import PageWrapper from '../components/PageWrapper';
 import { PlayCircle, Library, ChevronLeft, BookOpen, Code2, Github, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 // ─── All 37 episodes with YouTube IDs + complete notes ────────────────────────
 const EPISODES = [
@@ -1674,13 +1675,60 @@ public class OopSolution {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 const CourseTutorialPage = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [searchParams] = useSearchParams();
+    const epQuery = searchParams.get('ep');
+
+    const [activeIndex, setActiveIndex] = useState(() => {
+        if (epQuery) {
+            const index = EPISODES.findIndex(e => e.id === parseInt(epQuery));
+            return index !== -1 ? index : 0;
+        }
+        return 0;
+    });
+
     const [activeTab, setActiveTab] = useState<'notes' | 'code' | 'interview'>('notes');
+
+    useEffect(() => {
+        if (epQuery) {
+            const index = EPISODES.findIndex(e => e.id === parseInt(epQuery));
+            if (index !== -1) {
+                setActiveIndex(index);
+                // Scroll to top of notes/video when episode changes
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    }, [epQuery]);
 
     const ep = EPISODES[activeIndex];
 
+    const courseSchema = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Java Full Course 2026: Zero to Hero",
+        "description": ep.notes.intro,
+        "provider": {
+            "@type": "Organization",
+            "name": "ADV Indian Coder",
+            "sameAs": "https://advindiancoder.com"
+        },
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Online",
+            "instructor": {
+                "@type": "Person",
+                "name": "Vinay"
+            }
+        }
+    };
+
     return (
         <PageWrapper>
+            <SEO 
+                title={ep.title} 
+                description={`${ep.title}. ${ep.notes.intro} Learn Java programming from scratch with complete notes, code, and interview questions.`}
+                ogType="course"
+                schema={courseSchema}
+            />
             <div className="min-h-screen bg-[#050914] text-white">
                 <div className="absolute top-0 w-full h-[400px] bg-gradient-to-b from-red-700/10 to-transparent pointer-events-none" />
 

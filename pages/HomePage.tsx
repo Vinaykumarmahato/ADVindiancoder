@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { PlayCircle, ArrowRight, Code, Users, GraduationCap, CheckCircle, Github, MessageSquare, Briefcase, Award, Zap, Shield, TrendingUp, ChevronRight } from 'lucide-react';
+import { PlayCircle, ArrowRight, Code, Users, GraduationCap, CheckCircle, Github, MessageSquare, Briefcase, Award, Zap, Shield, TrendingUp, ChevronRight, Star } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { COURSES } from '../constants';
+import SEO from '../components/SEO';
 
 // Elegant fade-in up variant
 const fadeUp = {
@@ -34,8 +36,26 @@ const HomePage = () => {
     const yTransform = useTransform(scrollYProgress, [0, 1], [0, -200]);
     const opacityTransform = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
+    const homeSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ADV Indian Coder",
+        "url": "https://advindiancoder.com",
+        "logo": "https://advindiancoder.com/logo.png",
+        "description": "Premium coding education platform focusing on industry-ready skills, live masterclasses, and career growth.",
+        "sameAs": [
+            "https://youtube.com/@advindiancoder",
+            "https://github.com/Vinaykumarmahato"
+        ]
+    };
+
     return (
         <PageWrapper>
+            <SEO 
+                title="Home" 
+                description="Master coding from zero to job-ready with ADV Indian Coder. Free playlists, live masterclasses, and 24/7 mentor support for Java, Python, and more."
+                schema={homeSchema}
+            />
             <div className="bg-[#050914] text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans overflow-x-hidden">
 
                 {/* 1. HERO SECTION */}
@@ -209,33 +229,49 @@ const HomePage = () => {
                         </motion.div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {[
-                                { title: "Python Dynamics", category: "AI & Data", icon: "🐍", color: "from-blue-500/20 to-cyan-500/20", border: "group-hover:border-cyan-500/50" },
-                                { title: "Java Enterprise", category: "Backend", icon: "☕", color: "from-orange-500/20 to-red-500/20", border: "group-hover:border-orange-500/50" },
-                                { title: "SQL Architecture", category: "Database", icon: "🗄️", color: "from-indigo-500/20 to-purple-500/20", border: "group-hover:border-indigo-500/50" },
-                                { title: "Prompt Engineering", category: "AI Future", icon: "⚡", color: "from-yellow-500/20 to-amber-500/20", border: "group-hover:border-yellow-500/50" }
-                            ].map((course, idx) => (
+                            {COURSES.slice(0, 4).map((course, idx) => (
                                 <motion.div
-                                    key={idx}
+                                    key={course.id}
                                     variants={fadeUp}
                                     initial="hidden"
                                     whileInView="show"
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className={`group relative p-8 rounded-3xl bg-[#0a0f1c] border border-white/5 hover:bg-[#0d1425] transition-all duration-500 ${course.border}`}
+                                    className="group relative p-8 rounded-3xl bg-[#0a0f1c] border border-white/5 hover:bg-[#0d1425] transition-all duration-500 hover:border-primary/50"
                                 >
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${course.color} opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500`}></div>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500"></div>
                                     <div className="relative z-10 flex flex-col h-full">
-                                        <div className="flex justify-between items-start mb-12">
-                                            <span className="text-5xl drop-shadow-2xl">{course.icon}</span>
-                                            <span className="px-3 py-1 bg-white/5 rounded-full text-xs font-mono text-gray-400 group-hover:text-white transition-colors border border-white/5">{course.category}</span>
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="p-3 bg-white/5 rounded-2xl group-hover:scale-110 transition-transform duration-500">
+                                                <PlayCircle className="w-8 h-8 text-primary" />
+                                            </div>
+                                            <div className="flex flex-col items-end gap-2">
+                                                <span className="px-2.5 py-1 bg-white/5 rounded-full text-[10px] font-mono text-gray-500 group-hover:text-white transition-colors border border-white/5">
+                                                    {course.category}
+                                                </span>
+                                                {course.rating && (
+                                                    <span className="flex items-center gap-1 text-xs text-yellow-500 font-bold">
+                                                        <Star size={10} className="fill-current" /> {course.rating.toFixed(1)}
+                                                    </span>
+                                                )}
+                                            </div>
                                         </div>
                                         <div className="mt-auto">
-                                            <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">{course.title}</h3>
-                                            <div className="w-12 h-1 bg-gray-800 rounded-full mt-4 group-hover:w-full group-hover:bg-primary transition-all duration-500 ease-out"></div>
+                                            <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">{course.title}</h3>
+                                            <p className="text-xs text-gray-500 line-clamp-2 mb-4 font-light">{course.description}</p>
+                                            
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-1.5 text-[10px] font-medium text-gray-400">
+                                                    <Users size={12} />
+                                                    <span>{course.enrolledCount?.toLocaleString()}+</span>
+                                                </div>
+                                                <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 group-hover:bg-primary transition-colors">
+                                                    <ChevronRight className="w-4 h-4 text-white" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <Link to="/masterclass" className="absolute inset-0 z-20"><span className="sr-only">View Component</span></Link>
+                                    <Link to={course.youtubeLink} className="absolute inset-0 z-20"><span className="sr-only">View Component</span></Link>
                                 </motion.div>
                             ))}
                         </div>

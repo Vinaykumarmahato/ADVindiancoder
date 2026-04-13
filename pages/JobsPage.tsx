@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Briefcase, MapPin, Building, Clock, ArrowUpRight, Search, Send } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 // Mock DB for WhatsApp Jobs. Paste your copied WhatsApp links here.
 const WHATSAPP_JOBS = [
@@ -48,6 +49,10 @@ const JobsPage = () => {
 
     return (
         <PageWrapper>
+            <SEO 
+                title="Job Openings & Internships" 
+                description="Find the latest job opportunities, software developer roles, and internships from top companies like IBM, Salesforce, and Emerson. Curated openings for the 2026 batch."
+            />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="text-center mb-12 relative">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -z-10"></div>

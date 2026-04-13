@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PlayCircle, Youtube, Search, ArrowRight } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import { motion, AnimatePresence } from 'framer-motion';
 import { COURSES } from '../constants';
+import { CardSkeleton } from '../components/Skeleton';
+import { Star, Users } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -17,6 +20,13 @@ const GlowingOrb = ({ className }: { className: string }) => (
 const CoursesPage = () => {
     const [activeCategory, setActiveCategory] = useState<string>('All');
     const [searchQuery, setSearchQuery] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Simulate loading for Skeleton demonstration
+    useEffect(() => {
+        const timer = setTimeout(() => setIsLoading(false), 800);
+        return () => clearTimeout(timer);
+    }, []);
 
     const categories = ['All', ...Array.from(new Set(COURSES.map(c => c.category)))];
 
@@ -29,6 +39,10 @@ const CoursesPage = () => {
 
     return (
         <PageWrapper>
+            <SEO 
+                title="Free Courses" 
+                description="Explore 40+ free industry-grade coding courses. From Web Development (React, Node.js) to AI and Data Science. Start your career transition today."
+            />
             <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden">
                 {/* Background Grid */}
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
@@ -95,66 +109,89 @@ const CoursesPage = () => {
                 <div className="relative z-10 py-8 px-4 max-w-7xl mx-auto mb-20">
                     <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <AnimatePresence>
-                            {filteredCourses.map((course) => (
-                                <motion.div
-                                    key={course.id}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                    exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                                    transition={{ duration: 0.4 }}
-                                    className="bg-white/5 backdrop-blur-2xl rounded-[2rem] border border-white/10 hover:border-white/30 transition-all duration-500 overflow-hidden flex flex-col group shadow-2xl shadow-black/50 hover:-translate-y-2"
-                                >
-                                    <div className="relative h-56 overflow-hidden">
-                                        <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-500 z-10 flex items-center justify-center">
-                                            <PlayCircle className="w-16 h-16 text-white opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 shadow-2xl rounded-full drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]" />
-                                        </div>
-                                        <img 
-                                            src={course.thumbnail} 
-                                            alt={course.title} 
-                                            className="w-full h-full object-cover transform group-hover:scale-110 group-hover:rotate-1 transition-all duration-700"
-                                        />
-                                        <div className="absolute top-4 left-4 z-20">
-                                            <span className="bg-black/50 backdrop-blur-md border border-white/10 text-white text-xs font-mono px-3 py-1.5 rounded-full flex items-center gap-2">
-                                                <Youtube className="w-3 h-3 text-red-500" /> Free
-                                            </span>
-                                        </div>
+                            {isLoading ? (
+                                Array.from({ length: 6 }).map((_, i) => (
+                                    <div key={`skeleton-${i}`} className="animate-in fade-in duration-500">
+                                        <CardSkeleton />
                                     </div>
-                                    
-                                    <div className="p-8 flex flex-col flex-grow relative">
-                                        <div className="absolute top-0 right-8 w-20 h-20 bg-primary/20 blur-[50px] group-hover:bg-primary/40 transition-colors"></div>
-                                        <div className="flex gap-2 mb-4 flex-wrap relative z-10">
-                                            {course.tags.map((tag, i) => (
-                                                <span key={i} className="text-xs font-semibold text-gray-300 bg-white/10 border border-white/5 px-2.5 py-1 rounded-md">
-                                                    {tag}
+                                ))
+                            ) : (
+                                filteredCourses.map((course) => (
+                                    <motion.div
+                                        key={course.id}
+                                        layout
+                                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                                        transition={{ duration: 0.4 }}
+                                        className="bg-white/5 backdrop-blur-2xl rounded-[2rem] border border-white/10 hover:border-white/30 transition-all duration-500 overflow-hidden flex flex-col group shadow-2xl shadow-black/50 hover:shadow-primary/5 hover:-translate-y-2"
+                                    >
+                                        <div className="relative h-56 overflow-hidden">
+                                            <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-500 z-10 flex items-center justify-center">
+                                                <PlayCircle className="w-16 h-16 text-white opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 shadow-2xl rounded-full drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]" />
+                                            </div>
+                                            <img 
+                                                src={course.thumbnail} 
+                                                alt={course.title} 
+                                                className="w-full h-full object-cover transform group-hover:scale-110 group-hover:rotate-1 transition-all duration-700"
+                                            />
+                                            <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+                                                <span className="bg-black/50 backdrop-blur-md border border-white/10 text-white text-[10px] font-mono px-3 py-1.5 rounded-full flex items-center gap-2">
+                                                    <Youtube className="w-3 h-3 text-red-500" /> Free Playlist
                                                 </span>
-                                            ))}
+                                                {course.rating && (
+                                                    <span className="bg-yellow-500/20 backdrop-blur-md border border-yellow-500/30 text-yellow-500 text-[10px] font-black px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                                                        <Star size={10} className="fill-current" /> {course.rating.toFixed(1)}
+                                                    </span>
+                                                )}
+                                            </div>
                                         </div>
-                                        <h3 className="text-2xl font-bold mb-3 text-white line-clamp-2 relative z-10">{course.title}</h3>
-                                        <p className="text-gray-400 mb-8 flex-grow line-clamp-3 font-light leading-relaxed relative z-10">
-                                            {course.description}
-                                        </p>
                                         
-                                        {course.youtubeLink.startsWith('/') ? (
-                                            <Link 
-                                                to={course.youtubeLink} 
-                                                className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-red-600 hover:border-red-500 text-white font-bold py-4 rounded-xl transition-all duration-300 border border-white/5 relative z-10 shadow-[0_0_15px_rgba(255,0,0,0)] hover:shadow-[0_0_20px_rgba(255,0,0,0.4)]"
-                                            >
-                                                <PlayCircle className="w-5 h-5 text-white" /> View Playlist
-                                            </Link>
-                                        ) : (
-                                            <a 
-                                                href={course.youtubeLink} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer"
-                                                className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-red-600 hover:border-red-500 text-white font-bold py-4 rounded-xl transition-all duration-300 border border-white/5 relative z-10 shadow-[0_0_15px_rgba(255,0,0,0)] hover:shadow-[0_0_20px_rgba(255,0,0,0.4)]"
-                                            >
-                                                <Youtube className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" /> Watch on YouTube
-                                            </a>
-                                        )}
-                                    </div>
-                                </motion.div>
-                            ))}
+                                        <div className="p-8 flex flex-col flex-grow relative">
+                                            <div className="absolute top-0 right-8 w-24 h-24 bg-primary/10 blur-[60px] group-hover:bg-primary/20 transition-colors"></div>
+                                            
+                                            <div className="flex justify-between items-center mb-4 relative z-10">
+                                                <div className="flex gap-2 flex-wrap">
+                                                    {course.tags.slice(0, 2).map((tag, i) => (
+                                                        <span key={i} className="text-[10px] font-black uppercase tracking-widest text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">
+                                                            {tag}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                                {course.enrolledCount && (
+                                                    <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+                                                        <Users size={14} />
+                                                        <span>{course.enrolledCount.toLocaleString()} Students</span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <h3 className="text-xl font-bold mb-3 text-white line-clamp-2 relative z-10 group-hover:text-primary transition-colors">{course.title}</h3>
+                                            <p className="text-sm text-gray-400 mb-8 flex-grow line-clamp-3 font-light leading-relaxed relative z-10">
+                                                {course.description}
+                                            </p>
+                                            
+                                            {course.youtubeLink.startsWith('/') ? (
+                                                <Link 
+                                                    to={course.youtubeLink} 
+                                                    className="w-full flex items-center justify-center gap-2 bg-white text-black hover:bg-primary hover:text-white font-black py-4 rounded-xl transition-all duration-300 border border-transparent relative z-10 shadow-lg"
+                                                >
+                                                    <PlayCircle className="w-5 h-5" /> Start Learning
+                                                </Link>
+                                            ) : (
+                                                <a 
+                                                    href={course.youtubeLink} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-red-600 text-white font-bold py-4 rounded-xl transition-all duration-300 border border-white/10 relative z-10"
+                                                >
+                                                    <Youtube className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" /> Watch on YouTube
+                                                </a>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                ))
+                            )}
                         </AnimatePresence>
                     </motion.div>
                     
