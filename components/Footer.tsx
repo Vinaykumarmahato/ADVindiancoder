@@ -28,7 +28,7 @@ const Footer = () => {
                     <div className="col-span-1">
                         <h3 className="font-semibold mb-4">Quick Links</h3>
                         <ul className="space-y-2">
-                            {NAV_LINKS.filter(link => ['Home', 'Courses', 'Notes', 'Live Masterclass'].includes(link.name)).map(link => (
+                            {NAV_LINKS.filter(link => ['Home', 'Courses', 'ADV Lab', 'Notes', 'Live Masterclass'].includes(link.name)).map(link => (
                                 <li key={link.name}>
                                     <Link to={link.path} className="text-sm hover:text-primary transition-colors">{link.name}</Link>
                                 </li>

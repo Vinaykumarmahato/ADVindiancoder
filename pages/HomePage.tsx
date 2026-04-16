@@ -52,8 +52,8 @@ const HomePage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="Home" 
-                description="Master coding from zero to job-ready with ADV Indian Coder. Free playlists, live masterclasses, and 24/7 mentor support for Java, Python, and more."
+                title="Best Job-Ready Courses in India | AI, ML, Data & Dev | ADV Indian Coder" 
+                description="Master Java, Python, AI, Machine Learning, Data Science, Software Testing & Digital Marketing with the best industry-ready cohorts. High-performance live lab, expert mentorship, and global placement support."
                 schema={homeSchema}
             />
             <div className="bg-[#050914] text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans overflow-x-hidden">
@@ -90,9 +90,9 @@ const HomePage = () => {
                                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.95]"
                             >
-                                From Zero to<br />
+                                Learn Skills That<br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-primary to-purple-500 animate-gradient-bg bg-[200%_auto]">
-                                    Job-Ready.
+                                    Get You Hired.
                                 </span>
                             </motion.h1>
 
@@ -101,8 +101,8 @@ const HomePage = () => {
                                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="mt-8 text-xl md:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light"
                             >
-                                <strong className="text-white font-medium">You Don't Need a CS Degree. You Need the Right Mentor.</strong><br />
-                                No Fluff. No Theory Overload. Just Skills That Get You Hired.
+                                <strong className="text-white font-medium">India's Best Live Classes for Job Seekers.</strong><br />
+                                Master Software, AI, Data & Marketing. No Fluff. No boring theory. Just real projects and skills that get you hired by top companies globally.
                             </motion.p>
 
                             {/* CTA Buttons */}
@@ -110,13 +110,13 @@ const HomePage = () => {
                                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="mt-12 flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto"
                             >
-                                <Link to="/masterclass" className="group relative inline-flex h-16 items-center justify-center overflow-hidden rounded-full bg-primary px-10 font-bold text-white transition-all hover:scale-105 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#050914] shadow-[0_0_40px_rgba(0,120,255,0.4)] hover:shadow-[0_0_60px_rgba(0,120,255,0.6)]">
-                                    <span className="mr-2 text-lg">Explore Masterclasses</span>
+                                <Link to="/masterclass" className="group relative inline-flex min-h-[4rem] items-center justify-center overflow-hidden rounded-full bg-primary px-8 md:px-10 font-bold text-white transition-all hover:scale-105 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#050914] shadow-[0_0_40px_rgba(0,120,255,0.4)] hover:shadow-[0_0_60px_rgba(0,120,255,0.6)] whitespace-nowrap">
+                                    <span className="mr-2 text-base md:text-lg">Explore Masterclasses</span>
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                 </Link>
-                                <a href="https://wa.me/919931860964" target="_blank" rel="noopener noreferrer" className="group inline-flex h-16 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-xl px-10 font-bold text-white transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105">
+                                <a href="https://wa.me/919931860964" target="_blank" rel="noopener noreferrer" className="group inline-flex min-h-[4rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-xl px-8 md:px-10 font-bold text-white transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105 whitespace-nowrap">
                                     <MessageSquare className="mr-3 w-5 h-5 text-[#25D366]" />
-                                    <span className="text-lg">Talk to Mentor</span>
+                                    <span className="text-base md:text-lg">Talk to Mentor</span>
                                 </a>
                             </motion.div>
                         </motion.div>
@@ -125,7 +125,7 @@ const HomePage = () => {
                     {/* Scroll Indicator */}
                     <motion.div
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 1 }}
-                        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                        className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
                     >
                         <span className="text-xs tracking-[0.2em] text-gray-500 uppercase">Scroll to explore</span>
                         <div className="w-[1px] h-12 bg-gradient-to-b from-gray-500 to-transparent"></div>
@@ -137,9 +137,9 @@ const HomePage = () => {
                     <div className="max-w-7xl mx-auto">
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mb-20">
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
-                                Why We Are <span className="text-gray-500 italic font-mono font-light">Different/</span>
+                                Why Our <span className="text-gray-500 italic font-mono font-light">Trainingis Different/</span>
                             </h2>
-                            <p className="text-xl text-gray-400 max-w-2xl">We removed the theory you don't need, and multiplied the practical execution you do need.</p>
+                            <p className="text-xl text-gray-400 max-w-2xl">We provided the best industry-ready coding training in India by focusing on practical execution over theory.</p>
                         </motion.div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[250px]">
@@ -150,7 +150,7 @@ const HomePage = () => {
                                     <div className="absolute top-[-10%] right-[-10%] w-[70%] h-[70%] opacity-20 group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110">
                                         <img 
                                             src="/assets/live-architecture.png" 
-                                            alt="Architecture Illustration" 
+                                            alt="ADV Indian Coder Live Coding Environment & Interactive Architecture" 
                                             className="w-full h-full object-contain filter hue-rotate-15 blur-[1px] group-hover:blur-0 transition-all duration-700" 
                                         />
                                     </div>
@@ -171,8 +171,8 @@ const HomePage = () => {
                                     <Users className="w-8 h-8 text-primary" />
                                 </div>
                                 <div className="relative z-10">
-                                    <h3 className="text-3xl font-bold mb-3 mt-6">Live Interactive Architecture</h3>
-                                    <p className="text-gray-400 text-lg leading-relaxed">No dead recorded videos masquerading as a course. Ask questions in real-time, get unstuck immediately, and build alongside your mentor.</p>
+                                    <h3 className="text-3xl font-bold mb-3 mt-6">Live Interactive Coding Lab</h3>
+                                    <p className="text-gray-400 text-lg leading-relaxed">Experience India's most advanced coding lab. Ask questions in real-time, get unstuck immediately, and build industry-standard software with mentors.</p>
                                 </div>
                             </BentoCard>
 
@@ -180,8 +180,8 @@ const HomePage = () => {
                             <BentoCard className="p-8 flex flex-col justify-between" delay={0.1}>
                                 <Code className="w-8 h-8 text-purple-400" />
                                 <div>
-                                    <h3 className="text-xl font-bold mb-2">Real Projects</h3>
-                                    <p className="text-gray-400 text-sm">Clone real startups. Write code that goes on your resume immediately.</p>
+                                    <h3 className="text-xl font-bold mb-2">Startup Projects</h3>
+                                    <p className="text-gray-400 text-sm">Build live startup clones. Write production-ready code for your software developer resume.</p>
                                 </div>
                             </BentoCard>
 
@@ -189,8 +189,8 @@ const HomePage = () => {
                             <BentoCard className="p-8 flex flex-col justify-between" delay={0.2}>
                                 <Briefcase className="w-8 h-8 text-yellow-400" />
                                 <div>
-                                    <h3 className="text-xl font-bold mb-2">Placement Focus</h3>
-                                    <p className="text-gray-400 text-sm">Every hour spent learning is reverse-engineered from technical interviews.</p>
+                                    <h3 className="text-xl font-bold mb-2">Job Placement Focus</h3>
+                                    <p className="text-gray-400 text-sm">India-focused career training. Learn precisely what technical interviewers in top companies ask.</p>
                                 </div>
                             </BentoCard>
 
@@ -219,9 +219,9 @@ const HomePage = () => {
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                             <div>
                                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
-                                    Master The <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Tech Stack.</span>
+                                    Top Rated <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Coding Courses.</span>
                                 </h2>
-                                <p className="text-xl text-gray-400 max-w-xl">Zero fluff. Straight to the skills you need to land a job paying ₹5LPA to ₹15LPA+.</p>
+                                <p className="text-xl text-gray-400 max-w-xl">Comprehensive software engineering training to land high-paying tech jobs in India (₹5LPA - ₹15LPA+).</p>
                             </div>
                             <Link to="/masterclass" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors font-semibold backdrop-blur-md border border-white/10 hover:border-white/30">
                                 View Full Syllabus <ArrowRight className="w-4 h-4" />
@@ -290,10 +290,10 @@ const HomePage = () => {
                 <section className="py-24 border-y border-white/5 relative overflow-hidden bg-black/50">
                     <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 relative z-10">
                         {[
-                            { val: "500+", lbl: "Engineers Trained" },
-                            { val: "₹5L-15L", lbl: "Avg Package Range" },
-                            { val: "100%", lbl: "Practical Output" },
-                            { val: "24/7", lbl: "Community Access" }
+                            { val: "5k+", lbl: "Students Trained" },
+                            { val: "₹5L-18L", lbl: "Placement Range" },
+                            { val: "98%", lbl: "Practical Output" },
+                            { val: "24/7", lbl: "Coding Mentor Support" }
                         ].map((stat, i) => (
                             <motion.div
                                 key={i}
@@ -315,10 +315,10 @@ const HomePage = () => {
                         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
                             <h2 className="text-5xl md:text-7xl font-black tracking-tight mb-8">
                                 The Code Doesn't Write Itself.<br className="hidden md:block" />
-                                <span className="italic text-gray-500 font-light font-serif">Neither Does Your Career.</span>
+                                <span className="italic text-gray-500 font-light font-serif">Neither Does Your Tech Career.</span>
                             </h2>
                             <p className="text-xl md:text-2xl text-gray-400 mb-12">
-                                Seats for the next live cohort are filling fast. Secure your spot and let's get you enterprise-ready.
+                                Enrollment for the next industry-ready coding bootcamp is open. Available in both <span className="text-white font-bold">English</span> & <span className="text-white font-bold">Hindi</span> for global students.
                             </p>
 
                             <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
@@ -330,6 +330,36 @@ const HomePage = () => {
                                 </a>
                             </div>
                         </motion.div>
+                    </div>
+                </section>
+
+                {/* 6. FAQ Section (SEO Optimized) */}
+                <section className="py-24 px-4 bg-black/30 border-t border-white/5 relative z-10">
+                    <div className="max-w-4xl mx-auto">
+                        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
+                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
+                            <p className="text-gray-400">Everything you need to know about our industry-ready coding courses.</p>
+                        </motion.div>
+                        
+                        <div className="space-y-4">
+                            {[
+                                { q: "Is this suitable for beginners with no coding background?", a: "Yes. Our courses are designed to take absolute beginners from zero to industry-ready. We cover fundamentals before moving into advanced startup-grade projects." },
+                                { q: "Do you offer placement assistance for Indian students?", a: "Absolutely. We provide dedicated job-placement training focused on the current Indian tech market, including mock interviews, resume reviews, and direct referrals." },
+                                { q: "How is ADV Lab helpful for my coding training?", a: "ADV Lab is our professional-grade online IDE. It allows you to practice Java, Python, and C directly in your browser with real-time feedback, making learning extremely efficient." },
+                                { q: "What makes ADV Indian Coder the best coding classes in India?", a: "Unlike others, we focus on 100% practical execution. You don't just watch videos; you build real startups under the mentorship of industry experts who know what recruiters want." }
+                            ].map((item, i) => (
+                                <motion.div 
+                                    key={i}
+                                    variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/30 transition-all"
+                                >
+                                    <h3 className="text-lg font-bold mb-3 flex items-center gap-3">
+                                        <span className="text-primary font-mono">Q.</span> {item.q}
+                                    </h3>
+                                    <p className="text-gray-400 text-sm leading-relaxed pl-8 border-l-2 border-primary/20">{item.a}</p>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </section>
 

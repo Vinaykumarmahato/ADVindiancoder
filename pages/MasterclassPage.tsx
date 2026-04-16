@@ -53,7 +53,7 @@ const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
 const MasterclassPage = () => {
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
     const [selectedMc, setSelectedMc] = useState<any>(null);
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '', transactionId: '' });
+    const [formData, setFormData] = useState({ name: '', email: '', phone: '', transactionId: '', language: 'English' });
     const [file, setFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -66,7 +66,7 @@ const MasterclassPage = () => {
         setSelectedMc(mc);
         setSuccess(false);
         setError('');
-        setFormData({ name: '', email: '', phone: '', transactionId: '' });
+        setFormData({ name: '', email: '', phone: '', transactionId: '', language: 'English' });
         setFile(null);
     };
 
@@ -75,7 +75,12 @@ const MasterclassPage = () => {
         if (!file) return setError('Please upload a screenshot of your payment.');
         setLoading(true); setError('');
         const data = new FormData();
-        data.append('name', formData.name); data.append('email', formData.email); data.append('phone', formData.phone); data.append('transactionId', formData.transactionId); data.append('screenshot', file);
+        data.append('name', formData.name); 
+        data.append('email', formData.email); 
+        data.append('phone', formData.phone); 
+        data.append('transactionId', formData.transactionId); 
+        data.append('language', formData.language); 
+        data.append('screenshot', file);
         try {
             await EnrollmentService.enroll(data);
             setSuccess(true);
@@ -152,6 +157,10 @@ const MasterclassPage = () => {
                                         <span className="text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Availability</span>
                                         <span className="font-bold text-lg sm:text-xl text-red-400">Strictly Limited Seats</span>
                                     </div>
+                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-white/10 pb-4 gap-1">
+                                        <span className="text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Language</span>
+                                        <span className="font-bold text-lg sm:text-xl text-blue-400">English + Hindi</span>
+                                    </div>
                                 </div>
                                 <div className="mt-10">
                                     <a href="https://wa.me/919931860964" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full bg-[#25D366] text-white font-black text-lg py-4 px-6 rounded-2xl hover:scale-[1.02] transition-transform shadow-[0_0_30px_rgba(37,211,102,0.3)]">
@@ -162,9 +171,99 @@ const MasterclassPage = () => {
                         </motion.div>
                     </div>
 
-                    <div className="text-center mb-16 relative">
-                        <h2 className="text-5xl font-black mb-4">Choose Your Path</h2>
-                        <p className="text-xl text-gray-400">All masterclasses are 30-Day intensive formats costing exactly ₹499.</p>
+                    {/* High-Converting Pricing Section */}
+                    <div className="text-center mb-16 relative py-10">
+                        <motion.h2 
+                            initial={{ opacity: 0, scale: 0.9 }} 
+                            whileInView={{ opacity: 1, scale: 1 }} 
+                            className="text-4xl md:text-6xl font-black mb-4 text-white"
+                        >
+                            Live 30-Day Mentorship Program
+                        </motion.h2>
+                        <p className="text-xl md:text-2xl text-gray-400 font-light mb-12">
+                            Don’t just watch — build real projects with live guidance
+                        </p>
+
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }} 
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="max-w-xl mx-auto"
+                        >
+                            {/* Premium Pricing Card */}
+                            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 text-gray-900 shadow-[0_20px_50px_rgba(37,211,102,0.2)] border border-green-100 relative overflow-hidden">
+                                {/* Urgency Badge */}
+                                <div className="absolute top-0 right-0">
+                                    <div className="bg-[#25D366] text-white text-[10px] font-black uppercase tracking-widest py-2 px-10 rotate-45 translate-x-10 translate-y-2 shadow-sm">
+                                        OFFER
+                                    </div>
+                                </div>
+
+                                <div className="relative z-10 flex flex-col items-center">
+                                    <span className="bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-tighter animate-pulse">
+                                        🔥 Limited Time Offer
+                                    </span>
+
+                                    <div className="flex flex-col items-center mb-8">
+                                        <span className="text-gray-400 line-through text-xl md:text-2xl font-medium decoration-red-500/50">₹2,999</span>
+                                        <div className="relative">
+                                            <span className="text-6xl md:text-8xl font-black text-gray-900 tracking-tighter">₹999</span>
+                                            <div className="absolute -top-2 -right-6 w-12 h-12 bg-green-500/10 rounded-full blur-xl"></div>
+                                        </div>
+                                        <p className="text-red-500 text-sm font-bold mt-2 flex items-center gap-2">
+                                            <Zap className="w-4 h-4 fill-red-500" />
+                                            ⏳ Price increases soon | Limited seats only
+                                        </p>
+                                    </div>
+
+                                    {/* Features List */}
+                                    <ul className="w-full space-y-4 mb-10 text-left">
+                                        {[
+                                            "30 Days Live Classes (7–9 PM)",
+                                            "Real-time doubt solving",
+                                            "Projects + Source Code",
+                                            "Resume & Interview Support",
+                                            "GitHub + LinkedIn Mastery"
+                                        ].map((feature, i) => (
+                                            <li key={i} className="flex items-center gap-4 text-gray-700 font-semibold group">
+                                                <div className="shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-500 group-hover:text-white transition-colors">
+                                                    <CheckCircle className="w-4 h-4 transition-colors" />
+                                                </div>
+                                                <span className="text-sm md:text-base">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <button 
+                                        onClick={() => document.getElementById('cohorts')?.scrollIntoView({ behavior: 'smooth' })}
+                                        className="w-full bg-[#25D366] text-white font-black text-xl py-6 rounded-2xl hover:bg-[#20bd5c] transition-all transform hover:scale-[1.02] shadow-[0_10px_30px_rgba(37,211,102,0.4)] active:scale-95 mb-6"
+                                    >
+                                        Apply Now
+                                    </button>
+
+                                    {/* Trust Elements */}
+                                    <div className="grid grid-cols-3 gap-2 w-full pt-6 border-t border-gray-100">
+                                        <div className="flex flex-col items-center italic">
+                                            <span className="text-xs font-black text-gray-800">1000+</span>
+                                            <span className="text-[10px] text-gray-500">students</span>
+                                        </div>
+                                        <div className="flex flex-col items-center italic border-x border-gray-100 px-2">
+                                            <span className="text-xs font-black text-green-600">Verified</span>
+                                            <span className="text-[10px] text-gray-500 text-center">results</span>
+                                        </div>
+                                        <div className="flex flex-col items-center italic">
+                                            <span className="text-xs font-black text-red-500">100% Live</span>
+                                            <span className="text-[10px] text-gray-500 text-center">no recordings</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    <div id="cohorts" className="text-center mb-16 relative">
+                        <h2 className="text-4xl font-black mb-4">Select Your Cohort</h2>
+                        <p className="text-xl text-gray-400 italic">Special Limited Price Applies to all batches today.</p>
                     </div>
 
                     {/* Masterclasses Grid */}
@@ -254,7 +353,7 @@ const MasterclassPage = () => {
 
                                         <a
                                             href={`https://wa.me/919931860964?text=${encodeURIComponent(
-                                                `Hello Admin, I have enrolled in ${selectedMc.title}.\n\nName: ${formData.name}\nEmail: ${formData.email}\nTransaction ID: ${formData.transactionId}\n\nPlease verify my enrollment.`
+                                                `Hello Admin, I have enrolled in ${selectedMc.title}.\n\nName: ${formData.name}\nEmail: ${formData.email}\nLanguage Preference: ${formData.language}\nTransaction ID: ${formData.transactionId}\n\nPlease verify my enrollment.`
                                             )}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -286,6 +385,20 @@ const MasterclassPage = () => {
                                                 <input type="text" placeholder="Legal Full Name" required className="w-full p-4 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}/>
                                                 <input type="email" placeholder="Professional Email" required className="w-full p-4 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}/>
                                                 <input type="tel" placeholder="WhatsApp Number" required className="w-full p-4 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })}/>
+                                                
+                                                <div className="bg-black/50 border border-white/10 rounded-xl p-4 overflow-hidden">
+                                                    <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mb-3">Preferred Language</p>
+                                                    <div className="flex gap-4">
+                                                        {['English', 'Hindi'].map((lang) => (
+                                                            <label key={lang} className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-lg border cursor-pointer transition-all ${formData.language === lang ? 'bg-primary/20 border-primary text-primary' : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'}`}>
+                                                                <input type="radio" name="language" value={lang} checked={formData.language === lang} onChange={(e) => setFormData({ ...formData, language: e.target.value })} className="hidden" />
+                                                                <div className={`w-3 h-3 rounded-full border-2 ${formData.language === lang ? 'bg-primary border-primary' : 'border-gray-500'}`}></div>
+                                                                <span className="text-sm font-bold">{lang}</span>
+                                                            </label>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
                                                 <input type="text" placeholder="12-Digit UTR / Transaction ID" required className="w-full p-4 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" value={formData.transactionId} onChange={e => setFormData({ ...formData, transactionId: e.target.value })}/>
                                             </div>
 

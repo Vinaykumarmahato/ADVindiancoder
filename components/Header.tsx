@@ -91,6 +91,10 @@ const Header = () => {
                                             Live Masterclass
                                             <span className="text-[9px] font-black tracking-widest bg-red-600 text-white px-1.5 py-0.5 rounded-full leading-none">LIVE</span>
                                         </>
+                                    ) : link.name === 'ADV Lab' ? (
+                                        <>
+                                            ADV Lab
+                                        </>
                                     ) : link.name === 'Jobs' ? (
                                         <>
                                             Jobs
@@ -172,6 +176,10 @@ const Header = () => {
                                                 </span>
                                                 Live Masterclass
                                                 <span className="text-[9px] font-black tracking-widest bg-red-500/20 text-red-300 px-1.5 py-0.5 rounded-full leading-none">LIVE</span>
+                                            </span>
+                                        ) : link.name === 'ADV Lab' ? (
+                                            <span className="flex items-center gap-2 mx-auto">
+                                                ADV Lab
                                             </span>
                                         ) : link.name === 'Jobs' ? (
                                             <span className="flex items-center gap-2 mx-auto">

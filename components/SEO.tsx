@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface SEOProps {
     title: string;
@@ -18,10 +19,14 @@ const SEO: React.FC<SEOProps> = ({
     ogType = 'website',
     schema
 }) => {
+    const location = useLocation();
     const siteTitle = "ADV Indian Coder | Master Industry-Ready Skills";
     const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
-    const siteUrl = "https://advindiancoder.com"; // User should update with actual domain
-    const fullCanonical = canonical ? `${siteUrl}${canonical}` : siteUrl;
+    const siteUrl = "https://advindiancoder.com"; 
+    
+    // Auto-detect canonical if not provided
+    const currentPath = canonical || location.pathname;
+    const fullCanonical = `${siteUrl}${currentPath === '/' ? '' : currentPath}`;
 
     return (
         <Helmet>
