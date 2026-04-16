@@ -1745,8 +1745,12 @@ const CourseTutorialPage = () => {
                         <h1 className="text-3xl md:text-5xl font-black mb-3">
                             Java Full Course <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">2026</span>
                         </h1>
-                        <p className="text-gray-400 text-base md:text-lg">
+                        <p className="text-gray-400 text-base md:text-lg flex items-center flex-wrap gap-2">
                             Zero to Hero • <span className="text-white font-semibold">{EPISODES.length} Episodes</span> • 100% Free on YouTube
+                            <span className="bg-green-500/20 text-green-400 text-[10px] font-black px-3 py-1 rounded-full border border-green-500/30 shadow-[0_0_15px_rgba(34,197,94,0.3)] animate-pulse flex items-center gap-1.5 ml-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                ONGOING PLAYLIST
+                            </span>
                         </p>
                     </div>
 
@@ -1894,9 +1898,14 @@ const CourseTutorialPage = () => {
                                         <Library className="w-5 h-5 text-red-500" />
                                         Java Playlist
                                     </h3>
-                                    <span className="text-xs text-white bg-red-500/20 border border-red-500/30 px-3 py-1 rounded-full font-mono">
-                                        {EPISODES.length} Videos
-                                    </span>
+                                    <div className="flex items-center gap-2">
+                                        <span className="bg-green-500/20 text-green-400 text-[10px] font-black px-2 py-1 rounded-full border border-green-500/30 animate-pulse">
+                                            ONGOING
+                                        </span>
+                                        <span className="text-xs text-white bg-red-500/20 border border-red-500/30 px-3 py-1 rounded-full font-mono">
+                                            {EPISODES.length} Videos
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div className="flex-1 overflow-y-auto p-2 space-y-1" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.1) transparent' }}>

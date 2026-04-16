@@ -246,9 +246,17 @@ const HomePage = () => {
                                                 <PlayCircle className="w-8 h-8 text-primary" />
                                             </div>
                                             <div className="flex flex-col items-end gap-2">
-                                                <span className="px-2.5 py-1 bg-white/5 rounded-full text-[10px] font-mono text-gray-500 group-hover:text-white transition-colors border border-white/5">
-                                                    {course.category}
-                                                </span>
+                                                <div className="flex gap-2">
+                                                    {course.isOngoing && (
+                                                        <span className="bg-green-500/20 text-green-400 text-[10px] font-black px-2 py-1 rounded-full border border-green-500/30 animate-pulse flex items-center gap-1 shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+                                                            <span className="w-1 h-1 rounded-full bg-green-500"></span>
+                                                            ONGOING
+                                                        </span>
+                                                    )}
+                                                    <span className="px-2.5 py-1 bg-white/5 rounded-full text-[10px] font-mono text-gray-500 group-hover:text-white transition-colors border border-white/5">
+                                                        {course.category}
+                                                    </span>
+                                                </div>
                                                 {course.rating && (
                                                     <span className="flex items-center gap-1 text-xs text-yellow-500 font-bold">
                                                         <Star size={10} className="fill-current" /> {course.rating.toFixed(1)}

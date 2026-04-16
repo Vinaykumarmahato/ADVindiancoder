@@ -9,6 +9,7 @@ export interface Course {
     youtubeLink: string;
     enrolledCount?: number;
     rating?: number;
+    isOngoing?: boolean;
 }
 
 export interface Masterclass {

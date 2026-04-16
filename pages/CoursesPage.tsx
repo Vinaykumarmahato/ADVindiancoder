@@ -136,6 +136,12 @@ const CoursesPage = () => {
                                                 className="w-full h-full object-cover transform group-hover:scale-110 group-hover:rotate-1 transition-all duration-700"
                                             />
                                             <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+                                                {course.isOngoing && (
+                                                    <span className="bg-green-500/20 backdrop-blur-md border border-green-500/30 text-green-400 text-[10px] font-black px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_rgba(34,197,94,0.3)] animate-pulse">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>
+                                                        ONGOING
+                                                    </span>
+                                                )}
                                                 <span className="bg-black/50 backdrop-blur-md border border-white/10 text-white text-[10px] font-mono px-3 py-1.5 rounded-full flex items-center gap-2">
                                                     <Youtube className="w-3 h-3 text-red-500" /> Free Playlist
                                                 </span>

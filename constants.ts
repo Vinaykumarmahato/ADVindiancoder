@@ -85,7 +85,8 @@ export const COURSES: Course[] = [
         category: 'Programming',
         youtubeLink: '/course/java',
         enrolledCount: 12450,
-        rating: 4.9
+        rating: 4.9,
+        isOngoing: true
     },
     // ── Career & Roadmap Videos ──
     {
