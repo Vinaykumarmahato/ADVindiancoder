@@ -4,6 +4,7 @@ import { Course, Masterclass, Resource, Testimonial, Company, Stat } from './typ
 export const NAV_LINKS = [
     { name: 'Home', path: '/' },
     { name: 'Courses', path: '/courses' },
+    { name: 'ADV Lab', path: '/adv-lab' },
     { name: 'Live Masterclass', path: '/masterclass' },
     { name: 'Notes', path: '/resources' },
     { name: 'Success Stories', path: '/success-stories' },

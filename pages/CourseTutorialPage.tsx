@@ -1786,6 +1786,13 @@ const CourseTutorialPage = () => {
                                         <ExternalLink className="w-3.5 h-3.5" />
                                         YouTube
                                     </a>
+                                    <Link
+                                        to="/adv-lab"
+                                        className="flex-shrink-0 flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors ml-2"
+                                    >
+                                        <Code2 className="w-3.5 h-3.5" />
+                                        ADV Lab
+                                    </Link>
                                 </div>
                                 <div className="flex gap-2 flex-wrap">
                                     {ep.tags.map((tag, i) => (
