@@ -67,9 +67,55 @@ const PlaygroundPage = () => {
                 javascript: 97   // Node.js 20.17.0
             };
 
+            let finalCode = code;
+
+            // Java Pre-processing for better compatibility
+            if (language === 'java') {
+                // Heuristic regex to match strings and comments to avoid replacing contents within them
+                const skipRegex = /("(?:[^"\\\\]|\\\\.)*"|'(?:[^'\\\\]|\\\\.)*'|\/\/.*|\/\*[\s\S]*?\*\/)/;
+                
+                // 1. Rename the entry class to 'Main' for Judge0 compatibility
+                const publicClassMatch = finalCode.match(/public\s+class\s+(\w+)/);
+                let className = '';
+                
+                if (publicClassMatch) {
+                    className = publicClassMatch[ publicClassMatch[1] !== 'Main' ? 1 : 0 ]; // Capture the name if not Main
+                    if (className && className !== 'Main') {
+                        const combinedRegex = new RegExp(`${skipRegex.source}|\\b${className}\\b`, 'g');
+                        finalCode = finalCode.replace(combinedRegex, (match, p1) => {
+                            return p1 ? match : 'Main';
+                        });
+                    }
+                } else {
+                    // If no public class, find the first class and rename it
+                    const firstClassMatch = finalCode.match(/class\s+(\w+)/);
+                    if (firstClassMatch && firstClassMatch[1] !== 'Main') {
+                        className = firstClassMatch[1];
+                        const combinedRegex = new RegExp(`${skipRegex.source}|\\b${className}\\b`, 'g');
+                        finalCode = finalCode.replace(combinedRegex, (match, p1) => {
+                            return p1 ? match : 'Main';
+                        });
+                    }
+                    // Ensure the 'Main' class is public so Judge0 picks it up
+                    finalCode = finalCode.replace(/\bclass\s+Main\b/, 'public class Main');
+                }
+
+                // 2. Inject dummy main method if missing
+                // This triggers static blocks and simulates the "Main method not found" error if needed
+                if (!finalCode.includes('public static void main')) {
+                    const lastBraceIndex = finalCode.lastIndexOf('}');
+                    if (lastBraceIndex !== -1) {
+                        const errorMsg = `Error: Main method not found in class Main, please define the main method as:\\n   public static void main(String[] args)`;
+                        finalCode = finalCode.slice(0, lastBraceIndex) + 
+                            `\n    public static void main(String[] args) {\n        System.out.println("${errorMsg}");\n    }\n` + 
+                            finalCode.slice(lastBraceIndex);
+                    }
+                }
+            }
+
             const response = await axios.post('https://ce.judge0.com/submissions', {
                 language_id: judge0LangMap[language],
-                source_code: encode(code),
+                source_code: encode(finalCode),
                 stdin: encode(userInput),
             }, {
                 params: {
