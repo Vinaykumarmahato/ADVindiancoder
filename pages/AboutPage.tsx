@@ -31,8 +31,8 @@ const AboutPage = () => {
                             We Engineer <br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-primary to-cyan-400">Careers.</span>
                         </motion.h1>
-                        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1 }} className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
-                            We started with a simple belief: the current education system is broken. It teaches theory when the industry strictly demands execution. We fix that.
+                        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1 }} className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto font-light leading-relaxed">
+                            ADV Indian Coder isn't just another tutorial website. We are a complete developer ecosystem powered by <strong className="text-white font-medium">ADV Lab</strong>—India's most advanced learning IDE—designed specifically to take you from absolute zero to a high-paying tech placement.
                         </motion.p>
                     </div>
                 </div>
@@ -46,16 +46,16 @@ const AboutPage = () => {
                             <div className="relative z-10 bg-[#0a0f1c] border border-white/10 rounded-[3rem] p-10 shadow-2xl overflow-hidden group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                 <Code className="w-16 h-16 text-primary mb-8" />
-                                <h3 className="text-3xl font-black text-white mb-4">No Fluff. 100% Code.</h3>
+                                <h3 className="text-3xl font-black text-white mb-4">Code. Commit. Get Hired.</h3>
                                 <p className="text-gray-400 text-lg leading-relaxed font-light">
-                                    Colleges spend semesters on history loops. We spend days building enterprise architecture. Every module we teach is thoroughly reverse-engineered from actual technical interviews at top-tier companies.
+                                    Why just watch when you can build? With our proprietary <span className="text-white font-bold">ADV Lab</span>, you write real Java, Python, and C++ code alongside video tutorials and instantly push your submissions to GitHub with one click. We focus exclusively on practical execution.
                                 </p>
                             </div>
                         </div>
                         <div>
-                            <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight">We bridge the gap between <span className="text-primary italic">Graduating</span> and <span className="text-green-400 italic">Getting Hired.</span></h2>
+                            <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight">Bridging the massive gap between <span className="text-primary italic">Graduating</span> and <span className="text-green-400 italic">Deploying.</span></h2>
                             <p className="text-xl text-gray-400 font-light leading-relaxed">
-                                Our founder recognized thousands of brilliant students were being rejected simply because they lacked practical deployment experience and interview strategy. ADV Indian Coder was built to be the ultimate fast-track to employment.
+                                Our platform is built around intensive, cohort-based <strong className="text-white">Live Masterclasses</strong>. We don't teach you textbook history; we build exact replicas of startup architectures and conduct mock technical interviews so you are 100% prepared for modern tech evaluations.
                             </p>
                         </div>
                     </motion.div>
@@ -79,6 +79,48 @@ const AboutPage = () => {
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
+
+                    {/* MEET THE FOUNDER */}
+                    <div className="mb-20 relative">
+                        <GlowingOrb className="top-1/2 left-0 w-[600px] h-[600px] bg-blue-600/10" />
+                        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="relative z-10 rounded-[3rem] p-8 md:p-12 lg:p-16 border border-white/10 overflow-hidden flex flex-col md:flex-row items-center gap-12 bg-gradient-to-br from-[#0a0f1c] to-[#050914] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+                            
+                            {/* Image Container */}
+                            <div className="w-full md:w-1/3 flex justify-center shrink-0">
+                                <div className="relative group mx-auto">
+                                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                                    <div className="relative aspect-[4/5] w-64 md:w-full max-w-[320px] rounded-3xl overflow-hidden border border-white/10 bg-[#0a0f1c] mx-auto">
+                                        <img 
+                                            src="/assets/founder.jpg" 
+                                            alt="Vinay Kumar Mahato" 
+                                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" 
+                                            onError={(e) => { e.currentTarget.src = 'https://vinaykumarmahato.vercel.app/img/pro.png'; }} 
+                                        />
+                                    </div>
+                                    <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white text-xs font-black px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(37,99,235,0.4)] tracking-widest uppercase">
+                                        Founder
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* Info Container */}
+                            <div className="w-full md:w-2/3 text-center md:text-left relative z-10">
+                                <span className="text-blue-400 font-mono text-sm tracking-widest uppercase mb-3 block">The Visionary</span>
+                                <h2 className="text-4xl md:text-5xl font-black mb-3 text-white">Vinay Kumar Mahato</h2>
+                                <h3 className="text-xl md:text-2xl font-light text-gray-400 mb-8">Java Full-Stack Architect & Tech Educator</h3>
+                                
+                                <div className="space-y-5 text-gray-300 font-light leading-relaxed mb-2 text-lg">
+                                    <p>
+                                        Founder of <span className="font-bold text-white">Inoglle</span> and the mastermind behind <span className="font-bold text-white">ADV Indian Coder</span>. Vinay started this platform with a singular goal: to architect the future with scalable code and bypass outdated college curriculums.
+                                    </p>
+                                    <p>
+                                        With deep expertise in enterprise software architectures, he has successfully mentored and empowered over <strong className="text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-md">10,000+ learners worldwide</strong>, transforming absolute beginners into competent, industry-ready software developers.
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
 
                     {/* CTA */}

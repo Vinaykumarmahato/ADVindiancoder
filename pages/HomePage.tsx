@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PlayCircle, ArrowRight, Code, Users, GraduationCap, CheckCircle, Github, MessageSquare, Briefcase, Award, Zap, Shield, TrendingUp, ChevronRight, Star } from 'lucide-react';
+import { PlayCircle, ArrowRight, Code, Users, GraduationCap, CheckCircle, Github, MessageSquare, Briefcase, Award, Zap, Shield, TrendingUp, ChevronRight, Star, Terminal, X, Rocket } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { COURSES } from '../constants';
@@ -31,10 +31,33 @@ const GlowingOrb = ({ className }: { className: string }) => (
     <div className={`absolute rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse ${className}`}></div>
 );
 
+const ADV_ROADMAP = [
+    { title: "GitHub Integration", icon: Github, color: "text-blue-400", items: ["GitHub OAuth login for seamless auto-auth", "One-click commit to repository directly from IDE", "Automatic repository creation from platform", "Pull request (PR) based submission processing"] },
+    { title: "Smart Evaluation System", icon: Shield, color: "text-purple-400", items: ["Auto code execution & output validation", "Test case-based checking mechanics", "AI-based code review & logic suggestions", "Robust plagiarism detection engine"] },
+    { title: "Progress & Analytics", icon: TrendingUp, color: "text-green-400", items: ["Topic-wise granular progress tracking", "Daily/weekly coding streaks & heatmap", "Global performance analytics dashboard", "Weak area detection with micro-recommendations"] },
+    { title: "Gamification Engine", icon: Award, color: "text-yellow-400", items: ["Global leaderboards based on submissions", "Dynamic badges & achievements (e.g. 100 Solved)", "XP (experience points) ecosystem", "Community challenges and timed contests"] },
+    { title: "Community Features", icon: Users, color: "text-pink-400", items: ["Public student profiles with GitHub vitals", "Explore and critique others' submissions", "Like, comment, and discuss code snippets", "Live collaborative multiplayer coding rooms"] },
+    { title: "Learning Enhancements", icon: GraduationCap, color: "text-orange-400", items: ["Topic-wise guided immersive practice paths", "Step-by-step hints and solution walkthroughs", "Video explanations embedded next to problems", "Adaptive difficulty level scaling"] },
+    { title: "UI/UX & Security", icon: Code, color: "text-cyan-400", items: ["Advanced syntax highlighting & dynamic themes", "Multi-language support expansion", "Auto-check if code exists in user's GitHub", "Cryptographic validation of commit history"] }
+];
+
 const HomePage = () => {
     const { scrollYProgress } = useScroll();
     const yTransform = useTransform(scrollYProgress, [0, 1], [0, -200]);
     const opacityTransform = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+    const [showRoadmap, setShowRoadmap] = useState(false);
+
+    useEffect(() => {
+        if (showRoadmap) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [showRoadmap]);
 
     const homeSchema = {
         "@context": "https://schema.org",
@@ -211,6 +234,76 @@ const HomePage = () => {
                     </div>
                 </section>
 
+                {/* 2.5 ADV LAB FEATURE BANNER */}
+                <section className="py-12 px-4 relative z-10 w-full max-w-7xl mx-auto">
+                    <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+                        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0a0f1c] to-[#0a1024] border border-blue-500/20 p-8 md:p-14 shadow-2xl group">
+                            {/* Neon Glow */}
+                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 blur-[100px] rounded-full pointer-events-none group-hover:bg-blue-600/20 transition-colors duration-700"></div>
+                            
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                                <div>
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 mb-6">
+                                        <Terminal className="w-4 h-4 text-blue-400" />
+                                        <span className="text-xs font-bold text-blue-300 uppercase tracking-widest">Free Cloud IDE</span>
+                                    </div>
+                                    <h2 className="text-4xl md:text-5xl font-black mb-6">
+                                        Meet <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">ADV Lab 1.0</span>
+                                    </h2>
+                                    <p className="text-lg text-gray-400 mb-8 leading-relaxed">
+                                        Don't just watch static videos. Code alongside them! Our powerful in-house playground supports Java, Python, and C++ with real-time execution and direct GitHub repository syncing.
+                                    </p>
+                                    
+                                    <div className="space-y-4 mb-10">
+                                        <div className="flex items-center gap-3 text-sm md:text-base text-gray-300">
+                                            <CheckCircle className="w-5 h-5 text-green-400 shrink-0" /> Loads lesson code directly into the editor
+                                        </div>
+                                        <div className="flex items-center gap-3 text-sm md:text-base text-gray-300">
+                                            <CheckCircle className="w-5 h-5 text-green-400 shrink-0" /> Zero local setup required
+                                        </div>
+                                        <div className="flex items-center gap-3 text-sm md:text-base bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-xl group-hover:border-yellow-500/40 transition-colors">
+                                            <Zap className="w-5 h-5 text-yellow-400 shrink-0" /> 
+                                            <span><span className="font-bold text-yellow-400">Future Enhancements:</span> AI Code Review & Live Multiplayer Pair Programming coming soon!</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                        <Link to="/adv-lab" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] whitespace-nowrap">
+                                            <Code className="w-5 h-5" /> Launch ADV Lab Now
+                                        </Link>
+                                        <button 
+                                            onClick={() => setShowRoadmap(true)}
+                                            className="group flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 font-bold transition-all border border-white/10 hover:border-white/20 whitespace-nowrap"
+                                        >
+                                            <Rocket className="w-5 h-5 text-purple-400 group-hover:animate-bounce" /> View Full Roadmap
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                {/* UI Mockup visualization */}
+                                <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] transform lg:rotate-2 group-hover:rotate-0 transition-transform duration-500 bg-[#05060f]">
+                                    {/* Mockup Header */}
+                                    <div className="h-8 bg-white/5 border-b border-white/5 flex items-center px-4 gap-2">
+                                        <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
+                                        <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                                        <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
+                                    </div>
+                                    {/* Mockup Body */}
+                                    <div className="p-6 font-mono text-sm text-blue-300 leading-loose">
+                                        <p><span className="text-purple-400">public class</span> <span className="text-blue-400 font-bold">FutureEnhancement</span> {'{'}</p>
+                                        <p className="pl-4"><span className="text-purple-400">public static void</span> <span className="text-yellow-200">main</span>(String[] args) {'{'}</p>
+                                        <p className="pl-8 text-gray-500">{"// Loading AI reviewer module..."}</p>
+                                        <p className="pl-8">System.out.<span className="text-yellow-200">println</span>(<span className="text-green-400">"Connecting peers for multiplayer coding..."</span>);</p>
+                                        <p className="pl-8 text-green-300 animate-pulse mt-4">{"=> Connection established!"}</p>
+                                        <p className="pl-4">{'}'}</p>
+                                        <p>{'}'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </section>
+
                 {/* 3. COURSES SHOWCASE */}
                 <section className="py-20 px-4 relative overflow-hidden">
                     <GlowingOrb className="top-1/2 left-0 w-[500px] h-[700px] bg-primary/20 -translate-y-1/2" />
@@ -291,7 +384,7 @@ const HomePage = () => {
                     <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 relative z-10">
                         {[
                             { val: "5k+", lbl: "Students Trained" },
-                            { val: "₹5L-18L", lbl: "Placement Range" },
+                            { val: "15+", lbl: "Recent Placements" },
                             { val: "98%", lbl: "Practical Output" },
                             { val: "24/7", lbl: "Coding Mentor Support" }
                         ].map((stat, i) => (
@@ -364,6 +457,76 @@ const HomePage = () => {
                 </section>
 
             </div>
+
+            {/* ROADMAP MODAL */}
+            {showRoadmap && (
+                <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300">
+                    {/* Backdrop */}
+                    <div 
+                        className="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer" 
+                        onClick={() => setShowRoadmap(false)}
+                    ></div>
+                    
+                    {/* Modal Content */}
+                    <div className="relative w-full max-w-5xl max-h-[90vh] bg-[#05060f] border border-white/10 shadow-[0_0_50px_rgba(0,120,255,0.1)] rounded-[2rem] overflow-hidden flex flex-col transition-transform duration-300">
+                        
+                        {/* Header */}
+                        <div className="relative p-6 md:p-8 bg-gradient-to-b from-blue-900/20 to-transparent border-b border-white/5 flex items-center justify-between shrink-0">
+                            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 blur-[80px] rounded-full pointer-events-none"></div>
+                            
+                            <div className="relative z-10 flex items-center gap-4">
+                                <div className="hidden sm:flex w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.2)]">
+                                    <Rocket className="w-7 h-7 text-blue-400" />
+                                </div>
+                                <div>
+                                    <h3 className="text-2xl md:text-3xl font-black text-white">ADV Lab <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Roadmap 2.0</span></h3>
+                                    <p className="text-sm md:text-base text-gray-400 mt-1">Our massive blueprint to build the ultimate developer ecosystem.</p>
+                                </div>
+                            </div>
+                            
+                            <button 
+                                onClick={() => setShowRoadmap(false)}
+                                className="relative z-10 w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors shrink-0"
+                            >
+                                <X className="w-5 h-5 text-gray-400" />
+                            </button>
+                        </div>
+
+                        {/* Scrolling Content */}
+                        <div className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                                {ADV_ROADMAP.map((section, idx) => {
+                                    const Icon = section.icon;
+                                    return (
+                                        <div key={idx} className="bg-white/[0.02] border border-white/5 p-6 rounded-2xl hover:border-white/10 transition-colors group">
+                                            <div className="flex items-center gap-3 mb-4">
+                                                <div className={`p-2 rounded-lg bg-white/5 ${section.color} border border-white/5`}>
+                                                    <Icon className="w-5 h-5" />
+                                                </div>
+                                                <h4 className="text-lg font-bold text-gray-200">{section.title}</h4>
+                                            </div>
+                                            <ul className="space-y-3">
+                                                {section.items.map((item, i) => (
+                                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                                                        <span className={`mt-1 font-bold ${section.color}`}>•</span>
+                                                        <span className="leading-relaxed">{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            
+                            <div className="mt-8 p-6 rounded-2xl border border-dashed border-white/20 bg-gradient-to-r from-white/5 to-transparent text-center relative z-10">
+                                <h4 className="text-xl font-bold text-white mb-2">Want to shape this future?</h4>
+                                <p className="text-gray-400">Join our masterclass cohorts to get absolute priority access to all these upcoming features.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            )}
         </PageWrapper>
     );
 };

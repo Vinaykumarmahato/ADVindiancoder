@@ -74,13 +74,14 @@ export const JAVA_PLAYLIST = [
     { id: 35, title: "EP 35 – ATM Machine Project in Java 💳 | Java Full Course 2026 #35", thumbnail: `/Thumbnail/${encodeURIComponent("ep-35-Can a Beginner Build an ATM in Java Yes — And So Can You 💳  Java Full Course.png")}`, tags: ['Java', 'Project'], category: 'Java Series', youtubeLink: '#' },
     { id: 36, title: "EP 36 – Don't Start Pattern Programming ❌ Watch This First | Java Full Course 2026 #36", thumbnail: `/Thumbnail/${encodeURIComponent("ep-36-Don't Start Pattern Programming ❌ Watch This First.png")}`, tags: ['Java', 'Patterns'], category: 'Java Series', youtubeLink: '#' },
     { id: 37, title: "EP 37 – Need of OOPs in Java 🔥 | POP vs OOP | Why OOPs? | Java Full Course 2026 #37", thumbnail: `https://img.youtube.com/vi/Nfk5RzuZLRw/maxresdefault.jpg`, tags: ['Java', 'OOPs'], category: 'Java Series', youtubeLink: 'https://youtu.be/Nfk5RzuZLRw' },
+    { id: 38, title: "EP 38 – Objects, Memory Management & Method Overloading | Java Full Course 2026 #38", thumbnail: `https://img.youtube.com/vi/T2EJGxuu1yE/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'Memory'], category: 'Java Series', youtubeLink: 'https://youtu.be/T2EJGxuu1yE' },
 ];
 
 export const COURSES: Course[] = [
     {
         id: 1,
-        title: 'Java Full Course 2026 (37 Episodes)',
-        description: 'Complete zero-to-hero Java playlist: variables, OOP, loops, projects & more. 37 episodes absolutely free on YouTube.',
+        title: 'Java Full Course 2026 (38 Episodes)',
+        description: 'Complete zero-to-hero Java playlist: variables, OOP, loops, projects & more. 38 episodes absolutely free on YouTube.',
         thumbnail: `/Thumbnail/ep-01-programming-introduction-thumbnail.png`,
         tags: ['Java', 'Playlist', 'Free'],
         category: 'Programming',
