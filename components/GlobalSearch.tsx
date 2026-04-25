@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, X, Book, Play, AppWindow, Command } from 'lucide-react';
+import { Search, X, Book, Play, AppWindow, Command, HelpCircle, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { COURSES, MASTERCLASSES, NAV_LINKS, JAVA_PLAYLIST } from '../constants';
+import { COURSES, MASTERCLASSES, NAV_LINKS } from '../constants';
 import { Youtube } from 'lucide-react';
+import { JAVA_EPISODES } from '../data/javaEpisodes';
 
 const GlobalSearch = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
     const [query, setQuery] = useState('');
@@ -27,6 +28,16 @@ const GlobalSearch = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
         const searchTerm = query.toLowerCase();
         const filteredResults: any[] = [];
 
+        // System Actions
+        if ("verify certificate".includes(searchTerm) || "validate credential".includes(searchTerm)) {
+            filteredResults.push({ 
+                type: 'Service', 
+                title: 'Verify Academic Certificate', 
+                path: '/course/java?verify=true', 
+                description: 'Validate official ADV Academy credentials and IDs' 
+            });
+        }
+
         // Search in Courses
         COURSES.forEach(c => {
             if (c.title.toLowerCase().includes(searchTerm) || c.description.toLowerCase().includes(searchTerm)) {
@@ -48,8 +59,9 @@ const GlobalSearch = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             }
         });
 
-        // Search in Java Playlist Episodes
-        JAVA_PLAYLIST.forEach(ep => {
+        // Search in Java Episodes & Quizzes
+        JAVA_EPISODES.forEach(ep => {
+            // Search Episode Titles
             if (ep.title.toLowerCase().includes(searchTerm)) {
                 filteredResults.push({ 
                     type: 'Episode', 
@@ -58,6 +70,19 @@ const GlobalSearch = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                     description: 'Part of Java Full Course playlist' 
                 });
             }
+
+            // Search Quiz Questions
+            ep.notes.quiz?.forEach((qObj: any) => {
+                const question = typeof qObj === 'string' ? qObj : qObj.question;
+                if (question.toLowerCase().includes(searchTerm)) {
+                    filteredResults.push({ 
+                        type: 'Quiz', 
+                        title: `Question: ${question}`, 
+                        path: `/course/java?ep=${ep.id}&tab=quiz`, 
+                        description: `Module: ${ep.title}` 
+                    });
+                }
+            });
         });
 
         setResults(filteredResults.slice(0, 8)); // Limit results
@@ -120,6 +145,8 @@ const GlobalSearch = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                                                 {res.type === 'Masterclass' && <Play size={20} />}
                                                 {res.type === 'Page' && <AppWindow size={20} />}
                                                 {res.type === 'Episode' && <Youtube size={20} className="text-red-500" />}
+                                                {res.type === 'Quiz' && <HelpCircle size={20} className="text-amber-500" />}
+                                                {res.type === 'Service' && <ShieldCheck size={20} className="text-green-500" />}
                                             </div>
                                             <div className="flex-1">
                                                 <div className="flex justify-between items-center mb-1">

@@ -23,7 +23,50 @@ public class HelloWorld {
         System.out.println("Welcome to the World of Programming!");
     }
 }`,
-            interview: ["What is programming?", "What is a programming language?", "Why is Java platform independent?"],
+            quiz: [
+                { 
+                    question: "What is the difference between programming and coding?", 
+                    answer: "Coding is the act of writing code in a specific language, while Programming is the broader process of creating a functional software solution including logic, planning, and debugging.",
+                    options: ["Programming is broader; Coding is just writing syntax", "Coding is broader; Programming is just writing syntax", "Both are exactly the same thing", "Coding is for machines; Programming is for humans"],
+                    correctIndex: 0
+                },
+                { 
+                    question: "What is a compiler and how does it work?", 
+                    answer: "A compiler is a translator that converts high-level source code into machine code or bytecode all at once before execution.",
+                    options: ["Translates line-by-line", "Translates the whole code at once", "It runs the code directly", "None of the above"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Why is Java called a high-level language?", 
+                    answer: "Because it uses human-readable syntax (like English words) and abstracts away the complex details of the computer hardware.",
+                    options: ["Because it's very difficult", "Because it uses human-readable syntax", "Because it only runs on high-end PCs", "Because it is closer to binary"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "How does the computer understand high-level code?", 
+                    answer: "Computers only understand 0 and 1. High-level code is converted into binary (machine code) by a Compiler or Interpreter.",
+                    options: ["It understands English directly", "Using a translator (Compiler/Interpreter)", "By connecting to the internet", "By increasing CPU speed"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the role of algorithms in programming?", 
+                    answer: "An algorithm is a step-by-step procedure or formula for solving a problem, which acts as the logic foundation for your code.",
+                    options: ["To make code look pretty", "Step-by-step logic for solving a problem", "To speed up internet", "To store high-quality images"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What are the different types of programming languages?", 
+                    answer: "Main types are Low-Level (Machine, Assembly) and High-Level (Java, Python, C++).",
+                    options: ["Low-Level and High-Level", "First-Level and Second-Level", "Basic-Level and Advanced-Level", "None of the above"],
+                    correctIndex: 0
+                },
+                { 
+                    question: "Can you name 3 real-world devices that use Java?", 
+                    answer: "Android Phones, Smart Cards, and Enterprise Banking Servers.",
+                    options: ["Calculators, Radio, Fans", "Android Phones, Banking Servers, Smart Cards", "Bulbs, Chairs, Tables", "Pencils, Papers, Pens"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -49,7 +92,50 @@ public class Main {
 }
 // javac Main.java  → creates Main.class (Bytecode)
 // java Main        → JVM converts Bytecode to Machine Code and runs it`,
-            interview: ["Difference between Compiler and Interpreter?", "What is Bytecode in Java?", "Why is Java called platform independent?"],
+            quiz: [
+                { 
+                    question: "Detailed difference between Compiler and Interpreter?", 
+                    answer: "A Compiler translates the whole program at once (Faster execution), while an Interpreter translates line-by-line (Better for debugging).",
+                    options: ["Compiler: Line-by-line; Interpreter: Whole", "Compiler: Whole; Interpreter: Line-by-line", "Both are exactly same", "None of the above"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Which one is faster: Compiler or Interpreter? Why?", 
+                    answer: "Compiler is faster because it produces an executable machine code file once, which the CPU can run directly without re-translating.",
+                    options: ["Interpreter", "Compiler", "Both have same speed", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Define Bytecode in simple terms.", 
+                    answer: "Bytecode is a highly optimized set of instructions designed to be executed by the JVM (Java Virtual Machine) rather than the physical CPU.",
+                    options: ["Machine Code", "Human Readable Code", "Instruction for JVM", "Binary Code"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "Why can't JVM run Java source code (.java) directly?", 
+                    answer: ".java files are for humans. Compiling them into .class (Bytecode) makes them optimized and secure for the machine.",
+                    options: ["Because .java is for humans", "Because compilers are lazy", "Because JVM only speaks binary", "It can run .java directly"],
+                    correctIndex: 0
+                },
+                { 
+                    question: "What is the benefit of translating HLL to Assembly first?", 
+                    answer: "It allows for hardware-specific optimizations and helps developers understand how the code interacts with the CPU registers.",
+                    options: ["Makes code smaller", "Hardware optimizations", "Makes code multi-colored", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Is Java a purely compiled or purely interpreted language?", 
+                    answer: "Java is both! It is compiled into Bytecode (javac) and then interpreted/JIT-compiled by the JVM.",
+                    options: ["Purely Compiled", "Purely Interpreted", "Both (Compiled & Interpreted)", "Neither"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "What is the file extension of Compiled Java code?", 
+                    answer: ".class",
+                    options: [".java", ".exe", ".class", ".txt"],
+                    correctIndex: 2
+                }
+            ],
         }
     },
     {
@@ -72,7 +158,50 @@ public class Main {
 // Backend APIs → Spring Boot (REST APIs)
 // Banking Apps → Enterprise Java (J2EE)
 // Big Data → Apache Hadoop (written in Java)`,
-            interview: ["Why learn Java in 2026?", "Java vs Python — which to choose?", "What is Java used for in industry?"],
+            quiz: [
+                { 
+                    question: "What makes Java better than C++ for large-scale enterprise apps?", 
+                    answer: "Java provides automatic memory management (Garbage Collection) and platform independence (JVM), which reduces bugs and deployment costs.",
+                    options: ["Pointers", "Automatic Memory Management", "Manual Memory Management", "Smaller binary size"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "How is Java relevant in the era of AI and ML?", 
+                    answer: "Java is used for the production-side of AI models (Model serving) and big data processing (Hadoop, Spark).",
+                    options: ["Not relevant at all", "Used for Big Data & Production Serving", "Only for drawing 2D charts", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Why do banks prefer Java over Python for backend?", 
+                    answer: "Java is much faster than Python for heavy computations and provides stronger security features and multithreading support.",
+                    options: ["It's easier to learn", "Faster & Stronger Security", "Python is too old", "Python doesn't support math"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the average salary range for a Senior Java Dev in India?", 
+                    answer: "Typically ₹18L - ₹45L+ depending on skills and the company.",
+                    options: ["₹2L - ₹5L", "₹5L - ₹10L", "₹18L - ₹45L", "₹100L+ only"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "Name 3 tech giants that heavily rely on Java today.", 
+                    answer: "Google, Amazon, and Netflix.",
+                    options: ["WhatsApp, Instagram, TikTok", "Google, Amazon, Netflix", "Tesla, SpaceX, Twitter", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Is Java popular for Android development? Why?", 
+                    answer: "Yes, it was the original language for Android and millions of apps still rely on it for robustness.",
+                    options: ["No", "Yes, original Android language", "Only for iPhone", "Only for PC"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is 'Modern Java'?", 
+                    answer: "It refers to the latest versions (Java 17, 21+) which include features like Records, Sealed Classes, and Virtual Threads.",
+                    options: ["Java 8", "Java 1.0", "Java 17/21+", "JavaScript"],
+                    correctIndex: 2
+                }
+            ],
         }
     },
     {
@@ -102,7 +231,50 @@ public class Main {
 //     JIT Compiler: optimizes repeated code (faster!)
 
 // [4] Final Output: Machine Code runs on your CPU ✅`,
-            interview: ["What is JDK, JRE, JVM?", "Difference between JVM and JRE?", "What is JIT Compiler?", "What is Bytecode?"],
+            quiz: [
+                { 
+                    question: "What is the full form of JDK, JRE, and JVM?", 
+                    answer: "JDK: Java Development Kit, JRE: Java Runtime Environment, JVM: Java Virtual Machine.",
+                    options: ["Standard definitions", "Custom definitions", "Java Dev Kit, Runtime Env, Virtual Machine", "None"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "Can we run a Java program with only JDK installed?", 
+                    answer: "Yes, because JDK includes the JRE, which is needed to run programs.",
+                    options: ["No", "Yes", "Depends on PC", "Only if Internet is ON"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What happens if JRE is missing but JVM is present?", 
+                    answer: "The program won't run because JVM needs JRE's libraries and resources to execute Bytecode.",
+                    options: ["Runs normally", "Crashes", "Won't run (missing libs)", "Runs faster"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "Where exactly is the JIT compiler located?", 
+                    answer: "Inside the JVM. It converts frequently used Bytecode into native machine code at runtime for performance.",
+                    options: ["Inside JDK", "Inside JVM", "Inside CPU", "Inside OS"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the primary role of the ClassLoader in JVM?", 
+                    answer: "It dynamically loads .class files into memory when they are needed by the program.",
+                    options: ["To delete files", "To load .class files into memory", "To print logs", "To scan viruses"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Is JVM platform-dependent or independent? Why?", 
+                    answer: "JVM is Platform-Dependent (separate for Windows/Mac), but it makes your CODE Platform-Independent.",
+                    options: ["Platform Independent", "Platform Dependent", "Both", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the relationship between JRE and JDK?", 
+                    answer: "JDK = JRE + Development Tools (Compiler, Debugger, etc.).",
+                    options: ["JRE = JDK + Tools", "JDK = JRE + Tools", "They are same", "JDK is inside JRE"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -129,7 +301,50 @@ public class PlatformDemo {
         System.out.println("Java runs the same everywhere!");
     }
 }`,
-            interview: ["List 5 features of Java", "Why is Java considered secure?", "What is platform independence?"],
+            quiz: [
+                { 
+                    question: "Explain the 'Write Once, Run Anywhere' (WORA) concept.", 
+                    answer: "Java code is compiled into Bytecode. Since any OS with a JVM can run this Bytecode, the code is truly portable.",
+                    options: ["Code runs on one OS", "Code runs on any OS with JVM", "Code runs on browser", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "How does Java ensure high security in its execution?", 
+                    answer: "No explicit pointers, ClassLoader isolation, and Security Manager checks.",
+                    options: ["Using Pointers", "No Pointers & ClassLoader", "Only via Password", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is 'Automatic Garbage Collection' in Java?", 
+                    answer: "JVM automatically deletes objects from Heap memory that are no longer being used by the program.",
+                    options: ["Manual deletion", "JVM deletes unused objects", "OS deletes files", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Is Java a robust language? Explain why.", 
+                    answer: "Yes, because it focuses strictly on compile-time error checking and runtime exception handling.",
+                    options: ["No", "Yes, due to error checking", "Only for web", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Definition of Multithreading in Java with a real example.", 
+                    answer: "Running multiple parts of a program simultaneously, like downloading a file while typing in a chat app.",
+                    options: ["Single tasking", "Running multiple tasks at once", "No tasks", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Why doesn't Java support explicit pointers like C++?", 
+                    answer: "To prevent direct memory access, which is the main cause of crashes and security vulnerabilities.",
+                    options: ["To make it slow", "To prevent memory crashes", "Because it's hard", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Explain the 'Object-Oriented' nature of Java.", 
+                    answer: "Everything in Java is centered around 'Objects' which combine Data and Behavior.",
+                    options: ["Procedural", "Object-Oriented", "Functional", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -160,7 +375,50 @@ public class HelloWorld {
 // 2. Terminal: javac HelloWorld.java
 // 3. Terminal: java HelloWorld
 // Output: Hello, World!`,
-            interview: ["What is the role of javac?", "What happens when you run 'java Main'?"],
+            quiz: [
+                { 
+                    question: "What is the purpose of setting the PATH variable?", 
+                    answer: "To allow the terminal to find the 'java' and 'javac' commands from any directory.",
+                    options: ["To store files", "To run commands globally", "To delete Java", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Difference between JAVA_HOME and PATH?", 
+                    answer: "JAVA_HOME points to the JDK installation folder, while PATH includes the bin folder for command access.",
+                    options: ["Same thing", "JAVA_HOME is folder, PATH is for commands", "PATH is folder", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "How to check the installed Java version via CMD?", 
+                    answer: "java -version",
+                    options: ["java --version", "check java", "java -v", "None"],
+                    correctIndex: 0
+                },
+                { 
+                    question: "What is the default port for most Java dev servers?", 
+                    answer: "8080",
+                    options: ["80", "8080", "3000", "443"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Why do we need a separate extension for Java in VS Code?", 
+                    answer: "VS Code is a text editor; the extension provides language support, debugging, and build tools.",
+                    options: ["For fun", "For language support & debugging", "To make it slow", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What happens internally when you run 'javac HelloWorld.java'?", 
+                    answer: "The compiler converts source code into Bytecode (.class file).",
+                    options: ["Runs code", "Compiles to Bytecode", "Deletes file", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Can you run a Java program without compiling it first?", 
+                    answer: "No, Java requires compilation into Bytecode before the JVM can execute it.",
+                    options: ["Yes", "No", "Only in IDE", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -197,7 +455,50 @@ public class Student {
         s.displayInfo();           // Call behavior
     }
 }`,
-            interview: ["What is an object in Java?", "What is a class?", "What is the main method in Java?"],
+            quiz: [
+                { 
+                    question: "Define Class and Object with a real-life analogy.", 
+                    answer: "Class is the blueprint (Car design), Object is the actual car built from it.",
+                    options: ["Class=Car, Object=Design", "Class=Design, Object=Car", "Both same", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Why is the main method always public and static?", 
+                    answer: "Public so JVM can access it, Static so it can be called without creating an object.",
+                    options: ["For speed", "Public access & No object needed", "It's a rule", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the return type of the main method?", 
+                    answer: "void",
+                    options: ["int", "void", "String", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Can we have multiple main methods in a single class?", 
+                    answer: "No, only one main method can be the entry point.",
+                    options: ["Yes", "No", "Only if static", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What are naming conventions for Classes in Java?", 
+                    answer: "PascalCase (e.g., StudentRecord).",
+                    options: ["camelCase", "PascalCase", "snake_case", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "How to decide if a property should be local or in a class?", 
+                    answer: "If it's needed across multiple methods, make it a class property (field).",
+                    options: ["Randomly", "Scope needs", "Always class", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the 'entry point' of a Java application?", 
+                    answer: "The main method.",
+                    options: ["Constructor", "main method", "Class", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -234,7 +535,50 @@ public class Student {
         printWelcome("Vinay");          // Call void method
     }
 }`,
-            interview: ["What is the difference between a method and a function?", "What is method overloading?", "What does void mean?"],
+            quiz: [
+                { 
+                    question: "Difference between Parameters and Arguments?", 
+                    answer: "Parameters are in the method definition; Arguments are the actual values passed during the call.",
+                    options: ["Same", "Params=Def, Args=Call", "Args=Def, Params=Call", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the 'void' keyword used for in methods?", 
+                    answer: "It indicates that the method does not return any value.",
+                    options: ["Returns int", "No return value", "Returns String", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Explain Method Overloading with a small example.", 
+                    answer: "Same method name, different parameters (e.g., add(int, int) and add(int, int, int)).",
+                    options: ["Different names", "Same name, diff params", "Same params", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Why use Static methods instead of Instance methods?", 
+                    answer: "To call them without creating an object of the class.",
+                    options: ["For speed", "No object needed", "More secure", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Can a method return multiple values in Java?", 
+                    answer: "No, but you can return an array or an object containing multiple values.",
+                    options: ["Yes", "No", "Only if static", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the default return value if none is specified?", 
+                    answer: "You must specify a return type or use void.",
+                    options: ["0", "null", "Must specify", "None"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "What is the DRY principle in software development?", 
+                    answer: "Don't Repeat Yourself — avoid code duplication.",
+                    options: ["Do Repeat Yourself", "Don't Repeat Yourself", "Do Run Yearly", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -262,7 +606,14 @@ String name = "Vinay"; // Must be String
 // age = "hello"   # Works fine at runtime (but can cause bugs!)
 
 // Java advantage: You catch TYPE errors before going live! ✅`,
-            interview: ["What is static typing?", "What is the difference between Java and Python typing?"],
+            quiz: [
+                { question: "What is Statically Typed vs Dynamically Typed?", answer: "Static (Java): Type checked at Compile-time. Dynamic (Python): Type checked at Runtime.", options: ["Static=Runtime, Dynamic=Compile", "Static=Compile, Dynamic=Runtime", "Both same", "None"], correctIndex: 1 },
+                { question: "Is Java 100% Statically Typed? (Hint: 'var' keyword)", answer: "Yes, even with 'var' (Java 10+), the type is inferred at compile-time and cannot be changed later.", options: ["No", "Yes", "Depends", "None"], correctIndex: 1 },
+                { question: "Advantage of catching errors at compile-time vs runtime?", answer: "It prevents crashes in the final product (Production) and makes developers fix bugs early.", options: ["Faster", "Prevents production crashes", "Looks cool", "None"], correctIndex: 1 },
+                { question: "Why is Python considered more flexible but Java more stable?", answer: "Python allows type-changing (flexibility), while Java enforces structure (stability for large teams).", options: ["Python is faster", "Python flexible, Java stable", "Java flexible", "None"], correctIndex: 1 },
+                { question: "Define 'Type Safety' in your own words.", answer: "It's a feature that prevents the compiler from performing operations on incompatible data types.", options: ["Memory safety", "Type safety", "Speed", "None"], correctIndex: 1 },
+                { question: "Can you change the type of a variable after declaration in Java?", answer: "No, once an 'int' is declared, it can never store a 'String'.", options: ["Yes", "No", "Only if var", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -302,7 +653,38 @@ String name = "Vinay"; // Must be String
         System.out.println("Grade: " + grade);
     }
 }`,
-            interview: ["What are the types of variables in Java?", "What is variable scope?", "Difference between local and instance variables?"],
+            quiz: [
+                { 
+                    question: "List 3 types of variables based on their scope.", 
+                    answer: "Local Variables (inside method), Instance Variables (inside class, outside method), and Static Variables (shared across class).",
+                    options: ["Local, Instance, Static", "Global, Private, Public", "Small, Medium, Large", "Fixed, Dynamic, Shared"],
+                    correctIndex: 0
+                },
+                { 
+                    question: "Where are Instance variables stored in memory (Stack/Heap)?", 
+                    answer: "Instance variables are stored in the HEAP memory as part of the object they belong to.",
+                    options: ["Stack", "Heap", "CPU Register", "Hard Drive"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the default value of an uninitialized Instance variable?", 
+                    answer: "It depends on the type: 0 for int/byte, 0.0 for double, false for boolean, and null for objects like String.",
+                    options: ["0", "null", "Garbage value", "Depends on Data Type"],
+                    correctIndex: 3
+                },
+                { 
+                    question: "Can local variables be accessed outside their method?", 
+                    answer: "No, local variables have 'block scope' and are destroyed once the method execution is complete.",
+                    options: ["Yes", "No", "Only if static", "Only if public"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the significance of the 'static' keyword for variables?", 
+                    answer: "It ensures only one copy of the variable exists in memory, shared by every instance of that class.",
+                    options: ["Makes it faster", "Ensures single shared copy", "Deletes it automatically", "Makes it private"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -340,7 +722,38 @@ String name = "Vinay"; // Must be String
         System.out.println("double: " + d);
     }
 }`,
-            interview: ["How many primitives in Java?", "What is wrapper class?", "String is primitive or object?"],
+            quiz: [
+                { 
+                    question: "How many total bits are in a 'double' in Java?", 
+                    answer: "64 bits (8 bytes).",
+                    options: ["16 bits", "32 bits", "64 bits", "128 bits"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "What is the difference between float and double in terms of precision?", 
+                    answer: "Float has ~7 decimal digits of precision (32-bit), while Double has ~15-16 digits (64-bit).",
+                    options: ["Float is more precise", "Double is more precise", "Both are same", "Neither is precise"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is a 'Wrapper Class' and why do we need it?", 
+                    answer: "They are objects that 'wrap' primitives (like Integer for int). Needed for using primitives in Collections like ArrayList.",
+                    options: ["To hide code", "To use primitives as objects", "To speed up math", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "is 'String' a primitive or non-primitive data type? Explain.", 
+                    answer: "String is Non-Primitive (it's a Class). It stores a reference to a memory location in the String Pool.",
+                    options: ["Primitive", "Non-Primitive", "Both", "Neither"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "How much memory does a 'boolean' occupy in the JVM?", 
+                    answer: "The JVM specification doesn't define size exactly, but it's typically treated as 1 byte for storage efficiency.",
+                    options: ["1 bit", "8 bits (1 byte)", "32 bits", "64 bits"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -384,7 +797,14 @@ String name = "Vinay"; // Must be String
         System.out.println("Status  : " + (isPassed ? "PASS ✅" : "FAIL ❌"));
     }
 }`,
-            interview: ["How do you store decimal in Java?", "Can a boolean store null?"],
+            quiz: [
+                { question: "Which data type is best for storing a student's percentage with decimals?", answer: "float or double (double is usually preferred for more accuracy).", options: ["int", "double", "boolean", "char"], correctIndex: 1 },
+                { question: "Why can't we store a 'roll number' as a boolean?", answer: "Because a roll number is a numeric ID (e.g. 101), while boolean can only store 'true' or 'false'.", options: ["It's too big", "Boolean is only true/false", "It's a string", "None"], correctIndex: 1 },
+                { question: "What is the benefit of using 'String' for names instead of char arrays?", answer: "Strings are easier to manipulate (concatenation, searching) and are immutable for security.", options: ["Faster", "Easier manipulation", "Less memory", "None"], correctIndex: 1 },
+                { question: "How to calculate the average of 3 subjects in Java accurately?", answer: "Sum the marks and divide by 3.0 (using a double) to prevent integer truncation.", options: ["Divide by 3", "Divide by 3.0", "Multiply by 3", "None"], correctIndex: 1 },
+                { question: "What happens if you divide an integer by matching integer in percentage calculation?", answer: "It performs integer division (e.g. 1/2 = 0), so you must use 1/2.0 to get 0.5.", options: ["Decimal result", "Integer truncation", "Error", "None"], correctIndex: 1 },
+                { question: "How do you format a double to 2 decimal places in console output?", answer: "Using System.out.printf(\"%.2f\", value); or DecimalFormat class.", options: ["println()", "printf()", "print()", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -421,7 +841,14 @@ String name = "Vinay"; // Must be String
         String backToStr = String.valueOf(num); // int to String
     }
 }`,
-            interview: ["What is type casting?", "What is loss of data in narrowing?", "Difference between implicit and explicit casting?"],
+            quiz: [
+                { question: "Difference between Implicit (Widening) and Explicit (Narrowing) casting?", answer: "Widening (Auto): Small type to Large (safe). Narrowing (Manual): Large type to Small (risky, potential data loss).", options: ["Widening=Manual, Narrowing=Auto", "Widening=Auto, Narrowing=Manual", "Both same", "None"], correctIndex: 1 },
+                { question: "Why is narrowing/explicit casting considered 'unsafe' or risky?", answer: "Because the destination type may not have enough space, leading to overflow or loss of decimal precision.", options: ["It's slow", "Data loss risk", "It's illegal", "None"], correctIndex: 1 },
+                { question: "What happens to the decimal part during (int) conversion of a double?", answer: "It is simply truncated (removed). For example, (int) 9.99 becomes 9.", options: ["Rounded", "Truncated", "Error", "None"], correctIndex: 1 },
+                { question: "How to convert a String '123' into an integer in Java?", answer: "By using Integer.parseInt(\"123\");", options: ["(int) '123'", "Integer.parseInt('123')", "String.toInt('123')", "None"], correctIndex: 1 },
+                { question: "Mention a scenario where type casting is mandatory in Java.", answer: "When passing a double value to a function that strictly expects an int parameter.", options: ["Always", "When narrowing", "Never", "None"], correctIndex: 1 },
+                { question: "What is 'type promotion' in a mathematical expression?", answer: "When performing arithmetic on different types (like byte + int), Java promotes everything to the largest type (int) before calculating.", options: ["Type demotion", "Type promotion", "Error", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -457,7 +884,14 @@ String name = "Vinay"; // Must be String
         System.out.println(result);
     }
 }`,
-            interview: ["What is operator precedence?", "What is the modulo operator?"],
+            quiz: [
+                { question: "List all 6 categories of operators in Java.", answer: "Arithmetic, Relational, Logical, Bitwise, Assignment, and Unary operators.", options: ["Only 2", "Only 4", "All 6", "None"], correctIndex: 2 },
+                { question: "What is 'Operator Precedence' and how does it work?", answer: "It determines the order in which operators are evaluated (e.g., * and / are done before + and -).", options: ["Order of evaluation", "Speed", "Memory", "None"], correctIndex: 0 },
+                { question: "Explain the 'Associativity' of operators with an example.", answer: "It determines the direction (Left-to-Right or Right-to-Left) for operators of the same precedence, like + and -.", options: ["Direction of evaluation", "Speed", "Memory", "None"], correctIndex: 0 },
+                { question: "What is the hardware component (ALU) responsible for operator tasks?", answer: "The Arithmetic Logic Unit (ALU) inside the CPU.", options: ["RAM", "ALU", "GPU", "None"], correctIndex: 1 },
+                { question: "Can you perform operations on non-primitive types using basic operators?", answer: "Only the '+' operator is overloaded for Strings in Java; most other operators only work on primitives.", options: ["Yes", "No", "Only for String", "None"], correctIndex: 2 },
+                { question: "What is the difference between Unary, Binary, and Ternary operators?", answer: "Unary uses 1 operand (++x), Binary uses 2 (x+y), and Ternary uses 3 (condition ? x : y).", options: ["Operand count", "Speed", "Memory", "None"], correctIndex: 0 }
+            ],
         }
     },
     {
@@ -499,7 +933,14 @@ String name = "Vinay"; // Must be String
         System.out.println("Hello " + name); // Hello Java
     }
 }`,
-            interview: ["What is integer division in Java?", "How to check if a number is even using Java?"],
+            quiz: [
+                { question: "Explain the behavior of '+' operator with both numbers and Strings.", answer: "For numbers, it adds them. If one operand is a String, it performs concatenation (e.g., \"A\" + 1 = \"A1\").", options: ["Always adds", "Concatenates if String", "Error", "None"], correctIndex: 1 },
+                { question: "What is the result of '5 / 2' in Java? Explain why.", answer: "The result is 2. Since both are 'int', Java performs integer division and discards the remainder.", options: ["2.5", "2", "3", "None"], correctIndex: 1 },
+                { question: "What is the practical use of the Modulo (%) operator?", answer: "Determining remainders, checking for even/odd numbers, and performing circular array indexing.", options: ["Division", "Remainder", "Multiplication", "None"], correctIndex: 1 },
+                { question: "How do you check if a number is even or odd using arithmetic operators?", answer: "Using (num % 2 == 0) — if true, it's even; if false, it's odd.", options: ["num/2==0", "num%2==0", "num*2==0", "None"], correctIndex: 1 },
+                { question: "Does Java support operator overloading for arithmetic operators?", answer: "No, Java does not allow users to overload operators, though '+' is internally overloaded for Strings.", options: ["Yes", "No", "Only for String", "None"], correctIndex: 1 },
+                { question: "What is integer overflow during arithmetic operations?", answer: "When the result exceeds the maximum value of the data type (e.g. Integer.MAX_VALUE + 1), it cycles back to the minimum value.", options: ["Error", "Cycles back", "Stops", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -540,7 +981,14 @@ String name = "Vinay"; // Must be String
         System.out.println(-x); // -10
     }
 }`,
-            interview: ["Difference between ++i and i++?", "What is the output of: int x=5; System.out.println(x++);?"],
+            quiz: [
+                { question: "Explain the difference between Pre-increment (++i) and Post-increment (i++).", answer: "Pre-increment: Changes value first, then returns it. Post-increment: Returns current value first, then changes it.", options: ["Pre=Use first, Post=Change first", "Pre=Change first, Post=Use first", "Both same", "None"], correctIndex: 1 },
+                { question: "What is the output of 'int x=10; System.out.println(x--);'?", answer: "It prints 10. The value is printed FIRST (post-decrement), and then becomes 9 in memory.", options: ["9", "10", "11", "None"], correctIndex: 1 },
+                { question: "Does '++' work on double and float types?", answer: "Yes, it adds 1.0 to the current value.", options: ["Yes", "No", "Only int", "None"], correctIndex: 0 },
+                { question: "How does the 'Logical NOT (!)' operator interact with boolean variables?", answer: "It inverts the value: !true = false, and !false = true.", options: ["No change", "Inverts value", "Error", "None"], correctIndex: 1 },
+                { question: "Explain the 'Unary Minus (-)' with a practical scenario.", answer: "It negates a number. Useful for creating a 'negative' score or representing debt in banking code.", options: ["Subtraction", "Negation", "Addition", "None"], correctIndex: 1 },
+                { question: "Can we use unary operators on Strings?", answer: "No, unary operators like ++ or -- result in a compilation error if used on a String.", options: ["Yes", "No", "Only if numeric", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -585,346 +1033,325 @@ String name = "Vinay"; // Must be String
         System.out.println(s1.equals(s2));  // true  (same content) ✅
     }
 }`,
-            interview: ["Difference between == and equals() in Java?", "What does == compare for objects?"],
+            quiz: [
+                { question: "Why shouldn't we use '==' for String comparison?", answer: "Using '==' compares identity (memory addresses). To compare content (the actual letters), use .equals().", options: ["It's slow", "Compares memory address", "It's illegal", "None"], correctIndex: 1 },
+                { question: "What is the 'result type' of any relational operation?", answer: "Always boolean (true or false).", options: ["int", "boolean", "String", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
         id: 18,
-        title: "EP 18 – Logical Operators in Java (&&, ||, !)",
+        title: "EP 18 – Logical Operators in Java | &&, ||, ! Explained",
         youtubeId: "mYMzF7UFjOs",
         thumbnail: "/Thumbnail/ep-18-logical-operators-thumbnail.png",
         tags: ["Java", "Operators"],
         notes: {
-            intro: "Logical Operators multiple conditions को combine करते हैं। Real-world decisions: Login requires username AND password. Sale discount if age > 60 OR student.",
+            intro: "Logical Operators Multiple conditions को combine करने के काम आते हैं। AND, OR और NOT का सही use ही logic building का base है।",
             topics: [
-                "&& (AND): Both conditions must be true → result is true",
-                "|| (OR): At least one condition true → result is true",
-                "! (NOT): Flips the boolean result",
-                "⚡ Short-Circuit Evaluation: && stops at first false, || stops at first true (performance!)",
-                "🔐 Real-world: Login validation, age checks, discount eligibility",
+                "&& (Logical AND): Returns true ONLY if both conditions are true",
+                "|| (Logical OR): Returns true if AT LEAST one condition is true",
+                "! (Logical NOT): Reverses the boolean result",
+                "🧠 Truth Tables: understanding logic outcomes",
+                "⚡ Short-circuit Evaluation: efficiency in Java logic",
             ],
             code: `public class LogicalDemo {
     public static void main(String[] args) {
+        boolean hasLicense = true;
+        boolean hasCar = false;
 
-        boolean hasUsername = true;
-        boolean hasPassword = true;
-        boolean isAdmin = false;
+        // AND (&&) - Needs BOTH to be true
+        System.out.println("Can Drive: " + (hasLicense && hasCar)); // false
 
-        // AND (&&): Both must be true
-        if (hasUsername && hasPassword) {
-            System.out.println("Login Successful ✅");
-        }
+        // OR (||) - Needs ANY ONE to be true
+        System.out.println("Can Commute: " + (hasLicense || hasCar)); // true
 
-        // OR (||): At least one true
-        int age = 65;
-        boolean isStudent = false;
-        if (age > 60 || isStudent) {
-            System.out.println("Discount Eligible! 🎉");
-        }
-
-        // NOT (!)
-        if (!isAdmin) {
-            System.out.println("You are a regular user");
-        }
-
-        // Short-circuit: Second condition not evaluated if first is false
-        int x = 0;
-        if (x != 0 && 10/x > 2) { // Safe! Won't divide by zero
-            System.out.println("Condition met");
-        }
+        // NOT (!) - Reverses the value
+        System.out.println("Inverse: " + (!hasLicense)); // false
     }
 }`,
-            interview: ["What is short-circuit evaluation?", "When would you use || vs &&?"],
+            quiz: [
+                { 
+                    question: "Which operator requires BOTH conditions to be true?", 
+                    answer: "Logical AND (&&).",
+                    options: ["||", "&&", "!", "=="],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is 'Short-circuit evaluation' in Logical AND?", 
+                    answer: "If the first condition is false, Java skips checking the second one because the result must be false.",
+                    options: ["Ignores the whole if", "Skips second check if first is false", "Speeds up printing", "Deletes redundant code"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
         id: 19,
-        title: "EP 19 – Assignment Operators in Java",
+        title: "EP 19 – Assignment Operators in Java | Shorthand Operators",
         youtubeId: "UI-hXuWQJlo",
         thumbnail: "/Thumbnail/ep-19-assignment-operators-thumbnail.png",
         tags: ["Java", "Operators"],
         notes: {
-            intro: "Assignment operators variables को values assign करते हैं। Compound assignment operators (+=, -=) code को छोटा और readable बनाते हैं।",
+            intro: "Assignment Operators variables में values store करने के लिए use होते हैं। Compound assignments ( जैसे +=, -= ) code को छोटा और cleaner बनाते हैं।",
             topics: [
-                "= (Simple): x = 5 — assign 5 to x",
-                "+= (Add assign): x += 3 → x = x + 3",
-                "-= (Subtract assign): x -= 2 → x = x - 2",
-                "*= (Multiply assign): x *= 4 → x = x * 4",
-                "/= (Divide assign): x /= 2 → x = x / 2",
-                "%= (Modulo assign): x %= 3 → x = x % 3",
+                "= : Simple Assignment",
+                "+= : Addition Assignment",
+                "-= : Subtraction Assignment",
+                "*=, /=, %= : Multiplication, Division, Modulo assignments",
+                "⚡ Implicit Casting in Compound assignments",
             ],
             code: `public class AssignmentDemo {
     public static void main(String[] args) {
+        int x = 10;
+        
+        x += 5; // same as x = x + 5
+        System.out.println(x); // 15
 
-        int score = 100;    // Simple assignment
+        x *= 2; // same as x = x * 2
+        System.out.println(x); // 30
 
-        score += 50;        // score = score + 50 = 150
-        System.out.println("After +=: " + score);  // 150
-
-        score -= 30;        // score = score - 30 = 120
-        System.out.println("After -=: " + score);  // 120
-
-        score *= 2;         // score = score * 2 = 240
-        System.out.println("After *=: " + score);  // 240
-
-        score /= 3;         // score = score / 3 = 80
-        System.out.println("After /=: " + score);  // 80
-
-        score %= 7;         // score = score % 7 = 3
-        System.out.println("After %=: " + score);  // 3
-
-        // Game example:
-        int playerLife = 100;
-        playerLife -= 25;   // Hit by enemy!
-        playerLife += 10;   // Health pickup
-        System.out.println("Player life: " + playerLife); // 85
+        byte b = 127;
+        b += 1; // Compound assignment handles internal casting
+        System.out.println(b); // -128 (Overflow)
     }
 }`,
-            interview: ["What is the difference between = and == in Java?"],
+            quiz: [
+                { 
+                    question: "What is 'x += 5' equivalent to?", 
+                    answer: "x = x + 5.",
+                    options: ["x = 5", "x = x + 5", "x = 5 + 5", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Benefit of using Compound Assignment (like +=) in Java?", 
+                    answer: "It performs automatic internal type casting, avoiding manual casting errors.",
+                    options: ["Faster execution", "Automatic casting", "Less memory", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
-        id: 20,
-        title: "EP 20 – Bitwise Operators in Java | Binary Level Operations",
-        youtubeId: "TUwb1rXDE-k",
-        thumbnail: "/Thumbnail/ep-20-bitwise-operators-thumbnail.png",
-        tags: ["Java", "Operators"],
+            id: 20,
+            title: "EP 20 – Ternary Operator in Java | Single-Line if-else",
+            youtubeId: "WlZnyin9dMo",
+            thumbnail: "/Thumbnail/ep-27-Java Ternary Operator Explained  Find Maximum of 3 Numbers (Interview Quest.png",
+            tags: ["Java", "Operators"],
         notes: {
-            intro: "Bitwise operators directly binary bits पर operate करते हैं। ये encryption, file permissions, hardware programming, aur performance optimization mein use hote hain.",
+            intro: "Ternary Operator if-else का एक compact replacement है। यह conditional expression के base पर decision लेता है और value return करता है।",
             topics: [
-                "& (Bitwise AND): Bit 1 only if BOTH bits are 1",
-                "| (Bitwise OR): Bit 1 if EITHER bit is 1",
-                "^ (XOR): Bit 1 if bits are DIFFERENT",
-                "~ (Bitwise NOT): Flips all bits (complement)",
-                "<< (Left Shift): Multiply by 2 for each shift",
-                ">> (Right Shift): Divide by 2 for each shift",
+                "📋 Syntax: condition ? result_if_true : result_if_false",
+                "⚡ Expression based: It returns a value (unlike if-else)",
+                "📐 Best for: Assigning values based on a simple condition",
+                "🚫 Avoiding excessive nesting for readability",
+            ],
+            code: `public class TernaryDemo {
+    public static void main(String[] args) {
+        int age = 18;
+        String status = (age >= 18) ? "Eligible to Vote" : "Not Eligible";
+        
+        System.out.println(status);
+
+        int n = 7;
+        String type = (n % 2 == 0) ? "Even" : "Odd";
+        System.out.println(type); // Odd
+    }
+}`,
+            quiz: [
+                { 
+                    question: "How many operands does the Ternary operator require?", 
+                    answer: "Three (condition, true-result, false-result).",
+                    options: ["One", "Two", "Three", "Four"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "What is the symbol for Ternary Operator?", 
+                    answer: "? and :",
+                    options: ["?", "!", "? :", "::"],
+                    correctIndex: 2
+                }
+            ],
+        }
+    },
+    {
+            id: 21,
+            title: "EP 21 – Bitwise Operators in Java | Binary Level Programming",
+            youtubeId: "TUwb1rXDE-k",
+            thumbnail: "/Thumbnail/ep-20-bitwise-operators-thumbnail.png",
+            tags: ["Java", "Operators"],
+        notes: {
+            intro: "Bitwise operators binary level पर data manipulate करते हैं। Performance-critical systems और cryptography में इनका use होता है।",
+            topics: [
+                "&, |, ^, ~ : Bitwise AND, OR, XOR, Complement",
+                "<<, >>, >>> : Left Shift, Right Shift, Unsigned Shift",
+                "🔌 Fast Multiplication/Division using shifts",
+                "🛠️ Setting/Clearing bits in lower-level programming",
             ],
             code: `public class BitwiseDemo {
     public static void main(String[] args) {
-
-        int a = 5;  // Binary: 0101
-        int b = 3;  // Binary: 0011
-
-        System.out.println(a & b);   // 0101 & 0011 = 0001 = 1
-        System.out.println(a | b);   // 0101 | 0011 = 0111 = 7
-        System.out.println(a ^ b);   // 0101 ^ 0011 = 0110 = 6
-        System.out.println(~a);      // ~0101 = 1010 = -6 (2's complement)
-        System.out.println(a << 1);  // 0101 << 1 = 1010 = 10 (multiply by 2)
-        System.out.println(a >> 1);  // 0101 >> 1 = 0010 = 2  (divide by 2)
-
-        // Practical: Check if number is even (fast!)
-        System.out.println((a & 1) == 0 ? "Even" : "Odd"); // Odd
-
-        // File permissions (like Linux): r=4, w=2, x=1
-        int permissions = 4 | 2; // read + write = 6
-        System.out.println("Permissions: " + permissions);
+        int a = 5; // 0101
+        int b = 3; // 0011
+        
+        System.out.println(a & b); // 1  (0001)
+        System.out.println(a | b); // 7  (0111)
+        
+        // Fast multiplication (x * 2^1)
+        System.out.println(10 << 1); // 20
     }
 }`,
-            interview: ["How do you multiply by 2 using bitwise?", "What is XOR used for in practice?"],
-        }
-    },
-    {
-        id: 21,
-        title: "EP 21 – Result Analyser Project | Java Operators Project",
-        youtubeId: "1pcPoZqz08c",
-        thumbnail: "/Thumbnail/ep-21-result-analyser-project.png",
-        tags: ["Java", "Project"],
-        notes: {
-            intro: "Operators का पहला project: Student Result Analyser v2.0 — जहाँ हम सभी operators को combine करके एक meaningful application बनाते हैं।",
-            topics: [
-                "📊 Calculate total, average, percentage using arithmetic operators",
-                "🔢 Determine pass/fail using relational operators",
-                "🏆 Grade calculation using percentage ranges",
-                "📝 Use all operator types in a single cohesive project",
-                "🎓 Output formatted report card with all details",
+            quiz: [
+                { 
+                    question: "Which bitwise operator is used for binary inversion?", 
+                    answer: "Bitwise Complement (~).",
+                    options: ["&", "|", "~", "<<"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "What is '5 << 1' equivalent to?", 
+                    answer: "5 multiplied by 2 (result 10).",
+                    options: ["5", "10", "15", "None"],
+                    correctIndex: 1
+                }
             ],
-            code: `public class ResultAnalyserV2 {
-    public static void main(String[] args) {
-
-        // Student Data
-        String name = "Priya Sharma";
-        int maths = 88, science = 92, english = 75, hindi = 80, cs = 95;
-
-        // Calculations using Arithmetic Operators
-        int total = maths + science + english + hindi + cs;
-        double average = total / 5.0;
-        double percentage = (total / 500.0) * 100;
-
-        // Determine Grade using Relational Operators
-        String grade;
-        if (percentage >= 90) grade = "A+";
-        else if (percentage >= 80) grade = "A";
-        else if (percentage >= 70) grade = "B";
-        else if (percentage >= 60) grade = "C";
-        else grade = "F";
-
-        // Pass/Fail (all subjects must be >= 33)
-        boolean isPassed = maths >= 33 && science >= 33 && english >= 33
-                        && hindi >= 33 && cs >= 33;
-
-        // Display Report
-        System.out.println("==== RESULT ANALYSER v2.0 ====");
-        System.out.println("Student : " + name);
-        System.out.printf("Total   : %d/500%n", total);
-        System.out.printf("Avg     : %.2f%n", average);
-        System.out.printf("Percent : %.2f%%%n", percentage);
-        System.out.println("Grade   : " + grade);
-        System.out.println("Status  : " + (isPassed ? "PASS ✅" : "FAIL ❌"));
-    }
-}`,
-            interview: ["How to calculate percentage in Java?"],
         }
     },
     {
-        id: 22,
-        title: "EP 22 – Conditional Statements in Java | Complete Overview",
-        youtubeId: "3eA3B1-0WSk",
-        thumbnail: "/Thumbnail/ep-22-conditional-statements-thumbnail.png",
-        tags: ["Java", "Conditions"],
+            id: 22,
+            title: "EP 22 – Calculator Project using Operators | Mini Project",
+            youtubeId: "1pcPoZqz08c",
+            thumbnail: "/Thumbnail/ep-21-result-analyser-project.png",
+            tags: ["Java", "Project"],
         notes: {
-            intro: "Programs को decisions लेने की ability conditional statements se aati hai. Real life mein: Traffic light (if red → stop), Login (if correct → allow) — same logic code mein!",
+            intro: "Project phase! हमने जितने भी operators सीखे हैं, उनसे एक simple terminal-based calculator बनाएँगे जो arithmetic calculations कर सके।",
             topics: [
-                "🚦 Why Conditionals? Programs must take different paths based on data",
-                "📋 Types: if, if-else, if-else-if ladder, nested-if, switch, ternary",
-                "🌊 Control Flow: How program execution branches based on conditions",
-                "🔄 Boolean Expressions: the condition must evaluate to true/false",
-                "📐 Flowchart thinking: diamond shape = decision point",
+                "🏗️ Building the core logic for Add, Sub, Mul, Div",
+                "📟 Output formatting using System.out.println",
+                "🧠 Understanding how precedence affects our calculator outputs",
+                "🛠️ Modular design approach basics",
             ],
-            code: `// Overview of all Conditional Types in Java
-public class ConditionalOverview {
+            code: `public class BasicCalculator {
     public static void main(String[] args) {
-
-        int age = 25;
-        double salary = 35000;
-
-        // 1. Simple if
-        if (age >= 18) {
-            System.out.println("Eligible to vote ✅");
-        }
-
-        // 2. if-else
-        if (salary > 50000) {
-            System.out.println("High salary bracket");
-        } else {
-            System.out.println("Mid salary bracket");
-        }
-
-        // 3. Ternary (one line if-else)
-        String category = (age < 18) ? "Minor" : "Adult";
-        System.out.println("Category: " + category);
+        double n1 = 10.5, n2 = 5.0;
+        
+        System.out.println("Result: " + (n1 + n2));
+        System.out.println("Result: " + (n1 - n2));
+        System.out.println("Result: " + (n1 * n2));
+        System.out.println("Result: " + (n1 / n2));
     }
 }`,
-            interview: ["What are conditional statements?", "When to use switch vs if-else?"],
+            quiz: [
+                { 
+                    question: "Which operator would you use to find the remainder?", 
+                    answer: "Modulo (%)",
+                    options: ["/", "*", "%", "-"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "Why use 'double' for a calculator instead of 'int'?", 
+                    answer: "To handle division correctly and allow decimals in calculations.",
+                    options: ["Faster", "Handle decimals", "Less memory", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
-        id: 23,
-        title: "EP 23 – If Statement in Java | Introduction to Conditional Statements",
-        youtubeId: "aPa1OjMA6bs",
-        thumbnail: "/Thumbnail/ep-23-if-statement-thumbnail.png",
-        tags: ["Java", "Conditions"],
+            id: 23,
+            title: "EP 23 – Introduction to Conditionals | Simple If Statement",
+            youtubeId: "3eA3B1-0WSk",
+            thumbnail: "/Thumbnail/ep-23-if-statement-thumbnail.png",
+            tags: ["Java", "Conditions"],
         notes: {
-            intro: "if statement सबसे basic conditional structure है। यह एक single condition check karta hai — agar condition true hai toh block execute hota hai, otherwise skip.",
+            intro: "Programming में decision making के लिए If block का use होता है। अगर condition true है, तो ही block के अंदर का code execute होगा।",
             topics: [
+                "🛠️ Logic building: decisions based on boolean outcomes",
                 "📋 Syntax: if (condition) { // code }",
-                "✅ Condition must be a boolean expression (true/false)",
-                "🔒 Curly braces {} define the block scope",
-                "⚡ Single-line if without braces (not recommended)",
-                "🌍 Real examples: age check, login, temperature alert",
+                "🔑 Comparison operators in If blocks",
+                "🚦 Single block execution control",
             ],
-            code: `public class IfStatement {
+            code: `public class SimpleIf {
     public static void main(String[] args) {
-
-        int temperature = 38;
-        int balance = 500;
-        boolean isRaining = true;
-
-        // Basic if statement
-        if (temperature > 35) {
-            System.out.println("🌡️ It's very hot today!");
-            System.out.println("Stay hydrated!");
+        int speed = 100;
+        
+        if (speed > 80) {
+            System.out.println("Over Speeding! 🚦");
         }
-
-        // if with relational operator
-        if (balance < 1000) {
-            System.out.println("⚠️ Low balance alert!");
-        }
-
-        // if with boolean variable
-        if (isRaining) {
-            System.out.println("☔ Take an umbrella!");
-        }
-
-        // if with logical operator
-        int age = 20;
-        boolean hasID = true;
-        if (age >= 18 && hasID) {
-            System.out.println("✅ Entry allowed");
-        }
-
-        System.out.println("Program continues..."); // Always runs
+        
+        System.out.println("Safe driving is better.");
     }
 }`,
-            interview: ["When does an if block execute?", "What happens if the condition is false in a simple if?"],
+            quiz: [
+                { 
+                    question: "What must be the result of the condition inside an 'if' statement?", 
+                    answer: "A boolean (true or false).",
+                    options: ["Int", "String", "Boolean", "Float"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "What happens if the condition in an 'if' is false?", 
+                    answer: "The code block inside the if is completely skipped.",
+                    options: ["Error occurs", "Skips block", "Prints null", "Restarts program"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
-        id: 24,
-        title: "EP 24 – If-Else Statement in Java | Real Life Examples",
-        youtubeId: "CSXI2E_VfKI",
-        thumbnail: "/Thumbnail/ep-24-if-else-real-life-thumbnail.png",
-        tags: ["Java", "Conditions"],
+            id: 24,
+            title: "EP 24 – If-Else with Real-World Logic | Decision Making",
+            youtubeId: "CSXI2E_VfKI",
+            thumbnail: "/Thumbnail/ep-24-if-else-real-life-thumbnail.png",
+            tags: ["Java", "Conditions"],
         notes: {
-            intro: "if-else ensures exactly ONE of two paths executes. Either condition is true → A path, or false → B path. No middle ground — perfect for binary decisions!",
+            intro: "Decision making का upgrade: If-Else. अगर condition true है तो if block, नहीं तो else block run होता है। Always one path is taken.",
             topics: [
-                "📋 Syntax: if (condition) { } else { }",
-                "🎯 Exactly ONE branch always executes",
-                "🔄 The else block is a safety net — catches all false cases",
-                "🌍 Real scenarios: pass/fail, even/odd, login success/failure",
-                "🏦 Bank: if (balance >= amount) withdraw else show error",
+                "🚦 Path selection: handling both True and False cases",
+                "📋 Syntax: if() { } else { }",
+                "🧠 Voting eligibility and even/odd logic",
+                "✅ Mandatory execution: either if or else ALWAYS runs",
             ],
             code: `public class IfElseDemo {
     public static void main(String[] args) {
-
-        // Scenario 1: Pass or Fail
-        int marks = 45;
-        if (marks >= 33) {
-            System.out.println("🎉 PASS! Well done!");
+        int n = 15;
+        if (n % 2 == 0) {
+            System.out.println("Even");
         } else {
-            System.out.println("❌ FAIL. Study harder.");
+            System.out.println("Odd");
         }
-
-        // Scenario 2: ATM Withdrawal
-        double balance = 5000;
-        double withdrawAmount = 3000;
-        if (balance >= withdrawAmount) {
-            balance -= withdrawAmount;
-            System.out.println("✅ Withdrawn: ₹" + withdrawAmount);
-            System.out.println("Balance: ₹" + balance);
+        
+        // Voting
+        int age = 17;
+        if (age >= 18) {
+            System.out.println("Voter");
         } else {
-            System.out.println("❌ Insufficient balance!");
-        }
-
-        // Scenario 3: Even or Odd
-        int num = 17;
-        if (num % 2 == 0) {
-            System.out.println(num + " is Even");
-        } else {
-            System.out.println(num + " is Odd"); // Prints this
+            System.out.println("Not a Voter");
         }
     }
 }`,
-            interview: ["Can an if-else have multiple else blocks?", "What if both conditions are set?"],
+            quiz: [
+                { 
+                    question: "In an if-else structure, can both blocks run at the same time?", 
+                    answer: "No, they are mutually exclusive. Only one block runs based on the condition.",
+                    options: ["Yes", "No", "Depends on computer", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Why use 'else' instead of a second 'if' with opposite logic?", 
+                    answer: "It is more efficient (half the checks) and cleaner to read.",
+                    options: ["Faster", "Cleaner & Efficient", "Required by Java", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
         id: 25,
-        title: "EP 25 – If-Else-If Ladder in Java | Multi-Branch Decision Making",
+        title: "EP 25 – Else-If Ladder in Java | Grade Calculator Project",
         youtubeId: "ZOVaRsm9QCw",
         thumbnail: "/Thumbnail/ep-25-If Else If Statement in Java in Hindi  Java Conditional Statements Tutorial.png",
         tags: ["Java", "Conditions"],
         notes: {
-            intro: "When you have MORE than 2 options, use else-if ladder. Grade calculator, BMI category, salary slab — all need multiple mutually exclusive conditions.",
+            intro: "Else-if ladder का use तब करते हैं जब हमारे पास multiple conditions हों। यह एक-एक करके check करता है और जो पहली condition true होती है, उसका block run होता है।",
             topics: [
                 "📋 Syntax: if() { } else if() { } else if() { } else { }",
                 "🎯 Only the FIRST matching condition executes, rest are skipped",
@@ -964,7 +1391,13 @@ public class ConditionalOverview {
         else System.out.println("Obese");
     }
 }`,
-            interview: ["Why should specific conditions come before general ones?"],
+            quiz: [
+                { question: "What is an 'Else-If Ladder' and when do you use it?", answer: "A structure to check multiple conditions sequentially. Use it when you have more than 2 mutually exclusive options (like Grades).", options: ["For loops", "Multiple conditions", "Single condition", "None"], correctIndex: 1 },
+                { question: "Why is the ORDER of conditions critical in an else-if ladder?", answer: "Because Java executes only the FIRST matching condition and skips the rest. Most specific conditions should go first.", options: ["Speed", "Correctness", "Memory", "None"], correctIndex: 1 },
+                { question: "What happens if TWO conditions in a ladder are both true?", answer: "Only the block of the first true condition will run. The second one will never be checked.", options: ["Both run", "First runs", "Error", "None"], correctIndex: 1 },
+                { question: "What is the role of the final 'else' in a ladder?", answer: "It acts as a 'Default' case that runs if none of the specific 'if' or 'else if' conditions were met.", options: ["Optional", "Default fallback", "Error", "None"], correctIndex: 1 },
+                { question: "Can you have an else-if ladder without a starting 'if'?", answer: "No, an 'else if' must always follow an 'if' or another 'else if' statement.", options: ["Yes", "No", "Only if static", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -1010,7 +1443,13 @@ public class ConditionalOverview {
         }
     }
 }`,
-            interview: ["What is the disadvantage of deeply nested if?", "How can you avoid nested if?"],
+            quiz: [
+                { question: "What is 'Nesting' in programming?", answer: "The practice of placing one control structure (like 'if') inside another of the same type.", options: ["Loops", "If inside If", "Variables", "None"], correctIndex: 1 },
+                { question: "When should you prefer && over a Nested-If?", answer: "When both conditions must be true and you don't need to perform any 'intermediate' action between the first and second checks.", options: ["Always", "When conditions are simple", "Never", "None"], correctIndex: 1 },
+                { question: "Explain the 'Pyramid of Doom' and how to avoid it.", answer: "It refers to deep nesting that makes code unreadable. Avoid it by using logical operators (&&, ||) or Guard Clauses.", options: ["Deep nesting", "Fast code", "Error", "None"], correctIndex: 0 },
+                { question: "Inner vs Outer if: which one is checked first?", answer: "The Outer 'if' is checked first. The Inner 'if' is only reached if the Outer 'if' evaluates to true.", options: ["Inner", "Outer", "Both", "None"], correctIndex: 1 },
+                { question: "Is there a limit to how many levels you can nest if-statements?", answer: "Theoretically limited by compiler memory, but practically you should never go beyond 3 levels for clean code.", options: ["No limit", "3 levels", "10 levels", "None"], correctIndex: 0 }
+            ],
         }
     },
     {
@@ -1056,7 +1495,13 @@ public class ConditionalOverview {
         System.out.println("Absolute: " + abs); // 10
     }
 }`,
-            interview: ["Write a ternary to find max of 3 numbers", "When NOT to use ternary?"],
+            quiz: [
+                { question: "Why is it called 'Ternary'? What are its 3 parts?", answer: "Because it has 3 operands: 1. Condition, 2. Value if true, 3. Value if false.", options: ["3 operands", "3 lines", "3 variables", "None"], correctIndex: 0 },
+                { question: "Can you write a nested ternary to find the max of 3 numbers?", answer: "int max = (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);", options: ["Yes", "No", "Only if static", "None"], correctIndex: 0 },
+                { question: "Is Ternary faster than If-Else in terms of performance?", answer: "No, they usually compile to identical machine code. Ternary is about code brevity, not speed.", options: ["Yes", "No", "Depends", "None"], correctIndex: 1 },
+                { question: "Can a ternary return different data types for true and false?", answer: "No, both expressions must return the same data type (or types compatible with the target variable).", options: ["Yes", "No", "Only if static", "None"], correctIndex: 1 },
+                { question: "When is Ternary considered 'Bad Practice' for code readability?", answer: "When you start nesting ternaries deeply. It becomes extremely hard to read compared to a standard if-else ladder.", options: ["Always", "When nested deeply", "Never", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -1105,7 +1550,13 @@ public class ConditionalOverview {
         System.out.println("Enhanced: " + result);
     }
 }`,
-            interview: ["What is fall-through in switch?", "Can switch work with String?"],
+            quiz: [
+                { question: "Explain the concept of 'Fall-Through' in Switch statements.", answer: "If you forget the 'break' statement, execution continues into the next 'case' even if its value doesn't match.", options: ["It means skipping", "Executing multiple cases (missing break)", "Program crashes", "It jumps back"], correctIndex: 1 },
+                { question: "What is the use of the 'default' case?", answer: "It runs if none of the specified 'case' values match the given variable. It's like the 'else' of a switch.", options: ["Always runs", "Runs only if no match", "Must be at the start", "None"], correctIndex: 1 },
+                { question: "Which data types are NOT supported by Switch?", answer: "float, double, and boolean. It only supports exact discrete types like int, char, and String.", options: ["int", "float/double", "String", "None"], correctIndex: 1 },
+                { question: "Mention two benefits of 'Enhanced Switch' (Java 14+).", answer: "1. No 'break' required (uses ->), 2. It can be used as an expression that returns a value.", options: ["Speed", "No break & Expression", "Memory", "None"], correctIndex: 1 },
+                { question: "Is it possible to have multiple values in a single case in modern Java?", answer: "Yes, using commas: case 1, 2, 3 -> { ... }.", options: ["Yes", "No", "Only if static", "None"], correctIndex: 0 }
+            ],
         }
     },
     {
@@ -1159,7 +1610,13 @@ public class ConditionalOverview {
         System.out.println("Scholarship: " + (scholarship ? "YES 🎉" : "No"));
     }
 }`,
-            interview: ["How do you combine multiple conditions in Java?"],
+            quiz: [
+                { question: "Which control structure is best for Grade calculations?", answer: "Else-If Ladder, because it handles ranges (percentage >= 90).", options: ["Switch", "Else-If Ladder", "Ternary", "None"], correctIndex: 1 },
+                { question: "How to implement Stream recommendation logic efficiently?", answer: "Use a Switch on the student's grade (A -> Science, B -> Commerce, etc).", options: ["If-Else", "Switch", "Loop", "None"], correctIndex: 1 },
+                { question: "How to check if a student has distinction in at least 2 subjects?", answer: "Use logical ORs or a counter: if ((m1>=75?1:0) + (m2>=75?1:0) + ... >= 2).", options: ["Counter logic", "Simple if", "Loop", "None"], correctIndex: 0 },
+                { question: "What kind of loop would you use to process 100 students' results?", answer: "A 'For Loop', because the number of students (100) is fixed and known beforehand.", options: ["While", "For", "Do-While", "None"], correctIndex: 1 },
+                { question: "Difference between using Switch vs if-else for stream recommendation.", answer: "Switch is more readable for discrete values (A, B, C), while if-else is more robust for range-based logic.", options: ["Speed", "Readability", "Memory", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -1205,7 +1662,13 @@ public class ConditionalOverview {
         System.out.println("Sum = " + sum); // 5050
     }
 }`,
-            interview: ["What is the DRY principle?", "What is an infinite loop?"],
+            quiz: [
+                { question: "Define the 'DRY principle' in your own words.", answer: "Don't Repeat Yourself — avoid code duplication.", options: ["Do Repeat Yourself", "Don't Repeat Yourself", "Do Run Yearly", "None"], correctIndex: 1 },
+                { question: "What happens to the CPU if a program enters an 'Infinite Loop'?", answer: "It consumes 100% CPU usage, potentially causing the program or system to hang.", options: ["Stops", "100% CPU usage", "Memory leak", "None"], correctIndex: 1 },
+                { question: "Difference between 'Iteration' and 'Condition'.", answer: "Iteration is one cycle of the loop; Condition is the check that decides whether to continue.", options: ["Same", "Iteration=Cycle, Condition=Check", "Condition=Cycle, Iteration=Check", "None"], correctIndex: 1 },
+                { question: "Can you simulate any loop using an if-statement and a label?", answer: "Yes, using 'goto' style labels (though not recommended in Java).", options: ["Yes", "No", "Only if static", "None"], correctIndex: 0 },
+                { question: "Why do we need Loops in real-world software development?", answer: "To process large datasets, automate repetitive tasks, and handle dynamic user inputs efficiently.", options: ["For fun", "Automation & Efficiency", "To make it slow", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -1259,7 +1722,13 @@ public class ConditionalOverview {
         // Output: 5 4 3 2 1
     }
 }`,
-            interview: ["When does while loop not execute at all?", "What is the difference between while and do-while?"],
+            quiz: [
+                { question: "What is a 'Pre-condition' loop? Give an example.", answer: "A loop where the condition is checked before the body executes (e.g., while loop).", options: ["Do-While", "While", "For", "None"], correctIndex: 1 },
+                { question: "How many times will a while loop run if the condition is false from start?", answer: "Zero times.", options: ["1", "0", "Infinite", "None"], correctIndex: 1 },
+                { question: "Can you declare a variable inside the while condition parentheses?", answer: "No, you must declare it before the loop.", options: ["Yes", "No", "Only if static", "None"], correctIndex: 1 },
+                { question: "Explain the importance of the 'update expression' (increment/decrement).", answer: "It changes the loop variable to eventually make the condition false, preventing infinite loops.", options: ["Speed", "Prevents infinite loop", "Memory", "None"], correctIndex: 1 },
+                { question: "What is a 'Sentinel Value' in a while loop?", answer: "A special value used to terminate the loop (e.g., -1 to exit).", options: ["Start value", "Termination value", "Increment", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -1313,7 +1782,13 @@ public class ConditionalOverview {
         } while (choice != 3 && menuShown < 3); // Loop until Exit or 3 attempts
     }
 }`,
-            interview: ["When does do-while execute 0 times?", "ATM uses which loop type and why?"],
+            quiz: [
+                { question: "What is an 'Exit-controlled' loop? Explain with do-while.", answer: "It's a loop where the condition is checked AFTER the body runs. It ensures the code runs at least once regardless of the condition.", options: ["While", "Do-While", "For", "None"], correctIndex: 1 },
+                { question: "Guaranteed minimum execution count of do-while loop.", answer: "At least 1 time.", options: ["0", "1", "Infinite", "None"], correctIndex: 1 },
+                { question: "Why is do-while preferred for Menu-driven programs?", answer: "Because you need to display the menu to the user at least once before they can decide to exit.", options: ["Speed", "Menu display", "Memory", "None"], correctIndex: 1 },
+                { question: "Where is the semicolon placed in a do-while syntax?", answer: "A semicolon is required immediately after the while condition at the very end: do { ... } while(cond);", options: ["After do", "After while", "After body", "None"], correctIndex: 1 },
+                { question: "How is a do-while different from a standard while loop in flowcharts?", answer: "The decision diamond comes AFTER the processing box in do-while, and BEFORE it in a standard while loop.", options: ["Diamond position", "Speed", "Memory", "None"], correctIndex: 0 }
+            ],
         }
     },
     {
@@ -1368,7 +1843,13 @@ public class ConditionalOverview {
         }
     }
 }`,
-            interview: ["Difference between for and while?", "When to choose for over while?"],
+            quiz: [
+                { question: "Mention 3 parts of a For Loop signature.", answer: "1. Initialization, 2. Condition, and 3. Increment/Decrement.", options: ["Init, Cond, Update", "Init, Body, Update", "Cond, Body, Update", "None"], correctIndex: 0 },
+                { question: "Is it possible to leave any part of the For signature empty? (e.g. for(;;))", answer: "Yes, for(;;) is a valid infinite loop. All parts are optional, though the semicolons are mandatory.", options: ["Yes", "No", "Only if static", "None"], correctIndex: 0 },
+                { question: "What is the 'Scope' of the variable 'i' declared inside 'for(int i...)'?", answer: "It is only available within the loop itself. Once the loop finishes, 'i' is removed from memory.", options: ["Global", "Local to loop", "Class", "None"], correctIndex: 1 },
+                { question: "Difference between i++ and ++i inside the For update expression.", answer: "Technically none. In a for-loop update, the increment happens in isolation, so both increase i by 1 for the next check.", options: ["Speed", "None", "Memory", "None"], correctIndex: 1 },
+                { question: "When should you choose 'For' over 'While' loop?", answer: "Choose 'For' when the number of iterations is known. Choose 'While' when you are waiting for a specific event or condition to change.", options: ["Always", "Known iterations", "Never", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -1408,7 +1889,13 @@ public class ConditionalOverview {
         }
     }
 }`,
-            interview: ["How many iterations: outer 5, inner 5?", "What is time complexity of nested loops?"],
+            quiz: [
+                { question: "Inner vs Outer loop: which one finishes its iterations first?", answer: "The Inner loop finishes all its iterations for every single iteration of the Outer loop.", options: ["Outer", "Inner", "Both", "None"], correctIndex: 1 },
+                { question: "How many times does the inner loop run if outer=5 and inner=10?", answer: "50 times (5 * 10).", options: ["5", "10", "50", "None"], correctIndex: 2 },
+                { question: "Pattern for printing a 5x5 Square of stars.", answer: "Two nested loops, both running from 1 to 5.", options: ["One loop", "Two nested loops", "Three loops", "None"], correctIndex: 1 },
+                { question: "What is the Time Complexity of a nested loop (i, j)?", answer: "O(n²).", options: ["O(n)", "O(n²)", "O(1)", "None"], correctIndex: 1 },
+                { question: "How to skip one iteration of the inner loop and continue the outer loop?", answer: "Use a labeled 'continue' statement.", options: ["break", "continue", "return", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -1479,7 +1966,13 @@ public class ConditionalOverview {
         }
     }
 }`,
-            interview: ["Why use static for ATM balance?", "Which loop is best for ATM menu?"],
+            quiz: [
+                { question: "Why is 'Static' balance used in the ATM project?", answer: "To ensure the balance persists across different method calls or sessions within the class.", options: ["Speed", "Persistence", "Memory", "None"], correctIndex: 1 },
+                { question: "Logic for '3 attempts PIN verification' in do-while.", answer: "Use a counter variable and loop while (attempts < 3 && !isVerified).", options: ["For loop", "Do-while with counter", "If-else", "None"], correctIndex: 1 },
+                { question: "How to clear the console screen/input in Java? (Conceptual)", answer: "There is no built-in Java command; usually done by printing many newlines or using OS-specific commands.", options: ["System.clear()", "Newlines", "Delete", "None"], correctIndex: 1 },
+                { question: "How to loop the ATM menu until user selects 'Exit'?", answer: "Use a while(choice != 4) loop.", options: ["For", "While", "If", "None"], correctIndex: 1 },
+                { question: "Which conditional structure is best for ATM menu options?", answer: "Switch statement, as it handles discrete menu choices cleanly.", options: ["If-Else", "Switch", "Ternary", "None"], correctIndex: 1 }
+            ],
         }
     },
     {
@@ -1520,7 +2013,32 @@ public class ConditionalOverview {
         }
     }
 }`,
-            interview: ["How do you approach a new pattern problem?", "What is the relationship between nested loops and patterns?"],
+            quiz: [
+                { 
+                    question: "How many loops are required to print a 2D pattern?", 
+                    answer: "At least two nested loops: an Outer loop for rows and an Inner loop for columns.",
+                    options: ["One loop", "Two nested loops", "Three loops", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Outer loop (i) usually represents which dimension (Row/Column)?", 
+                    answer: "The Outer loop (i) represents the Rows (vertical dimension).",
+                    options: ["Columns", "Rows", "Diagonal", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What does 'System.out.println()' do after the inner loop finishes?", 
+                    answer: "It moves the cursor to a new line, effectively starting a new Row in the output pattern.",
+                    options: ["Prints stars", "Starts new row", "Deletes line", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Logic for printing an Inverted Right-Angle Triangle.", 
+                    answer: "The inner loop (j) should decrease as the outer loop (i) increases, or j should run from N down to i.",
+                    options: ["Double loops", "Inner decreases", "No loops", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -1563,7 +2081,32 @@ public class OopSolution {
         s1.displayInfo();
     }
 }`,
-            interview: ["What is the difference between POP and OOP?", "Name the 4 pillars of OOPs."],
+            quiz: [
+                { 
+                    question: "Explain the major flaw in POP (Procedural Programming).", 
+                    answer: "Global Data exposure — any function can modify data without permission, leading to security flaws and bugs.",
+                    options: ["Fast speed", "Global Data exposure", "Too few variables", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What are the 4 Pillars of OOP? Name them.", 
+                    answer: "Encapsulation, Inheritance, Polymorphism, and Abstraction.",
+                    options: ["If, For, While", "4 Pillars (Enc/Inher/Poly/Abs)", "Classes & Objects", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "How does OOP ensure data security (Encapsulation)?", 
+                    answer: "By making class variables 'private' and providing 'public' getter/setter methods to control access.",
+                    options: ["Using passwords", "Encapsulation (Private fields)", "Deleting data", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Difference between Class (Blueprint) and Object (Physical Entity).", 
+                    answer: "A Class is a logical template (no memory taken); an Object is a real-world instance created from that template (memory allocated in Heap).",
+                    options: ["Class=Real, Object=Design", "Class=Design, Object=Real", "Both same", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -1598,7 +2141,32 @@ public class Main {
         obj1.display();
     }
 }`,
-            interview: ["Difference between Stack and Heap memory?", "What is method overloading?"],
+            quiz: [
+                { 
+                    question: "What data is stored in the STACK memory area?", 
+                    answer: "Method calls, local variables, and reference variables (primitive types and memory addresses).",
+                    options: ["Objects", "Local variables & Method calls", "Classes", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What data is stored in the HEAP memory area?", 
+                    answer: "Objects (all non-primitive data) and their instance variables.",
+                    options: ["Local variables", "Objects", "Method calls", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Explain the role of the 'Garbage Collector' in Java.", 
+                    answer: "It runs in the background and deletes objects from the HEAP that have no active references, freeing up memory.",
+                    options: ["Deletes files", "Memory management (Unused objects)", "Cleans console", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Difference between Local Variable and Instance Variable in memory.", 
+                    answer: "Local lives on the Stack (temporary); Instance lives on the Heap inside the object (persists as long as object exists).",
+                    options: ["Local=Heap, Instance=Stack", "Local=Stack, Instance=Heap", "Both Stack", "None"],
+                    correctIndex: 1
+                }
+            ],
         }
     },
     {
@@ -1661,12 +2229,31 @@ public class Main {
         s3.display();
     }
 }`,
-            interview: [
-                "What is the difference between a Constructor and a Method?",
-                "What happens if we don't write any constructor in a class?",
-                "What is Constructor Overloading?",
-                "What is the golden rule for using this() in constructors?",
-                "Can we have a private constructor in Java?"
+            quiz: [
+                { 
+                    question: "What is the difference between a Constructor and a Method?", 
+                    answer: "A Constructor has no return type and shares the same name as the class; it is used only for object initialization.",
+                    options: ["Method has no return", "Constructor has no return & Class name", "Both same", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What happens if you don't write any constructor in your class?", 
+                    answer: "The Java compiler automatically inserts a default no-argument constructor during compilation.",
+                    options: ["Compilation error", "Compiler adds default constructor", "Java crashes", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the use of 'this' keyword in a constructor?", 
+                    answer: "To resolve naming conflicts between class instance variables and constructor parameters (e.g., this.name = name).",
+                    options: ["To delete object", "To resolve name conflicts", "To call other classes", "None"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Can we have a Private Constructor? If yes, why?", 
+                    answer: "Yes, it's used in the Singleton design pattern to restrict object creation to only one instance managed by the class itself.",
+                    options: ["No", "Yes, for Singleton pattern", "Only if static", "None"],
+                    correctIndex: 1
+                }
             ],
         }
     }

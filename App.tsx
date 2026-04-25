@@ -24,6 +24,7 @@ const JobDetailsPage = React.lazy(() => import('./pages/JobDetailsPage'));
 const JobsPage = React.lazy(() => import('./pages/JobsPage'));
 const GenericCoursePage = React.lazy(() => import('./pages/GenericCoursePage'));
 const PlaygroundPage = React.lazy(() => import('./pages/PlaygroundPage'));
+const CertificateDirectoryPage = React.lazy(() => import('./pages/CertificateDirectoryPage'));
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
 // Course Pages
@@ -151,6 +152,7 @@ const AnimatedRoutes = () => {
                 <Route path="/faq" element={<FaqPage />} />
                 <Route path="/upsc-syllabus" element={<UpscSyllabusPage />} />
                         <Route path="/adv-lab" element={<PlaygroundPage />} />
+                        <Route path="/verify" element={<CertificateDirectoryPage />} />
 
                 {/* Catch-all 404 Route */}
                 <Route path="*" element={<NotFoundPage />} />
