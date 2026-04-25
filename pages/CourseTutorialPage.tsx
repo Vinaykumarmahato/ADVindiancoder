@@ -62,10 +62,10 @@ const CourseTutorialPage = () => {
                 ogType="course"
                 schema={courseSchema}
             />
-            <div className="min-h-screen bg-[#050914] text-white">
-                <div className="absolute top-0 w-full h-[400px] bg-gradient-to-b from-red-700/10 to-transparent pointer-events-none" />
+            <div className="min-h-screen bg-[#050914] text-white overflow-x-hidden">
+                <div className="absolute top-0 w-full h-[500px] bg-gradient-to-b from-red-700/10 to-transparent pointer-events-none" />
 
-                <div className="max-w-[1500px] mx-auto px-4 lg:px-8 py-28 relative z-10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
                     {/* Header */}
                     <div className="flex items-center gap-4 mb-8">
                         <Link to="/courses" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm group">
@@ -107,33 +107,35 @@ const CourseTutorialPage = () => {
                             </div>
 
                             {/* Video Title + Tags */}
-                            <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-5">
-                                <div className="flex items-start justify-between gap-4 mb-3">
-                                    <h2 className="text-lg md:text-xl font-bold text-white leading-snug flex-1">{ep.title}</h2>
-                                    <a
-                                        href={`https://www.youtube.com/watch?v=${ep.youtubeId}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex-shrink-0 flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors"
-                                    >
-                                        <ExternalLink className="w-3.5 h-3.5" />
-                                        YouTube
-                                    </a>
-                                    <Link
-                                        to="/adv-lab"
-                                        className="flex-shrink-0 flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors ml-2"
-                                    >
-                                        <Code2 className="w-3.5 h-3.5" />
-                                        ADV Lab
-                                    </Link>
+                            <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 md:p-8">
+                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
+                                    <h2 className="text-xl md:text-3xl font-bold text-white leading-tight">{ep.title}</h2>
+                                    <div className="flex items-center gap-3">
+                                        <a
+                                            href={`https://www.youtube.com/watch?v=${ep.youtubeId}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all hover:scale-105 active:scale-95"
+                                        >
+                                            <ExternalLink className="w-4 h-4" />
+                                            YouTube
+                                        </a>
+                                        <Link
+                                            to="/adv-lab"
+                                            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all hover:scale-105 active:scale-95"
+                                        >
+                                            <Code2 className="w-4 h-4" />
+                                            ADV Lab
+                                        </Link>
+                                    </div>
                                 </div>
                                 <div className="flex gap-2 flex-wrap">
                                     {ep.tags.map((tag, i) => (
-                                        <span key={i} className="text-xs font-semibold text-red-300 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full">
+                                        <span key={i} className="text-[10px] font-black tracking-widest text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1.5 rounded-lg uppercase">
                                             {tag}
                                         </span>
                                     ))}
-                                    <span className="text-xs text-gray-500 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                                    <span className="text-[10px] font-black tracking-widest text-gray-500 bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg uppercase">
                                         EP {String(ep.id).padStart(2, '0')} / {EPISODES.length}
                                     </span>
                                 </div>
@@ -142,21 +144,21 @@ const CourseTutorialPage = () => {
                             {/* Notes Tabs */}
                             <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden">
                                 {/* Tab Bar */}
-                                <div className="flex border-b border-white/10">
-                                    <button onClick={() => setActiveTab('notes')} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold transition-colors ${activeTab === 'notes' ? 'text-white border-b-2 border-red-500' : 'text-gray-400 hover:text-white'}`}>
+                                <div className="flex border-b border-white/10 overflow-x-auto custom-scrollbar whitespace-nowrap scrollbar-hide">
+                                    <button onClick={() => setActiveTab('notes')} className={`flex-shrink-0 flex items-center gap-2 px-6 py-4 text-sm font-semibold transition-colors ${activeTab === 'notes' ? 'text-white border-b-2 border-red-500' : 'text-gray-400 hover:text-white'}`}>
                                         <BookOpen className="w-4 h-4" /> Notes
                                     </button>
-                                    <button onClick={() => setActiveTab('code')} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold transition-colors ${activeTab === 'code' ? 'text-white border-b-2 border-red-500' : 'text-gray-400 hover:text-white'}`}>
+                                    <button onClick={() => setActiveTab('code')} className={`flex-shrink-0 flex items-center gap-2 px-6 py-4 text-sm font-semibold transition-colors ${activeTab === 'code' ? 'text-white border-b-2 border-red-500' : 'text-gray-400 hover:text-white'}`}>
                                         <Code2 className="w-4 h-4" /> Code
                                     </button>
-                                    <button onClick={() => setActiveTab('interview')} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold transition-colors ${activeTab === 'interview' ? 'text-white border-b-2 border-red-500' : 'text-gray-400 hover:text-white'}`}>
-                                        💼 Interview
+                                    <button onClick={() => setActiveTab('interview')} className={`flex-shrink-0 flex items-center gap-2 px-6 py-4 text-sm font-semibold transition-colors ${activeTab === 'interview' ? 'text-white border-b-2 border-red-500' : 'text-gray-400 hover:text-white'}`}>
+                                        <span className="text-base">💼</span> Interview
                                     </button>
                                     <a
                                         href="https://github.com/Vinaykumarmahato/Java-Full-Course-2026-Zero-to-Pro-Hindi-"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="ml-auto flex items-center gap-2 px-5 py-4 text-sm text-gray-400 hover:text-white transition-colors"
+                                        className="flex-shrink-0 flex items-center gap-2 px-6 py-4 text-sm text-gray-400 hover:text-white transition-colors"
                                     >
                                         <Github className="w-4 h-4" /> GitHub
                                     </a>
@@ -201,9 +203,9 @@ const CourseTutorialPage = () => {
                                         <div className="space-y-3">
                                             <p className="text-gray-400 text-sm mb-4">Frequently asked interview questions from this episode:</p>
                                             {ep.notes.interview.map((q, i) => (
-                                                <div key={i} className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-4">
-                                                    <span className="text-red-400 font-bold text-sm shrink-0">Q{i+1}.</span>
-                                                    <span className="text-gray-200 text-sm leading-relaxed">{q}</span>
+                                                <div key={i} className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-all">
+                                                    <span className="text-red-500 font-black text-sm shrink-0 mt-0.5">Q{i+1}.</span>
+                                                    <p className="text-gray-200 text-sm md:text-base leading-relaxed flex-1">{q}</p>
                                                 </div>
                                             ))}
                                         </div>
@@ -232,23 +234,18 @@ const CourseTutorialPage = () => {
 
                         {/* ── RIGHT: Playlist Sidebar ── */}
                         <div className="xl:col-span-1">
-                            <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 flex flex-col sticky top-24" style={{ maxHeight: '88vh' }}>
-                                <div className="p-5 border-b border-white/10 flex items-center justify-between bg-[#080f20] rounded-t-2xl">
+                            <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 flex flex-col xl:sticky xl:top-32 xl:max-h-[80vh] overflow-hidden">
+                                <div className="p-6 border-b border-white/10 flex items-center justify-between bg-[#080f20]/50 rounded-t-2xl">
                                     <h3 className="font-bold flex items-center gap-2 text-base">
                                         <Library className="w-5 h-5 text-red-500" />
-                                        Java Playlist
+                                        Complete Playlist
                                     </h3>
-                                    <div className="flex items-center gap-2">
-                                        <span className="bg-green-500/20 text-green-400 text-[10px] font-black px-2 py-1 rounded-full border border-green-500/30 animate-pulse">
-                                            ONGOING
-                                        </span>
-                                        <span className="text-xs text-white bg-red-500/20 border border-red-500/30 px-3 py-1 rounded-full font-mono">
-                                            {EPISODES.length} Videos
-                                        </span>
-                                    </div>
+                                    <span className="text-xs font-mono text-gray-500">
+                                        {EPISODES.length} Videos
+                                    </span>
                                 </div>
 
-                                <div className="flex-1 overflow-y-auto p-2 space-y-1" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.1) transparent' }}>
+                                <div className="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
                                     {EPISODES.map((video, index) => {
                                         const isActive = activeIndex === index;
                                         return (

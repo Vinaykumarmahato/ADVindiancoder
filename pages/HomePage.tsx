@@ -133,13 +133,13 @@ const HomePage = () => {
                                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="mt-12 flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto"
                             >
-                                <Link to="/masterclass" className="group relative inline-flex min-h-[4rem] items-center justify-center overflow-hidden rounded-full bg-primary px-8 md:px-10 font-bold text-white transition-all hover:scale-105 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#050914] shadow-[0_0_40px_rgba(0,120,255,0.4)] hover:shadow-[0_0_60px_rgba(0,120,255,0.6)] whitespace-nowrap">
-                                    <span className="mr-2 text-base md:text-lg">Explore Masterclasses</span>
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                <Link to="/masterclass" className="w-full sm:w-auto group relative inline-flex min-h-[4rem] items-center justify-center overflow-hidden rounded-full bg-primary px-6 md:px-10 font-bold text-white transition-all hover:scale-105 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#050914] shadow-[0_0_40px_rgba(0,120,255,0.4)] hover:shadow-[0_0_60px_rgba(0,120,255,0.6)] whitespace-nowrap text-sm sm:text-lg">
+                                    <span className="mr-2">Explore Masterclasses</span>
+                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
                                 </Link>
-                                <a href="https://wa.me/919931860964" target="_blank" rel="noopener noreferrer" className="group inline-flex min-h-[4rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-xl px-8 md:px-10 font-bold text-white transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105 whitespace-nowrap">
-                                    <MessageSquare className="mr-3 w-5 h-5 text-[#25D366]" />
-                                    <span className="text-base md:text-lg">Talk to Mentor</span>
+                                <a href="https://wa.me/919931860964" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto group inline-flex min-h-[4rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-xl px-6 md:px-10 font-bold text-white transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105 whitespace-nowrap text-sm sm:text-lg">
+                                    <MessageSquare className="mr-3 w-5 h-5 text-[#25D366] shrink-0" />
+                                    <span>Talk to Mentor</span>
                                 </a>
                             </motion.div>
                         </motion.div>
@@ -267,15 +267,15 @@ const HomePage = () => {
                                         </div>
                                     </div>
                                     
-                                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                                        <Link to="/adv-lab" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] whitespace-nowrap">
-                                            <Code className="w-5 h-5" /> Launch ADV Lab Now
+                                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
+                                        <Link to="/adv-lab" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] whitespace-nowrap text-sm sm:text-base">
+                                            <Code className="w-5 h-5 shrink-0" /> Launch ADV Lab Now
                                         </Link>
                                         <button 
                                             onClick={() => setShowRoadmap(true)}
-                                            className="group flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 font-bold transition-all border border-white/10 hover:border-white/20 whitespace-nowrap"
+                                            className="w-full sm:w-auto group flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 font-bold transition-all border border-white/10 hover:border-white/20 whitespace-nowrap text-sm sm:text-base"
                                         >
-                                            <Rocket className="w-5 h-5 text-purple-400 group-hover:animate-bounce" /> View Full Roadmap
+                                            <Rocket className="w-5 h-5 text-purple-400 group-hover:animate-bounce shrink-0" /> View Full Roadmap
                                         </button>
                                     </div>
                                 </div>
