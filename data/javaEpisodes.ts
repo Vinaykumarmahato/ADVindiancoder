@@ -1600,5 +1600,74 @@ public class Main {
 }`,
             interview: ["Difference between Stack and Heap memory?", "What is method overloading?"],
         }
+    },
+    {
+        id: 39,
+        title: "EP 39 – Constructors in Java 🔥 | Default, Parameterized & Constructor Overloading | Java Full Course 2026 #39",
+        youtubeId: "hJV7qCee03I",
+        thumbnail: "https://img.youtube.com/vi/hJV7qCee03I/maxresdefault.jpg",
+        tags: ["Java", "OOPs", "Constructors"],
+        notes: {
+            intro: "जावा में कंस्ट्रक्टर (Constructor) एक बहुत ही महत्वपूर्ण टॉपिक है। यह गारंटी देता है कि जब भी ऑब्जेक्ट बनेगा, रिक्वायर्ड डाटा पूरा और बिल्कुल सही होगा! बिना कंस्ट्रक्टर के कोड जटिल और बग्स-प्रोन हो सकता है।",
+            topics: [
+                "🏗️ 6 Golden Rules of Constructors",
+                "🛠️ Default vs No-Args Constructor",
+                "📥 Parameterized Constructor & 'this' keyword",
+                "🎭 Constructor Overloading - Multiple ways to create objects",
+                "🔗 Constructor Chaining using this()",
+                "👯 Copy Constructor - Cloning objects",
+                "🔐 Private Constructor & Singleton pattern foundations"
+            ],
+            code: `// Comprehensive Example: All Types of Constructors
+class Student {
+    int roll;
+    String name;
+
+    // 1. No-Argument Constructor
+    Student() {
+        this(0, "Unknown"); // Calling Type 2 using this() - Chaining
+        System.out.println("Default values assigned!");
+    }
+
+    // 2. Parameterized Constructor
+    Student(int roll, String name) {
+        this.roll = roll;
+        this.name = name;
+    }
+
+    // 3. Copy Constructor
+    Student(Student other) {
+        this.roll = other.roll;
+        this.name = other.name;
+    }
+
+    void display() {
+        System.out.println("Student: " + name + " | Roll: " + roll);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Using Parameterized
+        Student s1 = new Student(101, "Vinay");
+        s1.display();
+
+        // Using No-Args
+        Student s2 = new Student();
+        s2.display();
+
+        // Using Copy Constructor
+        Student s3 = new Student(s1);
+        s3.display();
+    }
+}`,
+            interview: [
+                "What is the difference between a Constructor and a Method?",
+                "What happens if we don't write any constructor in a class?",
+                "What is Constructor Overloading?",
+                "What is the golden rule for using this() in constructors?",
+                "Can we have a private constructor in Java?"
+            ],
+        }
     }
 ];

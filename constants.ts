@@ -75,13 +75,14 @@ export const JAVA_PLAYLIST = [
     { id: 36, title: "EP 36 – Don't Start Pattern Programming ❌ Watch This First | Java Full Course 2026 #36", thumbnail: `/Thumbnail/${encodeURIComponent("ep-36-Don't Start Pattern Programming ❌ Watch This First.png")}`, tags: ['Java', 'Patterns'], category: 'Java Series', youtubeLink: '#' },
     { id: 37, title: "EP 37 – Need of OOPs in Java 🔥 | POP vs OOP | Why OOPs? | Java Full Course 2026 #37", thumbnail: `https://img.youtube.com/vi/Nfk5RzuZLRw/maxresdefault.jpg`, tags: ['Java', 'OOPs'], category: 'Java Series', youtubeLink: 'https://youtu.be/Nfk5RzuZLRw' },
     { id: 38, title: "EP 38 – Objects, Memory Management & Method Overloading | Java Full Course 2026 #38", thumbnail: `https://img.youtube.com/vi/T2EJGxuu1yE/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'Memory'], category: 'Java Series', youtubeLink: 'https://youtu.be/T2EJGxuu1yE' },
+    { id: 39, title: "EP 39 – Constructors in Java 🔥 | Default, Parameterized & Constructor Overloading | Java Full Course 2026 #39", thumbnail: `https://img.youtube.com/vi/hJV7qCee03I/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'Constructors'], category: 'Java Series', youtubeLink: 'https://youtu.be/hJV7qCee03I' },
 ];
 
 export const COURSES: Course[] = [
     {
         id: 1,
-        title: 'Java Full Course 2026 (38 Episodes)',
-        description: 'Complete zero-to-hero Java playlist: variables, OOP, loops, projects & more. 38 episodes absolutely free on YouTube.',
+        title: "Java Full Course 2026: Zero to Hero (39 Episodes)",
+        description: "Master Java from scratch with zero prior knowledge. This 39-episode series covers everything from basics to advanced OOPs, patterns, and DSA foundations with AI-driven learning approach.",
         thumbnail: `/Thumbnail/ep-01-programming-introduction-thumbnail.png`,
         tags: ['Java', 'Playlist', 'Free'],
         category: 'Programming',

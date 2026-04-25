@@ -18,6 +18,7 @@ const LESSON_TEMPLATES: Record<string, Record<string, string>> = {
     java: {
         'Default Blueprint': BOILERPLATE['java'],
         ...JAVA_EPISODES.reduce((acc, ep) => {
+            if (!ep.notes || !ep.notes.code) return acc;
             // Shorten the title for the dropdown
             const cleanTitle = ep.title.replace('EP ' + (ep.id < 10 ? '0' + ep.id : ep.id), '').replace('–', '').replace('—', '').trim();
             acc[`EP ${ep.id}: ${cleanTitle.split('|')[0].trim()}`] = ep.notes.code;
@@ -42,33 +43,20 @@ const PlaygroundPage = () => {
     const [language, setLanguage] = useState('java');
     const [code, setCode] = useState(BOILERPLATE['java']);
     const [isLessonDropdownOpen, setIsLessonDropdownOpen] = useState(false);
-    const [userInput, setUserInput] = useState('');
     const [output, setOutput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [executionTime, setExecutionTime] = useState<number | null>(null);
-
-    const [needsInput, setNeedsInput] = useState(false);
     const editorRef = useRef<any>(null);
-
-    const checkNeedsInput = (src: string) =>
-        src.includes('Scanner') ||
-        src.includes('nextInt') ||
-        src.includes('nextLine') ||
-        src.includes('nextDouble') ||
-        src.includes('nextFloat') ||
-        src.includes('cin >>') ||
-        src.includes('cin>>') ||
-        src.includes('scanf') ||
-        src.includes('input()') ||
-        src.includes('readline');
 
     useEffect(() => {
         const boiler = BOILERPLATE[language];
         setCode(boiler);
         setOutput('');
         setExecutionTime(null);
-        setUserInput('');
-        setNeedsInput(checkNeedsInput(boiler));
+        // Directly set Monaco editor value via ref (uncontrolled pattern)
+        if (editorRef.current) {
+            editorRef.current.setValue(boiler);
+        }
     }, [language]);
 
     const [githubRepoUrl, setGithubRepoUrl] = useState('');
@@ -84,20 +72,55 @@ const PlaygroundPage = () => {
         localStorage.setItem('adv_repo', url);
     };
 
-    const [showCongratsModal, setShowCongratsModal] = useState(false);
+    const [popup, setPopup] = useState<{ title: string, msg: string, type: 'success' | 'error' | 'warning', action?: { label: string, onClick: () => void } } | null>(null);
 
     const submitToGithub = () => {
         if (!githubRepoUrl) {
-            alert('Please save a GitHub repository URL first.');
+            setPopup({ 
+                title: "Where's the Link?", 
+                msg: "Please enter your GitHub repository URL so I can save your code!",
+                type: 'error'
+            });
             return;
         }
+
+        const githubRegex = /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9-]+\/[a-zA-Z0-9._-]+/;
+        if (!githubRegex.test(githubRepoUrl)) {
+            setPopup({ 
+                title: "Invalid GitHub URL", 
+                msg: "Oops! That doesn't look like a valid GitHub link. Please use: https://github.com/user/repo",
+                type: 'error'
+            });
+            return;
+        }
+
         navigator.clipboard.writeText(code);
-        setShowCongratsModal(true);
+        setPopup({
+            title: "Code Ready! 🚀",
+            msg: "Your code is copied and ready to be committed. Ready to go to GitHub?",
+            type: 'success',
+            action: {
+                label: "Take Me To GitHub",
+                onClick: () => {
+                    setPopup(null);
+                    window.open(githubRepoUrl, '_blank');
+                }
+            }
+        });
     };
 
     const handleConfirmGithubRedirect = () => {
-        setShowCongratsModal(false);
+        setPopup(null);
         window.open(githubRepoUrl, '_blank');
+    };
+
+    const copyCode = () => {
+        navigator.clipboard.writeText(code);
+        setPopup({
+            title: "Code Copied!",
+            msg: "Your code is now in the clipboard. Happy coding!",
+            type: 'success'
+        });
     };
 
     const runCode = async () => {
@@ -107,7 +130,9 @@ const PlaygroundPage = () => {
         const startTime = performance.now();
 
         try {
-            let finalCode = code;
+            // Always get the LIVE code from Monaco editor ref to avoid stale state
+            const currentCode = editorRef.current ? editorRef.current.getValue() : code;
+            let finalCode = currentCode;
 
             // Java Pre-processing for better compatibility
             if (language === 'java') {
@@ -191,7 +216,7 @@ const PlaygroundPage = () => {
                 {
                     language_id: langId,
                     source_code: b64(finalCode),
-                    stdin: b64(userInput || ''),
+                    stdin: b64(''),
                 },
                 { headers: { 'Content-Type': 'application/json' } }
             );
@@ -199,40 +224,63 @@ const PlaygroundPage = () => {
             const endTime = performance.now();
             setExecutionTime(Math.round(endTime - startTime));
 
-            const { stdout, stderr, compile_output, message, status } = judgeRes.data;
+            const data = judgeRes.data;
+            console.log('[ADV Lab] Response:', JSON.stringify(data));
 
-            if (status.id === 3) {                         // Accepted
-                setOutput(dec(stdout) || 'Code executed successfully (no output).');
-            } else if (status.id === 6) {                  // Compilation Error
-                setOutput(`Compilation Error:\n${dec(compile_output) || message}`);
+            const safeDecode = (s: string) => {
+                if (!s) return '';
+                try { return decodeURIComponent(escape(atob(s))); } catch { try { return atob(s); } catch { return s; } }
+            };
+
+            const statusId   = data?.status?.id;
+            const statusDesc = data?.status?.description || 'Unknown';
+            const outText    = safeDecode(data?.stdout || '');
+            const errText    = safeDecode(data?.stderr || '');
+            const compText   = safeDecode(data?.compile_output || '');
+            const msgText    = data?.message || '';
+
+            console.log('[ADV Lab] statusId:', statusId, '| stdout:', outText);
+
+            if (statusId === 3) {
+                setOutput(outText.trim() || '✅ Code executed successfully (no output).');
+            } else if (statusId === 6) {
+                setOutput(`❌ Compilation Error:\n${compText || msgText}`);
+            } else if (statusId === 5) {
+                setOutput('⏱️ Time Limit Exceeded. Check for infinite loops.');
             } else {
-                let errMsg = dec(stderr) || dec(compile_output) || message || 'Runtime error.';
+                let errMsg = errText || compText || msgText || 'Runtime error occurred.';
                 if (errMsg.includes('NoSuchElementException') || errMsg.includes('EOFException')) {
-                    errMsg += '\n\n💡 HINT: Type each input value on a new line in the "Standard Input (STDIN)" box below BEFORE clicking Run.';
+                    errMsg += '\n\n💡 HINT: Enter each input on a new line in the STDIN box BEFORE clicking Run.';
                 }
-                setOutput(`Error (${status.description}):\n${errMsg}`);
+                setOutput(`❌ ${statusDesc}:\n${errMsg}`);
             }
 
         } catch (error: any) {
-            console.error('Execution Error:', error);
-            setOutput(`Execution failed. Check your code and try again.\nDetails: ${error?.response?.data?.message || error?.message || 'Unknown error'}`);
+            console.error('[ADV Lab] Error:', error);
+            setOutput(`❌ Execution failed: ${error?.response?.data?.message || error?.message || 'Unknown error'}`);
         } finally {
             setIsLoading(false);
         }
     };
 
     const resetCode = () => {
-        if (window.confirm('Reset code to boilerplate? Your current changes will be lost.')) {
-            setCode(BOILERPLATE[language]);
-            setOutput('');
-            setExecutionTime(null);
-            setUserInput('');
-        }
-    };
-
-    const copyCode = () => {
-        navigator.clipboard.writeText(code);
-        alert('Code copied to clipboard!');
+        setPopup({
+            title: "Are you sure? 🤔",
+            msg: "This will reset your code to the default boilerplate. Your current progress will be lost forever!",
+            type: 'warning',
+            action: {
+                label: "Yes, Reset Everything",
+                onClick: () => {
+                    setCode(BOILERPLATE[language]);
+                    setOutput('');
+                    setExecutionTime(null);
+                    setPopup(null);
+                    if (editorRef.current) {
+                        editorRef.current.setValue(BOILERPLATE[language]);
+                    }
+                }
+            }
+        });
     };
 
     return (
@@ -303,10 +351,13 @@ const PlaygroundPage = () => {
                                                         onClick={() => {
                                                             const tmpl = LESSON_TEMPLATES[language][lesson];
                                                             setCode(tmpl);
-                                                            setNeedsInput(checkNeedsInput(tmpl));
                                                             setOutput('');
                                                             setExecutionTime(null);
                                                             setIsLessonDropdownOpen(false);
+                                                            // Directly update Monaco editor (uncontrolled)
+                                                            if (editorRef.current) {
+                                                                editorRef.current.setValue(tmpl);
+                                                            }
                                                         }}
                                                         className="w-full text-left px-4 py-3 text-xs font-medium text-gray-400 hover:text-white hover:bg-red-500/10 transition-all duration-200 border-l-2 border-transparent hover:border-red-500 group"
                                                     >
@@ -320,32 +371,41 @@ const PlaygroundPage = () => {
                             </div>
                         )}
 
-                        <div className="flex items-center gap-2 md:gap-4 w-full md:w-auto justify-between md:justify-end border-t border-white/5 md:border-none pt-2 md:pt-0">
-                            <div className="flex items-center bg-black/40 rounded-xl p-1 border border-white/10">
-                                <button onClick={copyCode} className="p-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all" title="Copy Code">
-                                    <Copy className="w-4 h-4 md:w-5 md:h-5" />
+                        <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 border-white/5 pt-2 md:pt-0">
+                            <div className="flex items-center bg-[#0a0f1c] rounded-xl p-1 border border-white/10 shadow-inner">
+                                <button onClick={copyCode} className="p-2.5 rounded-lg text-gray-500 hover:text-white hover:bg-white/5 transition-all group" title="Copy Code">
+                                    <Copy className="w-4 h-4 md:w-4 md:h-4 group-active:scale-90 transition-transform" />
                                 </button>
-                                <button onClick={resetCode} className="p-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all" title="Reset Code">
-                                    <RotateCcw className="w-4 h-4 md:w-5 md:h-5" />
+                                <div className="w-[1px] h-4 bg-white/5 mx-1"></div>
+                                <button onClick={resetCode} className="p-2.5 rounded-lg text-gray-500 hover:text-red-400 hover:bg-red-500/5 transition-all group" title="Reset Code">
+                                    <RotateCcw className="w-4 h-4 md:w-4 md:h-4 group-active:rotate-[-45deg] transition-transform" />
                                 </button>
                             </div>
 
                             <button
                                 onClick={runCode}
                                 disabled={isLoading}
-                                className={`group relative flex items-center gap-2 md:gap-3 px-6 md:px-10 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl font-black text-white transition-all overflow-hidden text-sm md:text-lg ${
+                                className={`group relative flex items-center justify-center gap-3 pl-6 pr-8 py-3 rounded-xl md:rounded-2xl font-black text-white transition-all duration-500 overflow-hidden text-sm md:text-base border shadow-2xl ${
                                     isLoading 
-                                        ? 'bg-gray-800 cursor-not-allowed' 
-                                        : 'bg-primary shadow-xl hover:shadow-primary/40'
+                                        ? 'bg-gray-900 border-white/5 cursor-not-allowed grayscale' 
+                                        : 'bg-gradient-to-br from-blue-600 to-indigo-700 border-blue-400/30 hover:border-blue-400/60 hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-[0.98]'
                                 }`}
                             >
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                                {isLoading ? (
-                                    <div className="w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                ) : (
-                                    <Play className="w-4 h-4 md:w-6 md:h-6 fill-current" />
-                                )}
-                                <span className="relative">{isLoading ? 'Running...' : 'Run Code'}</span>
+                                {/* Premium Shimmer Effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]"></div>
+                                
+                                <div className={`flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 border border-white/10 shadow-inner overflow-hidden ${isLoading ? 'animate-pulse' : 'group-hover:scale-110 transition-transform'}`}>
+                                    {isLoading ? (
+                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                    ) : (
+                                        <Play className="w-4 h-4 fill-current text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                                    )}
+                                </div>
+                                
+                                <div className="flex flex-col items-start leading-none shrink-0">
+                                    <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.15em] opacity-60">System</span>
+                                    <span className="text-sm md:text-base font-black tracking-tight">{isLoading ? 'Loading...' : 'Run Code'}</span>
+                                </div>
                             </button>
                         </div>
                     </div>
@@ -365,18 +425,15 @@ const PlaygroundPage = () => {
                                 <Editor
                                     height="100%"
                                     language={language === 'cpp' ? 'cpp' : language}
-                                    value={code}
+                                    defaultValue={BOILERPLATE['java']}
                                     theme="vs-dark"
                                     onMount={(editor) => {
                                         editorRef.current = editor;
-                                        // Attach Monaco's internal listener — fires for typing, paste, undo, template load
+                                        // Listen to ALL content changes reliably
                                         editor.onDidChangeModelContent(() => {
                                             const val = editor.getValue();
                                             setCode(val);
-                                            setNeedsInput(checkNeedsInput(val));
                                         });
-                                        // Check initial value on load
-                                        setNeedsInput(checkNeedsInput(editor.getValue()));
                                     }}
                                     options={{
                                         fontSize: window.innerWidth < 768 ? 14 : 18,
@@ -396,9 +453,9 @@ const PlaygroundPage = () => {
                         </div>
 
                         {/* Sidebar */}
-                        <div className="lg:col-span-4 flex flex-col gap-4 min-h-[400px] md:min-h-0 h-auto md:h-full">
-                            {/* Lab Tips Section */}
-                            <div className="bg-white/[0.02] border border-white/10 rounded-[1.5rem] p-4 space-y-3 hidden xl:block shrink-0">
+                        <div className="lg:col-span-4 flex flex-col gap-3 min-h-[400px] md:min-h-0 h-auto md:h-full overflow-hidden">
+                            {/* Lab Tips Section — only on very large screens */}
+                            <div className="bg-white/[0.02] border border-white/10 rounded-[1.5rem] p-4 space-y-3 hidden 2xl:block shrink-0">
                                 <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
                                     <Award className="w-3.5 h-3.5 text-yellow-500" />
                                     ADV Lab Pro Tips
@@ -415,108 +472,75 @@ const PlaygroundPage = () => {
                                 </ul>
                             </div>
 
-                            {/* ADV GitHub Integration Section */}
-                            <div className="bg-[#0a0f1c]/80 backdrop-blur-xl rounded-[1.5rem] border border-white/10 flex flex-col p-4 shadow-xl shrink-0" id="adv-github-integration">
-                                <div className="flex items-center gap-2 mb-3">
-                                    <Github className="w-4 h-4 text-gray-400" />
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Save to GitHub</span>
-                                </div>
-                                <div className="flex flex-col gap-3">
-                                    <input 
-                                        type="url" 
-                                        placeholder="Paste GitHub Repo URL" 
-                                        value={githubRepoUrl}
-                                        onChange={handleSaveRepoUrl}
-                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-xs font-mono text-blue-200 outline-none focus:border-blue-500/50 transition-colors placeholder:text-gray-700" 
-                                        id="adv-github-repo"
-                                    />
-                                    <button 
-                                        onClick={submitToGithub}
-                                        id="adv-submit-github"
-                                        className="w-full bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-4 py-2 flex items-center justify-center gap-2 transition-all group"
-                                    >
-                                        <Github className="w-4 h-4 group-hover:text-white transition-colors text-gray-400" />
-                                        <span className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">Copy & Submit Code</span>
-                                    </button>
-                                </div>
+                            {/* ADV GitHub Integration — compact strip */}
+                            <div className="bg-[#0a0f1c]/80 backdrop-blur-xl rounded-xl border border-white/10 flex items-center gap-2 px-3 py-2 shadow-xl shrink-0" id="adv-github-integration">
+                                <Github className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+                                <input 
+                                    type="url" 
+                                    placeholder="Paste GitHub Repo URL to save code" 
+                                    value={githubRepoUrl}
+                                    onChange={handleSaveRepoUrl}
+                                    className="flex-1 bg-transparent text-[11px] font-mono text-blue-200 outline-none placeholder:text-gray-700 min-w-0" 
+                                    id="adv-github-repo"
+                                />
+                                <button 
+                                    onClick={submitToGithub}
+                                    id="adv-submit-github"
+                                    className="shrink-0 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-3 py-1.5 flex items-center gap-1.5 transition-all group"
+                                >
+                                    <Github className={`w-3 h-3 transition-colors ${githubRepoUrl && /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9-]+\/[a-zA-Z0-9._-]+/.test(githubRepoUrl) ? 'text-green-400' : 'text-gray-400'} group-hover:text-white`} />
+                                    <span className="text-[10px] font-bold text-gray-300 group-hover:text-white transition-colors whitespace-nowrap">Copy & Save</span>
+                                </button>
                             </div>
 
-                            {/* Unified Interactive Terminal */}
-                            <div className={`flex-1 bg-[#05060f] rounded-[1.5rem] md:rounded-[2.5rem] border overflow-hidden shadow-2xl flex flex-col relative min-h-[400px] md:min-h-0 transition-all duration-500 ${/Scanner|cin|scanf|input/.test(code) ? 'border-blue-500/50 shadow-[0_0_40px_rgba(59,130,246,0.15)]' : 'border-white/10'}`}>
-                                <div className="absolute inset-0 bg-blue-500/5 pointer-events-none"></div>
+                            {/* CMD Style Terminal — Output Only */}
+                            <div className={`flex-1 bg-black rounded-2xl border border-white/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col relative min-h-[500px] md:min-h-0 transition-all duration-500`}>
                                 
-                                {/* Terminal Header */}
-                                <div className="bg-white/[0.02] p-4 flex items-center justify-between border-b border-white/10 relative z-10 shrink-0">
+                                {/* Terminal Header — Windows Style */}
+                                <div className="bg-[#1a1a1a] p-3 flex items-center justify-between border-b border-black relative z-10 shrink-0">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex gap-1">
-                                            <div className="w-2.5 h-2.5 rounded-full bg-red-400/30"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/30"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-green-400/30"></div>
+                                        <div className="flex gap-1.5 grayscale opacity-50">
+                                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                         </div>
-                                        <span className="text-[10px] font-black tracking-widest text-gray-500 uppercase ml-2 flex items-center gap-2"><Terminal className="w-3 h-3 text-blue-400"/> ADV Terminal</span>
+                                        <span className="text-[10px] font-mono tracking-wider text-gray-400 ml-2 flex items-center gap-2 italic">
+                                            <Terminal className="w-3.5 h-3.5 text-primary"/> C:\Windows\System32\cmd.exe — ADV Lab
+                                        </span>
                                     </div>
                                     {executionTime && (
-                                        <div className="flex items-center gap-2 px-2.5 py-1 bg-green-500/10 rounded-full border border-green-500/20">
-                                            <Zap className="w-3 h-3 text-green-500" />
-                                            <span className="text-[10px] font-mono text-green-400 font-bold">{executionTime}ms</span>
+                                        <div className="flex items-center gap-2 px-2.5 py-0.5 bg-white/5 rounded border border-white/10">
+                                            <Zap className="w-3 h-3 text-yellow-500" />
+                                            <span className="text-[9px] font-mono text-gray-400">{executionTime}ms</span>
                                         </div>
                                     )}
                                 </div>
                                 
-                                {/* STDOUT (Output) */}
-                                <div className="flex-1 p-4 md:p-6 font-mono text-xs md:text-sm overflow-y-auto whitespace-pre-wrap leading-relaxed relative z-10 custom-scrollbar border-b border-white/10">
-                                    <div className="text-[9px] uppercase font-black text-gray-600 mb-2 tracking-widest">Compiler Output</div>
-                                    {output ? (
-                                        <div className={output.includes('Error') || output.includes('line') ? 'text-red-400' : 'text-green-300'}>
-                                            <span className="inline-block mr-2 opacity-30 select-none">#</span>
-                                            {output}
-                                        </div>
-                                    ) : (
-                                        <div className="opacity-20 text-gray-500 mt-2 flex items-center gap-2">
-                                            <span className="animate-pulse">_</span> Waiting for execution...
-                                        </div>
-                                    )}
-                                </div>
-                                
-                                {/* STDIN (Input) */}
-                                <div className="h-[180px] md:h-[200px] flex flex-col relative z-10 shrink-0 bg-black/60">
-                                    {/* STDIN Header */}
-                                    <div className="flex items-center justify-between px-4 py-2 bg-blue-500/10 border-b border-white/5">
-                                        <span className="text-[9px] uppercase font-black tracking-widest text-blue-400/90 flex items-center gap-1.5">
-                                            <Code2 className="w-3 h-3"/> Standard Input (STDIN)
-                                        </span>
-                                        {needsInput ? (
-                                            <span className="text-[8px] font-bold text-blue-400 animate-pulse bg-blue-500/20 px-2 py-0.5 rounded-full uppercase tracking-wider">
-                                                ⚡ Input Required
-                                            </span>
-                                        ) : (
-                                            <span className="text-[8px] font-bold text-gray-500 uppercase tracking-wider">
-                                                Optional
-                                            </span>
-                                        )}
+                                {/* Unified Console Area */}
+                                <div 
+                                    className="flex-1 p-6 font-mono text-sm md:text-base overflow-y-auto leading-relaxed relative z-10 custom-scrollbar flex flex-col gap-4"
+                                    onClick={() => document.getElementById('cmd-input')?.focus()}
+                                >
+                                    {/* Initial Directory Line */}
+                                    <div className="flex items-center gap-2 opacity-60">
+                                        <span className="text-primary font-bold">C:\ADV-LAB&gt;</span>
+                                        <span className="text-gray-300">adv run {language}</span>
                                     </div>
 
-                                    {/* Textarea — always enabled */}
-                                    <textarea
-                                        value={userInput}
-                                        onChange={(e) => setUserInput(e.target.value)}
-                                        placeholder="Type input values here (one per line)..."
-                                        className="flex-1 bg-transparent px-4 py-3 font-mono text-xs md:text-sm outline-none resize-none text-blue-200 placeholder:text-gray-600 custom-scrollbar"
-                                    />
-
-                                    {/* Run with Input Button — always enabled */}
-                                    <button
-                                        onClick={runCode}
-                                        disabled={isLoading}
-                                        className={`mx-3 mb-3 flex items-center justify-center gap-2 py-2 px-4 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 ${
-                                            !isLoading
-                                                ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] cursor-pointer'
-                                                : 'bg-white/5 text-gray-500 cursor-not-allowed'
-                                        }`}
-                                    >
-                                        <Play className="w-3 h-3" />
-                                        {isLoading ? 'Running...' : '▶ Run with Input'}
-                                    </button>
+                                    {/* Output Area */}
+                                    <div className="whitespace-pre-wrap flex-1 scroll-auto">
+                                        {output ? (
+                                            <div className={output.startsWith('❌') ? 'text-red-400' : 'text-gray-100'}>
+                                                {output}
+                                            </div>
+                                        ) : (
+                                            <div className="text-gray-600 italic text-sm">
+                                                Microsoft Windows [Version 10.0.19045.5011]<br />
+                                                (c) Microsoft Corporation. All rights reserved.<br /><br />
+                                                Preparing environment... Ready.
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -524,33 +548,78 @@ const PlaygroundPage = () => {
                 </div>
             </div>
 
-            {/* Congrats Modal */}
-            {showCongratsModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowCongratsModal(false)}></div>
-                    <div className="relative bg-[#0a0f1c] border border-white/10 rounded-3xl p-8 max-w-sm w-full shadow-2xl flex flex-col items-center text-center animate-[fade-in_0.3s_ease-out]">
-                        {/* Decorative background glow */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-green-500/20 blur-[60px] rounded-full pointer-events-none"></div>
+
+            {/* Global Character Popup (Success/Error) */}
+            {popup && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setPopup(null)}></div>
+                    <div className={`relative bg-[#0d1117] border rounded-[2.5rem] p-6 md:p-8 max-w-sm w-full shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col items-center text-center animate-scale-in ${
+                        popup.type === 'error' ? 'border-red-500/20 shadow-red-500/10' : 
+                        popup.type === 'warning' ? 'border-yellow-500/20 shadow-yellow-500/10' :
+                        'border-green-500/20 shadow-green-500/10'}`}>
                         
-                        <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-green-500/20 to-emerald-500/20 border border-green-500/30 flex items-center justify-center mb-6 relative z-10 shadow-[0_0_30px_rgba(34,197,94,0.2)]">
-                            <PartyPopper className="w-10 h-10 text-green-400" />
+                        <div className="absolute -top-14 md:-top-16 -right-2 md:-right-4 w-20 h-20 md:w-28 md:h-28 animate-float pointer-events-none overflow-hidden rounded-full z-10 border border-white/5 bg-black/20">
+                            <img 
+                                src={
+                                    popup.type === 'error' ? "/coder_robot_helper.png" : 
+                                    popup.type === 'warning' ? "/robot_thinking.png" :
+                                    "/robot_success.png"
+                                } 
+                                alt="Robot Helper" 
+                                className="w-full h-full object-cover mix-blend-screen scale-125" 
+                            />
                         </div>
                         
-                        <h3 className="text-2xl font-black text-white mb-3 relative z-10">
-                            Code Copied! <span className="text-xl">🎉</span>
+                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border ${
+                            popup.type === 'error' ? 'bg-red-500/10 border-red-500/20' : 
+                            popup.type === 'warning' ? 'bg-yellow-500/10 border-yellow-500/20' :
+                            'bg-green-500/10 border-green-500/20'}`}>
+                            {popup.type === 'error' ? (
+                                <Zap className="w-8 h-8 text-red-500 animate-pulse" />
+                            ) : popup.type === 'warning' ? (
+                                <RotateCcw className="w-8 h-8 text-yellow-500 animate-spin-slow" />
+                            ) : (
+                                <PartyPopper className="w-8 h-8 text-green-500" />
+                            )}
+                        </div>
+                        
+                        <h3 className="text-2xl font-black text-white mb-3">
+                            {popup.title}
                         </h3>
                         
-                        <p className="text-gray-400 text-sm mb-8 leading-relaxed relative z-10">
-                            Great job! Your code is now securely in your clipboard. Head over to your GitHub repository, paste the code, and commit your awesome work.
+                        <p className="text-gray-400 text-sm mb-8 leading-relaxed">
+                            {popup.msg}
                         </p>
                         
-                        <button
-                            onClick={handleConfirmGithubRedirect}
-                            className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] flex items-center justify-center gap-2 relative z-10 group"
-                        >
-                            <CheckCircle2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                            Take Me To GitHub
-                        </button>
+                        <div className="flex flex-col gap-3 w-full">
+                            {popup.action ? (
+                                <button
+                                    onClick={popup.action.onClick}
+                                    className={`w-full font-black py-4 px-6 rounded-2xl transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2 ${
+                                        popup.type === 'warning' ? 'bg-yellow-500 hover:bg-yellow-400 text-black' : 'bg-green-500 hover:bg-green-400 text-black'
+                                    }`}
+                                >
+                                    {popup.type === 'warning' ? <RotateCcw className="w-5 h-5" /> : <CheckCircle2 className="w-5 h-5" />}
+                                    {popup.action.label}
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() => setPopup(null)}
+                                    className={`w-full text-black font-black py-4 px-6 rounded-2xl transition-all shadow-xl active:scale-95 ${popup.type === 'error' ? 'bg-white hover:bg-gray-200' : 'bg-green-500 hover:bg-green-400'}`}
+                                >
+                                    {popup.type === 'error' ? 'Got it, let me fix!' : 'Awesome!'}
+                                </button>
+                            )}
+                            
+                            {popup.action && (
+                                <button
+                                    onClick={() => setPopup(null)}
+                                    className="w-full text-gray-500 font-bold py-2 hover:text-white transition-colors text-xs"
+                                >
+                                    Maybe Later
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}
