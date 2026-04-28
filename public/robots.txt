@@ -1,6 +1,13 @@
 User-agent: *
 Allow: /
+
+# Block only truly private paths
 Disallow: /admin
 Disallow: /api
+Disallow: /scratch
 
+# Crawl delay to avoid server overload
+Crawl-delay: 5
+
+# Sitemap location
 Sitemap: https://advindiancoder.com/sitemap.xml

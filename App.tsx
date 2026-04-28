@@ -23,7 +23,12 @@ const FaqPage = React.lazy(() => import('./pages/FaqPage'));
 const JobDetailsPage = React.lazy(() => import('./pages/JobDetailsPage'));
 const JobsPage = React.lazy(() => import('./pages/JobsPage'));
 const GenericCoursePage = React.lazy(() => import('./pages/GenericCoursePage'));
-const PlaygroundPage = React.lazy(() => import('./pages/PlaygroundPage'));
+const AdvLabDashboard = React.lazy(() => import('./pages/ide/AdvLabDashboard'));
+const JavaCompilerPage = React.lazy(() => import('./pages/ide/JavaCompilerPage'));
+const PythonCompilerPage = React.lazy(() => import('./pages/ide/PythonCompilerPage'));
+const CCompilerPage = React.lazy(() => import('./pages/ide/CCompilerPage'));
+const CppCompilerPage = React.lazy(() => import('./pages/ide/CppCompilerPage'));
+const JavascriptCompilerPage = React.lazy(() => import('./pages/ide/JavascriptCompilerPage'));
 const CertificateDirectoryPage = React.lazy(() => import('./pages/CertificateDirectoryPage'));
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
@@ -151,7 +156,12 @@ const AnimatedRoutes = () => {
                 <Route path="/success-stories" element={<SuccessStoriesPage />} />
                 <Route path="/faq" element={<FaqPage />} />
                 <Route path="/upsc-syllabus" element={<UpscSyllabusPage />} />
-                        <Route path="/adv-lab" element={<PlaygroundPage />} />
+                        <Route path="/adv-lab" element={<AdvLabDashboard />} />
+                        <Route path="/online-java-compiler" element={<JavaCompilerPage />} />
+                        <Route path="/online-python-compiler" element={<PythonCompilerPage />} />
+                        <Route path="/online-c-compiler" element={<CCompilerPage />} />
+                        <Route path="/online-cpp-compiler" element={<CppCompilerPage />} />
+                        <Route path="/online-javascript-compiler" element={<JavascriptCompilerPage />} />
                         <Route path="/verify" element={<CertificateDirectoryPage />} />
 
                 {/* Catch-all 404 Route */}

@@ -1,59 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core Pages -->
   <url>
     <loc>https://advindiancoder.com/</loc>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- ✅ Compiler Pages — Highest Priority for Search -->
+  <url>
+    <loc>https://advindiancoder.com/online-java-compiler</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://advindiancoder.com/adv-lab</loc>
-    <lastmod>2026-04-16</lastmod>
-    <priority>0.9</priority>
+    <loc>https://advindiancoder.com/online-python-compiler</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://advindiancoder.com/online-c-compiler</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://advindiancoder.com/online-cpp-compiler</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://advindiancoder.com/online-javascript-compiler</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- ADV Lab Dashboard -->
+  <url>
+    <loc>https://advindiancoder.com/adv-lab</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Course & Learning Pages -->
+  <url>
     <loc>https://advindiancoder.com/masterclass</loc>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://advindiancoder.com/courses</loc>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://advindiancoder.com/course/java</loc>
-    <lastmod>2026-04-16</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://advindiancoder.com/course/python</loc>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://advindiancoder.com/course/html</loc>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://advindiancoder.com/course/javascript</loc>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Supporting Pages -->
   <url>
     <loc>https://advindiancoder.com/resources</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://advindiancoder.com/community</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://advindiancoder.com/success-stories</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://advindiancoder.com/faq</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://advindiancoder.com/about</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://advindiancoder.com/contact</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://advindiancoder.com/jobs</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
