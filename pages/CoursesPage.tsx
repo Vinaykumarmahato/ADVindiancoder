@@ -40,8 +40,8 @@ const CoursesPage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="Free Courses" 
-                description="Explore 40+ free industry-grade coding courses. From Web Development (React, Node.js) to AI and Data Science. Start your career transition today."
+                title="Courses - ADV Indian Coder" 
+                description="Explore Java, DSA and programming courses designed for Indian students"
             />
             <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden">
                 {/* Background Grid */}

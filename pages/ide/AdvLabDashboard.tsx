@@ -109,8 +109,8 @@ const AdvLabDashboard = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="ADV Lab - Free Online Java, Python, C++ Compiler & IDE" 
-                description="ADV Lab is India's most powerful free browser IDE — run Java, Python, C, C++ and JavaScript code online, auto-commit to GitHub and share professional LinkedIn posts in one click."
+                title="ADV Lab - Online Code Compiler" 
+                description="Practice coding online with our free Java and programming compiler"
                 keywords="online java compiler, online python compiler, adv lab ide, github auto commit, linkedin post from code, free ide browser, adv indian coder"
                 ogType="website"
             />

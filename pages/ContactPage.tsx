@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Send, CheckCircle, AlertCircle, MessageSquare } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import ContactService from '../services/contact.service';
+import SEO from '../components/SEO';
 
 const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -39,6 +40,10 @@ const ContactPage = () => {
 
     return (
         <PageWrapper>
+            <SEO 
+                title="Contact Us - ADV Indian Coder" 
+                description="Get in touch with ADV Indian Coder for queries, support and collaborations"
+            />
             <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden flex flex-col">
                 {/* Background Grid */}
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>

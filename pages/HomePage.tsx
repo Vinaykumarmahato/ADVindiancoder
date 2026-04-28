@@ -75,8 +75,8 @@ const HomePage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="Best Job-Ready Courses in India | AI, ML, Data & Dev | ADV Indian Coder" 
-                description="Master Java, Python, AI, Machine Learning, Data Science, Software Testing & Digital Marketing with the best industry-ready cohorts. High-performance live lab, expert mentorship, and global placement support."
+                title="ADV Indian Coder - Learn Coding in Hindi" 
+                description="Best platform for Indian developers to learn Java, DSA and coding in Hindi"
                 schema={homeSchema}
             />
             <div className="bg-[#050914] text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans overflow-x-hidden">

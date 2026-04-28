@@ -36,8 +36,8 @@ const ResourcesPage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="Study Notes & Resources" 
-                description="Download high-quality handwritten and digital study notes for Java, Python, Web Development, and UPSC. The ultimate resource vault for developers and students."
+                title="Notes & Resources - ADV Indian Coder" 
+                description="Free coding notes, study material and resources for Java and DSA"
             />
             <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden">
                 {/* Background Grid */}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown, MessageSquare } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -49,6 +50,10 @@ const FaqItem = ({ question, answer }: { question: string, answer: React.ReactNo
 const FaqPage = () => {
     return (
         <PageWrapper>
+            <SEO 
+                title="FAQ - ADV Indian Coder" 
+                description="Frequently asked questions about courses, pricing and learning at ADV Indian Coder"
+            />
             <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden flex flex-col">
                 {/* Background Grid */}
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>

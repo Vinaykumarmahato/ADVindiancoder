@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
@@ -176,7 +176,7 @@ const App = () => {
         <ErrorBoundary>
             <HelmetProvider>
                 <ThemeProvider>
-                    <HashRouter>
+                    <BrowserRouter>
                         <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
                             <Header />
                             <main className="pt-20">
@@ -185,7 +185,7 @@ const App = () => {
                             <Footer />
                             <Chatbot />
                         </div>
-                    </HashRouter>
+                    </BrowserRouter>
                 </ThemeProvider>
             </HelmetProvider>
         </ErrorBoundary>

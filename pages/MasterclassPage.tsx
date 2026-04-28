@@ -4,6 +4,7 @@ import { Award, FileText, TrendingUp, ArrowLeft, CheckCircle, Upload, AlertCircl
 import EnrollmentService from '../services/enrollment.service';
 import PageWrapper from '../components/PageWrapper';
 import { MASTERCLASSES, TESTIMONIALS } from '../constants';
+import SEO from '../components/SEO';
 
 const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -93,6 +94,10 @@ const MasterclassPage = () => {
 
     return (
         <PageWrapper>
+            <SEO 
+                title="Live Masterclass - ADV Indian Coder" 
+                description="Join live coding masterclasses and learn from expert Indian developers"
+            />
             <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden">
                 {/* Background Grid */}
                 <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>

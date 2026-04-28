@@ -50,8 +50,8 @@ const JobsPage = () => {
     return (
         <PageWrapper>
             <SEO
-                title="Job Openings & Internships"
-                description="Find the latest job opportunities, software developer roles, and internships from top companies like IBM, Salesforce, and Emerson. Curated openings for the 2026 batch."
+                title="Jobs - ADV Indian Coder"
+                description="Latest job opportunities and placement support for Indian developers"
             />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 overflow-x-hidden">
                 <div className="text-center mb-12 relative overflow-hidden py-4">
