@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Search } from 'lucide-react';
+import { Sun, Moon, Menu, X, Search, Flame } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { NAV_LINKS } from '../constants';
 import { MotionDiv } from './motion';
@@ -10,7 +10,41 @@ const Header = () => {
     const { theme, toggleTheme } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [streak, setStreak] = useState(0);
     const location = useLocation();
+
+    // Load and listen for streak updates
+    useEffect(() => {
+        const updateStreak = () => {
+            const streakData = localStorage.getItem('adv_lab_streak');
+            if (streakData) {
+                try {
+                    const parsed = JSON.parse(streakData);
+                    const today = new Date();
+                    today.setHours(0,0,0,0);
+                    const lastDate = new Date(parsed.lastRunDate);
+                    lastDate.setHours(0,0,0,0);
+                    
+                    const diffTime = today.getTime() - lastDate.getTime();
+                    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+                    
+                    if (diffDays > 1) {
+                        setStreak(0);
+                    } else {
+                        setStreak(parsed.count);
+                    }
+                } catch (e) {
+                    setStreak(0);
+                }
+            } else {
+                setStreak(0);
+            }
+        };
+        
+        updateStreak();
+        window.addEventListener('adv_streak_updated', updateStreak);
+        return () => window.removeEventListener('adv_streak_updated', updateStreak);
+    }, []);
 
     // CMD+K Shortcut
     useEffect(() => {
@@ -114,6 +148,13 @@ const Header = () => {
                                 <Search className={`h-5 w-5 ${isDarkPage ? 'text-white' : 'text-gray-800 dark:text-white'}`} />
                                 <span className="hidden md:block text-xs font-mono text-gray-400 group-hover:text-white">K</span>
                             </button>
+
+                            {streak > 0 && (
+                                <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 font-bold text-xs shadow-[0_0_10px_rgba(249,115,22,0.2)]" title={`${streak} Day Streak!`} >
+                                    <Flame className="w-4 h-4 fill-current animate-pulse" />
+                                    <span>{streak}</span>
+                                </div>
+                            )}
 
                             <button
                                 onClick={toggleTheme}

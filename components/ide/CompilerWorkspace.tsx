@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Editor from '@monaco-editor/react';
-import { Play, RotateCcw, Copy, Share2, Terminal, Code2, Coffee, Zap, Award, Github, PartyPopper, CheckCircle2, ChevronDown, ChevronRight, Folder, FolderOpen, FolderPlus, FileCode, FilePlus, Plus, X, Download, Trash2, Linkedin } from 'lucide-react';
+import { Play, RotateCcw, Copy, Share2, Terminal, Code2, Coffee, Zap, Award, Github, PartyPopper, CheckCircle2, ChevronDown, ChevronRight, Folder, FolderOpen, FolderPlus, FileCode, FilePlus, Plus, X, Download, Trash2, Linkedin, Briefcase, Archive, Bot } from 'lucide-react';
+import JSZip from 'jszip';
 import { useNavigate } from 'react-router-dom';
 import PageWrapper from '../PageWrapper';
 import SEO from '../SEO';
@@ -39,12 +40,20 @@ const LANGUAGES = [
     { id: 'javascript', name: 'JavaScript', icon: Zap, color: 'text-yellow-300', version: '1.32.3' },
 ];
 
+interface ProjectData {
+    id: string;
+    name: string;
+    language: string;
+    lastModified: number;
+}
+
 interface FileData {
     id: string;
     name: string;
     content: string;
     language: string;
     folderId?: string | null;
+    projectId?: string | null;
 }
 
 interface FolderData {
@@ -52,6 +61,7 @@ interface FolderData {
     name: string;
     language: string;
     isOpen: boolean;
+    projectId?: string | null;
 }
 
 interface PlaygroundProps {
@@ -62,15 +72,23 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
     const navigate = useNavigate();
     
     
+    const [projects, setProjects] = useState<ProjectData[]>([]);
+    const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
+    const [isProjectDropdownOpen, setIsProjectDropdownOpen] = useState(false);
+    const [isCreatingProject, setIsCreatingProject] = useState(false);
+    const [newProjectName, setNewProjectName] = useState('');
+
     const [files, setFiles] = useState<FileData[]>([]);
     const [folders, setFolders] = useState<FolderData[]>([]);
     const [activeFileId, setActiveFileId] = useState<string | null>(null);
+    const [openTabIds, setOpenTabIds] = useState<string[]>([]); // VS Code-style open tabs
     const [isCreatingFile, setIsCreatingFile] = useState(false);
     const [newFileName, setNewFileName] = useState('');
     const [activeFolderId, setActiveFolderId] = useState<string | null>(null); // which folder new file goes into
     const [isCreatingFolder, setIsCreatingFolder] = useState(false);
     const [newFolderName, setNewFolderName] = useState('');
 
+    const isLoaded = useRef(false);
     const activeFileIdRef = useRef<string | null>(null);
 
     const [code, setCode] = useState(BOILERPLATE['java']);
@@ -80,17 +98,75 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
     const [executionTime, setExecutionTime] = useState<number | null>(null);
     const editorRef = useRef<any>(null);
 
+    const [sidebarWidth, setSidebarWidth] = useState(250);
+    const [terminalWidth, setTerminalWidth] = useState(400);
+    const [isDraggingSidebar, setIsDraggingSidebar] = useState(false);
+    const [isDraggingTerminal, setIsDraggingTerminal] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(true);
+
     const [githubRepoUrl, setGithubRepoUrl] = useState('');
     const [popup, setPopup] = useState<{ title: string, msg: string, type: 'success' | 'error' | 'warning', showGithubInput?: boolean, action?: { label: string, onClick: () => void } } | null>(null);
 
+    // Track screen size for resizable behavior
     useEffect(() => {
-        activeFileIdRef.current = activeFileId;
-    }, [activeFileId]);
+        const checkSize = () => setIsDesktop(window.innerWidth >= 1024);
+        checkSize();
+        window.addEventListener('resize', checkSize);
+        return () => window.removeEventListener('resize', checkSize);
+    }, []);
 
-    // Single init effect — load from localStorage first, then initialize the language file
+    // Dragging Listeners
     useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (isDraggingSidebar) {
+                const newWidth = e.clientX;
+                if (newWidth > 180 && newWidth < 400) {
+                    setSidebarWidth(newWidth);
+                }
+            } else if (isDraggingTerminal) {
+                const newWidth = window.innerWidth - e.clientX;
+                if (newWidth > 250 && newWidth < 600) {
+                    setTerminalWidth(newWidth);
+                }
+            }
+        };
+
+        const handleMouseUp = () => {
+            setIsDraggingSidebar(false);
+            setIsDraggingTerminal(false);
+        };
+
+        if (isDraggingSidebar || isDraggingTerminal) {
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isDraggingSidebar, isDraggingTerminal]);
+
+    const selectFile = (id: string | null) => {
+        setActiveFileId(id);
+        activeFileIdRef.current = id;
+    };
+
+    // Initialization effect
+    useEffect(() => {
+        let loadedProjects: ProjectData[] = [];
+        const savedProjects = localStorage.getItem('adv_lab_projects');
+        if (savedProjects) {
+            try { loadedProjects = JSON.parse(savedProjects); } catch (e) {}
+        }
+        
+        let loadedFolders: FolderData[] = [];
+        const savedFolders = localStorage.getItem('adv_lab_folders');
+        if (savedFolders) {
+            try { loadedFolders = JSON.parse(savedFolders); } catch(e) {}
+        }
+
         let loadedFiles: FileData[] = [];
-
         const savedFiles = localStorage.getItem('adv_lab_files');
         if (savedFiles) {
             try {
@@ -104,77 +180,199 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         const savedRepo = localStorage.getItem('adv_repo');
         if (savedRepo) setGithubRepoUrl(savedRepo);
 
-        // Remove any duplicate names for this language before loading
+        // Project logic
+        let currentProjects = loadedProjects.filter(p => p.language === language);
+        let currentProjectId: string | null = null;
+        
+        if (currentProjects.length === 0) {
+            const defaultProject = { id: 'default_' + language + '_' + Date.now(), name: 'Default Project', language, lastModified: Date.now() };
+            loadedProjects.push(defaultProject);
+            currentProjects = [defaultProject];
+            currentProjectId = defaultProject.id;
+            localStorage.setItem('adv_lab_projects', JSON.stringify(loadedProjects));
+        } else {
+            currentProjectId = currentProjects[0].id;
+        }
+        setProjects(loadedProjects);
+        setActiveProjectId(currentProjectId);
+
+        // Migrate old files and folders to the default project if they don't have one
+        let filesMigrated = false;
+        loadedFiles = loadedFiles.map(f => {
+            if (f.language === language && !f.projectId) {
+                filesMigrated = true;
+                return { ...f, projectId: currentProjectId };
+            }
+            return f;
+        });
+        
+        let foldersMigrated = false;
+        loadedFolders = loadedFolders.map(f => {
+            if (f.language === language && !f.projectId) {
+                foldersMigrated = true;
+                return { ...f, projectId: currentProjectId };
+            }
+            return f;
+        });
+
+        if (foldersMigrated) {
+            localStorage.setItem('adv_lab_folders', JSON.stringify(loadedFolders));
+        }
+        setFolders(loadedFolders);
+
+        // Remove duplicates
         const seen = new Set<string>();
         const deduped = loadedFiles.filter(f => {
-            const key = `${f.language}::${f.name}`;
+            const key = `${f.language}::${f.projectId}::${f.folderId}::${f.name}`;
             if (seen.has(key)) return false;
             seen.add(key);
             return true;
         });
 
-        const langFiles = deduped.filter(f => f.language === language);
+        if (filesMigrated || deduped.length !== loadedFiles.length) {
+            localStorage.setItem('adv_lab_files', JSON.stringify(deduped));
+        }
 
-        if (langFiles.length > 0) {
-            // Language already has files — just open the first one
-            setFiles(deduped);
-            const fileToOpen = langFiles[0];
-            setActiveFileId(fileToOpen.id);
+        const projectFiles = deduped.filter(f => f.language === language && f.projectId === currentProjectId);
+
+        setFiles(deduped);
+        if (projectFiles.length > 0) {
+            const fileToOpen = projectFiles[0];
+            selectFile(fileToOpen.id);
+            setOpenTabIds([fileToOpen.id]); // Only first file in tab on load — others open on click
             setCode(fileToOpen.content);
-        } else {
-            // No files for this language yet — create the default one
-            const defaultName = language === 'java' ? 'Main.java'
-                : `main.${language === 'python' ? 'py' : language === 'javascript' ? 'js' : language === 'cpp' ? 'cpp' : 'c'}`;
-
+        } else if (!localStorage.getItem(`adv_lab_init_${language}`)) {
+            const defaultName = language === 'java' ? 'Main.java' : `main.${language === 'python' ? 'py' : language === 'javascript' ? 'js' : language === 'cpp' ? 'cpp' : 'c'}`;
             const newFile: FileData = {
                 id: Date.now().toString(),
                 name: defaultName,
                 language,
                 content: BOILERPLATE[language],
+                projectId: currentProjectId
             };
-            const merged = [...deduped, newFile];
-            setFiles(merged);
-            setActiveFileId(newFile.id);
+            setFiles(prev => [...prev, newFile]);
+            selectFile(newFile.id);
+            setOpenTabIds([newFile.id]);
             setCode(newFile.content);
+            localStorage.setItem(`adv_lab_init_${language}`, 'true');
+        } else {
+            selectFile(null);
+            setOpenTabIds([]);
+            setCode('');
         }
         setOutput('');
         setExecutionTime(null);
-    }, []); // ← runs ONCE on mount only
+        setTimeout(() => { isLoaded.current = true; }, 100);
+    }, [language]);
+
+    useEffect(() => {
+        if (isLoaded.current) {
+            localStorage.setItem('adv_lab_folders', JSON.stringify(folders));
+        }
+    }, [folders]);
 
     // Persist files to localStorage whenever they change
     useEffect(() => {
-        if (files.length > 0) {
+        if (isLoaded.current) {
             localStorage.setItem('adv_lab_files', JSON.stringify(files));
         }
     }, [files]);
+
+    const resolveFileName = (rawName: string, lang: string) => {
+        let baseName = rawName.trim();
+        const exts: Record<string, string> = { java: '.java', python: '.py', c: '.c', cpp: '.cpp', javascript: '.js' };
+        const ext = exts[lang] || '';
+        
+        if (baseName.endsWith(ext)) baseName = baseName.slice(0, -ext.length);
+        if (lang === 'java' && baseName.endsWith('.java')) baseName = baseName.slice(0, -5);
+
+        baseName = baseName.replace(/[^a-zA-Z0-9_]/g, '_');
+
+        if (lang === 'java') {
+            if (/^[0-9]/.test(baseName)) baseName = 'Class_' + baseName;
+            if (baseName.length > 0) baseName = baseName.charAt(0).toUpperCase() + baseName.slice(1);
+            else baseName = 'Main';
+            return baseName + '.java';
+        } else {
+            if (baseName.length === 0) baseName = 'file';
+            return baseName + ext;
+        }
+    };
 
     const handleCreateFile = (e: React.FormEvent) => {
         e.preventDefault();
         if (!newFileName.trim()) return;
         
-        let finalName = newFileName.trim();
-        const exts: Record<string, string> = { java: '.java', python: '.py', c: '.c', cpp: '.cpp', javascript: '.js' };
-        const ext = exts[language];
-        
-        if (language === 'java') {
-            finalName = finalName.charAt(0).toUpperCase() + finalName.slice(1);
-            if (!finalName.endsWith('.java')) finalName += '.java';
-        } else if (!finalName.endsWith(ext)) {
-            finalName += ext;
-        }
+        const finalName = resolveFileName(newFileName, language);
 
         // Duplicate check scoped to same folder context
-        if (files.some(f => f.name === finalName && f.language === language && (f.folderId ?? null) === (activeFolderId ?? null))) {
+        if (files.some(f => f.name === finalName && f.language === language && f.projectId === activeProjectId && (f.folderId ?? null) === (activeFolderId ?? null))) {
             setPopup({ title: "File Exists", msg: "A file with this name already exists in this location.", type: 'error' });
             return;
         }
 
         let defaultContent = '';
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+
         if (language === 'java') {
             const className = finalName.replace('.java', '');
-            defaultContent = `public class ${className} {\n    public static void main(String[] args) {\n        System.out.println("Hello from ${className}!");\n    }\n}`;
+            defaultContent = [
+                `/**`,
+                ` * Class: ${className}`,
+                ` * Author: ADV Lab`,
+                ` * Date: ${dateStr}`,
+                ` * Description: Write your description here`,
+                ` */`,
+                `public class ${className} {`,
+                ``,
+                `    public static void main(String[] args) {`,
+                `        // TODO: Write your code here`,
+                `        System.out.println("Hello from ${className}!");`,
+                `    }`,
+                ``,
+                `}`
+            ].join('\n');
+        } else if (language === 'python') {
+            defaultContent = [
+                `# File: ${finalName}`,
+                `# Author: ADV Lab`,
+                `# Date: ${dateStr}`,
+                `# Description: Write your description here`,
+                ``,
+                `# TODO: Write your code here`,
+                `print("Hello from ${finalName}!")`,
+            ].join('\n');
+        } else if (language === 'javascript') {
+            defaultContent = [
+                `/**`,
+                ` * File: ${finalName}`,
+                ` * Author: ADV Lab`,
+                ` * Date: ${dateStr}`,
+                ` * Description: Write your description here`,
+                ` */`,
+                ``,
+                `// TODO: Write your code here`,
+                `console.log("Hello from ${finalName}!");`,
+            ].join('\n');
         } else {
-            defaultContent = `// ${finalName}\n\n`;
+            // C / C++
+            defaultContent = [
+                `/**`,
+                ` * File: ${finalName}`,
+                ` * Author: ADV Lab`,
+                ` * Date: ${dateStr}`,
+                ` * Description: Write your description here`,
+                ` */`,
+                ``,
+                `#include <stdio.h>`,
+                ``,
+                `int main() {`,
+                `    // TODO: Write your code here`,
+                `    printf("Hello from ${finalName}!\\n");`,
+                `    return 0;`,
+                `}`,
+            ].join('\n');
         }
 
         const newFile: FileData = {
@@ -183,10 +381,12 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
             language,
             content: defaultContent,
             folderId: activeFolderId ?? null,
+            projectId: activeProjectId,
         };
 
         setFiles(prev => [...prev, newFile]);
-        setActiveFileId(newFile.id);
+        selectFile(newFile.id);
+        setOpenTabIds(prev => prev.includes(newFile.id) ? prev : [...prev, newFile.id]);
         setCode(defaultContent);
         if (editorRef.current) editorRef.current.setValue(defaultContent);
         setIsCreatingFile(false);
@@ -195,10 +395,13 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
     };
 
     const handleFileClick = (file: FileData) => {
-        setActiveFileId(file.id);
-        setCode(file.content);
+        selectFile(file.id);
+        const freshFile = files.find(f => f.id === file.id);
+        const contentToLoad = freshFile ? freshFile.content : file.content;
+        setCode(contentToLoad);
+        setOpenTabIds(prev => prev.includes(file.id) ? prev : [...prev, file.id]);
         if (editorRef.current) {
-            editorRef.current.setValue(file.content);
+            editorRef.current.setValue(contentToLoad);
         }
     };
 
@@ -269,6 +472,193 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         window.open(linkedInUrl, '_blank');
     };
 
+    const downloadProjectAsZip = async (silent?: boolean) => {
+        if (!activeProjectId) return;
+        const project = projects.find(p => p.id === activeProjectId);
+        const projectName = project ? project.name.replace(/\s+/g, '_') : 'ADV_Lab_Project';
+        
+        const zip = new JSZip();
+        const projectFiles = files.filter(f => f.language === language && f.projectId === activeProjectId);
+        const projectFolders = folders.filter(f => f.language === language && f.projectId === activeProjectId);
+        
+        projectFiles.forEach(file => {
+            if (file.folderId) {
+                const folder = projectFolders.find(f => f.id === file.folderId);
+                if (folder) {
+                    zip.folder(folder.name)?.file(file.name, file.content);
+                } else {
+                    zip.file(file.name, file.content);
+                }
+            } else {
+                zip.file(file.name, file.content);
+            }
+        });
+        
+        const blob = await zip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${projectName}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        if (!silent) {
+            setPopup({
+                title: "Project Downloaded! 📦",
+                msg: `Your entire project '${project?.name || projectName}' has been saved as a ZIP file.`,
+                type: 'success'
+            });
+        }
+    };
+
+    const downloadFolderAsZip = async (e: React.MouseEvent, folder: FolderData, silent?: boolean) => {
+        e.stopPropagation();
+        const zip = new JSZip();
+        const folderFiles = files.filter(f => f.language === language && f.projectId === activeProjectId && f.folderId === folder.id);
+        
+        if (folderFiles.length === 0) {
+            setPopup({
+                title: "Folder is empty",
+                msg: "There are no files to download in this folder.",
+                type: 'warning'
+            });
+            return;
+        }
+
+        folderFiles.forEach(file => {
+            zip.file(file.name, file.content);
+        });
+        
+        const blob = await zip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${folder.name.replace(/\s+/g, '_')}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        if (!silent) {
+            setPopup({
+                title: "Folder Downloaded! 📦",
+                msg: `Folder '${folder.name}' has been saved as a ZIP file.`,
+                type: 'success'
+            });
+        }
+    };
+
+    const openGithubFolderShare = (e: React.MouseEvent, folder: FolderData) => {
+        e.stopPropagation();
+        setPopup({
+            title: "Upload Folder to GitHub",
+            msg: "Enter your GitHub Repository URL. We will download your folder as a ZIP file, then open GitHub where you can drag & drop it to upload!",
+            type: 'success',
+            showGithubInput: true,
+            action: {
+                label: "Download & Open GitHub",
+                onClick: async () => {
+                    const url = localStorage.getItem('adv_repo') || githubRepoUrl;
+                    if (!url) {
+                        setPopup({ title: "Wait!", msg: "Please enter a valid GitHub Repository URL.", type: 'warning' });
+                        return;
+                    }
+                    
+                    await downloadFolderAsZip(e, folder, true);
+                    
+                    const baseUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+                    window.open(`${baseUrl}/upload/main`, '_blank');
+                    
+                    setPopup({
+                        title: "Ready to Upload! 🚀",
+                        msg: `The file '${folder.name}.zip' is downloaded.\n\n⚠️ IMPORTANT: First EXTRACT (Unzip) this file on your computer, then drag & drop the extracted folder onto the GitHub page.`,
+                        type: 'success'
+                    });
+                }
+            }
+        });
+    };
+
+    const openGithubProjectShare = () => {
+        setPopup({
+            title: "Upload Project to GitHub",
+            msg: "Enter your GitHub Repository URL. We will download your entire project as a ZIP file, then open GitHub where you can drag & drop it to upload!",
+            type: 'success',
+            showGithubInput: true,
+            action: {
+                label: "Download & Open GitHub",
+                onClick: async () => {
+                    const url = localStorage.getItem('adv_repo') || githubRepoUrl;
+                    if (!url) {
+                        setPopup({ title: "Wait!", msg: "Please enter a valid GitHub Repository URL.", type: 'warning' });
+                        return;
+                    }
+                    
+                    await downloadProjectAsZip(true);
+                    
+                    const baseUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+                    window.open(`${baseUrl}/upload/main`, '_blank');
+                    
+                    setPopup({
+                        title: "Ready to Upload! 🚀",
+                        msg: `Your project ZIP is downloaded.\n\n⚠️ IMPORTANT: First EXTRACT (Unzip) this file on your computer, then drag & drop the extracted folder onto the GitHub page.`,
+                        type: 'success'
+                    });
+                }
+            }
+        });
+    };
+
+    const handleDeleteProject = (e: React.MouseEvent, projectId: string) => {
+        e.stopPropagation();
+        const project = projects.find(p => p.id === projectId);
+        if (!project) return;
+
+        setPopup({
+            title: "Delete Project?",
+            msg: `Are you sure you want to delete '${project.name}'? All files and folders inside it will be permanently deleted.`,
+            type: 'warning',
+            action: {
+                label: "Yes, Delete Project",
+                onClick: () => {
+                    const newProjects = projects.filter(p => p.id !== projectId);
+                    setProjects(newProjects);
+                    localStorage.setItem('adv_lab_projects', JSON.stringify(newProjects));
+                    
+                    const newFolders = folders.filter(f => f.projectId !== projectId);
+                    setFolders(newFolders);
+                    localStorage.setItem('adv_lab_folders', JSON.stringify(newFolders));
+                    
+                    const newFiles = files.filter(f => f.projectId !== projectId);
+                    setFiles(newFiles);
+                    localStorage.setItem('adv_lab_files', JSON.stringify(newFiles));
+                    
+                    if (activeProjectId === projectId) {
+                        const remainingProjects = newProjects.filter(p => p.language === language);
+                        if (remainingProjects.length > 0) {
+                            setActiveProjectId(remainingProjects[0].id);
+                            const projFiles = newFiles.filter(f => f.projectId === remainingProjects[0].id);
+                            if (projFiles.length > 0) {
+                                setActiveFileId(projFiles[0].id);
+                                setCode(projFiles[0].content);
+                            } else {
+                                setActiveFileId(null);
+                                setCode('');
+                            }
+                        } else {
+                            setActiveProjectId(null);
+                            setActiveFileId(null);
+                            setCode('');
+                        }
+                    }
+                    setPopup(null);
+                }
+            }
+        });
+    };
+
     const handleDeleteFile = (e: React.MouseEvent, fileId: string) => {
         e.stopPropagation();
         setPopup({
@@ -281,7 +671,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                     setFiles(prev => {
                         const newFiles = prev.filter(f => f.id !== fileId);
                         if (activeFileId === fileId) {
-                            const nextFile = newFiles.find(f => f.language === language);
+                            const nextFile = newFiles.find(f => f.language === language && f.projectId === activeProjectId);
                             setActiveFileId(nextFile ? nextFile.id : null);
                             const nextContent = nextFile ? nextFile.content : '';
                             setCode(nextContent);
@@ -314,50 +704,54 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         const startTime = performance.now();
 
         try {
+            if (!activeFileId) {
+                setOutput('❌ No active file selected. Please select or create a file to run.');
+                setIsLoading(false);
+                return;
+            }
+
             const currentCode = editorRef.current ? editorRef.current.getValue() : code;
             let finalCode = currentCode;
 
             if (language === 'java') {
-                const skipRegex = /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|\/\/.*|\/\*[\s\S]*?\*\/)/;
-                
+                // Simple single-file execution — only active file runs
+                // Strip package declaration (Judge0 doesn't need it)
+                finalCode = finalCode.replace(/^\s*package\s+[\w.]+\s*;/gm, '').trim();
+
+                // Guard regex: matches string literals, char literals, line comments, block comments
+                // so we skip renaming inside them
+                const skipPattern = `("(?:[^"\\\\]|\\\\.)*"|'(?:[^'\\\\]|\\\\.)*'|\\/\\/[^\\n]*|\\/\\*[\\s\\S]*?\\*\\/)`;
+
+                // Helper: safely replace only identifier occurrences (not inside strings/comments)
+                const safeRename = (src: string, from: string, to: string) => {
+                    const regex = new RegExp(`${skipPattern}|\\b${from}\\b`, 'g');
+                    return src.replace(regex, (match: string, skip: string) => skip ? match : to);
+                };
+
+                // Rename the public/first class to "Main" so Judge0 can compile it
                 const publicClassMatch = finalCode.match(/public\s+class\s+(\w+)/);
-                if (publicClassMatch) {
-                    const className = publicClassMatch[1];
-                    if (className !== 'Main') {
-                        const combinedRegex = new RegExp(`${skipRegex.source}|\\b${className}\\b`, 'g');
-                        finalCode = finalCode.replace(combinedRegex, (match: string, p1: string) => {
-                            return p1 ? match : 'Main';
-                        });
-                    }
-                } else {
+                if (publicClassMatch && publicClassMatch[1] !== 'Main') {
+                    finalCode = safeRename(finalCode, publicClassMatch[1], 'Main');
+                } else if (!publicClassMatch) {
                     const firstClassMatch = finalCode.match(/class\s+(\w+)/);
-                    if (firstClassMatch) {
-                        const className = firstClassMatch[1];
-                        if (className !== 'Main') {
-                            const combinedRegex = new RegExp(`${skipRegex.source}|\\b${className}\\b`, 'g');
-                            finalCode = finalCode.replace(combinedRegex, (match: string, p1: string) => {
-                                return p1 ? match : 'Main';
-                            });
-                        }
-                        finalCode = finalCode.replace(/\bclass\s+Main\b/, 'public class Main');
+                    if (firstClassMatch && firstClassMatch[1] !== 'Main') {
+                        finalCode = safeRename(finalCode, firstClassMatch[1], 'Main');
                     }
+                    finalCode = finalCode.replace(/\bclass\s+Main\b/, 'public class Main');
                 }
 
+                // Auto-add Scanner import if needed
                 if (finalCode.includes('Scanner') && !finalCode.includes('import java.util.Scanner')) {
-                    if (finalCode.match(/^\s*package\s+[a-zA-Z_][a-zA-Z0-9_.]*\s*;/m)) {
-                        finalCode = finalCode.replace(/^(\s*package\s+[a-zA-Z_][a-zA-Z0-9_.]*\s*;)/m, '$1\nimport java.util.Scanner;');
-                    } else {
-                        finalCode = 'import java.util.Scanner;\n' + finalCode;
-                    }
+                    finalCode = 'import java.util.Scanner;\n' + finalCode;
                 }
 
+                // Ensure main method exists
                 if (!finalCode.includes('public static void main')) {
-                    const lastBraceIndex = finalCode.lastIndexOf('}');
-                    if (lastBraceIndex !== -1) {
-                        const errorMsg = `Error: Main method not found in class Main, please define the main method as:\n   public static void main(String[] args)`;
-                        finalCode = finalCode.slice(0, lastBraceIndex) + 
-                            `\n    public static void main(String[] args) {\n        System.out.println("${errorMsg}");\n    }\n` + 
-                            finalCode.slice(lastBraceIndex);
+                    const lastBrace = finalCode.lastIndexOf('}');
+                    if (lastBrace !== -1) {
+                        finalCode = finalCode.slice(0, lastBrace) +
+                            `\n    public static void main(String[] args) {\n        System.out.println("Error: main method not found. Please define: public static void main(String[] args)");\n    }\n` +
+                            finalCode.slice(lastBrace);
                     }
                 }
             }
@@ -408,6 +802,60 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
 
             if (statusId === 3) {
                 setOutput(outText.trim() || '✅ Code executed successfully (no output).');
+                try {
+                    const streakData = localStorage.getItem('adv_lab_streak');
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    
+                    let count = 1;
+                    if (streakData) {
+                        try {
+                            const parsed = JSON.parse(streakData);
+                            const lastDate = new Date(parsed.lastRunDate);
+                            lastDate.setHours(0, 0, 0, 0);
+
+                            const diffTime = today.getTime() - lastDate.getTime();
+                            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                            if (diffDays === 0) {
+                                // Already recorded for today! No update needed.
+                                return;
+                            } else if (diffDays === 1) {
+                                // Perfect streak!
+                                count = parsed.count + 1;
+                            } else {
+                                // Missed days, streak broken.
+                                count = 1;
+                            }
+
+                            localStorage.setItem('adv_lab_streak', JSON.stringify({ count, lastRunDate: today.getTime() }));
+                            window.dispatchEvent(new Event('adv_streak_updated'));
+                            
+                            setTimeout(() => {
+                                setPopup({
+                                    title: `🔥 ${count} Day Streak!`,
+                                    msg: "Amazing job! You ran code today. Keep this streak alive tomorrow!",
+                                    type: 'success'
+                                });
+                            }, 1000);
+                        } catch (e) {
+                            // Fallback if parsing fails
+                            localStorage.setItem('adv_lab_streak', JSON.stringify({ count: 1, lastRunDate: today.getTime() }));
+                            window.dispatchEvent(new Event('adv_streak_updated'));
+                        }
+                    } else {
+                        // First time ever
+                        localStorage.setItem('adv_lab_streak', JSON.stringify({ count: 1, lastRunDate: today.getTime() }));
+                        window.dispatchEvent(new Event('adv_streak_updated'));
+                        setTimeout(() => {
+                            setPopup({
+                                title: `🔥 1 Day Streak!`,
+                                msg: "Amazing job! You started your streak today. Keep it alive tomorrow!",
+                                type: 'success'
+                            });
+                        }, 1000);
+                    }
+                } catch(e) {}
             } else if (statusId === 6) {
                 setOutput(`❌ Compilation Error:\n${compText || msgText}`);
             } else if (statusId === 5) {
@@ -622,10 +1070,12 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                                         id: Date.now().toString(),
                                                                         name: validName,
                                                                         language,
-                                                                        content: tmpl
+                                                                        content: tmpl,
+                                                                        projectId: activeProjectId
                                                                     };
                                                                     setFiles(prev => [...prev, newFile]);
-                                                                    setActiveFileId(newFile.id);
+                                                                    selectFile(newFile.id);
+                                                                    setOpenTabIds(prev => prev.includes(newFile.id) ? prev : [...prev, newFile.id]);
                                                                     setCode(tmpl);
                                                                     if (editorRef.current) {
                                                                         editorRef.current.setValue(tmpl);
@@ -681,11 +1131,95 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                             </div>
                         </div>
 
-                        <div className="flex-1 px-3 md:px-4 pb-4 overflow-y-auto md:overflow-hidden">
-                            <div className="max-w-[1700px] mx-auto h-full grid grid-cols-1 lg:grid-cols-12 gap-4 min-h-[80vh]">
+                        <div className="flex-1 px-3 md:px-4 pb-4 md:overflow-hidden flex flex-col">
+                            <div className={`max-w-[1700px] w-full mx-auto flex flex-col lg:flex-row gap-2 h-auto lg:h-[calc(100vh-160px)] min-h-[500px] items-stretch ${(isDraggingSidebar || isDraggingTerminal) ? 'select-none' : ''}`}>
                                 
                                 {/* Explorer Sidebar */}
-                                <div className="lg:col-span-2 bg-[#1e1e1e]/90 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-[2rem] flex flex-col overflow-hidden shadow-2xl h-[400px] md:h-full">
+                                <div 
+                                    style={{ width: isDesktop ? `${sidebarWidth}px` : '100%' }}
+                                    className="lg:shrink-0 bg-[#1e1e1e]/90 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-[2rem] flex flex-col overflow-hidden shadow-2xl h-[400px] md:h-full"
+                                >
+                                    
+                                    {/* Project Selector */}
+                                    <div className="px-3 py-3 border-b border-white/10 bg-black/60 relative">
+                                        <div className="text-[10px] font-black uppercase text-gray-500 mb-2 flex justify-between items-center">
+                                            <span>Active Project</span>
+                                            <div className="flex items-center gap-1">
+                                                <button onClick={() => downloadProjectAsZip(false)} className="hover:text-white transition-colors" title="Download Project (ZIP)"><Download className="w-3.5 h-3.5"/></button>
+                                                <button onClick={openGithubProjectShare} className="hover:text-white transition-colors" title="Upload Project to GitHub"><Github className="w-3.5 h-3.5"/></button>
+                                                <button onClick={() => { setIsCreatingProject(true); setIsProjectDropdownOpen(false); setNewProjectName(''); }} className="hover:text-white transition-colors ml-1" title="New Project"><Plus className="w-3.5 h-3.5"/></button>
+                                            </div>
+                                        </div>
+                                        {isCreatingProject ? (
+                                            <form onSubmit={(e) => {
+                                                e.preventDefault();
+                                                const name = newProjectName.trim();
+                                                if (!name) { setIsCreatingProject(false); return; }
+                                                const newProject: ProjectData = { id: 'proj_' + Date.now(), name, language, lastModified: Date.now() };
+                                                const newProjects = [...projects, newProject];
+                                                setProjects(newProjects);
+                                                localStorage.setItem('adv_lab_projects', JSON.stringify(newProjects));
+                                                setActiveProjectId(newProject.id);
+                                                
+                                                const defaultName = language === 'java' ? 'Main.java' : `main.${language === 'python' ? 'py' : language === 'javascript' ? 'js' : language === 'cpp' ? 'cpp' : 'c'}`;
+                                                const newFile: FileData = { id: Date.now().toString(), name: defaultName, language, content: BOILERPLATE[language], projectId: newProject.id };
+                                                setFiles(prev => [...prev, newFile]);
+                                                setActiveFileId(newFile.id);
+                                                setOpenTabIds(prev => prev.includes(newFile.id) ? prev : [...prev, newFile.id]);
+                                                setCode(BOILERPLATE[language]);
+                                                
+                                                setIsCreatingProject(false);
+                                                setNewProjectName('');
+                                            }} className="flex items-center gap-2 bg-black/40 p-1.5 rounded border border-blue-500/50">
+                                                <Briefcase className="w-3.5 h-3.5 text-blue-400 shrink-0"/>
+                                                <input id="projectName" name="projectName" autoFocus value={newProjectName} onChange={e => setNewProjectName(e.target.value)} onBlur={() => {if(!newProjectName) setIsCreatingProject(false);}} className="bg-transparent text-xs text-white w-full outline-none" placeholder="Project name..."/>
+                                            </form>
+                                        ) : (
+                                            <button onClick={() => setIsProjectDropdownOpen(!isProjectDropdownOpen)} className="w-full flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-2 py-1.5 text-xs text-white transition-colors">
+                                                <div className="flex items-center gap-2 overflow-hidden">
+                                                    <Briefcase className="w-3.5 h-3.5 text-blue-400 shrink-0"/>
+                                                    <span className="truncate">{projects.find(p => p.id === activeProjectId)?.name || 'Select Project'}</span>
+                                                </div>
+                                                <ChevronDown className="w-3.5 h-3.5 text-gray-400"/>
+                                            </button>
+                                        )}
+                                        
+                                        {isProjectDropdownOpen && (
+                                            <>
+                                                <div className="fixed inset-0 z-40" onClick={() => setIsProjectDropdownOpen(false)}></div>
+                                                <div className="absolute top-full left-0 right-0 mt-1 bg-[#1e1e1e] border border-white/10 rounded-lg shadow-xl z-50 py-1 max-h-40 overflow-y-auto custom-scrollbar">
+                                                    {projects.filter(p => p.language === language).map(p => (
+                                                        <div key={p.id} className="w-full flex items-center hover:bg-white/5 group px-1 rounded-md">
+                                                            <button onClick={() => {
+                                                                setActiveProjectId(p.id);
+                                                                setIsProjectDropdownOpen(false);
+                                                                const projectFiles = files.filter(f => f.projectId === p.id);
+                                                                if (projectFiles.length > 0) {
+                                                                    selectFile(projectFiles[0].id);
+                                                                    setCode(projectFiles[0].content);
+                                                                    if (editorRef.current) editorRef.current.setValue(projectFiles[0].content);
+                                                                } else {
+                                                                    setCode('');
+                                                                    selectFile(null);
+                                                                }
+                                                            }} className="flex-1 text-left px-2 py-1.5 text-xs text-gray-300 group-hover:text-white flex justify-between items-center">
+                                                                <span className="truncate pr-2">{p.name}</span>
+                                                                {p.id === activeProjectId && <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 self-center"></div>}
+                                                            </button>
+                                                            <button 
+                                                                onClick={(e) => handleDeleteProject(e, p.id)}
+                                                                className="opacity-0 group-hover:opacity-100 p-1.5 text-red-500/70 hover:text-red-400 hover:bg-red-500/20 rounded transition-all shrink-0 mr-1"
+                                                                title="Delete Project"
+                                                            >
+                                                                <Trash2 className="w-3.5 h-3.5" />
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+
                                     <div className="px-3 py-2.5 border-b border-white/10 flex items-center justify-between bg-black/40">
                                         <span className="text-xs font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
                                             <Folder className="w-4 h-4 text-yellow-500" />
@@ -726,9 +1260,9 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                     e.preventDefault();
                                                     const name = newFolderName.trim();
                                                     if (!name) { setIsCreatingFolder(false); return; }
-                                                    const isDup = folders.some(f => f.name === name && f.language === language);
+                                                    const isDup = folders.some(f => f.name === name && f.language === language && f.projectId === activeProjectId);
                                                     if (isDup) return;
-                                                    const newFolder: FolderData = { id: Date.now().toString(), name, language, isOpen: true };
+                                                    const newFolder: FolderData = { id: Date.now().toString(), name, language, isOpen: true, projectId: activeProjectId };
                                                     setFolders(prev => [...prev, newFolder]);
                                                     setIsCreatingFolder(false);
                                                     setNewFolderName('');
@@ -737,6 +1271,8 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                             >
                                                 <Folder className="w-4 h-4 text-yellow-400 shrink-0" />
                                                 <input
+                                                    id="folderName"
+                                                    name="folderName"
                                                     autoFocus
                                                     value={newFolderName}
                                                     onChange={e => setNewFolderName(e.target.value)}
@@ -749,17 +1285,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
 
                                         {/* ── New File Input (root level only — no open folder) ── */}
                                         {isCreatingFile && !activeFolderId && (() => {
-                                            let resolvedName = newFileName.trim();
-                                            const exts: Record<string, string> = { java: '.java', python: '.py', c: '.c', cpp: '.cpp', javascript: '.js' };
-                                            const ext = exts[language];
-                                            if (resolvedName) {
-                                                if (language === 'java') {
-                                                    resolvedName = resolvedName.charAt(0).toUpperCase() + resolvedName.slice(1);
-                                                    if (!resolvedName.endsWith('.java')) resolvedName += '.java';
-                                                } else if (!resolvedName.endsWith(ext)) {
-                                                    resolvedName += ext;
-                                                }
-                                            }
+                                            const resolvedName = newFileName.trim() ? resolveFileName(newFileName, language) : '';
                                             const isDuplicate = !!resolvedName && files.some(f => f.name === resolvedName && f.language === language && (f.folderId ?? null) === null);
                                             return (
                                                 <div className="flex flex-col gap-1 mb-1">
@@ -769,6 +1295,8 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                     >
                                                         <FileCode className={`w-4 h-4 shrink-0 ${isDuplicate ? 'text-red-400' : 'text-blue-400'}`} />
                                                         <input
+                                                            id="newFileName"
+                                                            name="newFileName"
                                                             autoFocus
                                                             value={newFileName}
                                                             onChange={e => setNewFileName(e.target.value)}
@@ -787,7 +1315,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                         })()}
 
                                         {/* ── Folders with files inside ── */}
-                                        {folders.filter(fo => fo.language === language).map(folder => (
+                                        {folders.filter(fo => fo.language === language && fo.projectId === activeProjectId).map(folder => (
                                             <div key={folder.id}>
                                                 {/* Folder row — clicking toggles open/close AND selects it */}
                                                 <div
@@ -825,6 +1353,20 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                             <FilePlus className="w-3.5 h-3.5" />
                                                         </button>
                                                         <button
+                                                            onClick={(e) => downloadFolderAsZip(e, folder)}
+                                                            className="p-1 hover:bg-blue-500/20 rounded text-blue-400 transition-all"
+                                                            title="Download Folder (ZIP)"
+                                                        >
+                                                            <Download className="w-3 h-3" />
+                                                        </button>
+                                                        <button
+                                                            onClick={(e) => openGithubFolderShare(e, folder)}
+                                                            className="p-1 hover:bg-white/10 rounded text-gray-400 hover:text-white transition-all"
+                                                            title="Upload Folder to GitHub"
+                                                        >
+                                                            <Github className="w-3 h-3" />
+                                                        </button>
+                                                        <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setFolders(prev => prev.filter(f => f.id !== folder.id));
@@ -843,17 +1385,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                     <div className="ml-1 border-l border-white/5 pl-2">
                                                         {/* Inline file creation input inside this folder */}
                                                         {isCreatingFile && activeFolderId === folder.id && (() => {
-                                                            let resolvedName = newFileName.trim();
-                                                            const exts: Record<string, string> = { java: '.java', python: '.py', c: '.c', cpp: '.cpp', javascript: '.js' };
-                                                            const ext = exts[language];
-                                                            if (resolvedName) {
-                                                                if (language === 'java') {
-                                                                    resolvedName = resolvedName.charAt(0).toUpperCase() + resolvedName.slice(1);
-                                                                    if (!resolvedName.endsWith('.java')) resolvedName += '.java';
-                                                                } else if (!resolvedName.endsWith(ext)) {
-                                                                    resolvedName += ext;
-                                                                }
-                                                            }
+                                                            const resolvedName = newFileName.trim() ? resolveFileName(newFileName, language) : '';
                                                             const isDuplicate = !!resolvedName && files.some(f => f.name === resolvedName && f.language === language && (f.folderId ?? null) === folder.id);
                                                             return (
                                                                 <div className="flex flex-col gap-1 py-1">
@@ -863,6 +1395,8 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                                     >
                                                                         <FileCode className={`w-3.5 h-3.5 shrink-0 ${isDuplicate ? 'text-red-400' : 'text-blue-400'}`} />
                                                                         <input
+                                                                            id="inlineFileName"
+                                                                            name="inlineFileName"
                                                                             autoFocus
                                                                             value={newFileName}
                                                                             onChange={e => setNewFileName(e.target.value)}
@@ -879,7 +1413,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                         })()}
 
                                                         {/* Files inside this folder */}
-                                                        {files.filter(f => f.language === language && f.folderId === folder.id).map(f => (
+                                                        {files.filter(f => f.language === language && f.folderId === folder.id && f.projectId === activeProjectId).map(f => (
                                                             <div
                                                                 key={f.id}
                                                                 onClick={() => handleFileClick(f)}
@@ -907,7 +1441,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                         ))}
 
                                         {/* ── Root-level files (no folder) ── */}
-                                        {files.filter(f => f.language === language && !f.folderId).map(f => (
+                                        {files.filter(f => f.language === language && (!f.folderId || !folders.some(fo => fo.id === f.folderId)) && f.projectId === activeProjectId).map(f => (
                                             <div
                                                 key={f.id}
                                                 onClick={() => handleFileClick(f)}
@@ -935,7 +1469,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                 </div>
                                             </div>
                                         ))}
-                                        {files.filter(f => f.language === language).length === 0 && !isCreatingFile && (
+                                        {files.filter(f => f.language === language && f.projectId === activeProjectId).length === 0 && !isCreatingFile && (
                                             <div className="text-center p-4 text-gray-500 text-xs">
                                                 No files yet. Click + to create one.
                                             </div>
@@ -945,9 +1479,9 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                     <div className="p-3 border-t border-white/10 bg-black/20 flex flex-col gap-2">
                                         <button 
                                             onClick={downloadActiveFile} 
-                                            className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl py-2.5 text-xs font-black text-gray-300 hover:text-white transition-all active:scale-95"
+                                            className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl py-2 text-xs font-bold text-gray-400 hover:text-white transition-all active:scale-95"
                                         >
-                                            <Download className="w-4 h-4" /> Save to Device
+                                            <Download className="w-4 h-4" /> Save Current File
                                         </button>
                                         <div className="flex gap-2">
                                             <button 
@@ -967,20 +1501,55 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                         </div>
                                     </div>
                                 </div>
+                                
+                                {/* Drag Bar 1 (Sidebar | Editor) */}
+                                <div 
+                                    onMouseDown={() => setIsDraggingSidebar(true)} 
+                                    className="hidden lg:block w-1.5 hover:w-2 hover:bg-blue-500/50 bg-white/5 cursor-col-resize self-stretch transition-all duration-150 z-10 rounded-full"
+                                    title="Drag to resize"
+                                ></div>
 
                                 {/* Editor Section */}
-                                <div className="lg:col-span-6 bg-[#1e1e1e] rounded-2xl md:rounded-[2rem] border border-white/10 overflow-hidden shadow-2xl relative min-h-[400px] md:min-h-0 h-[60vh] md:h-full flex flex-col">
+                                <div 
+                                    style={{ flex: isDesktop ? '1 1 0%' : 'none' }}
+                                    className="lg:shrink-0 bg-[#1e1e1e] rounded-2xl md:rounded-[2rem] border border-white/10 overflow-hidden shadow-2xl relative min-h-[400px] md:min-h-0 h-[60vh] md:h-full flex flex-col"
+                                >
                                     <div className="flex bg-[#1a1a1a] border-b border-white/10 overflow-x-auto no-scrollbar">
-                                        {files.filter(f => f.language === language).map(f => (
+                                        {files.filter(f => f.language === language && f.projectId === activeProjectId && openTabIds.includes(f.id)).map(f => (
                                             <div 
                                                 key={f.id}
                                                 onClick={() => handleFileClick(f)}
-                                                className={`flex items-center gap-2 px-4 py-2.5 min-w-[120px] max-w-[200px] border-r border-white/5 cursor-pointer transition-colors ${
+                                                className={`group flex items-center gap-1.5 pl-3 pr-1.5 py-2.5 min-w-[100px] max-w-[180px] border-r border-white/5 cursor-pointer transition-colors ${
                                                     activeFileId === f.id ? 'bg-[#1e1e1e] border-t-2 border-t-blue-500 text-white' : 'bg-transparent text-gray-500 hover:bg-white/5 border-t-2 border-t-transparent hover:text-gray-300'
                                                 }`}
                                             >
-                                                <FileCode className={`w-3.5 h-3.5 ${activeFileId === f.id ? 'text-blue-400' : 'text-gray-500'}`} />
-                                                <span className="text-xs font-mono truncate">{f.name}</span>
+                                                <FileCode className={`w-3.5 h-3.5 shrink-0 ${activeFileId === f.id ? 'text-blue-400' : 'text-gray-500'}`} />
+                                                <span className="text-xs font-mono truncate flex-1">{f.name}</span>
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        // Switch to next file before "closing" (deselecting)
+                                                        if (activeFileId === f.id) {
+                                                            const projectFiles = files.filter(fi => fi.language === language && fi.projectId === activeProjectId && fi.id !== f.id);
+                                                            if (projectFiles.length > 0) {
+                                                                selectFile(projectFiles[0].id);
+                                                                setCode(projectFiles[0].content);
+                                                                if (editorRef.current) editorRef.current.setValue(projectFiles[0].content);
+                                                            } else {
+                                                                selectFile(null);
+                                                                setCode('');
+                                                            }
+                                                        }
+                                                        // Remove from open tabs (visual close only — file still exists in explorer)
+                                                        setOpenTabIds(prev => prev.filter(id => id !== f.id));
+                                                    }}
+                                                    className={`shrink-0 p-0.5 rounded transition-all hover:bg-white/20 hover:text-white ${
+                                                        activeFileId === f.id ? 'opacity-60 hover:opacity-100' : 'opacity-0 group-hover:opacity-60 hover:!opacity-100'
+                                                    }`}
+                                                    title="Close Tab"
+                                                >
+                                                    <X className="w-3 h-3" />
+                                                </button>
                                             </div>
                                         ))}
                                     </div>
@@ -991,42 +1560,86 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                 {language} MODE
                                             </span>
                                         </div>
-                                        <Editor
-                                            height="100%"
-                                            language={language === 'cpp' ? 'cpp' : language}
-                                            defaultValue={code}
-                                            theme="vs-dark"
-                                            onMount={(editor) => {
-                                                editorRef.current = editor;
-                                                editor.onDidChangeModelContent(() => {
-                                                    const val = editor.getValue();
-                                                    setCode(val);
-                                                    
+                                        {activeFileId && openTabIds.length > 0 ? (
+                                            <Editor
+                                                height="100%"
+                                                language={language === 'cpp' ? 'cpp' : language} path={activeFileId || 'default'}
+                                                value={files.find(f => f.id === activeFileId)?.content ?? code}
+                                                onChange={(val) => {
+                                                    const value = val || '';
+                                                    setCode(value);
                                                     const currentFileId = activeFileIdRef.current;
                                                     if (currentFileId) {
-                                                        setFiles(prev => prev.map(f => f.id === currentFileId ? { ...f, content: val } : f));
+                                                        setFiles(prev => prev.map(f => f.id === currentFileId ? { ...f, content: value } : f));
                                                     }
-                                                });
-                                            }}
-                                            options={{
-                                                fontSize: window.innerWidth < 768 ? 14 : 18,
-                                                fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
-                                                minimap: { enabled: false },
-                                                scrollBeyondLastLine: false,
-                                                automaticLayout: true,
-                                                padding: { top: 10, bottom: 20 },
-                                                cursorSmoothCaretAnimation: "on",
-                                                smoothScrolling: true,
-                                                lineNumbers: 'on',
-                                                renderLineHighlight: 'all',
-                                                bracketPairColorization: { enabled: true },
-                                            }}
-                                        />
+                                                }}
+                                                theme="vs-dark"
+                                                onMount={(editor) => {
+                                                    editorRef.current = editor;
+                                                }}
+                                                options={{
+                                                    fontSize: window.innerWidth < 768 ? 14 : 18,
+                                                    fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+                                                    minimap: { enabled: false },
+                                                    scrollBeyondLastLine: false,
+                                                    automaticLayout: true,
+                                                    padding: { top: 10, bottom: 20 },
+                                                    cursorSmoothCaretAnimation: "on",
+                                                    smoothScrolling: true,
+                                                    lineNumbers: 'on',
+                                                    renderLineHighlight: 'all',
+                                                    bracketPairColorization: { enabled: true },
+                                                }}
+                                            />
+                                        ) : (
+                                            <div className="h-full flex flex-col items-center justify-center gap-6 select-none">
+                                                <div className="relative">
+                                                    <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full animate-pulse scale-150"></div>
+                                                    <Bot className="w-24 h-24 text-blue-400 animate-bounce relative z-10 drop-shadow-[0_0_20px_rgba(96,165,250,0.5)]" />
+                                                </div>
+                                                <div className="text-center flex flex-col gap-2">
+                                                    <p className="text-base font-black text-white tracking-tight">
+                                                        {openTabIds.length === 0 && files.filter(f => f.language === language && f.projectId === activeProjectId).length > 0
+                                                            ? 'All Tabs Closed'
+                                                            : 'No File Open'}
+                                                    </p>
+                                                    <p className="text-[11px] text-gray-500 font-mono leading-relaxed max-w-[200px] mx-auto">
+                                                        {openTabIds.length === 0 && files.filter(f => f.language === language && f.projectId === activeProjectId).length > 0
+                                                            ? 'Click any file in the Explorer to open it here'
+                                                            : 'Create a file or folder in the Explorer to start writing code'}
+                                                    </p>
+                                                </div>
+                                                {files.filter(f => f.language === language && f.projectId === activeProjectId).length > 0 && (
+                                                    <div className="flex flex-wrap gap-2 justify-center max-w-[220px]">
+                                                        {files.filter(f => f.language === language && f.projectId === activeProjectId).slice(0, 3).map(f => (
+                                                            <button
+                                                                key={f.id}
+                                                                onClick={() => handleFileClick(f)}
+                                                                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/30 rounded-lg text-[10px] font-mono text-gray-400 hover:text-white transition-all"
+                                                            >
+                                                                <FileCode className="w-3 h-3 text-blue-400" />
+                                                                {f.name}
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
 
+                                {/* Drag Bar 2 (Editor | Terminal) */}
+                                <div 
+                                    onMouseDown={() => setIsDraggingTerminal(true)} 
+                                    className="hidden lg:block w-1.5 hover:w-2 hover:bg-blue-500/50 bg-white/5 cursor-col-resize self-stretch transition-all duration-150 z-10 rounded-full"
+                                    title="Drag to resize"
+                                ></div>
+
                                 {/* Terminal */}
-                                <div className="lg:col-span-4 flex flex-col gap-3 min-h-[400px] md:min-h-0 h-auto md:h-full overflow-hidden">
+                                <div 
+                                    style={{ width: isDesktop ? `${terminalWidth}px` : '100%' }}
+                                    className="lg:shrink-0 flex flex-col gap-3 min-h-[400px] md:min-h-0 h-auto md:h-full overflow-hidden"
+                                >
                                     <div className="flex-1 bg-black rounded-2xl md:rounded-[2rem] border border-white/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col relative min-h-[500px] md:min-h-0 transition-all duration-500">
                                         
                                         <div className="bg-[#1a1a1a] p-3 md:p-4 flex items-center justify-between border-b border-black relative z-10 shrink-0">
