@@ -1302,7 +1302,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                             onChange={e => setNewFileName(e.target.value)}
                                                             onBlur={() => { if (!newFileName) setIsCreatingFile(false); }}
                                                             className="bg-transparent text-sm font-mono text-white w-full outline-none placeholder:text-gray-600"
-                                                            placeholder={`e.g. App${language === 'java' ? '.java' : ext}`}
+                                                            placeholder={`e.g. App${language === 'java' ? '.java' : language === 'python' ? '.py' : language === 'javascript' ? '.js' : language === 'cpp' ? '.cpp' : '.c'}`}
                                                         />
                                                     </form>
                                                     {isDuplicate && (
@@ -1402,7 +1402,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                                                                             onChange={e => setNewFileName(e.target.value)}
                                                                             onBlur={() => { if (!newFileName) { setIsCreatingFile(false); setActiveFolderId(null); } }}
                                                                             className="bg-transparent text-xs font-mono text-white w-full outline-none placeholder:text-gray-600"
-                                                                            placeholder={`filename${language === 'java' ? '.java' : exts[language]}`}
+                                                                            placeholder={`filename${language === 'java' ? '.java' : language === 'python' ? '.py' : language === 'javascript' ? '.js' : language === 'cpp' ? '.cpp' : '.c'}`}
                                                                         />
                                                                     </form>
                                                                     {isDuplicate && (

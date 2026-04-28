@@ -79,6 +79,28 @@ const FEATURES = [
         highlight: 'Code daily → Stay visible → Get hired.',
         highlightColor: 'text-orange-400',
     },
+    {
+        icon: FileCode,
+        iconColor: 'text-red-400',
+        iconBg: 'bg-red-500/10',
+        badge: 'Eclipse Style',
+        badgeColor: 'bg-red-500/10 text-red-400',
+        title: 'Auto Javadocs & Boilerplate',
+        description: 'Creating new project components auto-generates appropriate metadata descriptions, method scopes, and todo comments safely.',
+        highlight: 'Smart layouts generated natively.',
+        highlightColor: 'text-red-400',
+    },
+    {
+        icon: Terminal,
+        iconColor: 'text-blue-300',
+        iconBg: 'bg-blue-500/10',
+        badge: 'Flexible Layout',
+        badgeColor: 'bg-blue-500/10 text-blue-400',
+        title: 'Dynamic Panel Sliders',
+        description: 'Drag border guidelines dynamically. Adjust panel distributions seamlessly across desktop screens.',
+        highlight: 'Custom viewport control.',
+        highlightColor: 'text-blue-400',
+    }
 ];
 
 const AdvLabDashboard = () => {
