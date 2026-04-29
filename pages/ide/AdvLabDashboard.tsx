@@ -106,13 +106,22 @@ const FEATURES = [
 const AdvLabDashboard = () => {
     const navigate = useNavigate();
 
+    const advLabSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "ADV Lab - Online Code Compiler",
+        "description": "India's smartest browser IDE. Write code, run it instantly, commit to GitHub & post on LinkedIn.",
+        "url": "https://advindiancoder.com/adv-lab"
+    };
+
     return (
         <PageWrapper>
             <SEO 
                 title="ADV Lab - Online Code Compiler" 
-                description="Practice coding online with our free Java and programming compiler"
+                description="India's smartest browser IDE. Write code, run it instantly, commit to GitHub & post on LinkedIn."
                 keywords="online java compiler, online python compiler, adv lab ide, github auto commit, linkedin post from code, free ide browser, adv indian coder"
                 ogType="website"
+                schema={advLabSchema}
             />
             <div className="min-h-screen bg-[#05060f] text-white font-sans selection:bg-primary/30 pt-[80px] md:pt-[100px] overflow-x-hidden">
                 

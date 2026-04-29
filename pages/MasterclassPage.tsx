@@ -92,11 +92,20 @@ const MasterclassPage = () => {
         }
     };
 
+    const masterclassSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Live Masterclass - ADV Indian Coder",
+        "description": "Join live coding masterclasses and learn from expert Indian developers. 30-day intensive coding bootcamps.",
+        "url": "https://advindiancoder.com/masterclass"
+    };
+
     return (
         <PageWrapper>
             <SEO 
-                title="Live Masterclass - ADV Indian Coder" 
-                description="Join live coding masterclasses and learn from expert Indian developers"
+                title="Live Masterclass" 
+                description="Join live coding masterclasses and learn from expert Indian developers. 30-day intensive coding bootcamps."
+                schema={masterclassSchema}
             />
             <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden">
                 {/* Background Grid */}

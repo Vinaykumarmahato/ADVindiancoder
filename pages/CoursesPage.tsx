@@ -37,11 +37,20 @@ const CoursesPage = () => {
         return matchesCategory && matchesSearch;
     });
 
+    const coursesSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Courses - ADV Indian Coder",
+        "description": "Explore premium coding courses, development paths, and live cohorts. Zero to hero training for developers.",
+        "url": "https://advindiancoder.com/courses"
+    };
+
     return (
         <PageWrapper>
             <SEO 
-                title="Courses - ADV Indian Coder" 
-                description="Explore Java, DSA and programming courses designed for Indian students"
+                title="Courses" 
+                description="Explore premium coding courses, development paths, and live cohorts. Zero to hero training for developers."
+                schema={coursesSchema}
             />
             <div className="bg-[#050914] text-white min-h-screen font-sans relative overflow-hidden">
                 {/* Background Grid */}
