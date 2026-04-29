@@ -1,13 +1,16 @@
 User-agent: *
 Allow: /
 
-# Block only truly private paths
-Disallow: /admin
-Disallow: /api
-Disallow: /scratch
+User-agent: facebookexternalhit
+Allow: /
 
-# Crawl delay to avoid server overload
-Crawl-delay: 5
+User-agent: Twitterbot
+Allow: /
 
-# Sitemap location
-Sitemap: https://advindiancoder.com/sitemap.xml
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+Sitemap: https://www.advindiancoder.com/sitemap.xml
