@@ -61,22 +61,41 @@ const HomePage = () => {
 
     const homeSchema = {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "ADV Indian Coder",
-        "url": "https://advindiancoder.com",
-        "logo": "https://advindiancoder.com/logo.png",
-        "description": "Premium coding education platform focusing on industry-ready skills, live masterclasses, and career growth.",
-        "sameAs": [
-            "https://youtube.com/@advindiancoder",
-            "https://github.com/Vinaykumarmahato"
+        "@graph": [
+            {
+                "@type": "Organization",
+                "name": "ADV Indian Coder",
+                "url": "https://advindiancoder.com",
+                "logo": "https://advindiancoder.com/assets/logo.png",
+                "description": "Premium coding education platform focusing on industry-ready skills, live masterclasses, and career growth.",
+                "sameAs": [
+                    "https://youtube.com/@advindiancoder",
+                    "https://github.com/Vinaykumarmahato"
+                ]
+            },
+            {
+                "@type": "ItemList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "ADV Lab", "url": "https://advindiancoder.com/adv-lab" },
+                    { "@type": "ListItem", "position": 2, "name": "Live Masterclass", "url": "https://advindiancoder.com/masterclass" },
+                    { "@type": "ListItem", "position": 3, "name": "Notes", "url": "https://advindiancoder.com/resources" },
+                    { "@type": "ListItem", "position": 4, "name": "Success Stories", "url": "https://advindiancoder.com/success-stories" },
+                    { "@type": "ListItem", "position": 5, "name": "About", "url": "https://advindiancoder.com/about" },
+                    { "@type": "ListItem", "position": 6, "name": "FAQ", "url": "https://advindiancoder.com/faq" },
+                    { "@type": "ListItem", "position": 7, "name": "Jobs", "url": "https://advindiancoder.com/jobs" },
+                    { "@type": "ListItem", "position": 8, "name": "Contact", "url": "https://advindiancoder.com/contact" },
+                    { "@type": "ListItem", "position": 9, "name": "Courses", "url": "https://advindiancoder.com/courses" }
+                ]
+            }
         ]
     };
 
     return (
         <PageWrapper>
             <SEO 
-                title="ADV Indian Coder - Learn Coding in Hindi" 
-                description="Best platform for Indian developers to learn Java, DSA and coding in Hindi"
+                title="ADV Indian Coder | ADV Lab, Live Masterclass, Notes, Courses & Jobs" 
+                description="What is ADV? ADV Indian Coder is India's premium tech learning platform. Features include the ADV Lab (Free online IDE), Interactive Live Masterclasses (LIVE), Premium Notes, Success Stories, Tech Jobs (NEW), FAQ, and free job-ready Courses."
+                keywords="adv indian coder, adv lab, live masterclass, notes, success stories, about adv, faq, jobs, new jobs, contact, free coding courses, learn to code, software engineer roadmap"
                 schema={homeSchema}
             />
             <div className="bg-[#050914] text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans overflow-x-hidden">
@@ -302,6 +321,61 @@ const HomePage = () => {
                             </div>
                         </div>
                     </motion.div>
+                </section>
+
+                {/* 2.7 ADV ECOSYSTEM FEATURES */}
+                <section className="py-20 px-4 relative z-10 overflow-hidden bg-[#070b19]/60 border-y border-white/5">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
+                                Exactly What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">ADV Indian Coder?</span>
+                            </h2>
+                            <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light">
+                                ADV isn't just a compiler — it's a fully loaded tech learning infrastructure designed to turn curiosity into high-paying employment.
+                            </p>
+                        </motion.div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {[
+                                { title: "ADV Lab", path: "/adv-lab", desc: "A robust online compiler and practice IDE supporting Java, Python, C++, and more. Zero setup, just code.", badge: "" },
+                                { title: "Live Masterclass", path: "/masterclass", desc: "Intensive 30-day interactive learning cohorts focused on building high-demand digital products.", badge: "LIVE" },
+                                { title: "Expert Notes", path: "/resources", desc: "Both free and premium technical guides, handwritten academic formats, and revision material.", badge: "" },
+                                { title: "Success Stories", path: "/success-stories", desc: "Hear real placement and upskilling experiences directly from students who landed tech roles.", badge: "" },
+                                { title: "Latest Tech Jobs", path: "/jobs", desc: "Browse hand-picked internship and full-time hiring opportunities with fast-track processing.", badge: "NEW" },
+                                { title: "Learning Courses", path: "/courses", desc: "Structured video tutorials mapping core programming, data analytics, and design logic.", badge: "" },
+                                { title: "About Our Mission", path: "/about", desc: "The foundational story of Vinay and ADV — bridging the gap in quality digital resources.", badge: "" },
+                                { title: "Helpful FAQs", path: "/faq", desc: "Stuck with roadmap decisions? Find direct solutions covering all placement queries.", badge: "" },
+                                { title: "Contact Support", path: "/contact", desc: "Reach out for direct technical mentorship or customized course deployment support.", badge: "" },
+                            ].map((feat, idx) => (
+                                <motion.div
+                                    key={feat.title}
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="show"
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.05 }}
+                                    className="group relative p-8 rounded-3xl bg-[#0a0f1c] border border-white/5 hover:border-primary/40 hover:bg-[#0d1425] transition-all duration-500 flex flex-col justify-between shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500 pointer-events-none"></div>
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{feat.title}</h3>
+                                            {feat.badge && (
+                                                <span className={`text-[10px] font-black px-2 py-1 rounded-full border ${feat.badge === 'LIVE' ? 'bg-red-500/20 text-red-400 border-red-500/30 animate-pulse' : 'bg-blue-500/20 text-blue-400 border-blue-500/30 animate-pulse'}`}>
+                                                    {feat.badge}
+                                                </span>
+                                            )}
+                                        </div>
+                                        <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light">{feat.desc}</p>
+                                    </div>
+                                    <Link to={feat.path} className="relative z-10 inline-flex items-center gap-2 text-xs font-bold text-gray-300 group-hover:text-primary transition-colors">
+                                        Explore Feature <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                    <Link to={feat.path} className="absolute inset-0 z-0"><span className="sr-only">Go to {feat.title}</span></Link>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
                 </section>
 
                 {/* 3. COURSES SHOWCASE */}
