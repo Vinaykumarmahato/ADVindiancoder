@@ -8,241 +8,616 @@ import SEO from '../components/SEO';
 // Expanded Mock job database
 const jobListings = [
     {
-        id: 'full-stack-dev',
-        title: 'Middle Full Stack Developer',
-        company: 'Inoglle',
-        location: 'Remote / India',
+        id: 'capgemini-finance-2026',
+        title: 'Finance / Accounting / Associate Roles',
+        company: 'Capgemini',
+        location: 'Multiple Locations across India',
         type: 'Full-time',
-        salary: '₹12L - ₹18L',
-        experience: '3+ Years',
-        postedDate: '2 Days Ago',
-        aboutCompany: 'Inoglle is a fast-growing technology company dedicated to innovating digital products with passion. We aim to bridge the gap between creative design and robust engineering, creating platforms that impact thousands of users daily.',
-        description: 'We are looking for an experienced Full Stack Developer to join our core product team at Inoglle. You will take ownership of end-to-end features, architecting scalable backend systems, and crafting responsive frontend experiences.',
-        responsibilities: [
-            'Design, develop, and maintain advanced web applications.',
-            'Collaborate with cross-functional teams to define, design, and ship new features.',
-            'Maintain API integrations and optimize database performance.',
-            'Participate in code reviews and advocate for best engineering practices.'
-        ],
-        skills: [
-            'React.js, Node.js, Express, TypeScript',
-            'Relational (PostgreSQL) and NoSQL (MongoDB) databases',
-            'REST/GraphQL API design',
-            'Git, Docker, Basic CI/CD Pipelines'
-        ],
-        eligibility: [
-            'B.Tech / B.E in Computer Science or related practical experience.',
-            'Minimum 3 years of full-stack web development.',
-            'Strong problem-solving skills and teamwork.'
-        ],
-        benefits: [
-            'Competitive industry salary & performance bonuses',
-            '100% Remote work flexibility',
-            'Comprehensive Health Insurance',
-            'Annual Learning & Development stipend'
-        ],
-        applicationProcess: [
-            'Step 1: Resume & Portfolio Screening',
-            'Step 2: Take-home Technical Assignment (React & Node)',
-            'Step 3: Technical Interview (System Design)',
-            'Step 4: HR & Culture Fit Round'
-        ],
-        faqs: [
-            { q: 'Is this role completely remote?', a: 'Yes, this role is 100% remote within India. You can work from anywhere.' },
-            { q: 'Do you provide a WFH allowance?', a: 'Yes, setting up your home office is important, and we offer a one-time setup allowance.' },
-            { q: 'What is the standard selection time?', a: 'Our entire interview loop usually finishes within 2 weeks of applying.' }
-        ]
-    },
-    {
-        id: 'ui-ux-designer',
-        title: 'Senior UI/UX Designer',
-        company: 'Inoglle',
-        location: 'Remote',
-        type: 'Contract',
-        salary: 'Competitive',
-        experience: '4+ Years',
-        postedDate: '1 Week Ago',
-        aboutCompany: 'Inoglle focuses on intuitive user experiences. We build interfaces that are aesthetic, accessible, and high-performing.',
-        description: 'Inoglle is seeking a talented UI/UX Designer to create amazing user experiences. You will translate high-level requirements into interaction flows and artifacts into beautiful, intuitive, and functional UI designs.',
-        responsibilities: [
-            'Execute all visual design stages from concept to final hand-off to engineering',
-            'Create wireframes, storyboards, user flows, process flows and site maps',
-            'Establish and promote design guidelines, best practices and standards'
-        ],
-        skills: [
-            'Figma, Adobe XD, Sketch',
-            'Prototyping & Wireframing',
-            'Design Systems',
-            'Basic understanding of HTML/CSS is a plus'
-        ],
-        eligibility: [
-            'Bachelor’s Degree in Design, CS, or equivalent experience.',
-            '4+ years of UI/UX design experience.',
-            'Strong portfolio showcasing mobile and web application design.'
-        ],
-        benefits: [
-            'Flexible working hours',
-            'Contract extensions based on performance',
-            'Collaborative & creative environment'
-        ],
-        applicationProcess: [
-            'Step 1: Portfolio Review',
-            'Step 2: Design Assignment / Case Study Presentation',
-            'Step 3: Final Discussion with the Tech Lead'
-        ],
-        faqs: [
-            { q: 'Can this lead to a full-time role?', a: 'Yes, exceptional contractors are often offered full-time conversions.' }
-        ]
-    },
-    {
-        id: 'emerson-ai-ml',
-        title: 'Software Developer (AI/ML)',
-        company: 'Emerson',
-        location: 'Noida, India',
-        type: 'Full-Time',
-        salary: 'Competitive Salary',
-        experience: '1–5 Years',
-        postedDate: 'Just Now',
-        aboutCompany: 'Emerson is a global technology and software company delivering innovative solutions across industrial, commercial, and residential sectors. Its Automation Solutions division helps organizations improve efficiency, safety, and operational performance.',
-        description: 'Emerson Recruitment 2026 is now open for candidates looking to build a career in advanced AI and software development. As a Software Developer (AI/ML), you will work on building intelligent AI-driven systems within Emerson’s ecosystem. You will design and deploy AI agents, develop automation workflows, and contribute to scalable AI applications. The role requires strong expertise in AI/ML, along with hands-on experience in modern AI architectures. This role focuses on modern technologies like Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and Agentic AI systems, offering an opportunity to work on real-world industrial applications.',
-        responsibilities: [
-            'Develop AI agents for industrial automation systems',
-            'Contribute to the design of AI platforms and tools',
-            'Collaborate with cross-functional teams (engineering, UX, security)',
-            'Improve system performance and efficiency',
-            'Ensure security and compliance in AI solutions',
-            'Work with infrastructure teams for scalability and GPU optimization'
-        ],
-        skills: [
-            'Python & C# (Mandatory)',
-            'TensorFlow or PyTorch',
-            'Large Language Models (LLMs) & RAG',
-            'Agentic AI Systems'
-        ],
-        eligibility: [
-            'Bachelor’s or Master’s degree in relevant fields (CS, Electrical, AI, etc.)',
-            '1–5 years of experience in AI/ML development',
-            'Strong problem-solving and development skills'
-        ],
-        benefits: [
-            'Competitive salary (not disclosed)',
-            'Opportunity to work on advanced AI technologies',
-            'Exposure to real-world industrial projects',
-            'Strong career growth in AI and automation'
-        ],
-        applicationProcess: [
-            'Apply through the official link',
-            'Shortlisting based on profile',
-            'Technical interview rounds',
-            'Final selection'
-        ],
-        faqs: [
-            { q: 'Is this a fresher job?', a: 'No, this role requires 1–5 years of experience.' },
-            { q: 'What programming languages are required?', a: 'Python and C# are mandatory.' },
-            { q: 'Is industrial experience required?', a: 'Not mandatory, but it is a plus.' },
-            { q: 'What is the job location?', a: 'Noida, India.' }
-        ],
-        applyLink: 'https://hdjq.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26001839'
-    },
-    {
-        id: 'ibm-intern-2026',
-        title: 'Software Developer Intern',
-        company: 'IBM',
-        location: 'Bangalore, India',
-        type: 'Full-Time Internship',
-        salary: 'As per company standards',
-        experience: 'Fresher (Student)',
-        postedDate: 'New',
-        aboutCompany: 'IBM is a global leader in technology and innovation, known for its work in Artificial Intelligence, Cloud Computing, and Enterprise Solutions. With platforms like watsonx.ai, IBM provides a strong environment for learning, innovation, and real-world problem solving.',
-        description: 'The IBM Internship 2026 program is an opportunity to gain hands-on experience in AI, full stack development, and emerging technologies like AR/VR. You will collaborate with experienced engineers, gain exposure to agile product cycles, and contribute to building scalable real-world applications.',
-        responsibilities: [
-            'Collaborate with developers, architects, and designers',
-            'Write, test, debug, and optimize code',
-            'Develop scalable features aligned with product requirements',
-            'Work on AI-based modules and modern applications',
-            'Explore tools like Generative AI and AR/XR platforms'
-        ],
-        skills: [
-            'Python or JavaScript',
-            'React, Angular, or Next.js',
-            'HTML, CSS, Web Development',
-            'Basic AI/ML concepts'
-        ],
-        eligibility: [
-            'Pursuing Bachelor’s or Master’s in CS or related field',
-            'Open to freshers and students',
-            'Strong interest in software development and emerging technologies'
-        ],
-        benefits: [
-            'Stipend as per IBM standards',
-            'Work on scalable real-world products',
-            'Mentorship from experienced professionals',
-            'Strong career growth and networking opportunities'
-        ],
-        applicationProcess: [
-            'Online Application & Resume Shortlisting',
-            'Technical assessment / Coding round',
-            'Technical Interview',
-            'HR Interview'
-        ],
-        faqs: [
-            { q: 'Who can apply?', a: 'Students pursuing a Bachelor’s or Master’s degree in CS or related fields.' },
-            { q: 'Is prior experience required?', a: 'No, freshers can apply. Having solid personal projects will help.' },
-            { q: 'What technologies will I work on?', a: 'Python, JavaScript, React, Next.js, AI/ML tools, and AR/VR technologies.' },
-            { q: 'What is the job location?', a: 'Bangalore, India.' }
-        ],
-        applyLink: 'https://careers.ibm.com/en_US/careers/JobDetail?jobId=106370&source=SN_LinkedIn'
-    },
-    {
-        id: 'salesforce-amts-2026',
-        title: 'Software Engineering AMTS',
-        company: 'Salesforce',
-        location: 'Hyderabad / Bangalore, India',
-        type: 'Full-Time',
         salary: 'Not Disclosed',
-        experience: 'Fresher (0 Years)',
-        postedDate: 'New',
-        aboutCompany: 'Salesforce is a global leader in Customer Relationship Management (CRM) software. Known for its innovation in cloud technologies, the company provides solutions that help businesses connect with customers worldwide. With a strong presence in India and a reputation for excellent work culture, Salesforce is considered one of the best companies for fresh graduates.',
-        description: 'Salesforce Off Campus Drive 2026 is now open for Software Engineering AMTS (Associate Member of Technical Staff) roles. This opportunity is designed for 2026 batch engineering graduates who want to start their careers with a global leader in cloud computing and enterprise software. You will work on next-generation cloud products and gain hands-on experience in building scalable enterprise applications.',
+        experience: 'Freshers (Entry-Level)',
+        postedDate: 'April 28, 2026',
+        aboutCompany: 'Capgemini is a globally recognized organization known for its expertise in technology, consulting, and digital transformation. The company works with leading enterprises worldwide to modernize operations using advanced solutions in AI, cloud computing, data analytics, and engineering services.',
+        description: 'Candidates selected will be part of global business and technology teams, contributing to innovative solutions and services across various domains.',
         responsibilities: [
-            'Design, develop, test, and deliver software components',
-            'Convert business requirements into technical solutions',
-            'Participate in code reviews and improve code quality',
-            'Write unit and integration tests',
-            'Identify and fix performance issues',
-            'Work in Agile teams and contribute to sprint activities'
+            'Contributing to the design, development, and maintenance of modules',
+            'Supporting configuration management, testing, and deployment processes',
+            'Researching and utilizing emerging technologies to meet business needs',
+            'Assisting in reviewing code and ensuring quality standards',
+            'Collaborating with cross-functional teams to deliver solutions',
+            'Demonstrating a basic understanding of architecture and business processes'
         ],
         skills: [
-            'Data Structures & Algorithms',
-            'Java / Python / C++',
-            'Object-Oriented Programming (OOP)',
-            'System Design Concepts'
+            'Communication skills', 'Analytical skills', 'Problem-solving', 'Basic OOP'
         ],
         eligibility: [
-            'B.E / B.Tech in Computer Science or related fields',
-            '2026 graduating batch',
-            'Minimum 7.5 CGPA with no active backlogs'
+            'Bachelor\'s / Master\'s degree holders from various streams',
+            'Willingness to learn new technologies and adapt to roles',
+            'Flexibility to work in any Capgemini location across India'
         ],
         benefits: [
-            'Competitive salary (above industry standards)',
-            'Health insurance and Employee stock purchase plans',
-            'Learning and development programs',
-            'Mentorship, wellness, and work-life balance initiatives'
+            'Structured training modules provided',
+            'Global operations support infrastructure'
         ],
         applicationProcess: [
-            'Online Application & Resume Upload',
-            'Online Coding Assessment',
-            'Technical Interview',
-            'HR Interview'
+            'Round 1: Application Screening & Shortlisting',
+            'Round 2: Online Assessment (Aptitude, Logical, Verbal)',
+            'Round 3: Technical Interview (Core Fundamentals)',
+            'Round 4: HR / Behavioral Interview'
         ],
         faqs: [
-            { q: 'Who can apply?', a: '2026 batch engineering students with required CGPA.' },
-            { q: 'What is the expected salary?', a: 'Not disclosed, but generally high for freshers.' },
-            { q: 'What is the job location?', a: 'Hyderabad and Bangalore.' },
-            { q: 'What is the selection process?', a: 'Coding test → Technical Interview → HR Interview.' },
-            { q: 'Is this role for freshers?', a: 'Yes, this is specifically for fresh graduates.' }
+            { q: 'Is this role only for Finance graduates?', a: 'No — it covers Finance, Accounting, and general Associate roles open to Bachelor\'s/Master\'s degree holders.' },
+            { q: 'Are there multiple locations available?', a: 'Yes — positions are open across multiple cities in India.' }
         ],
-        applyLink: 'https://salesforce.wd12.myworkdayjobs.com/External_Career_Site/job/India—Hyderabad/Software-Engineering-AMTS_JR334858'
+        applyLink: 'https://www.naukri.com/capgemini-jobs'
+    },
+    {
+        id: 'yellow-devops-2026',
+        title: 'DevOps Intern',
+        company: 'Yellow.ai',
+        location: 'Bangalore Urban, Karnataka (Onsite)',
+        type: 'Internship',
+        salary: 'Not Disclosed',
+        experience: 'Freshers / Interns',
+        postedDate: 'April 28, 2026',
+        aboutCompany: 'Yellow.ai is a leading global platform specializing in generative AI-powered customer service automation. Powered by a multi-LLM architecture, the platform processes over 16 billion conversations annually.',
+        description: 'As a DevOps Intern at Yellow.ai, you will work at the core of the company\'s staging infrastructure, ensuring development and testing environments remain stable, scalable, and efficient.',
+        responsibilities: [
+            'Maintain and manage staging (non-production) infrastructure environments',
+            'Assist in application deployment using Docker and Kubernetes',
+            'Support CI/CD pipelines for automated build, test, and deployment workflows',
+            'Monitor system performance to ensure high availability and reliability',
+            'Collaborate with engineering teams to troubleshoot infrastructure and deployment issues',
+            'Document deployment processes and infrastructure updates'
+        ],
+        skills: [
+            'Docker', 'Kubernetes', 'AWS', 'Linux commands', 'CI/CD'
+        ],
+        eligibility: [
+            'B.E / B.Tech / BCA / MCA in Computer Science, IT, or related field',
+            'Eligible batches: 2025 and 2026',
+            'Basic understanding of Docker, Kubernetes, and Cloud environments'
+        ],
+        benefits: [
+            'Work on real-world AI infrastructure scaled globally',
+            'Hands-on experience with modern DevOps procedures'
+        ],
+        applicationProcess: [
+            'Apply via standard career listings & direct resume forwarding'
+        ],
+        faqs: [
+            { q: 'Do I need prior DevOps experience?', a: 'No — freshers are welcome. Basic knowledge of Docker, Linux, and cloud platforms is sufficient.' },
+            { q: 'Is there a chance of full-time conversion?', a: 'Not explicitly stated, but high performance can lead to PPO offers at fast-paced AI startups.' }
+        ],
+        applyLink: 'mailto:niriksha.brar@yellow.ai?subject=Application for DevOps Intern'
+    },
+    {
+        id: 'hpe-ai-ml-2026',
+        title: 'AI/ML Engineer',
+        company: 'Hewlett Packard Enterprise (HPE)',
+        location: 'Bengaluru (Onsite)',
+        type: 'Full-time',
+        salary: 'Not Disclosed',
+        experience: 'Freshers / 0–2 Years',
+        postedDate: 'April 28, 2026',
+        aboutCompany: 'Hewlett Packard Enterprise is a global technology leader specializing in edge-to-cloud solutions. HPE\'s Bengaluru Global Engineering Center is a major hub where engineers build next-generation cloud and AI integrations.',
+        description: 'As an AI/ML Engineer at HPE, you will build and deploy machine learning models for enterprise-scale applications, working with large datasets and designing robust ML pipelines.',
+        responsibilities: [
+            'Design, build, and optimize ML and deep learning models using Python/PyTorch/TensorFlow',
+            'Develop data ingestion, preprocessing, and feature engineering pipelines',
+            'Conduct hyperparameter tuning experiments and evaluate performance metrics',
+            'Deploy ML models into production API clusters',
+            'Analyze large datasets utilizing standard database queries'
+        ],
+        skills: [
+            'Python', 'Machine Learning', 'TensorFlow', 'PyTorch', 'Data Structures'
+        ],
+        eligibility: [
+            'B.Tech / B.E / M.Tech (CS, AI/ML, Data Science, IT)',
+            'Batch: 2024, 2025, or 2026',
+            'Minimum 60% aggregate or 6.0 CGPA throughout academics'
+        ],
+        benefits: [
+            'Health and life insurance options',
+            'Structured mentorship for early-career professionals'
+        ],
+        applicationProcess: [
+            'Round 1: Online Technical Assessment',
+            'Round 2: Technical Interview',
+            'Round 3: HR Interview'
+        ],
+        faqs: [
+            { q: 'Is a 2024 batch graduate eligible?', a: 'Yes — 2024, 2025, and 2026 batches are all eligible.' },
+            { q: 'What is the minimum score constraint?', a: '60% aggregate or 6.0 CGPA minimum requirements.' }
+        ],
+        applyLink: 'https://careers.hpe.com/'
+    },
+    {
+        id: 'alcon-se-2026',
+        title: 'Software Engineer Apprentice',
+        company: 'Alcon',
+        location: 'Bangalore (Onsite)',
+        type: 'Apprenticeship',
+        salary: 'Not Disclosed',
+        experience: 'Freshers / 0–1 Year',
+        postedDate: 'April 29, 2026',
+        aboutCompany: 'Alcon is one of the world\'s leading eye care companies, dedicated to helping people see brilliantly through advanced medical technology. Headquartered in Switzerland and the United States, the company operates in over 60 countries and employs thousands of professionals globally.',
+        description: 'As a Software Engineer Apprentice, you will be part of a cross-functional agile engineering team working on enterprise-grade applications. The program is designed to provide strong exposure to full-stack development, cloud platforms, and modern engineering practices.',
+        responsibilities: [
+            'Develop and enhance web applications using Java, Spring Boot, and React following enterprise-level architecture standards.',
+            'Design and maintain RESTful APIs and microservices that integrate with internal systems and medical device platforms.',
+            'Write clean, maintainable code with proper unit and integration tests, following test-driven development (TDD) practices.',
+            'Collaborate in sprint planning, stand-ups, and retrospectives, contributing actively to team deliverables.',
+            'Work with cloud platforms such as AWS or Azure, including CI/CD pipelines and containerized deployments.',
+            'Identify, troubleshoot, and resolve issues found during testing or production monitoring.',
+            'Maintain clear and structured technical documentation for long-term maintainability.'
+        ],
+        skills: [
+            'Java', 'Spring Boot', 'React', 'SQL', 'REST APIs', 'Git', 'Cloud Fundamentals (AWS/Azure)'
+        ],
+        eligibility: [
+            'B.E / B.Tech in Computer Science or Information Technology (2025/2026 batch)',
+            'Final-year students awaiting results are eligible to apply',
+            'Strong knowledge of Java and Spring Boot',
+            'Basic understanding of React'
+        ],
+        benefits: [
+            'Structured mentorship from experienced engineers',
+            'Hands-on experience with real-world healthcare software systems',
+            'Access to global learning platforms',
+            'Opportunity for full-time conversion based on performance'
+        ],
+        applicationProcess: [
+            'Round 1: Application Screening',
+            'Round 2: Online Coding Test (Java & DSA)',
+            'Round 3: Technical Interview',
+            'Round 4: HR Interview'
+        ],
+        faqs: [
+            { q: 'Is this an internship or a full-time job?', a: 'It is a 1-year apprenticeship program — not a permanent job, but with a strong chance of full-time conversion based on performance.' },
+            { q: 'Can final-year students apply?', a: 'Yes — final-year students awaiting their results are explicitly eligible to apply.' },
+            { q: 'Which batches are eligible?', a: 'Only 2025 and 2026 graduates. 2024 or earlier batches are not eligible.' }
+        ],
+        applyLink: 'https://alcon.wd5.myworkdayjobs.com/en-US/Alcon/job/IN—Bangalore/Software-Engineer-Apprentices_R-2026-46681'
+    },
+    {
+        id: 'iqvia-intern-2026',
+        title: 'Intern – Application Implementation & Support',
+        company: 'IQVIA',
+        location: 'Kochi (Hybrid)',
+        type: 'Internship',
+        salary: 'Not Disclosed (Competitive)',
+        experience: 'Freshers / 0–1 Year',
+        postedDate: 'April 29, 2026',
+        aboutCompany: 'IQVIA is a global leader in clinical research services, commercial insights, and healthcare intelligence for the life sciences industry. Headquartered in Durham, the company operates in more than 100 countries and employs over 85,000 professionals worldwide. IQVIA plays a key role in accelerating the development and commercialization of innovative medical treatments.',
+        description: 'As an Intern in the AI and Technology Solutions (ATS) division, you will work on commercial technology, safety, patient, and QARA product offerings. The role involves supporting the complete lifecycle of enterprise healthcare applications, including implementation, testing, and ongoing support.',
+        responsibilities: [
+            'Assist in application deployment and configuration across various product lines',
+            'Provide support for application-related issues and ensure quick resolution',
+            'Collaborate with product managers, developers, and business teams',
+            'Participate in testing activities such as functional and regression testing',
+            'Maintain documentation for processes, troubleshooting, and best practices',
+            'Monitor application performance and suggest improvements',
+            'Stay updated with industry trends and tools through continuous learning'
+        ],
+        skills: [
+            'SDLC', 'Agile methodologies', 'Python', 'Java', 'Testing processes'
+        ],
+        eligibility: [
+            'Bachelor\'s degree in Computer Science, IT, or related field',
+            'Eligible batches: 2025 and 2026',
+            'Basic understanding of application implementation and support',
+            'Good communication and teamwork skills'
+        ],
+        benefits: [
+            'Hands-on experience with real-world healthcare IT projects',
+            'Mentorship from experienced professionals',
+            'Exposure to enterprise-level applications',
+            'Potential full-time opportunity after successful completion'
+        ],
+        applicationProcess: [
+            'Step 1: Online Application Screening',
+            'Step 2: Technical Assessment',
+            'Step 3: HR Interview'
+        ],
+        faqs: [
+            { q: 'Is this role fully remote or onsite?', a: 'It is a Hybrid role based in Kochi — you will need to be available to work from the office as required.' },
+            { q: 'What is the duration of this internship?', a: 'This is a 1-year internship — longer than most short-term programs, giving solid practical exposure.' },
+            { q: 'Can 2024 batch graduates apply?', a: 'The listing specifically mentions 2025 and 2026 batches only.' }
+        ],
+        applyLink: 'https://iqvia.wd1.myworkdayjobs.com/IQVIA/job/Kochi-India/Intern_R1536744'
+    },
+    {
+        id: 'visa-se-2026',
+        title: 'Software Engineer (SW Engineer)',
+        company: 'Visa',
+        location: 'Bangalore, Karnataka (Onsite)',
+        type: 'Full-time',
+        salary: 'Not Disclosed',
+        experience: '6 months – 2 years',
+        postedDate: 'April 28, 2026',
+        aboutCompany: 'Visa is a global leader in digital payments technology, facilitating more than 215 billion transactions annually across over 200 countries and territories. The company builds reliable, secure, and scalable payment infrastructure used by consumers, businesses, financial institutions, and governments worldwide.',
+        description: 'The role is for Visa\'s Product Reliability Engineering team, where engineers design, build, and maintain highly scalable software systems. The role involves solving real-time reliability challenges and ensuring seamless transaction processing at a massive global scale, including building intelligent systems using advanced GenAI technologies and contributing to deep learning solutions that support real-time transactions exceeding 100,000 transactions per second.',
+        responsibilities: [
+            'Build and maintain highly scalable, high-performance software systems',
+            'Work on GenAI-powered reliability and deep learning solutions',
+            'Solve real-time production reliability challenges',
+            'Develop microservices-based architecture with REST APIs',
+            'Implement CI/CD pipelines and work with Kafka for event streaming',
+            'Collaborate with global engineering and product teams'
+        ],
+        skills: [
+            'Java', 'Python', 'GenAI', 'Microservices', 'REST APIs', 'CI/CD', 'Kafka'
+        ],
+        eligibility: [
+            'Degree: B.E / B.Tech / B.Sc / M.E / M.Tech / M.Sc / MBA',
+            'Experience: 6 months to 2 years',
+            'Skills Required: Java, Python, GenAI, Microservices, REST APIs, CI/CD, Kafka',
+            'Strong problem-solving and analytical mindset'
+        ],
+        benefits: [
+            'Global operational exposure',
+            'Deep learning architecture design involvement',
+            'Performance-oriented incentives'
+        ],
+        applicationProcess: [
+            'Step 1: Application screening',
+            'Step 2: Technical assessment evaluation',
+            'Step 3: Comprehensive tech panel rounds'
+        ],
+        faqs: [
+            { q: 'Is this role open for freshers?', a: 'It requires 6 months to 2 years of experience, so absolute freshers (0 months) may not qualify.' },
+            { q: 'Is it work from home or onsite?', a: 'Onsite at Bangalore.' },
+            { q: 'What is the salary?', a: 'Not disclosed officially — check Glassdoor for estimates.' }
+        ],
+        applyLink: 'https://visa.wd5.myworkdayjobs.com/Visa/job/IN—Bengaluru-India/Software-Engineer_REF079456W'
+    },
+    {
+        id: 'microsoft-se-azure-2026',
+        title: 'Software Engineer (Azure)',
+        company: 'Microsoft',
+        location: 'Hyderabad, Telangana (Onsite)',
+        type: 'Full-time',
+        salary: 'Not Disclosed',
+        experience: '0–2+ years',
+        postedDate: 'April 27, 2026',
+        aboutCompany: 'Microsoft Azure is one of the world\'s leading cloud platforms. Within Azure, the Data Engineering group focuses on building next-generation database solutions that power modern applications — including Azure SQL Database, Azure PostgreSQL, Azure MySQL, and Azure Cosmos DB.',
+        description: 'Selected candidates join the Azure Data Engineering team and contribute to building advanced cloud database solutions. The work involves developing highly scalable, secure, and reliable systems while collaborating with global teams, designing and maintaining core features that differentiate Microsoft\'s cloud offerings.',
+        responsibilities: [
+            'Develop and implement core product features for cloud database services',
+            'Participate in architectural discussions for secure and scalable systems',
+            'Write clean, maintainable, and extensible code following best practices',
+            'Conduct code reviews to ensure quality and reliability',
+            'Improve testing strategies and enhance test coverage',
+            'Monitor and maintain live services through on-call rotations'
+        ],
+        skills: [
+            'C', 'C++', 'C#', 'Java', 'JavaScript', 'Python', 'DSA', 'Cloud'
+        ],
+        eligibility: [
+            'Degree: Bachelor\'s or Master\'s in Computer Science or related field',
+            'Experience: Bachelor\'s Degree + 2 years experience, OR Master\'s Degree + relevant coding experience',
+            'Technical Skills: Strong proficiency in C, C++, C#, Java, JavaScript, or Python',
+            'Deep understanding of Data Structures and Algorithms'
+        ],
+        benefits: [
+            'Flexible working arrangements',
+            'Comprehensive healthcare support',
+            'Generous retirement benefits'
+        ],
+        applicationProcess: [
+            'Step 1: Profile review',
+            'Step 2: DSA assessment evaluation',
+            'Step 3: Core architectural discussions'
+        ],
+        faqs: [
+            { q: 'Can I apply with a B.Tech and no experience?', a: 'B.Tech candidates need 2+ years of experience. Master\'s degree holders can apply with less.' },
+            { q: 'Which team will I join?', a: 'Azure Data Engineering group — working on Azure SQL, PostgreSQL, Cosmos DB etc.' }
+        ],
+        applyLink: 'https://apply.careers.microsoft.com/careers/job/1970393556861136'
+    },
+    {
+        id: 'wipro-intern-2026',
+        title: 'Intern (North America Team)',
+        company: 'Wipro',
+        location: 'Bengaluru (Onsite)',
+        type: 'Internship',
+        salary: '₹4–₹8 LPA (Estimate)',
+        experience: 'Recent Graduates / Pursuing',
+        postedDate: 'April 26, 2026',
+        aboutCompany: 'Wipro is a globally recognized IT company. The internship is part of Wipro\'s North America Transformation Team.',
+        description: 'The program focuses on building practical skills by allowing candidates to work on real business challenges and contribute to impactful projects within the organization.',
+        responsibilities: [
+            'Collaborate with global teams and senior leaders on strategic internal initiatives',
+            'Gain exposure to Wipro\'s business operations and client ecosystem',
+            'Identify business requirements and convert them into actionable plans',
+            'Participate in meetings with cross-functional teams and partner stakeholders',
+            'Work closely with mentors and leadership for professional development',
+            'Demonstrate teamwork, leadership, and strong communication skills'
+        ],
+        skills: [
+            'Teamwork', 'Communication', 'Business Operations', 'Strategic Insights'
+        ],
+        eligibility: [
+            'Pursuing or have completed a Bachelor\'s or Master\'s degree (any stream)',
+            'Freshers welcome — no prior experience required',
+            'Strong analytical, communication, and problem-solving skills preferred'
+        ],
+        benefits: [
+            'Structured mentoring opportunities',
+            'Transition routes into operational divisions',
+            'Stipend payouts mapped appropriately'
+        ],
+        applicationProcess: [
+            'Step 1: Background selection review',
+            'Step 2: Operational readiness interviews'
+        ],
+        faqs: [
+            { q: 'Is this a paid internship?', a: 'Yes. Glassdoor estimates ₹4–₹8 LPA equivalent compensation.' },
+            { q: 'Is this remote or onsite?', a: 'Onsite at Bengaluru.' }
+        ],
+        applyLink: 'https://careers.wipro.com/job/Intern-L0-1/156375-en_US'
+    },
+    {
+        id: 'google-se-ii-cloud-2026',
+        title: 'Software Engineer II (Google Cloud)',
+        company: 'Google',
+        location: 'Bangalore (Onsite)',
+        type: 'Full-time',
+        salary: 'Not Disclosed',
+        experience: 'Minimum 1 Year',
+        postedDate: 'April 19, 2026',
+        aboutCompany: 'The Google Cloud AI and Infrastructure team is focused on building highly scalable, secure, and efficient systems that power modern applications. From machine learning platforms to global data storage systems, Google Cloud provides enterprise-grade solutions that redefine how businesses operate.',
+        description: 'As a Software Engineer II at Google Cloud, you will be responsible for developing and maintaining high-performance systems that handle large volumes of data efficiently.',
+        responsibilities: [
+            'Design, develop, test, and deploy scalable software solutions',
+            'Write clean, maintainable, and efficient code following best practices',
+            'Participate in code reviews to ensure quality, performance, and reliability',
+            'Debug and resolve complex system issues across hardware and network layers',
+            'Collaborate with cross-functional teams to improve system architecture',
+            'Optimize applications for speed, scalability, and reliability',
+            'Manage project priorities, timelines, and deliverables'
+        ],
+        skills: [
+            'Java', 'Python', 'C++', 'C', 'JavaScript', 'DSA', 'Distributed Systems'
+        ],
+        eligibility: [
+            'Degree: B.E/B.Tech/B.Sc/M.E/M.Tech/PhD in Computer Science or related',
+            'Experience: Minimum 1 year of professional software development',
+            'Technical Skills: Java, Python, C++, C, JavaScript or Go; strong DSA and system design',
+            'Preferred: Master\'s/PhD, experience with large-scale cloud or AI systems'
+        ],
+        benefits: [
+            'Premium healthcare benefits package',
+            'Generous stock options allocation',
+            'Access to globally competitive facilities'
+        ],
+        applicationProcess: [
+            'Step 1: Technical screening',
+            'Step 2: Multi-stage coding paradigms tests',
+            'Step 3: Fitments analysis panels'
+        ],
+        faqs: [
+            { q: 'Can freshers apply (0 experience)?', a: 'No — at least 1 year of experience is required for SE II level.' },
+            { q: 'What coding languages does Google prefer?', a: 'Java, Python, C++, C, JavaScript — strong in any one plus DSA.' }
+        ],
+        applyLink: 'https://careers.google.com/'
+    },
+    {
+        id: 'hcltech-jr-tester-2026',
+        title: 'Junior Tester',
+        company: 'HCLTech',
+        location: 'Hyderabad, Telangana (Onsite)',
+        type: 'Full-time',
+        salary: 'Not Disclosed',
+        experience: 'Freshers Welcome',
+        postedDate: 'April 18, 2026',
+        aboutCompany: 'HCLTech is a leading global technology company with a workforce of over 220,000 employees across 60 countries. The company delivers cutting-edge solutions in digital, engineering, and cloud services.',
+        description: 'As a Junior Tester at HCLTech, you will be part of a high-performance verification and regression team working on advanced semiconductor technologies. Your primary responsibility will be to execute and monitor regression testing.',
+        responsibilities: [
+            'Execute and monitor regression test suites using internal tools like Viper',
+            'Analyze and triage test failures, identify root causes, and rerun tests',
+            'Debug issues related to SV/UVM testbenches and RTL-based IPs',
+            'Maintain and track technical issues through proper ticketing systems',
+            'Use AI tools (GitHub Copilot, ChatGPT, Codex) for scripting and debugging',
+            'Work with simulators: Vivado, Questa, and VCS',
+            'Maintain documentation of test cases, bugs, and resolutions'
+        ],
+        skills: [
+            'Linux', 'Python/Perl', 'SV/UVM', 'Vivado', 'Questa', 'VCS', 'AI Tools'
+        ],
+        eligibility: [
+            'Degree: B.E/B.Tech in Electronics, Computer Science, or related',
+            'Batch: 2023, 2024, 2025, or 2026',
+            'Experience: Freshers welcome',
+            'Knowledge of Linux, Python/Perl or C++'
+        ],
+        benefits: [
+            'On-job training tracks established',
+            'Global operations rotation routines',
+            'Health insurance guidelines optimized'
+        ],
+        applicationProcess: [
+            'Step 1: Resume vetting',
+            'Step 2: Core basic competencies mapping'
+        ],
+        faqs: [
+            { q: 'Is this role for CS graduates or only Electronics?', a: 'Both Electronics and CS graduates can apply.' },
+            { q: 'Do I need prior semiconductor knowledge?', a: 'Basic understanding is preferred; freshers with Electronics background are encouraged.' }
+        ],
+        applyLink: 'https://www.hcltech.com/careers'
+    },
+    {
+        id: 'hpe-se-ii-2026',
+        title: 'Software Engineer II',
+        company: 'HPE',
+        location: 'Bangalore, Karnataka (Onsite)',
+        type: 'Full-time',
+        salary: 'Not Disclosed',
+        experience: '0–3 Years',
+        postedDate: 'April 18, 2026',
+        aboutCompany: 'Hewlett Packard Enterprise is a leading global organization focused on delivering edge-to-cloud solutions. Operating in over 100 countries, HPE helps businesses connect, protect, analyze, and act on their data seamlessly across environments.',
+        description: 'In this role, candidates work within HPE\'s networking division, focusing on systems programming and advanced networking technologies. Engineers design and develop packet forwarding solutions.',
+        responsibilities: [
+            'Develop and enhance system software including OS, networking tools, and utilities in C/C++',
+            'Work on packet forwarding technologies: L2 forwarding, IPv4/IPv6, MPLS, VPLS, EVPN, CFM',
+            'Execute test plans and debug complex issues in Linux and microkernel environments',
+            'Analyze and fix customer-reported issues',
+            'Participate in software design and architecture discussions',
+            'Collaborate with engineering, QA, and product teams'
+        ],
+        skills: [
+            'C/C++', 'IPv4/IPv6', 'MPLS', 'EVPN', 'Linux', 'Microkernel'
+        ],
+        eligibility: [
+            'Degree: B.Tech / B.E / M.Tech in CS, IT, ECE or equivalent',
+            'Batch: 2024, 2025, or 2026',
+            'Experience: 0–3 years (freshers eligible)',
+            'Skills: Strong C/C++, Linux, networking protocols (IPv4/IPv6, MPLS)'
+        ],
+        benefits: [
+            'Edge-to-cloud framework expertise mentoring',
+            'Full medical care coverage',
+            'Competitive variable packages'
+        ],
+        applicationProcess: [
+            'Step 1: Resume assessment',
+            'Step 2: Live C++ algorithms tests'
+        ],
+        faqs: [
+            { q: 'Is this suitable for non-networking background candidates?', a: 'Basic networking knowledge is needed; deep expertise is preferred but candidates can learn on the job.' },
+            { q: 'What is the work mode — remote or onsite?', a: 'Fully onsite at Bangalore.' }
+        ],
+        applyLink: 'https://careers.hpe.com/'
+    },
+    {
+        id: 'hpe-jr-sre-2026',
+        title: 'Junior SRE Engineer',
+        company: 'HPE',
+        location: 'Bangalore, Karnataka (Hybrid)',
+        type: 'Full-time',
+        salary: 'Not Disclosed',
+        experience: '0–2 Years',
+        postedDate: 'March 29, 2026',
+        aboutCompany: 'HPE is a Fortune 500 global technology company specializing in hybrid IT, edge computing, cloud solutions, and enterprise infrastructure.',
+        description: 'As a Junior Site Reliability Engineer, you will work on maintaining and improving the reliability of HPE\'s Networking SASE platforms. You will combine software engineering and system operations to improve uptime.',
+        responsibilities: [
+            'Monitor and maintain system reliability using Prometheus and Grafana',
+            'Troubleshoot production issues by analyzing logs, metrics, and system performance',
+            'Participate in incident management and on-call rotations',
+            'Work with Kubernetes and containerized applications',
+            'Automate operational tasks using Python or shell scripting',
+            'Collaborate with development teams to improve system reliability',
+            'Optimize performance and support capacity planning'
+        ],
+        skills: [
+            'Prometheus', 'Grafana', 'Kubernetes', 'Python', 'Shell', 'CI/CD'
+        ],
+        eligibility: [
+            'Degree: Bachelor\'s in Computer Science, IT, or related field',
+            'Batch: 2024 or 2025',
+            'Experience: 0–2 years (freshers welcome)',
+            'Skills: Prometheus, Grafana, Kubernetes, Python/Shell scripting, CI/CD pipelines'
+        ],
+        benefits: [
+            'Hybrid work support allowances',
+            'Automation workflows exposure',
+            'Inclusive corporate wellness'
+        ],
+        applicationProcess: [
+            'Step 1: Application screening',
+            'Step 2: Infrastructure tools deployment tests'
+        ],
+        faqs: [
+            { q: 'What is SRE (Site Reliability Engineering)?', a: 'SRE combines software engineering with IT operations — ensuring systems are highly available, scalable, and reliable.' },
+            { q: 'Is this remote or hybrid?', a: 'Hybrid at Bangalore.' }
+        ],
+        applyLink: 'https://careers.hpe.com/'
+    },
+    {
+        id: 'amazon-vcs-2026',
+        title: 'Virtual Associate Roles',
+        company: 'Amazon',
+        location: 'Remote / Work From Home (Across India)',
+        type: 'Full-time / Part-time',
+        salary: 'Not Disclosed',
+        experience: 'Freshers / 0–1 Year',
+        postedDate: 'Recently Active',
+        aboutCompany: 'Amazon is one of the world\'s largest and most valuable technology companies, operating across e-commerce, cloud computing (AWS), artificial intelligence, and digital services.',
+        description: 'Amazon is hiring for two WFH roles — ML Data Operations (AI data auditing) and Virtual Customer Support Associate (handling customer queries remotely).',
+        responsibilities: [
+            'Handle customer queries via phone, chat, and email (Support role)',
+            'Resolve issues related to orders, returns, payments, and account queries',
+            'Audit video and image data to improve Amazon\'s AI systems (ML Data Ops role)',
+            'Maintain high accuracy and productivity in assigned tasks',
+            'Use Amazon internal tools for data processing and customer interaction',
+            'Work in 24/7 rotational shifts including weekends',
+            'Follow data security and privacy guidelines while working remotely'
+        ],
+        skills: [
+            'Customer Queries Handling', 'Video & Image Auditing', 'English & Regional Communication'
+        ],
+        eligibility: [
+            'Education: 10+2 pass or any Graduate degree (any stream)',
+            'Batch: 2023, 2024, 2025, 2026',
+            'Experience: Freshers or 0–1 year',
+            'Good communication skills (English and regional language)'
+        ],
+        benefits: [
+            'Remote setup hardware provisions',
+            'Rotational leaves options',
+            'Internal mobility access'
+        ],
+        applicationProcess: [
+            'Step 1: Language competency checks',
+            'Step 2: Situational assessment quizzes'
+        ],
+        faqs: [
+            { q: 'Is this fully work from home?', a: 'Yes, 100% remote across India.' },
+            { q: 'Do I need a laptop?', a: 'Yes, a working laptop/PC and a stable internet connection are typically required.' }
+        ],
+        applyLink: 'https://amazon.jobs/'
+    },
+    {
+        id: 'upgrad-qa-intern-2026',
+        title: 'Quality Assurance Intern',
+        company: 'upGrad',
+        location: 'Pune / Bengaluru (In-Office)',
+        type: 'Internship',
+        salary: 'Not Disclosed',
+        experience: 'Freshers (0–1 Year)',
+        postedDate: 'April 19, 2026',
+        aboutCompany: 'Founded in 2015, upGrad has become one of India\'s most recognized edtech platforms, serving over 10 million learners across more than 50 countries.',
+        description: 'As a Quality Assurance Intern, you will be part of the QA team responsible for ensuring the quality and reliability of upGrad\'s web and mobile platforms.',
+        responsibilities: [
+            'Understand requirements and create detailed test cases for functional, regression, and edge-case scenarios',
+            'Execute tests across web and mobile applications',
+            'Identify, log, and track bugs using JIRA with detailed reproduction steps',
+            'Validate bug fixes and perform re-testing',
+            'Assist in UAT cycles and support product releases',
+            'Prepare test data and maintain QA documentation',
+            'Collaborate with developers and QA teams to ensure product quality'
+        ],
+        skills: [
+            'Manual Testing', 'Test Case Design', 'JIRA', 'Regression Testing'
+        ],
+        eligibility: [
+            'Degree: B.E / B.Tech / BCA / B.Sc in CS, IT, ECE or related',
+            'Batch: 2024, 2025, or 2026',
+            'Experience: Freshers (0–1 year)'
+        ],
+        benefits: [
+            'Transition routes into full-time roles (PPOs)',
+            'Flexible operations pacing'
+        ],
+        applicationProcess: [
+            'Step 1: Candidate profiling',
+            'Step 2: Basic logical test benchmarks'
+        ],
+        faqs: [
+            { q: 'Is this a paid internship?', a: 'Salary is not disclosed — check during the interview process.' },
+            { q: 'Do I need prior testing experience?', a: 'No — freshers from 2024/2025/2026 batches are welcome.' }
+        ],
+        applyLink: 'https://www.upgrad.com/careers/'
     }
 ];
 

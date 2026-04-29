@@ -916,6 +916,12 @@ const CourseTutorialPage = () => {
                         {/* Final Certification Progress Section */}
                         <div className="p-8 rounded-3xl bg-gradient-to-br from-red-600 to-orange-500 shadow-xl relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-white/20 transition-all duration-700" />
+                            
+                            {/* Swag Robot Asset */}
+                            <div className="absolute bottom-1 right-1 w-36 h-36 pointer-events-none select-none group-hover:scale-105 transition-transform duration-700 mix-blend-screen">
+                                <img src="/assets/swag-robot.png" alt="Swag Robot" className="w-full h-full object-contain mix-blend-screen" />
+                            </div>
+
                             <div className="relative z-10">
                                 <div className="text-[10px] font-black text-red-100 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
                                     <Trophy className="w-4 h-4 animate-pulse" /> Final Certification Progress
@@ -924,7 +930,7 @@ const CourseTutorialPage = () => {
                                     <div className="text-3xl font-black text-white">
                                         {completedCount}<span className="text-red-200 text-sm font-bold"> / {EPISODES.length}</span>
                                     </div>
-                                    <div className="text-right">
+                                    <div className="text-right mr-28">
                                         <div className="text-[10px] font-black text-red-100 uppercase tracking-widest">Mastery</div>
                                         <div className="text-2xl font-black text-white">{progressPercentage}%</div>
                                     </div>
@@ -935,7 +941,7 @@ const CourseTutorialPage = () => {
                                         style={{ width: `${progressPercentage}%` }}
                                     />
                                 </div>
-                                <p className="text-[10px] text-red-50 font-medium italic text-center">
+                                <p className="text-[10px] text-red-50 font-medium italic text-left">
                                     Complete the entire series to unlock your credential
                                 </p>
                             </div>
