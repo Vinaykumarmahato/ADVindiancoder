@@ -651,8 +651,9 @@ const JobDetailsPage = () => {
     // Use external custom link (e.g. telegram) or fallback to internal email apply
     const applyTarget = job.applyLink ? job.applyLink : `mailto:Inogllecompany@gmail.com?subject=${encodeURIComponent('Application for ' + job.title + ' - ' + job.company)}`;
     
-    const currentUrl = encodeURIComponent(window.location.href);
-    const shareText = encodeURIComponent(`Check out this ${job.title} job at ${job.company}!`);
+    const shareUrl = `https://advindiancoder.com/jobs/${job.id}`;
+    const currentUrl = encodeURIComponent(shareUrl);
+    const shareText = encodeURIComponent(`Check out this ${job.title} job opening at ${job.company}!`);
 
     const jobSchema = {
         "@context": "https://schema.org/",
