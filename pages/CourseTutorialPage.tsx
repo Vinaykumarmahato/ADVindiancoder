@@ -266,13 +266,49 @@ const CourseTutorialPage = () => {
     const [isReporting, setIsReporting] = useState(false);
     const [formData, setFormData] = useState(() => {
         const saved = localStorage.getItem('user_profile');
-        return saved ? JSON.parse(saved) : { name: '', email: '', mobile: '' };
+        return saved ? JSON.parse(saved) : { name: '', email: '', mobile: '', portfolio: '' };
     });
     const [isSending, setIsSending] = useState(false);
     const [hasSent, setHasSent] = useState(false);
     const [showCertModal, setShowCertModal] = useState(false);
     const [verifyId, setVerifyId] = useState('');
     const [verificationStatus, setVerificationStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const [isSendingInterview, setIsSendingInterview] = useState(false);
+    const [hasSentInterview, setHasSentInterview] = useState(() => {
+        return localStorage.getItem(`interview_requested_java`) === 'true';
+    });
+
+    const handleInterviewRequest = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSendingInterview(true);
+
+        try {
+            const submitData = new FormData();
+            submitData.append("Name", formData.name);
+            submitData.append("Email", formData.email);
+            submitData.append("Mobile", formData.mobile);
+            submitData.append("Portfolio", formData.portfolio || "Not provided");
+            submitData.append("AverageScore", `${averageScore}%`);
+            submitData.append("_subject", `Google Meet Interview Request: ${formData.name}`);
+            submitData.append("_captcha", "false");
+            submitData.append("_template", "table");
+
+            const response = await fetch("https://formsubmit.co/ajax/advindiancoderchannel@gmail.com", {
+                method: "POST",
+                body: submitData,
+            });
+
+            if (response.ok) {
+                setHasSentInterview(true);
+                localStorage.setItem(`interview_requested_java`, 'true');
+            }
+        } catch (error) {
+            console.error("Failed to request evaluation:", error);
+        } finally {
+            setIsSendingInterview(false);
+        }
+    };
 
     // Generate Deterministic Certificate ID based on name and score
     const certificateId = useMemo(() => {
@@ -578,9 +614,6 @@ const CourseTutorialPage = () => {
                                     <button onClick={() => setActiveTab('quiz')} className={`flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'quiz' ? 'bg-red-600 text-white shadow-lg' : 'text-gray-500 hover:text-white hover:bg-white/5'}`}>
                                         <HelpCircle className="w-4 h-4" /> Assessment
                                     </button>
-                                    <button onClick={() => setActiveTab('certification')} className={`flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'certification' ? 'bg-red-600 text-white shadow-lg' : 'text-gray-500 hover:text-white hover:bg-white/5'}`}>
-                                        <Trophy className="w-4 h-4" /> Graduation
-                                    </button>
                                 </div>
 
                                 {/* Tab Content */}
@@ -802,6 +835,8 @@ const CourseTutorialPage = () => {
                                             </div>
                                         </div>
                                     )}
+
+
                                 </div>
                             </div>
 
@@ -838,121 +873,6 @@ const CourseTutorialPage = () => {
                                 </div>
 
                                 <div className="flex-1 overflow-y-auto custom-scrollbar bg-black/20">
-                                    {/* Final Certification Progress Section */}
-                                    <div className="p-6 border-b border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent">
-                                        <div className="p-5 rounded-3xl bg-gradient-to-br from-red-600 to-orange-500 shadow-xl relative overflow-hidden group mb-6">
-                                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-white/20 transition-all" />
-                                            <div className="relative z-10">
-                                                <div className="text-[10px] font-black text-red-100 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                                                    <Trophy className="w-3 h-3 animate-pulse" /> Final Certification Progress
-                                                </div>
-                                                <div className="flex justify-between items-end mb-4">
-                                                    <div className="text-3xl font-black text-white">
-                                                        {completedCount}<span className="text-red-200 text-sm font-bold"> / {EPISODES.length}</span>
-                                                    </div>
-                                                    <div className="text-right">
-                                                        <div className="text-[9px] font-black text-red-100 uppercase tracking-widest">Mastery</div>
-                                                        <div className="text-xl font-black text-white">{progressPercentage}%</div>
-                                                    </div>
-                                                </div>
-                                                <div className="h-2 w-full bg-black/20 rounded-full overflow-hidden mb-4">
-                                                    <div 
-                                                        className="h-full bg-white rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(255,255,255,0.5)]"
-                                                        style={{ width: `${progressPercentage}%` }}
-                                                    />
-                                                </div>
-                                                <p className="text-[10px] text-red-50 font-medium italic text-center">
-                                                    Complete the entire series to unlock your credential
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Verify Section */}
-                                        <div className="mb-6 space-y-3">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <ShieldCheck className="w-4 h-4 text-green-500" />
-                                                <span className="text-[10px] font-black text-white uppercase tracking-widest">Verify a Certificate</span>
-                                            </div>
-                                            <div className="space-y-2">
-                                                <input 
-                                                    type="text" 
-                                                    placeholder="VERIFY CREDENTIAL ID" 
-                                                    className="w-full bg-[#0d1117] border border-white/5 rounded-xl px-4 py-3 text-[10px] font-mono text-white focus:border-red-500 outline-none transition-all placeholder:text-gray-700 uppercase"
-                                                    value={verifyId}
-                                                    onChange={e => {
-                                                        setVerifyId(e.target.value.toUpperCase());
-                                                        setVerificationStatus('idle');
-                                                    }}
-                                                />
-                                                <button 
-                                                    onClick={handleVerify}
-                                                    disabled={verificationStatus === 'loading'}
-                                                    className={`w-full py-3 rounded-xl font-black text-[9px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${
-                                                        verificationStatus === 'success' ? 'bg-green-600 text-white' :
-                                                        verificationStatus === 'error' ? 'bg-red-600 text-white' :
-                                                        'bg-white text-black hover:bg-gray-200'
-                                                    }`}
-                                                >
-                                                    {verificationStatus === 'loading' ? 'AUTHENTICATING...' : 
-                                                     verificationStatus === 'success' ? 'VERIFIED' :
-                                                     verificationStatus === 'error' ? 'INVALID ID PATTERN' : 'VERIFY CREDENTIAL'}
-                                                </button>
-                                                <p className="text-[9px] text-gray-600 font-bold italic text-center leading-tight">
-                                                    Academic credentials are cryptographically tied to the student profile.
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Rulebook Section */}
-                                        <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
-                                            <h4 className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                                                <GraduationCap className="w-4 h-4 text-red-500" /> Graduation Rulebook
-                                            </h4>
-                                            <div className="space-y-4">
-                                                <div className="flex gap-3">
-                                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">01</span>
-                                                    <div className="space-y-0.5">
-                                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">Series Completion</div>
-                                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Complete every module in this professional series as they are released.</p>
-                                                    </div>
-                                                </div>
-                                                <div className="flex gap-3">
-                                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">02</span>
-                                                    <div className="space-y-0.5">
-                                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">Continuous Validation</div>
-                                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Take the MCQ quiz in each episode and hit "Submit Result" to qualify for the final credential.</p>
-                                                    </div>
-                                                </div>
-                                                <div className="flex gap-3">
-                                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">03</span>
-                                                    <div className="space-y-0.5">
-                                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">Smart Profile Sync</div>
-                                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Ensure your name is spelled correctly in the result form as it appears on the certificate.</p>
-                                                    </div>
-                                                </div>
-                                                <div className="flex gap-3">
-                                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">04</span>
-                                                    <div className="space-y-0.5">
-                                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">Total Mastery</div>
-                                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Your Average Score across the entire curriculum determines your final certificate grading.</p>
-                                                    </div>
-                                                </div>
-                                                <div className="flex gap-3">
-                                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">05</span>
-                                                    <div className="space-y-0.5">
-                                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">LinkedIn Showcase</div>
-                                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Post your certificate on social media and tag ADV Indian Coder to gain industry recognition.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="mt-4 pt-4 border-t border-white/5">
-                                                <p className="text-[8px] text-amber-500/80 font-bold uppercase leading-relaxed tracking-wider">
-                                                    Results are stored locally in your browser. Clearing browser data may reset your progress.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     {/* Episode List */}
                                     <div className="p-6 space-y-3">
                                         {EPISODES.map((video, index) => {
@@ -989,9 +909,190 @@ const CourseTutorialPage = () => {
                             </div>
                         </div>
                     </div>
+                    </div>
+
+                    {/* ── BOTTOM: Certification Progress Section ── */}
+                    <div className="mt-16 pt-16 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                        {/* Final Certification Progress Section */}
+                        <div className="p-8 rounded-3xl bg-gradient-to-br from-red-600 to-orange-500 shadow-xl relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-white/20 transition-all duration-700" />
+                            <div className="relative z-10">
+                                <div className="text-[10px] font-black text-red-100 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                                    <Trophy className="w-4 h-4 animate-pulse" /> Final Certification Progress
+                                </div>
+                                <div className="flex justify-between items-end mb-4">
+                                    <div className="text-3xl font-black text-white">
+                                        {completedCount}<span className="text-red-200 text-sm font-bold"> / {EPISODES.length}</span>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="text-[10px] font-black text-red-100 uppercase tracking-widest">Mastery</div>
+                                        <div className="text-2xl font-black text-white">{progressPercentage}%</div>
+                                    </div>
+                                </div>
+                                <div className="h-2 w-full bg-black/20 rounded-full overflow-hidden mb-4">
+                                    <div 
+                                        className="h-full bg-white rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                                        style={{ width: `${progressPercentage}%` }}
+                                    />
+                                </div>
+                                <p className="text-[10px] text-red-50 font-medium italic text-center">
+                                    Complete the entire series to unlock your credential
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Verify Section */}
+                        <div className="p-8 rounded-3xl bg-[#0d1117] border border-white/5 backdrop-blur-xl flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center gap-2 mb-4">
+                                    <ShieldCheck className="w-5 h-5 text-green-500" />
+                                    <span className="text-[10px] font-black text-white uppercase tracking-widest">Verify a Certificate</span>
+                                </div>
+                                <div className="space-y-3">
+                                    <input 
+                                        type="text" 
+                                        placeholder="VERIFY CREDENTIAL ID" 
+                                        className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-[10px] font-mono text-white focus:border-red-500 outline-none transition-all placeholder:text-gray-700 uppercase"
+                                        value={verifyId}
+                                        onChange={e => {
+                                            setVerifyId(e.target.value.toUpperCase());
+                                            setVerificationStatus('idle');
+                                        }}
+                                    />
+                                    <button 
+                                        onClick={handleVerify}
+                                        disabled={verificationStatus === 'loading'}
+                                        className={`w-full py-3 rounded-xl font-black text-[9px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${
+                                            verificationStatus === 'success' ? 'bg-green-600 text-white' :
+                                            verificationStatus === 'error' ? 'bg-red-600 text-white' :
+                                            'bg-white text-black hover:bg-gray-200'
+                                        }`}
+                                    >
+                                        {verificationStatus === 'loading' ? 'AUTHENTICATING...' : 
+                                         verificationStatus === 'success' ? 'VERIFIED' :
+                                         verificationStatus === 'error' ? 'INVALID ID' : 'VERIFY CREDENTIAL'}
+                                    </button>
+                                </div>
+                            </div>
+                            <p className="text-[9px] text-gray-600 font-bold italic text-center leading-tight mt-4">
+                                Academic credentials are cryptographically tied to the profile.
+                            </p>
+                        </div>
+
+                        {/* Rulebook Section */}
+                        <div className="p-8 rounded-3xl bg-[#0d1117] border border-white/5 backdrop-blur-xl">
+                            <h4 className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                                <GraduationCap className="w-5 h-5 text-red-500" /> Graduation Rulebook
+                            </h4>
+                            <div className="space-y-3">
+                                <div className="flex gap-3">
+                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">01</span>
+                                    <div className="space-y-0.5">
+                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">Submit Assessments</div>
+                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Complete and submit the quizzes for all curriculum modules sequentially.</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-3">
+                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">02</span>
+                                    <div className="space-y-0.5">
+                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">Eligibility & Group Access</div>
+                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Unlock the application form and secure the opportunity to join our official certificates hub.</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-3">
+                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">03</span>
+                                    <div className="space-y-0.5">
+                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">15-Min F2F Interview</div>
+                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Schedule a quick 15-minute face-to-face capability evaluation with mentorship mentors.</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-3">
+                                    <span className="text-[9px] font-black text-red-500 opacity-50 shrink-0">04</span>
+                                    <div className="space-y-0.5">
+                                        <div className="text-[10px] font-black text-white uppercase tracking-wider">Receive Credential</div>
+                                        <p className="text-[9px] text-gray-500 font-medium leading-relaxed">Clear the technical meet successfully to receive your industrial-grade credential.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-4 pt-4 border-t border-white/5 text-right">
+                                <span className="text-[8px] font-black tracking-widest text-gray-600 uppercase">Mentor: Vinay Kumar Mahato</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {isCourseCompleted && (
+                        <div className="mt-12 p-8 rounded-[2rem] bg-gradient-to-br from-green-950/20 to-red-950/10 border border-green-500/20 max-w-4xl mx-auto relative z-10 animate-in fade-in slide-in-from-top-4 duration-500">
+                            <div className="text-center mb-8">
+                                <Trophy className="w-16 h-16 text-green-500 mx-auto mb-4 animate-bounce" />
+                                <h4 className="text-3xl font-black text-white mb-2">Curriculum 100% Cleared</h4>
+                                <p className="text-green-400 font-bold text-sm tracking-widest uppercase">Eligible for Graduation Interview</p>
+                            </div>
+
+                            <form onSubmit={handleInterviewRequest} className="space-y-6 max-w-2xl mx-auto p-6 bg-black/40 rounded-3xl border border-white/5">
+                                <h5 className="text-lg font-black text-white flex items-center gap-2">
+                                    <Info className="w-5 h-5 text-red-500" /> Complete your evaluation profile
+                                </h5>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Full Legal Name</label>
+                                        <input 
+                                            type="text" required
+                                            value={formData.name}
+                                            onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                            className="w-full bg-[#0d1117] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:border-red-500 outline-none transition-all"
+                                            placeholder="Name on certificate"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Mobile / WhatsApp Number</label>
+                                        <input 
+                                            type="tel" required
+                                            value={formData.mobile}
+                                            onChange={e => setFormData({ ...formData, mobile: e.target.value })}
+                                            className="w-full bg-[#0d1117] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:border-red-500 outline-none transition-all"
+                                            placeholder="+91 XXXXX XXXXX"
+                                        />
+                                    </div>
+                                    <div className="space-y-2 md:col-span-2">
+                                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
+                                        <input 
+                                            type="email" required
+                                            value={formData.email}
+                                            onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                            className="w-full bg-[#0d1117] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:border-red-500 outline-none transition-all"
+                                            placeholder="email@example.com"
+                                        />
+                                    </div>
+                                    <div className="space-y-2 md:col-span-2">
+                                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Project/GitHub Links (Proof of Work)</label>
+                                        <input 
+                                            type="text"
+                                            value={formData.portfolio || ''}
+                                            onChange={e => setFormData({ ...formData, portfolio: e.target.value })}
+                                            className="w-full bg-[#0d1117] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:border-red-500 outline-none transition-all"
+                                            placeholder="https://github.com/username/project"
+                                        />
+                                    </div>
+                                </div>
+
+                                <button 
+                                    type="submit"
+                                    disabled={isSendingInterview}
+                                    className="w-full py-4 bg-red-600 hover:bg-red-500 text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all shadow-xl shadow-red-600/20 disabled:opacity-50 flex items-center justify-center gap-2"
+                                >
+                                    {isSendingInterview ? "Submitting Application..." : "Request 15-Min Google Meet Evaluation"}
+                                </button>
+                                {hasSentInterview && (
+                                    <p className="text-xs text-green-500 text-center font-bold mt-2 flex items-center justify-center gap-2">
+                                        <CheckCircle className="w-4 h-4" /> Application Sent. Vinay Mahato will review and schedule shortly!
+                                    </p>
+                                )}
+                            </form>
+                        </div>
+                    )}
                 </div>
             </div>
-        </div>
             {/* Certification Modal Layer */}
             <CertificateModal 
                 isOpen={showCertModal} 
