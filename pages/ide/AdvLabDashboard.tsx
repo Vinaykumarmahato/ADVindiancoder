@@ -145,7 +145,7 @@ const AdvLabDashboard = () => {
                             </span>
                         </h1>
                         <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                            India's smartest browser IDE. Write code, run it instantly,<br className="hidden md:block" />
+                            India's smartest browser IDE. Write code, run it instantly, <br className="hidden md:block" />
                             commit to GitHub & post on LinkedIn — all in one place.
                         </p>
                     </div>
