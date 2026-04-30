@@ -123,7 +123,7 @@ const AdvLabDashboard = () => {
                 ogType="website"
                 schema={advLabSchema}
             />
-            <div className="min-h-screen bg-[#05060f] text-white font-sans selection:bg-primary/30 pt-[80px] md:pt-[100px] overflow-x-hidden">
+            <div className="min-h-screen bg-[#05060f] text-white font-sans selection:bg-primary/30 overflow-x-hidden">
                 
                 {/* Background glows */}
                 <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
@@ -132,7 +132,7 @@ const AdvLabDashboard = () => {
                 </div>
 
                 {/* ─── Hero + Language Picker ─── */}
-                <section className="relative z-10 flex flex-col items-center justify-center px-4 pt-10 pb-16">
+                <section className="relative z-10 flex flex-col items-center justify-center px-4 pt-6 md:pt-10 pb-16">
                     <div className="text-center mb-12">
                         <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6 text-xs font-bold text-gray-400 uppercase tracking-widest">
                             <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
