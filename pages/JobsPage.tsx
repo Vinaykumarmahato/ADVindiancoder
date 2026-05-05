@@ -7,6 +7,106 @@ import SEO from '../components/SEO';
 
 const WHATSAPP_JOBS = [
     {
+        id: "cloudflare-intern-2026",
+        role: "Software Engineer Intern",
+        company: "Cloudflare",
+        location: "Bengaluru, Karnataka (In-Office)",
+        batch: "2025 / 2026 / 2027",
+        postedAt: "May 5, 2026",
+        skills: ["Go", "Rust", "Distributed Systems"],
+        experience: "Freshers / Interns"
+    },
+    {
+        id: "stellar-remote-sse-2026",
+        role: "Senior Software Engineer (Remote)",
+        company: "Stellar",
+        location: "Fully Remote (Global)",
+        batch: "4+ Years Experience",
+        postedAt: "May 5, 2026",
+        skills: ["Python", "Go", "AI Systems"],
+        experience: "4+ Years"
+    },
+    {
+        id: "wipro-data-scientist-2026",
+        role: "Junior Data Engineer & Scientist",
+        company: "Wipro",
+        location: "Bengaluru, Karnataka",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 5, 2026",
+        skills: ["Power BI", "Data Science", "Python"],
+        experience: "Freshers / 0-1 Year"
+    },
+    {
+        id: "amazon-device-associate-2026",
+        role: "Device Associate I (QA)",
+        company: "Amazon",
+        location: "Chennai, Tamil Nadu",
+        batch: "Any Graduate",
+        postedAt: "May 5, 2026",
+        skills: ["QA", "Testing", "Regression"],
+        experience: "Freshers"
+    },
+    {
+        id: "honeywell-se-i-2026",
+        role: "Software Engineer I (DevOps)",
+        company: "Honeywell",
+        location: "Bangalore / Hyderabad",
+        batch: "STEM Graduates",
+        postedAt: "May 5, 2026",
+        skills: ["Python", "CI/CD", "GitHub Actions"],
+        experience: "Freshers"
+    },
+    {
+        id: "ey-ase-2026",
+        role: "Associate Software Engineer",
+        company: "EY (Ernst & Young)",
+        location: "Across India (Multiple)",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 5, 2026",
+        skills: ["Java", "Python", ".NET", "React"],
+        experience: "Freshers"
+    },
+    {
+        id: "red-hat-jr-consultant-2026",
+        role: "Junior Consultant (FASTER)",
+        company: "Red Hat",
+        location: "New Delhi (Remote/Hybrid)",
+        batch: "2025 / 2026",
+        postedAt: "May 5, 2026",
+        skills: ["Linux", "Cloud", "DevOps"],
+        experience: "Freshers"
+    },
+    {
+        id: "cornerstone-jr-support-2026",
+        role: "Junior Support Specialist (Intern)",
+        company: "Cornerstone OnDemand",
+        location: "Pune, Maharashtra",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 5, 2026",
+        skills: ["SaaS", "Cloud", "CRM"],
+        experience: "0–1 Year"
+    },
+    {
+        id: "cognizant-manual-qa-2026",
+        role: "Developer (Manual QA Engineer)",
+        company: "Cognizant",
+        location: "Bangalore, Karnataka (WFH)",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 5, 2026",
+        skills: ["Manual Testing", "SDLC", "Agile"],
+        experience: "Freshers / 0-1 Year"
+    },
+    {
+        id: "nvidia-test-tools-2026",
+        role: "Test and Tools Development Engineer",
+        company: "NVIDIA",
+        location: "Pune, Maharashtra",
+        batch: "2026 Batch",
+        postedAt: "May 5, 2026",
+        skills: ["Python", "Automation", "AI Tools"],
+        experience: "Freshers"
+    },
+    {
         id: "capgemini-finance-2026",
         role: "Finance / Accounting / Associate Roles",
         company: "Capgemini",
@@ -162,11 +262,11 @@ const JobsPage = () => {
     const [selectedYear, setSelectedYear] = useState("All");
 
     // Gather unique locations, experience ranges, roles, years, and skills dynamically
-    const locations = ["All", "Bangalore", "Hyderabad", "Remote", "Kochi", "Bengaluru", "Pune"];
-    const experiences = ["All", "Freshers", "0–2 Years", "1-3 Years"];
-    const roles = ["All", "Engineer", "Intern", "DevOps", "Tester", "Associate"];
+    const locations = ["All", "Bangalore", "Hyderabad", "Remote", "Kochi", "Bengaluru", "Pune", "Multiple", "Chennai", "Mumbai", "Noida", "Gurgaon"];
+    const experiences = ["All", "Freshers", "0–2 Years", "1-3 Years", "4+ Years"];
+    const roles = ["All", "Engineer", "Intern", "DevOps", "Tester", "Associate", "Scientist"];
     const years = ["All", "2024", "2025", "2026"];
-    const skills = ["All", "Java", "Python", "React", "Docker", "Kubernetes", "C++", "C#", "Testing", "Finance"];
+    const skills = ["All", "Java", "Python", "React", "Docker", "Kubernetes", "C++", "C#", "Testing", "Manual Testing", "Automation", "Finance", "Linux", "SaaS", "Cloud", "Data Science", "Power BI", "CI/CD", "Rust", "Distributed Systems"];
 
     const filteredJobs = WHATSAPP_JOBS.filter(job => {
         const matchesSearch = 

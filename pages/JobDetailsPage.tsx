@@ -8,6 +8,463 @@ import SEO from '../components/SEO';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'cloudflare-intern-2026',
+        title: 'Software Engineer Intern',
+        company: 'Cloudflare',
+        location: 'Bengaluru, Karnataka (In-office)',
+        type: 'Internship (12–16 Weeks)',
+        salary: 'Competitive Stipend',
+        experience: 'Freshers / Interns',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'Cloudflare is one of the world’s leading internet infrastructure and cybersecurity companies. It operates a massive global network providing DDoS protection, CDN, DNS, and serverless computing services.',
+        description: 'Cloudflare interns work on real production systems, not just dummy projects. You will be responsible for writing production-level code, debugging backend systems, and improving global infrastructure alongside world-class engineers.',
+        responsibilities: [
+            'Write production-level code for distributed systems',
+            'Collaborate with engineering and product teams on global scale systems',
+            'Debug and optimize backend systems and APIs',
+            'Participate in technical discussions and architectural reviews',
+            'Build and present final engineering projects'
+        ],
+        skills: [
+            'Go', 'Rust', 'Python', 'C/C++', 'Distributed Systems', 'Networking', 'DSA'
+        ],
+        eligibility: [
+            'B.E / B.Tech / B.Sc in Computer Science, Math, or Stats',
+            'Batch: 2025, 2026, or 2027',
+            'Strong understanding of Data Structures and Algorithms',
+            'Familiarity with Backend development and APIs'
+        ],
+        benefits: [
+            'Competitive Stipend',
+            'Mentorship from Senior Engineers',
+            'Exposure to Large-scale Systems',
+            'Potential PPO (Pre-Placement Offer)'
+        ],
+        applicationProcess: [
+            'Step 1: Resume Screening (GitHub, Projects)',
+            'Step 2: Technical Interview (Coding, Backend)',
+            'Step 3: Final Interview (Culture, Learning Ability)'
+        ],
+        faqs: [
+            { q: 'What technologies will I use?', a: 'You may work with Go, Rust, Python, JavaScript, TypeScript, and C++ depending on the team.' },
+            { q: 'Is this a remote internship?', a: 'No, it is an in-office internship based in Bengaluru.' }
+        ],
+        applyLink: 'https://job-boards.greenhouse.io/cloudflare/jobs/7495538'
+    },
+    {
+        id: 'stellar-remote-sse-2026',
+        title: 'Senior Software Engineer (Remote)',
+        company: 'Stellar',
+        location: 'Fully Remote (Work From Anywhere)',
+        type: 'Remote Contract',
+        salary: '$70 – $100 Per Hour',
+        experience: '4+ Years',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'Stellar is looking for high-level technical professionals to work on advanced AI-related software systems. This opportunity offers complete flexibility and the chance to work independently from anywhere in the world.',
+        description: 'As a Senior Software Engineer at Stellar, you will work on large-scale software systems, AI model improvement workflows, and performance optimization. This role is perfect for professionals interested in AI systems and advanced problem-solving.',
+        responsibilities: [
+            'Work with complex codebases and AI workflows',
+            'Analyze software behavior and identify edge cases',
+            'Review implementations and debug issues',
+            'Improve AI system performance and reliability',
+            'Create technical documentation for advanced workflows',
+            'Support high-level engineering tasks independently'
+        ],
+        skills: [
+            'Python', 'JavaScript', 'Go', 'C++', 'AI Systems', 'Software Architecture'
+        ],
+        eligibility: [
+            'Bachelor’s Degree in Computer Science or Related Field',
+            'Minimum 4 Years in Professional Software Development',
+            'Strong programming fundamentals and problem-solving ability',
+            'Excellent written communication skills'
+        ],
+        benefits: [
+            'Compensation: $70 – $100/hr',
+            'Flexible Work Schedule',
+            'Fully Remote (Global)',
+            '$600 Qualification Bonus'
+        ],
+        applicationProcess: [
+            'Step 1: Visit Stellar application page',
+            'Step 2: Complete qualification process',
+            'Step 3: Submit technical details',
+            'Step 4: Start project work after selection'
+        ],
+        faqs: [
+            { q: 'Is this a full-time job?', a: 'It is a remote contract role with flexible hours and potential for a guaranteed 20 hours/week contract.' },
+            { q: 'Which locations can apply?', a: 'Global applicants are accepted, including India, USA, UK, Canada, Europe, etc.' }
+        ],
+        applyLink: 'https://joinstellar.ai/apply/senior-software-engineer/'
+    },
+    {
+        id: 'wipro-data-scientist-2026',
+        title: 'Junior Data Engineer & Data Scientist',
+        company: 'Wipro',
+        location: 'Bengaluru, Karnataka',
+        type: 'Full-time / Internship',
+        salary: 'Competitive Package',
+        experience: 'Freshers / 0–1 Year',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'Wipro is one of India’s top IT and consulting companies, specializing in Data Science, Cloud, and AI. With a global presence, Wipro offers immense learning and growth opportunities.',
+        description: 'Wipro is hiring for multiple roles including Junior DE & DS Engineer (Intern) and Junior Data Science Engineer (Full-Time). These roles focus on building analytical solutions, data modeling, and insight generation using tools like Power BI.',
+        responsibilities: [
+            'Build and deploy data science models',
+            'Develop interactive dashboards using Power BI',
+            'Work with global stakeholders to understand requirements',
+            'Present data insights to leadership teams',
+            'Perform simulations and technical report writing',
+            'Support internal data initiatives and system improvements'
+        ],
+        skills: [
+            'Power BI', 'Data Science', 'Python', 'SQL', 'Analytical Thinking'
+        ],
+        eligibility: [
+            'B.E / B.Tech or Equivalent in Engineering/Technology',
+            'Eligible Batch: 2024, 2025, or 2026',
+            'Strong knowledge of Power BI and Data Science fundamentals',
+            'Good communication and teamwork skills'
+        ],
+        benefits: [
+            'Health Insurance',
+            'Internal Learning Platforms',
+            'Global Project Exposure',
+            'Career Growth Support'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening',
+            'Step 2: Technical Assessment (Power BI, Data Science)',
+            'Step 3: Technical Interview',
+            'Step 4: HR Interview'
+        ],
+        faqs: [
+            { q: 'What tools are mandatory?', a: 'Knowledge of Power BI is mandatory for these roles.' },
+            { q: 'Is there a stipend?', a: 'Yes, competitive stipend for interns and industry-standard salary for full-time roles.' }
+        ],
+        applyLink: 'https://careers.wipro.com/job/Bengaluru-JUNIOR-DE-AND-DS-ENGINEER-IND-560035/151601-en_US/'
+    },
+    {
+        id: 'amazon-device-associate-2026',
+        title: 'Device Associate I',
+        company: 'Amazon',
+        location: 'Chennai, Tamil Nadu',
+        type: 'Full-time',
+        salary: 'Competitive Package',
+        experience: 'Freshers',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'Amazon’s Devices & Services division powers world-class products like Alexa, Echo, Kindle, and Fire TV. The Quality Services team ensures these products meet the highest standards before reaching customers.',
+        description: 'As a Device Associate I, you will be responsible for executing test cases on Amazon devices, performing regression testing, and identifying software defects to ensure high product quality.',
+        responsibilities: [
+            'Execute predefined test cases on Amazon devices',
+            'Identify, log, and track software bugs/issues',
+            'Perform regression testing and quality validation',
+            'Maintain detailed testing reports and documentation',
+            'Escalate critical issues and follow QA guidelines',
+            'Communicate testing progress to stakeholders'
+        ],
+        skills: [
+            'Manual Testing', 'QA Fundamentals', 'Regression Testing', 'Bug Tracking', 'Attention to Detail'
+        ],
+        eligibility: [
+            'Any Graduate (Bachelor’s Degree Preferred)',
+            'Freshers or early career professionals',
+            'Basic knowledge of Software Quality Assurance',
+            'Strong analytical and communication skills'
+        ],
+        benefits: [
+            'Global Team Exposure',
+            'Hands-on QA Experience',
+            'Career Growth at Amazon',
+            'Device Testing Exposure'
+        ],
+        applicationProcess: [
+            'Step 1: Online Assessment (Aptitude, Testing Basics)',
+            'Step 2: Multiple Interview Rounds'
+        ],
+        faqs: [
+            { q: 'What products will I test?', a: 'You will work on Amazon\'s consumer electronics like Echo, Kindle, and Fire TV.' },
+            { q: 'Is it only for Chennai?', a: 'The current opening is for Chennai.' }
+        ],
+        applyLink: 'https://www.amazon.jobs/en/jobs/10409351/device-associate-i-mako?cmpid=DA_INAD200785B'
+    },
+    {
+        id: 'honeywell-se-i-2026',
+        title: 'Software Engineer I',
+        company: 'Honeywell',
+        location: 'Bangalore & Hyderabad',
+        type: 'Full-time',
+        salary: '5–9 LPA (Estimated)',
+        experience: 'Freshers',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'Honeywell is a global technology leader in aerospace, automation, and industrial technologies. The company is committed to innovation and digital transformation.',
+        description: 'This is an entry-level Software Engineering role with a focus on DevOps. You will build CI/CD pipelines, automate operational tasks, and manage cloud infrastructure using modern tools.',
+        responsibilities: [
+            'Build and maintain CI/CD pipelines using GitHub Actions',
+            'Automate operational tasks using Python scripting',
+            'Manage repositories and release workflows',
+            'Develop build, test, and deployment systems',
+            'Monitor systems and troubleshoot infrastructure issues',
+            'Follow security best practices and collaborate with dev teams'
+        ],
+        skills: [
+            'Python', 'GitHub Actions', 'CI/CD', 'Linux', 'Automation', 'Git'
+        ],
+        eligibility: [
+            'Bachelor’s Degree in STEM (Science, Technology, Engineering, Math)',
+            'Freshers or early career professionals',
+            'Willingness to learn DevOps and Automation tools',
+            'Strong logical and analytical thinking'
+        ],
+        benefits: [
+            'DevOps Hands-on Experience',
+            'Cloud Infrastructure Exposure',
+            'Global Engineering Culture',
+            'Competitive Benefits'
+        ],
+        applicationProcess: [
+            'Step 1: Profile Creation',
+            'Step 2: Resume Review',
+            'Step 3: Technical & HR Interviews'
+        ],
+        faqs: [
+            { q: 'Is prior experience required?', a: 'No, this is an entry-level role suitable for freshers with STEM degrees.' },
+            { q: 'What is the long-term career value?', a: 'This role provides a strong foundation for careers in Cloud Engineering, SRE, and Platform Infrastructure (AWS, Azure, Kubernetes).' }
+        ],
+        applyLink: 'https://ibqbjb.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/Honeywell/job/135282?utm_medium=jobboard&utm_source=linkedin'
+    },
+    {
+        id: 'ey-ase-2026',
+        title: 'Associate Software Engineer',
+        company: 'EY (Ernst & Young)',
+        location: 'Across India (Multiple)',
+        type: 'Full-time',
+        salary: 'Competitive Package',
+        experience: 'Freshers',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'EY (Ernst & Young) is one of the world’s largest professional services firms, operating in 150+ countries. EY Global Delivery Services (GDS) in India works on advanced technology, consulting, and enterprise solutions.',
+        description: 'As an Associate Software Engineer, you will work on enterprise-level software development projects with global teams, gaining hands-on experience in Web Technologies, Cloud, and Agile development.',
+        responsibilities: [
+            'Design and develop scalable software applications',
+            'Work with Java, Python, .NET, Angular & React',
+            'Perform unit and integration testing',
+            'Participate in code reviews and debugging',
+            'Collaborate with Agile/Scrum teams',
+            'Analyze technical problems and provide solutions',
+            'Prepare technical documentation'
+        ],
+        skills: [
+            'Java', 'Python', 'Data Structures', 'SDLC', '.NET', 'React', 'Angular'
+        ],
+        eligibility: [
+            'B.E / B.Tech in CS / IT / ECE',
+            'Batch: 2024, 2025, or 2026',
+            'Minimum 60% Marks or 6 CGPA',
+            'No Active Backlogs Preferred'
+        ],
+        benefits: [
+            'Health Insurance',
+            'EY Learning & Certification Programs',
+            'Global Work Exposure',
+            'Flexible Work Options'
+        ],
+        applicationProcess: [
+            'Step 1: Online Assessment (Aptitude, Coding)',
+            'Step 2: Technical Interview',
+            'Step 3: HR Interview'
+        ],
+        faqs: [
+            { q: 'What is the work location?', a: 'Multiple cities across India including Bangalore, Chennai, Mumbai, Pune, Gurgaon, etc.' },
+            { q: 'Is it only for CS graduates?', a: 'B.E/B.Tech in CS, IT, ECE, or related fields are eligible.' }
+        ],
+        applyLink: 'https://careers.ey.com/ey/job/Kolkata-Off-Campus-Fresher-Tech-WB-700091/1138950801/'
+    },
+    {
+        id: 'red-hat-jr-consultant-2026',
+        title: 'Junior Consultant (FASTER Program)',
+        company: 'Red Hat',
+        location: 'New Delhi (Remote/Hybrid)',
+        type: 'Full-time (12-month Program)',
+        salary: 'Competitive Package',
+        experience: 'Freshers',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'Red Hat is a global leader in open source solutions, cloud computing, and DevOps. Part of IBM, it powers banking, telecom, and government projects worldwide.',
+        description: 'The FASTER Program is a 12-month structured training program focused on Cloud Computing, Linux Administration, DevOps Engineering, and Enterprise IT Consulting.',
+        responsibilities: [
+            'Participate in Linux & Cloud training programs',
+            'Work on enterprise client projects',
+            'Support DevOps and cloud infrastructure solutions',
+            'Collaborate with senior consultants',
+            'Assist in enterprise solution architecture',
+            'Work with client stakeholders and cross-functional teams'
+        ],
+        skills: [
+            'Linux (RHEL)', 'Cloud Computing', 'DevOps', 'Ansible', 'OpenShift', 'Networking'
+        ],
+        eligibility: [
+            'B.E / B.Tech / BCA / MCA (CS/IT/AI)',
+            'Batch: 2025 or 2026',
+            'Basic Linux knowledge',
+            'Networking & Cloud Fundamentals'
+        ],
+        benefits: [
+            'Certification Vouchers',
+            'Global Learning Platforms',
+            'Mentorship from Experts',
+            'IBM-backed Work Culture'
+        ],
+        applicationProcess: [
+            'Step 1: Online Application',
+            'Step 2: Technical Assessment (Linux, Cloud)',
+            'Step 3: Technical + HR Interview'
+        ],
+        faqs: [
+            { q: 'What is the FASTER program?', a: 'It\'s a 12-month structured training program designed to turn freshers into enterprise cloud consultants.' },
+            { q: 'Is it remote?', a: 'The role is based in New Delhi but offers Remote/Hybrid options.' }
+        ],
+        applyLink: 'https://redhat.wd5.myworkdayjobs.com/jobs/job/New-Delhi/Junior-Consultant_R-054554-1'
+    },
+    {
+        id: 'cornerstone-jr-support-2026',
+        title: 'Junior Support Specialist (Internship)',
+        company: 'Cornerstone OnDemand',
+        location: 'Pune, Maharashtra',
+        type: 'Internship (12 Months)',
+        salary: 'Competitive Stipend',
+        experience: '0–1 Year',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'Cornerstone OnDemand is a leading cloud-based HR and Learning Management Software (LMS) company serving 7,000+ organizations globally.',
+        description: 'As a Junior Support Specialist Intern, you will work with enterprise clients and support cloud-based HR platforms. This 12-month internship offers hands-on experience in SaaS support and CRM management.',
+        responsibilities: [
+            'Manage customer support tickets using CRM tools',
+            'Troubleshoot SaaS platform issues',
+            'Analyze and prioritize technical problems',
+            'Maintain professional client communication',
+            'Contribute to documentation & knowledge base',
+            'Work within SLA timelines'
+        ],
+        skills: [
+            'SaaS', 'Cloud Platforms', 'CRM (Salesforce/Zendesk)', 'English Communication', 'Troubleshooting'
+        ],
+        eligibility: [
+            'B.Tech / B.E (CS/IT)',
+            'Batch: 2024, 2025, or 2026',
+            'Experience: 0-1 Year',
+            'Willingness to work in US Shift'
+        ],
+        benefits: [
+            'Global Client Exposure',
+            'Structured Training',
+            'Full-time Conversion Opportunity',
+            'SaaS Experience'
+        ],
+        applicationProcess: [
+            'Step 1: Resume Screening',
+            'Step 2: Technical Interview',
+            'Step 3: HR Interview'
+        ],
+        faqs: [
+            { q: 'Is this a full-time role?', a: 'It is a 12-month internship with potential for full-time conversion based on performance.' },
+            { q: 'What are the shift timings?', a: 'The role involves US Shift timings with global exposure.' }
+        ],
+        applyLink: 'https://cornerstone.csod.com/ux/ats/careersite/2/home/requisition/11145'
+    },
+    {
+        id: 'cognizant-manual-qa-2026',
+        title: 'Developer (Manual QA Engineer)',
+        company: 'Cognizant',
+        location: 'Bangalore, Karnataka (WFH)',
+        type: 'Full-time',
+        salary: 'Competitive Package',
+        experience: 'Freshers / Up to 1 Year',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'Cognizant is one of the world’s leading IT services and consulting companies. The company provides AI-driven digital solutions and software services globally. With 300,000+ employees worldwide, Cognizant is known for strong career growth, learning opportunities, and employee-friendly work culture.',
+        description: 'As a Developer (Manual QA Engineer), candidates will work on testing applications, workflows, and automation systems to ensure software quality and reliability. This role is perfect for freshers interested in Software Testing, Quality Assurance, Manual Testing, and SDLC & Agile Methodology.',
+        responsibilities: [
+            'Perform manual testing of applications and workflows',
+            'Create and maintain detailed test cases',
+            'Identify, report, and track bugs/issues 🐞',
+            'Conduct regression testing before software releases',
+            'Work with developers and analysts for quality improvements',
+            'Handle Level-1 support and escalate complex issues',
+            'Participate in customer validation sessions'
+        ],
+        skills: [
+            'Manual Testing', 'SDLC', 'Agile Methodology', 'Defect Tracking', 'Analytical Thinking'
+        ],
+        eligibility: [
+            'B.E / B.Tech / BCA / MCA / BSc (CS/IT/ECE)',
+            'Eligible Batch: 2024 / 2025 / 2026',
+            'Minimum 60% Marks or 6 CGPA',
+            'Preferably No Active Backlogs'
+        ],
+        benefits: [
+            'Medical Insurance',
+            'Learning & Development Programs',
+            'Certification Support',
+            'Internal Training Platforms',
+            'Career Growth Opportunities'
+        ],
+        applicationProcess: [
+            'Round 1: Online Assessment (Aptitude, Reasoning, English Test)',
+            'Round 2: Technical Interview (QA Fundamentals, SDLC, Basic Programming)',
+            'Round 3: HR Interview (Communication, Flexibility & Team Fit)'
+        ],
+        faqs: [
+            { q: 'Is this role work from home?', a: 'Yes, the location is Bangalore but it\'s a Work From Home opportunity.' },
+            { q: 'What are the eligibility criteria?', a: 'B.E/B.Tech/BCA/MCA/BSc (CS/IT/ECE) graduates from 2024, 2025, and 2026 batches with minimum 60% marks.' }
+        ],
+        applyLink: 'https://cognizant.taleo.net/careersection/Lateral/jobapply.ftl?job=00067661141&lang=en'
+    },
+    {
+        id: 'nvidia-test-tools-2026',
+        title: 'Test and Tools Development Engineer',
+        company: 'NVIDIA',
+        location: 'Pune, Maharashtra',
+        type: 'Full-time',
+        salary: 'Highly Competitive Package',
+        experience: 'Freshers / 0–1 Year',
+        postedDate: 'May 5, 2026',
+        aboutCompany: 'NVIDIA is a global leader in AI, GPU Computing, and Accelerated Computing Technology. Founded in 1993, NVIDIA powers technologies in AI, Robotics, Autonomous Vehicles, Data Centers, and the Omniverse Ecosystem.',
+        description: 'As a Test and Tools Development Engineer, you will build automation systems and AI-driven testing workflows for NVIDIA’s Omniverse platform. This role is ideal for candidates passionate about Python Development, Automation Testing, AI Workflows, and Scalable Systems.',
+        responsibilities: [
+            'Develop automated testing pipelines',
+            'Work on failure analysis and bug tracking systems',
+            'Write clean and maintainable Python code 🐍',
+            'Build logging and monitoring tools 📊',
+            'Perform root cause analysis of issues 🔍',
+            'Work with AI-native development tools',
+            'Document workflows and engineering decisions 📝'
+        ],
+        skills: [
+            'Python Programming', 'Software Testing Fundamentals', 'Automation Concepts', 'AI Tools / LLM Workflows', 'Communication'
+        ],
+        eligibility: [
+            'B.Tech / B.E in Computer Science, IT, or Related Field',
+            'Eligible Batch: 2026',
+            'Strong Python Programming Knowledge',
+            'Understanding of Software Testing Fundamentals'
+        ],
+        benefits: [
+            'Health Insurance',
+            'Competitive Salary Package',
+            'Career Growth Opportunities',
+            'Learning & Development Support',
+            'Flexible Work Environment',
+            'Mentorship from Top Engineers',
+            'Access to Advanced AI Technologies'
+        ],
+        applicationProcess: [
+            'Round 1: Online Assessment (Python Coding, Testing Fundamentals, System Concepts)',
+            'Round 2: Technical Interview (Programming Concepts, Automation Frameworks, Project Discussions)',
+            'Round 3: HR / Managerial Round (Team Fit, Career Goals, Final Offer Discussion)'
+        ],
+        faqs: [
+            { q: 'Who is eligible for this role?', a: 'B.Tech/B.E graduates in CS/IT from the 2026 batch are eligible.' },
+            { q: 'What skills are most important?', a: 'Strong Python programming and a good understanding of software testing and automation concepts.' }
+        ],
+        applyLink: 'https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/India-Pune/Test-and-Tools-Development-Engineer—New-College-Grad-2026_JR2016982'
+    },
+    {
         id: 'capgemini-finance-2026',
         title: 'Finance / Accounting / Associate Roles',
         company: 'Capgemini',
