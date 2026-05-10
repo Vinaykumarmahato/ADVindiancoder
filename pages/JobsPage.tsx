@@ -7,6 +7,86 @@ import SEO from '../components/SEO';
 
 const WHATSAPP_JOBS = [
     {
+        id: "hpe-platform-testing-2026",
+        role: "Software Engineer – Platform Testing",
+        company: "HPE",
+        location: "Bengaluru, Karnataka",
+        batch: "Bachelor's Degree (Networking Preferred)",
+        postedAt: "May 10, 2026",
+        skills: ["Networking", "Python Automation", "PoE Testing", "CI/CD"],
+        experience: "Freshers / Experience Preferred"
+    },
+    {
+        id: "hcltech-engineer-2026",
+        role: "Software Engineer / Developer",
+        company: "HCLTech",
+        location: "PAN India (Bangalore / Noida / Chennai)",
+        batch: "Bachelor's / Master's (Freshers)",
+        postedAt: "May 10, 2026",
+        skills: ["Infrastructure", "DevOps", "Automation", "BigFix"],
+        experience: "Freshers"
+    },
+    {
+        id: "cgi-apprentice-2026",
+        role: "Apprentice – Java & Python",
+        company: "CGI",
+        location: "Bangalore, Karnataka",
+        batch: "2024 / 2025 / 2026 (B.E / B.Tech)",
+        postedAt: "May 10, 2026",
+        skills: ["Java", "Python", "ERP", "Debugging"],
+        experience: "Freshers Eligible"
+    },
+    {
+        id: "salesforce-amts-2026",
+        role: "Software Engineering AMTS",
+        company: "Salesforce",
+        location: "Bengaluru / Hyderabad",
+        batch: "2026 Batch (B.E / B.Tech)",
+        postedAt: "May 10, 2026",
+        skills: ["Java", "Python", "Cloud", "DSA"],
+        experience: "Freshers (7.5+ CGPA)"
+    },
+    {
+        id: "siemens-healthineers-intern-2026",
+        role: "Technical Intern",
+        company: "Siemens Healthineers",
+        location: "Bangalore, Karnataka",
+        batch: "2025 / 2026 (B.E / B.Tech / BSc)",
+        postedAt: "May 10, 2026",
+        skills: ["C#", "C++", "Java", "Python", "SDLC"],
+        experience: "Freshers / Students"
+    },
+    {
+        id: "qualcomm-engineer-2026",
+        role: "Engineer – Software (Campus Hire)",
+        company: "Qualcomm",
+        location: "Hyderabad / Bangalore / Chennai / Noida",
+        batch: "2026 Batch (B.E / B.Tech / M.E / M.Tech)",
+        postedAt: "May 10, 2026",
+        skills: ["C", "C++", "Embedded Systems", "OS"],
+        experience: "Freshers"
+    },
+    {
+        id: "zycus-ai-intern-2026",
+        role: "AI Engineer Intern",
+        company: "Zycus",
+        location: "Bangalore, Karnataka",
+        batch: "2025 / 2026 (B.E / B.Tech / BSc)",
+        postedAt: "May 10, 2026",
+        skills: ["Python", "Gen-AI", "LangChain", "APIs"],
+        experience: "Freshers Eligible"
+    },
+    {
+        id: "rolls-royce-intern-2026",
+        role: "Intern – Software Testing",
+        company: "Rolls-Royce",
+        location: "Pune, Maharashtra",
+        batch: "2026 Batch (B.E / B.Tech)",
+        postedAt: "May 10, 2026",
+        skills: ["Embedded Systems", "Testing", "CAN/LIN", "Python"],
+        experience: "Freshers Eligible"
+    },
+    {
         id: "cloudflare-intern-2026",
         role: "Software Engineer Intern",
         company: "Cloudflare",

@@ -8,6 +8,399 @@ import SEO from '../components/SEO';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'hpe-platform-testing-2026',
+        title: 'Software Engineer – Platform Testing',
+        company: 'HPE',
+        location: 'Bengaluru, Karnataka',
+        type: 'Full-time (On-site)',
+        salary: 'Highly Competitive',
+        experience: 'Networking & Automation Experience Preferred',
+        postedDate: 'May 10, 2026',
+        aboutCompany: 'Hewlett Packard Enterprise (HPE) is a globally recognized edge-to-cloud technology company that helps businesses connect, protect, analyze, and manage applications and data. HPE is a leader in cloud computing, enterprise networking, AI, and cybersecurity, building products used by organizations worldwide.',
+        description: 'As a Software Engineer – Platform Testing, you will work on validating advanced networking switch platforms and enterprise networking systems. The role focuses on networking technologies, Python automation, and PoE (Power over Ethernet) validation to ensure platform stability and performance.',
+        responsibilities: [
+            'Perform functional, regression, interoperability, and reliability testing on switch platforms',
+            'Conduct PoE compliance testing using IEEE 802.3af/at/bt standards',
+            'Validate copper ports, fiber interfaces, and high-speed network ports (1G to 100G)',
+            'Test features like VLAN, LACP, MTU, Auto-Negotiation, and Link Recovery',
+            'Build Python-based automation frameworks and develop automated test scripts',
+            'Integrate automation suites into CI/CD pipelines for continuous testing',
+            'Perform debugging and root cause analysis using logs and packet captures (Wireshark)',
+            'Collaborate with hardware, firmware, and platform development teams'
+        ],
+        skills: [
+            'Networking Fundamentals (L2/L3)', 'Python Scripting', 'PoE Standards', 'Ethernet Switching', 'CI/CD', 'Wireshark', 'Ixia/Spirent'
+        ],
+        eligibility: [
+            'Bachelor’s Degree in Electronics, CS, Telecommunications, IT, or related fields',
+            'Strong understanding of Layer 2/Layer 3 networking and Ethernet switching',
+            'Strong Python scripting knowledge and experience in automation development',
+            'Familiarity with PoE budget allocation and power negotiation standards',
+            'Analytical thinking and problem-solving mindset for complex system debugging'
+        ],
+        benefits: [
+            'Work on global enterprise-grade networking and infrastructure technologies',
+            'Hands-on experience with high-speed interface testing and automation',
+            'Exposure to CI/CD pipelines and DevOps workflows in an innovative culture',
+            'Excellent career growth, technical upskilling, and mentorship opportunities'
+        ],
+        applicationProcess: [
+            'Step 1: Online Technical Assessment (Networking, Python, Logic)',
+            'Step 2: Networking Fundamentals Round (VLAN, Switching, Routing)',
+            'Step 3: Python Coding Test (Scripting, Automation, Debugging)',
+            'Step 4: Technical Interviews (PoE, Testing Methodologies, RCA)',
+            'Step 5: HR Interview (Communication, Career Goals, Culture Fit)'
+        ],
+        faqs: [
+            { q: 'Is this role remote or on-site?', a: 'The role is an on-site position based in HPE\'s Bengaluru office.' },
+            { q: 'What specific networking experience is needed?', a: 'Experience in validating switch platforms and using tools like Ixia/Spirent is preferred.' },
+            { q: 'Which batches are eligible?', a: 'Candidates with a Bachelor’s degree in relevant engineering fields can apply.' }
+        ],
+        applyLink: 'https://careers.hpe.com/'
+    },
+    {
+        id: 'hcltech-engineer-2026',
+        title: 'Software Engineer / Developer',
+        company: 'HCLTech',
+        location: 'PAN India (Multiple Locations)',
+        type: 'Full-time',
+        salary: 'Industry Standard',
+        experience: 'Freshers',
+        postedDate: 'May 10, 2026',
+        aboutCompany: 'HCLTech is one of India’s leading multinational technology companies, specializing in IT services, cloud computing, cybersecurity, and digital transformation. Founded in 1976 by Shiv Nadar, HCLTech operates globally and serves major industries such as Banking, Healthcare, Manufacturing, and Telecommunications.',
+        description: 'The Software Engineer / Developer role at HCLTech offers freshers an opportunity to work on cloud technologies, infrastructure automation, and DevOps tools. Candidates will contribute to enterprise-level technology projects and gain hands-on experience with modern automation platforms like BigFix, Ansible, and Puppet.',
+        responsibilities: [
+            'Design solutions to resolve customer business challenges and technical bottlenecks',
+            'Build automation solutions for infrastructure operations to reduce manual workload',
+            'Manage and facilitate complex Proof of Concepts (POCs) for technical validation',
+            'Customize BigFix deployments to build scalable and highly available infrastructure',
+            'Work with compliance and security tools for vulnerability management and server hardening',
+            'Implement DevOps practices using tools like Puppet, Chef, and Ansible',
+            'Maintain configuration documentation and create reports for infrastructure changes'
+        ],
+        skills: [
+            'Infrastructure Management', 'DevOps', 'Ansible', 'Puppet/Chef', 'Windows/Linux Patch Management', 'System Administration'
+        ],
+        eligibility: [
+            'Bachelor’s or Master’s Degree in a technical field',
+            'Freshers or early career professionals with a strong learning attitude',
+            'Basic understanding of infrastructure operations and system administration',
+            'Familiarity with DevOps tools and security compliance is a plus',
+            'Strong problem-solving and communication skills'
+        ],
+        benefits: [
+            'Global exposure by working with one of the top IT companies',
+            'Hands-on experience with enterprise-level infrastructure and cloud automation',
+            'Access to internal learning programs, certifications, and mentorship',
+            'Competitive compensation and structured career growth paths'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening (Resume & Skills evaluation)',
+            'Step 2: Technical Assessment (Programming, Infrastructure, Logical Reasoning)',
+            'Step 3: Technical Interview (Problem Solving, DevOps, Project Discussion)',
+            'Step 4: HR Interview (Communication, Career Goals, Location Flexibility)'
+        ],
+        faqs: [
+            { q: 'What is the location for this role?', a: 'This is a PAN India hiring drive with placements in Bangalore, Chennai, Hyderabad, Pune, and Noida.' },
+            { q: 'Can Master’s degree holders apply?', a: 'Yes, both Bachelor’s and Master’s degree holders are eligible.' },
+            { q: 'Is there a specific batch mentioned?', a: 'The listing focuses on freshers and doesn\'t specify a single batch, making it open to recent graduates.' }
+        ],
+        applyLink: 'https://www.hcltech.com/careers'
+    },
+    {
+        id: 'cgi-apprentice-2026',
+        title: 'Apprentice – Java & Python Development',
+        company: 'CGI',
+        location: 'Bangalore, Karnataka',
+        type: 'Full-time (Apprentice Program)',
+        salary: 'Industry Standard',
+        experience: 'Freshers / Entry Level',
+        postedDate: 'May 10, 2026',
+        aboutCompany: 'CGI is one of the world’s largest independent IT and business consulting services companies. Founded in 1976, CGI operates in 40+ countries with over 91,000 professionals. The company follows a unique employee ownership culture where employees are known as "CGI Partners," serving industries like Banking, Healthcare, and Government.',
+        description: 'The CGI Apprentice Program 2026 is designed for fresh graduates starting their careers in Java, Python, and Enterprise Applications. Selected candidates receive structured training, mentorship, and practical exposure to real-world software development and ERP solutions.',
+        responsibilities: [
+            'Develop core Java and Python-based utilities and backend components',
+            'Assist in debugging, application maintenance, and performance improvements',
+            'Participate in requirement gathering and document business/technical specifications',
+            'Learn enterprise software systems, workflows, and ERP concepts',
+            'Coordinate with project teams, managers, and global clients effectively',
+            'Maintain technical documentation, process reports, and configuration details',
+            'Stay updated with emerging technologies and industry development frameworks'
+        ],
+        skills: [
+            'Java', 'Python', 'OOP Concepts', 'DBMS', 'ERP Knowledge', 'Analytical Thinking', 'Problem Solving'
+        ],
+        eligibility: [
+            'B.E / B.Tech in Computer Science, IT, or related engineering branches',
+            'Batch: 2024, 2025, and 2026 Graduating Batches',
+            'Good academic record with no active backlogs preferred',
+            'Basic understanding of Java, Python, and software development concepts',
+            'Willingness to work in shifts and collaborate with global teams'
+        ],
+        benefits: [
+            'Industry-standard compensation and health insurance',
+            'Access to CGI Academy for continuous learning and development',
+            'Employee Share Ownership Plan (ESOP) and unique partner culture',
+            'Mentorship from experienced IT consulting professionals',
+            'Career growth opportunities in enterprise-level technologies'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening & Resume Shortlisting (Academics, Skills)',
+            'Step 2: Technical Assessment (Aptitude, Java/Python Basics, Programming)',
+            'Step 3: HR Interview (Communication, Teamwork, Shift Flexibility)'
+        ],
+        faqs: [
+            { q: 'Is this only for the 2026 batch?', a: 'No, graduates from 2024, 2025, and 2026 batches are eligible to apply.' },
+            { q: 'What is the work location?', a: 'The role is based in Bangalore, Karnataka.' },
+            { q: 'What is the "CGI Partner" culture?', a: 'CGI employees are called partners because of the company\'s employee ownership and share participation culture.' }
+        ],
+        applyLink: 'https://www.cgi.com/en/careers'
+    },
+    {
+        id: 'salesforce-amts-2026',
+        title: 'Software Engineering AMTS',
+        company: 'Salesforce',
+        location: 'Bengaluru, Hyderabad',
+        type: 'Full-time (Futureforce Program)',
+        salary: 'Highly Competitive Package',
+        experience: 'Freshers',
+        postedDate: 'May 10, 2026',
+        aboutCompany: 'Salesforce is the world’s leading AI-powered CRM and cloud computing company. Founded in 1999, Salesforce has revolutionized enterprise software through cloud-based solutions across Marketing, Service, and Data clouds. Consistently ranked among the best workplaces globally, Salesforce empowers over 70,000 professionals.',
+        description: 'As a Software Engineering AMTS (Associate Member of Technical Staff), you will join Salesforce’s prestigious Futureforce University Recruiting Program. You will work on large-scale cloud products and AI-driven enterprise solutions like Einstein AI, Agentforce, and Data Cloud.',
+        responsibilities: [
+            'Design, develop, test, and deploy scalable cloud applications',
+            'Write clean, production-ready code for enterprise-level systems',
+            'Collaborate with Product Managers, Designers, and QA teams in Agile cycles',
+            'Develop unit tests and improve automated testing frameworks',
+            'Analyze system bottlenecks and improve platform scalability and stability',
+            'Participate in internal hackathons and AI/Cloud technology initiatives',
+            'Contribute to production-level systems used by millions of users globally'
+        ],
+        skills: [
+            'Java', 'Python', 'JavaScript', 'C++', 'Data Structures', 'Algorithms', 'Cloud Computing'
+        ],
+        eligibility: [
+            'B.E / B.Tech in CS, Electrical, Electronics, or equivalent with CS specialization',
+            'Batch: 2026 Graduating Students Only',
+            'Academic: Minimum 7.5 CGPA with no active backlogs',
+            'Strong problem-solving ability and programming fundamentals',
+            'Deep understanding of OOP, DBMS, OS, and Computer Networks'
+        ],
+        benefits: [
+            'Work for the global leader in AI-powered CRM and Cloud',
+            'Highly competitive fresher compensation and stock purchase plans',
+            'Hybrid work flexibility and employee wellness programs',
+            'Access to Trailhead learning platform and mentorship from world-class engineers'
+        ],
+        applicationProcess: [
+            'Step 1: Online Application & Shortlisting (CGPA, Resume, Projects)',
+            'Step 2: Online Coding Assessment (DSA, Debugging, Logic)',
+            'Step 3: Technical Interview Rounds (DSA, OOP, DBMS, OS, Cloud Concepts)',
+            'Step 4: HR Interview (Career Goals, Teamwork, Culture Fit)'
+        ],
+        faqs: [
+            { q: 'What is the CGPA requirement?', a: 'Candidates must have a minimum of 7.5 CGPA and no active backlogs.' },
+            { q: 'Which locations are available?', a: 'The role is available in Bengaluru and Hyderabad.' },
+            { q: 'Is this only for the 2026 batch?', a: 'Yes, this drive is specifically for students graduating in 2026.' }
+        ],
+        applyLink: 'https://www.salesforce.com/company/careers/'
+    },
+    {
+        id: 'siemens-healthineers-intern-2026',
+        title: 'Technical Intern',
+        company: 'Siemens Healthineers',
+        location: 'Bangalore, Karnataka',
+        type: 'Internship (Onsite)',
+        salary: 'Competitive Stipend',
+        experience: 'Freshers / Students',
+        postedDate: 'May 10, 2026',
+        aboutCompany: 'Siemens Healthineers is a world-leading healthcare technology company focused on transforming healthcare through medical technology, digital health solutions, and AI-powered systems. They collaborate with healthcare professionals globally to improve patient care and drive medical innovation.',
+        description: 'This internship is an excellent opportunity for students and freshers to gain hands-on experience in software development, testing, and debugging within the healthcare technology sector. Interns will collaborate with experienced engineers on real-world projects.',
+        responsibilities: [
+            'Assist in designing, developing, and testing software components',
+            'Contribute to feature implementation under the guidance of senior engineers',
+            'Write clean, maintainable, and structured code following development standards',
+            'Support software validation, verification activities, and testing processes',
+            'Document new features, bug fixes, and technical workflows',
+            'Analyze defects and system logs to identify root causes and assist in resolution',
+            'Work with version control systems and participate in technical code reviews'
+        ],
+        skills: [
+            'C#', 'C++', 'Java', 'Python', 'SDLC', 'Debugging', 'Version Control'
+        ],
+        eligibility: [
+            'Pursuing or recently completed B.E / B.Tech / BSc in CS, IT, or related fields',
+            'Batch: 2025 or 2026 Graduates',
+            'Basic knowledge of programming languages (C#, C++, Java, or Python)',
+            'Understanding of SDLC and software debugging concepts',
+            'Strong willingness to learn and work in a collaborative office environment'
+        ],
+        benefits: [
+            'Work with a global leader in healthcare technology',
+            'Gain practical exposure to software engineering and healthcare tech',
+            'Mentorship from experienced software engineers and technical teams',
+            'Build a strong foundation in coding, debugging, and professional practices'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening (Profile review)',
+            'Step 2: Technical Assessment (Programming, Logic, SDLC)',
+            'Step 3: Interview Rounds (Technical + HR Discussion)',
+            'Step 4: Final Selection'
+        ],
+        faqs: [
+            { q: 'Is this a remote internship?', a: 'No, this is an onsite role based in Bangalore (5 days a week).' },
+            { q: 'Who is eligible to apply?', a: 'Engineering students (B.E/B.Tech) and BSc graduates from 2025/2026 batches.' },
+            { q: 'What programming languages are preferred?', a: 'Familiarity with C#, C++, Java, or Python is expected.' }
+        ],
+        applyLink: 'https://www.siemens-healthineers.com/careers'
+    },
+    {
+        id: 'qualcomm-engineer-2026',
+        title: 'Engineer – Software (Campus Hire)',
+        company: 'Qualcomm',
+        location: 'Hyderabad, Bangalore, Chennai, Noida',
+        type: 'Full-time',
+        salary: 'Highly Competitive Package',
+        experience: 'Freshers',
+        postedDate: 'May 10, 2026',
+        aboutCompany: 'Qualcomm is one of the world’s leading semiconductor and wireless communication companies, powering billions of smart devices globally. The company is at the forefront of 5G, Artificial Intelligence, Mobile Processors, and IoT technologies, driving the next generation of connected ecosystems.',
+        description: 'As part of the Qualcomm Campus Hiring Program 2026, selected candidates will work on software systems powering advanced Qualcomm chipsets and embedded platforms. This role offers exposure to embedded software development, wireless communication, Linux kernel, and AI edge computing.',
+        responsibilities: [
+            'Develop and optimize embedded software, firmware, and device drivers',
+            'Work on mobile platforms including Android, Linux, and Windows-based systems',
+            'Implement and optimize wireless communication protocols (4G, 5G, WiFi, Bluetooth)',
+            'Improve system performance and stability for board support packages (BSP)',
+            'Develop multimedia frameworks for audio, video, and image processing',
+            'Debug complex system-level issues and participate in architectural reviews',
+            'Contribute to emerging technologies like IoT, Robotics, AR/VR, and AI Edge Computing'
+        ],
+        skills: [
+            'C', 'C++', 'Data Structures', 'Algorithms', 'Operating Systems', 'Linux', 'Embedded Systems'
+        ],
+        eligibility: [
+            'B.E / B.Tech / M.E / M.Tech in CSE, ECE, or related technical fields',
+            'Batch: 2026 Graduating Students',
+            'Strong knowledge of C and C++ programming',
+            'Understanding of OOP, OS concepts, and Linux/Unix environments',
+            'Deep interest in wireless communication and embedded systems'
+        ],
+        benefits: [
+            'Work on global technologies used by billions of devices',
+            'Exposure to cutting-edge 5G, AI, and IoT innovation',
+            'Collaborative engineering culture with world-class mentors',
+            'Attractive compensation and comprehensive employee benefits'
+        ],
+        applicationProcess: [
+            'Step 1: Online Assessment (C, DSA, OS, Aptitude, Problem Solving)',
+            'Step 2: Technical Interviews (Embedded, Wireless, OS, Coding)',
+            'Step 3: HR Interview (Career Goals, Teamwork, Relocation)'
+        ],
+        faqs: [
+            { q: 'What is the job ID for this role?', a: 'The Job ID is 3078321.' },
+            { q: 'Which locations are available?', a: 'Positions are available in Hyderabad, Bangalore, Chennai, and Noida.' },
+            { q: 'Is it only for the 2026 batch?', a: 'Yes, this campus hiring program is specifically for the 2026 graduating batch.' }
+        ],
+        applyLink: 'https://qualcomm.wd5.myworkdayjobs.com/QualcommExternalCareerSite'
+    },
+    {
+        id: 'zycus-ai-intern-2026',
+        title: 'AI Engineer Intern',
+        company: 'Zycus',
+        location: 'Bangalore, Karnataka',
+        type: 'Internship',
+        salary: 'Competitive Stipend',
+        experience: 'Freshers / 0–1 Year',
+        postedDate: 'May 10, 2026',
+        aboutCompany: 'Zycus is a globally recognized leader in Source-to-Pay Procurement Software Solutions. The company leverages Artificial Intelligence (AI), Machine Learning (ML), and Cloud-based SaaS solutions to help enterprises optimize procurement operations. Recognized by Gartner for innovation, Zycus is at the forefront of the cognitive procurement revolution.',
+        description: 'This internship is perfect for candidates passionate about Generative AI (Gen-AI), Agentic AI, and Workflow Automation. Interns will work on real-world projects involving AI Chatbots, intelligent dashboards, and automation systems used by global enterprises.',
+        responsibilities: [
+            'Identify workflow inefficiencies and suggest AI-based automation solutions',
+            'Build and test AI prototypes using Python and automation frameworks',
+            'Experiment with Generative AI and Agentic AI applications',
+            'Collaborate with international stakeholders to validate AI use cases',
+            'Analyze user feedback and usage metrics to optimize AI solution performance',
+            'Create technical documentation, prompt libraries, and AI reports',
+            'Participate in technical discussions and internal learning sessions'
+        ],
+        skills: [
+            'Python', 'Generative AI', 'LangChain', 'APIs', 'JSON', 'LlamaIndex', 'Prompt Engineering'
+        ],
+        eligibility: [
+            'B.E / B.Tech / BSc in CS, IT, Data Science, or AI/ML related fields',
+            'Batch: 2025 or 2026 Graduates',
+            'Knowledge of Python programming and basic AI/ML fundamentals',
+            'Familiarity with APIs and Data Processing (JSON)',
+            'Preference for candidates with AI-based GitHub projects or hackathon experience'
+        ],
+        benefits: [
+            'Hands-on experience with Gen-AI and Agentic AI systems',
+            'Work at a globally recognized AI-driven SaaS company',
+            'Collaboration with international teams and experienced professionals',
+            'Real-world exposure to enterprise-scale AI workflows'
+        ],
+        applicationProcess: [
+            'Step 1: Resume Shortlisting (Initial profile screening)',
+            'Step 2: Technical Assessment (Python, AI Fundamentals, Problem Solving)',
+            'Step 3: Technical Interview (AI Concepts, Projects, Automation Tools)',
+            'Step 4: HR Discussion (Final communication and cultural fit)'
+        ],
+        faqs: [
+            { q: 'Is this role onsite or remote?', a: 'The internship is based onsite in Bangalore.' },
+            { q: 'Can freshers apply?', a: 'Yes, freshers and final-year students are highly encouraged to apply.' },
+            { q: 'What is the bonus preference criteria?', a: 'Candidates with AI-based GitHub projects or hackathon participation get extra preference.' }
+        ],
+        applyLink: 'https://zycus.com/careers'
+    },
+    {
+        id: 'rolls-royce-intern-2026',
+        title: 'Intern – Software Testing',
+        company: 'Rolls-Royce',
+        location: 'Pune, Maharashtra',
+        type: 'Internship (6 Months)',
+        salary: 'Competitive Stipend',
+        experience: 'Freshers Eligible',
+        postedDate: 'May 10, 2026',
+        aboutCompany: 'Rolls-Royce is one of the world’s leading engineering companies, known for developing advanced technologies in Aerospace, Marine Systems, Rail Solutions, and Energy & Power Systems. The Pune Engineering Center works on cutting-edge technologies like Software-in-the-Loop (SIL), Hardware-in-the-Loop (HIL), and Embedded Systems Validation.',
+        description: 'This internship is designed for students and fresh graduates interested in Embedded Systems, Software Testing, and Industrial Automation. Selected interns will work on real-world engineering projects involving advanced energy systems and embedded software validation for global platforms.',
+        responsibilities: [
+            'Work in Software-in-the-Loop (SIL) and Hardware-in-the-Loop (HIL) environments',
+            'Assist in embedded systems testing activities and validate engine management software',
+            'Test industrial communication protocols such as CAN, LIN, Ethernet, and XCP',
+            'Design and implement automated testing scripts using Python',
+            'Setup and maintain ECU diagnostic test benches for system-level debugging',
+            'Conduct trend analysis and suggest testing process improvements',
+            'Work on marine, rail, and battery energy storage systems (BESS) projects'
+        ],
+        skills: [
+            'Embedded Systems', 'Software Testing', 'Python', 'CAN/LIN', 'Ethernet/XCP', 'ECU Diagnostics', 'Automation'
+        ],
+        eligibility: [
+            'B.E / B.Tech in Electronics, Embedded Systems, or Software Engineering',
+            'Batch: 2026 Graduates (or Freshers)',
+            'Strong understanding of Electronic Engineering fundamentals',
+            'Familiarity with communication protocols like CAN, LIN, and XCP',
+            'Good analytical and problem-solving skills'
+        ],
+        benefits: [
+            'Hands-on experience with SIL/HIL Testing',
+            'Exposure to Global Engineering Projects (Aerospace, Marine, Energy)',
+            'Mentorship from industry experts at Rolls-Royce',
+            'Opportunity to work with cutting-edge Embedded technologies'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening (Resume shortlisting)',
+            'Step 2: Technical Assessment (Embedded, Electronics, Protocols)',
+            'Step 3: Interview Round (Technical + HR Discussion)',
+            'Step 4: Final Selection and Offer Rollout'
+        ],
+        faqs: [
+            { q: 'Is this role only for Pune?', a: 'Yes, the internship is based at the Rolls-Royce Pune Engineering Center.' },
+            { q: 'What is the duration of the internship?', a: 'The internship duration is 6 months.' },
+            { q: 'Which batches are eligible?', a: 'B.E/B.Tech students from the 2026 batch and recent freshers are eligible.' }
+        ],
+        applyLink: 'https://careers.rolls-royce.com/'
+    },
+    {
         id: 'cloudflare-intern-2026',
         title: 'Software Engineer Intern',
         company: 'Cloudflare',
