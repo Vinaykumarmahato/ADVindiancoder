@@ -340,6 +340,9 @@ const JobsPage = () => {
     const [selectedSkill, setSelectedSkill] = useState("All");
     const [selectedRole, setSelectedRole] = useState("All");
     const [selectedYear, setSelectedYear] = useState("All");
+    const [selectedDate, setSelectedDate] = useState("All");
+
+    const dateOptions = ["All", "Today", "Last 2 Days", "Last 4 Days", "Last 6 Days", "Last 8 Days", "Last 10 Days", "Last 12 Days"];
 
     // Gather unique locations, experience ranges, roles, years, and skills dynamically
     const locations = ["All", "Bangalore", "Hyderabad", "Remote", "Kochi", "Bengaluru", "Pune", "Multiple", "Chennai", "Mumbai", "Noida", "Gurgaon"];
@@ -369,7 +372,26 @@ const JobsPage = () => {
             return highestYearInBatch >= Number(selectedYear);
         })();
 
-        return matchesSearch && matchesLoc && matchesExp && matchesSkill && matchesRole && matchesYear;
+        const matchesDate = selectedDate === "All" || (() => {
+            if (job.postedAt === "Recently Active") return true;
+            try {
+                const jobDate = new Date(job.postedAt);
+                const today = new Date("May 10, 2026");
+                today.setHours(0, 0, 0, 0);
+                jobDate.setHours(0, 0, 0, 0);
+                
+                const diffTime = today.getTime() - jobDate.getTime();
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (selectedDate === "Today") return diffDays === 0;
+                const daysLimit = parseInt(selectedDate.match(/\d+/)[0]);
+                return diffDays <= daysLimit;
+            } catch (e) {
+                return true;
+            }
+        })();
+
+        return matchesSearch && matchesLoc && matchesExp && matchesSkill && matchesRole && matchesYear && matchesDate;
     });
 
     return (
@@ -420,7 +442,7 @@ const JobsPage = () => {
                 </div>
 
                 {/* Filters Row */}
-                <div className="max-w-5xl mx-auto mb-12 grid grid-cols-2 md:grid-cols-5 gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
+                <div className="max-w-6xl mx-auto mb-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
                     {/* Location Filter */}
                     <div className="flex flex-col gap-1.5 col-span-2 md:col-span-1">
                         <label className="text-xs text-gray-400 font-mono">Location</label>
@@ -487,6 +509,20 @@ const JobsPage = () => {
                         >
                             {years.map((year, index) => (
                                 <option key={index} value={year} className="bg-slate-900 text-white">{year}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Date Posted Filter */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="text-xs text-gray-400 font-mono">Date Posted</label>
+                        <select 
+                            value={selectedDate}
+                            onChange={(e) => setSelectedDate(e.target.value)}
+                            className="w-full bg-black/40 text-white border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm font-medium"
+                        >
+                            {dateOptions.map((opt, index) => (
+                                <option key={index} value={opt} className="bg-slate-900 text-white">{opt}</option>
                             ))}
                         </select>
                     </div>
