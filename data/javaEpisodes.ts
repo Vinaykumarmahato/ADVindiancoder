@@ -2256,5 +2256,77 @@ public class Main {
                 }
             ],
         }
+    },
+    {
+        id: 40,
+        title: "EP 40 – Static Keyword Deep Dive | Class Loading, JVM Memory & Static Blocks",
+        youtubeId: "h2OQ4kw43yQ",
+        thumbnail: "https://img.youtube.com/vi/h2OQ4kw43yQ/maxresdefault.jpg",
+        tags: ["Java", "OOPs", "JVM", "Static"],
+        notes: {
+            intro: "Static Keyword केवल 'class के लिए' नहीं है, बल्कि इसके पीछे JVM का पूरा Class Loading mechanism काम करता है। आज हम देखेंगे कि Static Variables और Blocks असल में Memory में कैसे और कब जन्म लेते हैं।",
+            topics: [
+                "🧠 The 'Behind the Scenes' of Static: Where does it come from?",
+                "⚙️ JVM Class Loading Stages: Loading, Linking (Verify, Prepare, Resolve), and Initialization",
+                "🏗️ Memory Allocation: Why Static variables are initialized even before main() starts?",
+                "⚡ Execution Order: Static Variable → Static Block → Static Method → Instance components",
+                "🛠️ Practical Guide: Why and how to use Static Blocks for initialization",
+            ],
+            code: `public class StaticDeepDive {
+    // 1. Static Variable (Allocated memory during 'Prepare' stage)
+    static int age;
+    
+    // 2. Static Block (Executed during 'Initialization' stage)
+    static {
+        age = 22;
+        System.out.println("1. I am in Static Block (Before Main!)");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("2. I am in Main Method");
+        System.out.println("Age: " + age);
+        show();
+    }
+
+    // Static Method
+    static void show() {
+        System.out.println("3. I am in Static Method");
+    }
+}
+
+/* 
+Execution Flow:
+1. JVM loads class
+2. Memory allocated for 'age' (Prepare stage)
+3. Static block runs (Initialization stage)
+4. JVM calls main() method
+*/`,
+            quiz: [
+                { 
+                    question: "At which stage of Class Loading is memory allocated for static variables?", 
+                    answer: "Memory is allocated during the 'Preparation' stage of the Linking process.",
+                    options: ["Loading", "Verification", "Preparation", "Initialization"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "What is the execution order of static and non-static components?", 
+                    answer: "Static variables/blocks run first during class loading, then the main method, followed by non-static components when an object is created.",
+                    options: ["Main first", "Static first", "Instance first", "Random"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Can we initialize static variables inside a constructor?", 
+                    answer: "Technically yes, but it's not recommended because constructors run every time an object is created, whereas static variables should be initialized once via Static Blocks.",
+                    options: ["Yes, recommended", "Yes, but not recommended", "No", "Only if public"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What happens during the 'Verification' stage of Class Loading?", 
+                    answer: "JVM checks if the Bytecode follows the Java standard structure and hasn't been tampered with.",
+                    options: ["Allocates memory", "Checks code structure", "Runs static blocks", "None"],
+                    correctIndex: 1
+                }
+            ],
+        }
     }
 ];

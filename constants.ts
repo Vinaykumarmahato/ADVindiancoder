@@ -35,7 +35,7 @@ export const WHY_CHOOSE_US_FEATURES = [
     'Free Mentorship + Community Access',
 ];
 
-// ─── Java Full Course Playlist (All 37 Episodes) ────────────────────────────
+// ─── Java Full Course Playlist (All 40 Episodes) ────────────────────────────
 export const JAVA_PLAYLIST = [
     { id: 1,  title: "EP 01 – What is Programming? | Introduction to Programming | Java Full Course 2026 #1", thumbnail: `/Thumbnail/${encodeURIComponent("ep-01-programming-introduction-thumbnail.png")}`, tags: ['Java', 'Basics'], category: 'Java Series', youtubeLink: '#' },
     { id: 2,  title: "EP 02 – Low Level vs High Level Languages | Java Full Course 2026 #2", thumbnail: `/Thumbnail/${encodeURIComponent("ep-02-low-vs-high-level-thumbnail.png")}`, tags: ['Java', 'Theory'], category: 'Java Series', youtubeLink: '#' },
@@ -76,13 +76,14 @@ export const JAVA_PLAYLIST = [
     { id: 37, title: "EP 37 – Need of OOPs in Java 🔥 | POP vs OOP | Why OOPs? | Java Full Course 2026 #37", thumbnail: `https://img.youtube.com/vi/Nfk5RzuZLRw/maxresdefault.jpg`, tags: ['Java', 'OOPs'], category: 'Java Series', youtubeLink: 'https://youtu.be/Nfk5RzuZLRw' },
     { id: 38, title: "EP 38 – Objects, Memory Management & Method Overloading | Java Full Course 2026 #38", thumbnail: `https://img.youtube.com/vi/T2EJGxuu1yE/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'Memory'], category: 'Java Series', youtubeLink: 'https://youtu.be/T2EJGxuu1yE' },
     { id: 39, title: "EP 39 – Constructors in Java 🔥 | Default, Parameterized & Constructor Overloading | Java Full Course 2026 #39", thumbnail: `https://img.youtube.com/vi/hJV7qCee03I/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'Constructors'], category: 'Java Series', youtubeLink: 'https://youtu.be/hJV7qCee03I' },
+    { id: 40, title: "EP 40 – Static Keyword Deep Dive | Class Loading, JVM Memory & Static Blocks | Java Full Course 2026 #40", thumbnail: `https://img.youtube.com/vi/h2OQ4kw43yQ/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'JVM', 'Static'], category: 'Java Series', youtubeLink: 'https://youtu.be/h2OQ4kw43yQ' },
 ];
 
 export const COURSES: Course[] = [
     {
         id: 1,
-        title: "Java Full Course 2026: Zero to Hero (39 Episodes)",
-        description: "Master Java from scratch with zero prior knowledge. This 39-episode series covers everything from basics to advanced OOPs, patterns, and DSA foundations with AI-driven learning approach.",
+        title: "Java Full Course 2026: Zero to Hero (40 Episodes)",
+        description: "Master Java from scratch with zero prior knowledge. This 40-episode series covers everything from basics to advanced OOPs, patterns, and DSA foundations with AI-driven learning approach.",
         thumbnail: `/Thumbnail/ep-01-programming-introduction-thumbnail.png`,
         tags: ['Java', 'Playlist', 'Free'],
         category: 'Programming',
