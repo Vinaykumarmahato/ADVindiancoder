@@ -61,7 +61,7 @@ const jobListings = [
             { q: 'Is this role remote or onsite?', a: 'This is a full-time onsite role based in Mumbai.' },
             { q: 'Which batches are eligible?', a: 'Graduates from 2024, 2025, and 2026 batches are eligible.' }
         ],
-        applyLink: 'https://www.larsentoubro.com/corporate/careers/'
+        applyLink: 'https://larsentoubrocareers.peoplestrong.com/job/detail/LNT_SE-LS_1713751'
     },
     {
         id: 'razorpay-systems-engineer-2026',
