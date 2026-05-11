@@ -8,6 +8,239 @@ import SEO from '../components/SEO';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'lnt-software-engineer-land-systems-2026',
+        title: 'Software Engineer – Land Systems',
+        company: 'Larsen & Toubro (L&T)',
+        location: 'Mumbai, India',
+        type: 'Full Time',
+        salary: 'Best in Industry',
+        experience: '0–2 Years',
+        postedDate: 'May 11, 2026',
+        aboutCompany: 'Larsen & Toubro (L&T) is one of India’s largest engineering, technology, manufacturing, and construction companies with operations across more than 50 countries. L&T’s Precision Engineering & Systems division develops advanced defence platforms, aerospace technologies, mission-critical software systems, and land defence solutions for strategic sectors and the Indian Armed Forces.',
+        description: 'As a Software Engineer – D&DC Land Systems, selected candidates will work on the development of high-performance software systems used in advanced land and defence applications. The role involves Embedded Systems Development, C & C++ Programming, Real-Time Operating Systems, Distributed Systems, and Networking Protocols.',
+        responsibilities: [
+            'Develop and maintain high-performance applications using C and C++',
+            'Design scalable and reliable software modules for defence and land systems',
+            'Build and integrate applications on Linux, VxWorks, and QNX platforms',
+            'Work on low-level system software and embedded environments',
+            'Create debugging and diagnostic tools to resolve software issues',
+            'Develop applications using multi-threading and multi-processing concepts',
+            'Implement efficient inter-process communication mechanisms',
+            'Work on distributed systems and subsystem integration',
+            'Collaborate with hardware and networking teams for deployment',
+            'Develop validation tools and testing codes for system reliability',
+            'Support software testing and root-cause analysis activities',
+            'Investigate customer-reported issues and provide timely fixes'
+        ],
+        skills: [
+            'C', 'C++', 'Linux', 'VxWorks', 'QNX', 'Multi-threading', 'Inter-process Communication', 'Networking Protocols', 'Serial Communication', 'MIL-STD-1553', 'CAN', 'NMEA', 'ModBus'
+        ],
+        eligibility: [
+            'B.E / B.Tech in CS, IT, ECE, EEE, or related engineering branches',
+            'Batch: 2024, 2025, and 2026 Graduating Students',
+            'Experience: 0–2 Years',
+            'Strong understanding of C/C++ programming and OS concepts',
+            'Knowledge of embedded systems fundamentals',
+            'Willingness to work from Mumbai office'
+        ],
+        benefits: [
+            'Industry-standard compensation package and health insurance',
+            'Opportunity to work on mission-critical national defence projects',
+            'Exposure to large-scale real-time systems and advanced embedded tech',
+            'Mentorship from experienced engineering professionals',
+            'Contribute to strategic nation-building technologies'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening (Resume shortlisting)',
+            'Step 2: Online Technical Assessment (C/C++, DSA, OS, Aptitude)',
+            'Step 3: Technical Interview (Programming, Linux, Embedded, Projects)',
+            'Step 4: HR Interview (Career Goals, Communication, Relocation)'
+        ],
+        faqs: [
+            { q: 'What is the job code for this role?', a: 'The job code is LNT/SE-LS/1713751.' },
+            { q: 'Is this role remote or onsite?', a: 'This is a full-time onsite role based in Mumbai.' },
+            { q: 'Which batches are eligible?', a: 'Graduates from 2024, 2025, and 2026 batches are eligible.' }
+        ],
+        applyLink: 'https://www.larsentoubro.com/corporate/careers/'
+    },
+    {
+        id: 'razorpay-systems-engineer-2026',
+        title: 'Systems Engineer (Network Specialist)',
+        company: 'Razorpay',
+        location: 'Bengaluru, India',
+        type: 'Full-time (Onsite)',
+        salary: 'Highly Competitive',
+        experience: 'Hands-on Experience in Network Infrastructure Preferred',
+        postedDate: 'May 11, 2026',
+        aboutCompany: 'Razorpay is one of India’s leading full-stack financial solutions companies, providing payment solutions, banking infrastructure, payroll services, and financial products for startups, enterprises, and large businesses. Trusted by major brands across India, Razorpay continues to redefine digital payments using innovation, automation, cloud infrastructure, and AI-powered financial technologies.',
+        description: 'As a Systems Engineer (Network Specialist), you will be responsible for managing, operating, and supporting Razorpay’s enterprise-grade network infrastructure. The role requires strong expertise in Firewall Management, Routing & Switching, Wireless Networking, and Zero Trust Security Systems.',
+        responsibilities: [
+            'Configure and maintain Palo Alto Firewalls including VPNs, NAT, policies, and HA setup',
+            'Support Cisco Nexus switching environments including VLANs, VPCs, routing, and OS upgrades',
+            'Manage Cisco Meraki switches and wireless access points',
+            'Handle Zscaler Internet Access (ZIA) and ZTNA policy administration',
+            'Monitor network health and troubleshoot connectivity issues',
+            'Manage incidents and service requests through ITIL-based ticketing systems',
+            'Perform Root Cause Analysis (RCA) for major incidents',
+            'Maintain infrastructure documentation, SOPs, and network diagrams',
+            'Coordinate with vendors and technology partners for infrastructure improvements'
+        ],
+        skills: [
+            'Palo Alto Firewalls', 'Cisco Nexus', 'Cisco Meraki', 'Zscaler', 'TCP/IP', 'LAN/WAN', 'Routing & Switching', 'VPN & NAT', 'Network Security', 'Cloud Networking'
+        ],
+        eligibility: [
+            'Mandatory hands-on experience with Palo Alto Firewalls',
+            'Deep understanding of Cisco Nexus switches and routing concepts',
+            'Experience with Cisco Meraki dashboard and wireless optimization',
+            'Knowledge of Zscaler and Zero Trust security architecture',
+            'Strong understanding of TCP/IP, LAN/WAN, routing, and switching',
+            'Certifications like CCNP, PCNSE, or Meraki Certifications preferred',
+            'Experience with AWS or Azure cloud networking is a plus'
+        ],
+        benefits: [
+            'Work on enterprise-scale fintech infrastructure used by millions',
+            'Manage advanced networking and security technologies (Palo Alto, Zscaler)',
+            'High-growth engineering culture with strong ownership and transparency',
+            'Competitive salary and extensive career growth opportunities',
+            'Exposure to cloud-connected enterprise architecture',
+            'Modern technology-driven environment'
+        ],
+        applicationProcess: [
+            'Step 1: Technical Screening (Networking fundamentals and infrastructure knowledge)',
+            'Step 2: Networking & Firewall Technical Interview (Routing, Switching, VPN, Security Policies)',
+            'Step 3: Architecture & Troubleshooting Discussion (RCA scenarios, optimization strategies)',
+            'Step 4: HR / Managerial Round (Communication, Collaboration, Ownership Mindset)',
+            'Step 5: Onsite Interview (Final interaction with infrastructure and leadership teams)'
+        ],
+        faqs: [
+            { q: 'Is this role remote or onsite?', a: 'This is a full onsite role based in Bengaluru with a 5-day office work model.' },
+            { q: 'What technologies are mainly used?', a: 'Palo Alto, Cisco Nexus, Cisco Meraki, Zscaler, LAN/WAN, Routing & Switching technologies.' },
+            { q: 'Who can apply?', a: 'Candidates with strong networking and infrastructure experience can apply.' }
+        ],
+        applyLink: 'https://razorpay.com/careers/'
+    },
+    {
+        id: 'cisco-software-automation-trainee-2026',
+        title: 'Software Automation Trainee',
+        company: 'Cisco Systems',
+        location: 'Bangalore, India',
+        type: 'Full-time (Apprenticeship)',
+        salary: 'Best in Industry',
+        experience: 'Freshers Eligible',
+        postedDate: 'May 11, 2026',
+        aboutCompany: 'Cisco Systems is a globally recognized technology company headquartered in San Jose, California, known for its innovations in networking, cloud computing, cybersecurity, automation, and collaboration technologies. Cisco operates one of its largest engineering and development centres in Bangalore, India, where it actively hires and trains fresh graduates through internship and apprenticeship programs. The company focuses heavily on AI-driven networking, automation, cloud platforms, and DevOps technologies, making it one of the best career launch platforms for engineering freshers.',
+        description: 'As a Software Automation Trainee – Technical Graduate Apprentice, candidates will work on automation-related projects that improve productivity and operational efficiency within Cisco engineering teams. This 12-month structured apprenticeship under the National Apprenticeship Training Scheme (NATS) provides exposure to Python scripting, REST API automation, networking fundamentals, cloud technologies, and DevOps practices.',
+        responsibilities: [
+            'Develop Python-based automation scripts for internal engineering tasks',
+            'Reduce manual effort through workflow automation',
+            'Work with REST APIs for automation, monitoring, and reporting tasks',
+            'Integrate automation workflows with Cisco platforms',
+            'Learn networking concepts involving routers, switches, and network labs',
+            'Understand Cisco infrastructure and testing environments',
+            'Gain practical exposure to cloud platforms and CI/CD pipelines',
+            'Learn secure coding practices and DevOps methodologies',
+            'Participate in sprint planning, Agile ceremonies, and code reviews',
+            'Collaborate with cross-functional engineering teams',
+            'Learn introductory AI/ML concepts used in Cisco engineering use cases',
+            'Maintain project documentation and automation runbooks'
+        ],
+        skills: [
+            'Python', 'REST APIs', 'Networking Fundamentals', 'Cloud Technologies', 'DevOps', 'Agile', 'AI/ML Basics', 'Automation'
+        ],
+        eligibility: [
+            'B.E / B.Tech / B.Sc / BCA / Diploma in CS, IT, EEE, Networking, or related fields',
+            'Batch: 2025 or 2026 Graduating Students',
+            'Degree Certificate or Provisional Degree Certificate (PDC) required for joining',
+            'Mandatory enrolment on official NATS portal with valid ID',
+            'Basic understanding of programming and software development',
+            'Familiarity with Python or scripting concepts',
+            'Understanding of REST APIs and automation basics',
+            'Good communication skills in English'
+        ],
+        benefits: [
+            '12-month structured training program with industry-level exposure',
+            'Mentorship from senior Cisco engineers',
+            'Access to premium learning platforms and technical resources',
+            'Food and transportation facilities at the Bangalore campus',
+            'Opportunity for full-time conversion based on performance',
+            'Exposure to AI-driven networking and cloud platforms'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening (Eligibility & NATS enrolment check)',
+            'Step 2: Online Test (Aptitude, Programming Logic, Python & Scripting)',
+            'Step 3: Technical Interview (Python, REST APIs, Networking, Projects)',
+            'Step 4: HR Interview (Communication, Learning Attitude, Career Goals)'
+        ],
+        faqs: [
+            { q: 'Is this a full-time job or an internship?', a: 'This is a 12-month structured apprenticeship program under NATS with potential for full-time conversion.' },
+            { q: 'What are the location requirements?', a: 'This is an onsite role based at Cisco\'s Bangalore campus.' },
+            { q: 'What is the NATS requirement?', a: 'Applicants must have a valid student enrolment number from the official NATS portal.' }
+        ],
+        applyLink: 'https://jobs.cisco.com'
+    },
+    {
+        id: 'barclays-software-engineer-2026',
+        title: 'Software Engineer',
+        company: 'Barclays',
+        location: 'Pune, Maharashtra',
+        type: 'Full-time (Hybrid)',
+        salary: 'Highly Competitive + Enterprise Benefits',
+        experience: 'Java Spring Boot & Cloud Experience Preferred',
+        postedDate: 'May 11, 2026',
+        aboutCompany: 'Barclays is one of the world’s leading financial institutions, serving millions of customers globally across banking, payments, investments, and financial technology. Barclays Technology powers enterprise-scale digital platforms, cloud-native banking systems, AI-driven solutions, and secure financial infrastructure.',
+        description: 'As a Software Engineer at Barclays, you will contribute to building and transforming large-scale digital banking platforms within the Mortgages and Financial Technology domain. The role focuses on developing scalable backend services, cloud-native applications, and enterprise-grade microservices using Java and Spring Boot technologies.',
+        responsibilities: [
+            'Design and develop scalable backend services using Java and Spring Boot',
+            'Build enterprise-grade RESTful APIs and cloud-native microservices',
+            'Work with Spring MVC, Spring Data JPA, Spring Security, and Spring Cloud',
+            'Develop resilient distributed systems with fault tolerance and observability',
+            'Integrate applications with AWS services such as Lambda, ECS/EKS, EC2, S3, SQS, SNS, and EventBridge',
+            'Collaborate with product managers, architects, and engineering teams',
+            'Participate in code reviews and maintain clean coding standards',
+            'Implement secure coding practices and API security standards',
+            'Work on CI/CD pipelines and DevOps workflows',
+            'Perform debugging, performance optimization, and root cause analysis',
+            'Contribute to Agile/Scrum software development cycles',
+            'Ensure scalability, maintainability, and reliability of enterprise applications'
+        ],
+        skills: [
+            'Java', 'Spring Boot', 'Microservices', 'REST APIs', 'AWS Cloud', 'PostgreSQL / MySQL', 'Git & Version Control', 'CI/CD', 'Distributed Systems', 'Agile/Scrum', 'API Security', 'Debugging & Performance Tuning'
+        ],
+        eligibility: [
+            'Bachelor’s Degree in Computer Science, IT, Electronics, or related fields',
+            'Strong hands-on experience with Java and Spring Boot',
+            'Understanding of Microservices Architecture and REST API development',
+            'Knowledge of AWS cloud platforms and cloud-native development',
+            'Familiarity with relational and NoSQL databases',
+            'Understanding of Git and collaborative development workflows',
+            'Strong analytical thinking and problem-solving skills',
+            'Knowledge of Agile development methodologies preferred',
+            'Understanding of secure application development and testing practices'
+        ],
+        benefits: [
+            'Opportunity to work on global-scale banking technology platforms',
+            'Exposure to modern cloud-native architecture and enterprise systems',
+            'Hybrid working environment with advanced technology infrastructure',
+            'Excellent career growth and mentorship opportunities',
+            'Competitive compensation and employee benefits',
+            'Experience with scalable distributed systems used by millions worldwide',
+            'Learning opportunities in AI, FinTech, and cloud engineering'
+        ],
+        applicationProcess: [
+            'Step 1: Online Assessment (Java, Spring Boot, APIs, Problem Solving, and Logical Reasoning)',
+            'Step 2: Technical Screening (Backend Development, OOPs, Microservices, and Database Concepts)',
+            'Step 3: Coding Round (Java Coding, API Design, Debugging, and Data Structures)',
+            'Step 4: Technical Interviews (Spring Boot, Cloud Services, Distributed Systems, and Architecture)',
+            'Step 5: HR Interview (Communication, Team Collaboration, Career Goals, and Culture Fit)'
+        ],
+        faqs: [
+            { q: 'Is this role remote or on-site?', a: 'This role follows a hybrid working model based at the Barclays Pune campus.' },
+            { q: 'What technologies are mainly used?', a: 'Java, Spring Boot, AWS Cloud, REST APIs, Microservices, PostgreSQL, CI/CD, and Distributed Systems.' },
+            { q: 'Which batches are eligible?', a: 'Recent graduates and experienced candidates with relevant backend development skills can apply.' }
+        ],
+        applyLink: 'https://search.jobs.barclays/job/pune/software-engineer/13015/94766714240'
+    },
+    {
         id: 'hpe-platform-testing-2026',
         title: 'Software Engineer – Platform Testing',
         company: 'HPE',

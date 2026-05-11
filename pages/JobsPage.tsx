@@ -7,6 +7,46 @@ import SEO from '../components/SEO';
 
 const WHATSAPP_JOBS = [
     {
+        id: "lnt-software-engineer-land-systems-2026",
+        role: "Software Engineer – Land Systems",
+        company: "Larsen & Toubro (L&T)",
+        location: "Mumbai, India",
+        batch: "2024 / 2025 / 2026 (B.E / B.Tech)",
+        postedAt: "May 11, 2026",
+        skills: ["C", "C++", "Linux", "Embedded Systems", "Networking"],
+        experience: "0–2 Years"
+    },
+    {
+        id: "razorpay-systems-engineer-2026",
+        role: "Systems Engineer (Network Specialist)",
+        company: "Razorpay",
+        location: "Bengaluru, India",
+        batch: "Experienced (Network Infrastructure Preferred)",
+        postedAt: "May 11, 2026",
+        skills: ["Networking", "Firewalls", "Palo Alto", "Cisco Nexus"],
+        experience: "Hands-on Experience Preferred"
+    },
+    {
+        id: "cisco-software-automation-trainee-2026",
+        role: "Software Automation Trainee",
+        company: "Cisco Systems",
+        location: "Bangalore, India",
+        batch: "2025 / 2026 (B.E/B.Tech/BSc/BCA/Diploma)",
+        postedAt: "May 11, 2026",
+        skills: ["Python", "REST APIs", "Networking", "Automation", "DevOps"],
+        experience: "Freshers Eligible"
+    },
+    {
+        id: "barclays-software-engineer-2026",
+        role: "Software Engineer",
+        company: "Barclays",
+        location: "Pune, Maharashtra",
+        batch: "Recent Graduates / Experienced",
+        postedAt: "May 11, 2026",
+        skills: ["Java", "Spring Boot", "AWS Cloud", "Microservices"],
+        experience: "Java Spring Boot & Cloud Experience Preferred"
+    },
+    {
         id: "hpe-platform-testing-2026",
         role: "Software Engineer – Platform Testing",
         company: "HPE",
@@ -376,7 +416,7 @@ const JobsPage = () => {
             if (job.postedAt === "Recently Active") return true;
             try {
                 const jobDate = new Date(job.postedAt);
-                const today = new Date("May 10, 2026");
+                const today = new Date();
                 today.setHours(0, 0, 0, 0);
                 jobDate.setHours(0, 0, 0, 0);
                 
@@ -384,7 +424,8 @@ const JobsPage = () => {
                 const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
                 
                 if (selectedDate === "Today") return diffDays === 0;
-                const daysLimit = parseInt(selectedDate.match(/\d+/)[0]);
+                const match = selectedDate.match(/\d+/);
+                const daysLimit = match ? parseInt(match[0]) : 0;
                 return diffDays <= daysLimit;
             } catch (e) {
                 return true;
