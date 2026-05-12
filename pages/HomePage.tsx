@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PlayCircle, ArrowRight, Code, Users, GraduationCap, CheckCircle, Github, MessageSquare, Briefcase, Award, Zap, Shield, TrendingUp, ChevronRight, Star, Terminal, X, Rocket } from 'lucide-react';
+import { PlayCircle, ArrowRight, Code, Users, GraduationCap, CheckCircle, Github, MessageSquare, Briefcase, Award, Zap, Shield, TrendingUp, ChevronRight, Star, Terminal, X, Rocket, Share2, MessageCircle, Facebook, Instagram, Linkedin } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { COURSES } from '../constants';
@@ -429,6 +429,55 @@ const HomePage = () => {
                                                         <Star size={10} className="fill-current" /> {course.rating.toFixed(1)}
                                                     </span>
                                                 )}
+                                            </div>
+
+                                            {/* Share Button Overlay */}
+                                            <div className="absolute top-24 right-8 z-30 group/share">
+                                                <button className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary transition-all duration-300 shadow-lg relative z-50">
+                                                    <Share2 className="w-4 h-4 text-white" />
+                                                </button>
+                                                
+                                                {/* Share Options Tooltip/Dropdown */}
+                                                <div className="absolute top-10 right-0 opacity-0 invisible group-hover/share:opacity-100 group-hover/share:visible transition-all duration-300 translate-y-2 group-hover/share:translate-y-0 z-[60]">
+                                                    <div className="bg-[#0f172a]/95 backdrop-blur-2xl border border-white/10 p-2 rounded-2xl flex flex-col gap-1 shadow-2xl min-w-[140px]">
+                                                        <a 
+                                                            href={`https://wa.me/?text=Check out this amazing course: ${course.title} %0A https://advindiancoder.com/course/${course.id}`} 
+                                                            target="_blank" rel="noopener noreferrer"
+                                                            className="flex items-center gap-3 px-3 py-2 hover:bg-green-500/20 rounded-xl transition-colors text-xs font-bold text-gray-300 hover:text-green-400"
+                                                        >
+                                                            <div className="w-7 h-7 rounded-lg bg-green-500/20 flex items-center justify-center"><MessageCircle size={14} /></div>
+                                                            WhatsApp
+                                                        </a>
+                                                        <a 
+                                                            href={`https://www.linkedin.com/sharing/share-offsite/?url=https://advindiancoder.com/course/${course.id}`} 
+                                                            target="_blank" rel="noopener noreferrer"
+                                                            className="flex items-center gap-3 px-3 py-2 hover:bg-blue-500/20 rounded-xl transition-colors text-xs font-bold text-gray-300 hover:text-blue-400"
+                                                        >
+                                                            <div className="w-7 h-7 rounded-lg bg-blue-500/20 flex items-center justify-center"><Linkedin size={14} /></div>
+                                                            LinkedIn
+                                                        </a>
+                                                        <a 
+                                                            href={`https://www.facebook.com/sharer/sharer.php?u=https://advindiancoder.com/course/${course.id}`} 
+                                                            target="_blank" rel="noopener noreferrer"
+                                                            className="flex items-center gap-3 px-3 py-2 hover:bg-blue-600/20 rounded-xl transition-colors text-xs font-bold text-gray-300 hover:text-blue-500"
+                                                        >
+                                                            <div className="w-7 h-7 rounded-lg bg-blue-600/20 flex items-center justify-center"><Facebook size={14} /></div>
+                                                            Facebook
+                                                        </a>
+                                                        <button 
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                e.stopPropagation();
+                                                                navigator.clipboard.writeText(`https://advindiancoder.com/course/${course.id}`);
+                                                                alert('Link copied to clipboard!');
+                                                            }}
+                                                            className="flex items-center gap-3 px-3 py-2 hover:bg-pink-500/20 rounded-xl transition-colors text-xs font-bold text-gray-300 hover:text-pink-400"
+                                                        >
+                                                            <div className="w-7 h-7 rounded-lg bg-pink-500/20 flex items-center justify-center"><Instagram size={14} /></div>
+                                                            Instagram
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="mt-auto">
