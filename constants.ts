@@ -81,7 +81,7 @@ export const JAVA_PLAYLIST = [
 
 export const COURSES: Course[] = [
     {
-        id: 1,
+        id: "java-full-course-2026",
         title: "Java Full Course 2026: Zero to Hero (40 Episodes)",
         description: "Master Java from scratch with zero prior knowledge. This 40-episode series covers everything from basics to advanced OOPs, patterns, and DSA foundations with AI-driven learning approach.",
         thumbnail: `/Thumbnail/ep-01-programming-introduction-thumbnail.png`,
@@ -94,7 +94,7 @@ export const COURSES: Course[] = [
     },
     // ── Career & Roadmap Videos ──
     {
-        id: 2,
+        id: "java-developer-roadmap-2026",
         title: 'Java Developer Roadmap 2026 | Complete Step-by-Step Guide',
         description: 'A complete, structured roadmap to becoming an industry-ready Java Developer in 2026 — from basics to Spring Boot, DSA, and beyond.',
         thumbnail: `https://img.youtube.com/vi/xRF7ecu9xwY/maxresdefault.jpg`,
@@ -105,7 +105,7 @@ export const COURSES: Course[] = [
         rating: 4.8
     },
     {
-        id: 4,
+        id: "data-analyst-roadmap-2026",
         title: 'Data Analyst Roadmap 2026 | How to Become a Data Analyst',
         description: 'Complete career roadmap for aspiring Data Analysts — SQL, Python, Excel, Power BI, and real-world projects.',
         thumbnail: `https://img.youtube.com/vi/SQ5molhb4GY/maxresdefault.jpg`,
@@ -114,7 +114,7 @@ export const COURSES: Course[] = [
         youtubeLink: 'https://youtu.be/SQ5molhb4GY'
     },
     {
-        id: 5,
+        id: "engineering-reality-2026",
         title: 'Engineering is a Trap? Reality of B.Tech in 2026',
         description: 'Honest career advice on Engineering, branch selection, and how to make the most of B.Tech in the current job market.',
         thumbnail: `https://img.youtube.com/vi/NFhKdwdBvyw/maxresdefault.jpg`,
@@ -124,7 +124,7 @@ export const COURSES: Course[] = [
     },
     // ── Technical Tutorials ──
     {
-        id: 6,
+        id: "git-github-full-course-2026",
         title: 'Git & GitHub Full Course 2026 — No Command Line Needed',
         description: 'Master Git and GitHub using GitHub Desktop — version control, branching, pull requests, and collaboration. Zero terminal required!',
         thumbnail: `https://img.youtube.com/vi/jkmwed5GHho/maxresdefault.jpg`,
@@ -133,7 +133,7 @@ export const COURSES: Course[] = [
         youtubeLink: 'https://youtu.be/jkmwed5GHho'
     },
     {
-        id: 7,
+        id: "kdb-plus-q-database-tutorial",
         title: 'What Is KDB+ & Q? Ultra-Fast Database Every Java Dev Should Know',
         description: 'Deep dive into KDB+ and Q language — the ultra-fast time-series database used in high-frequency trading and financial systems.',
         thumbnail: `https://img.youtube.com/vi/n_1RfLUrjBw/maxresdefault.jpg`,
@@ -142,7 +142,7 @@ export const COURSES: Course[] = [
         youtubeLink: 'https://www.youtube.com/watch?v=n_1RfLUrjBw'
     },
     {
-        id: 8,
+        id: "leetcode-strategy-2026",
         title: "CAN'T SOLVE LEETCODE? Watch This Before Quitting!",
         description: 'Master the right strategy and mindset for solving LeetCode problems in 2026 — a must-watch for every placement aspirant.',
         thumbnail: `https://img.youtube.com/vi/GN1-CYLNcTQ/maxresdefault.jpg`,
@@ -151,7 +151,7 @@ export const COURSES: Course[] = [
         youtubeLink: 'https://www.youtube.com/watch?v=GN1-CYLNcTQ'
     },
     {
-        id: 9,
+        id: "gsoc-2026-guide",
         title: 'Get Selected in GSoC 2026 | Complete Guide for Beginners',
         description: 'A comprehensive, step-by-step guide on how to apply and get selected in Google Summer of Code 2026 as a beginner.',
         thumbnail: `https://img.youtube.com/vi/QQvae70PC_k/maxresdefault.jpg`,
@@ -161,7 +161,7 @@ export const COURSES: Course[] = [
     },
     // ── Resume & LinkedIn ──
     {
-        id: 10,
+        id: "ats-friendly-resume-guide",
         title: 'How to Create an ATS Friendly Resume | Fresher & Experienced',
         description: 'Build a resume that actually gets past ATS filters and lands you interviews at top tech companies — with live examples.',
         thumbnail: `https://img.youtube.com/vi/yIahHYjkIjs/maxresdefault.jpg`,
@@ -170,7 +170,7 @@ export const COURSES: Course[] = [
         youtubeLink: 'https://www.youtube.com/watch?v=yIahHYjkIjs'
     },
     {
-        id: 11,
+        id: "github-profile-optimization",
         title: 'No Interview? Fix Your GitHub Profile Now!',
         description: 'Learn how to optimize your GitHub profile to attract recruiters and get more interview calls — real tips that work.',
         thumbnail: `https://img.youtube.com/vi/81tyBnxODyU/maxresdefault.jpg`,
@@ -179,7 +179,7 @@ export const COURSES: Course[] = [
         youtubeLink: 'https://www.youtube.com/watch?v=81tyBnxODyU'
     },
     {
-        id: 12,
+        id: "linkedin-masterclass-2026",
         title: 'How to Create a LinkedIn Account in 2026 | Masterclass',
         description: 'Complete step-by-step LinkedIn profile setup masterclass for students and freshers to get noticed by recruiters.',
         thumbnail: `https://img.youtube.com/vi/2DwvB9gsVw0/maxresdefault.jpg`,
@@ -189,7 +189,7 @@ export const COURSES: Course[] = [
     },
     // ── Mindset & Motivation ──
     {
-        id: 13,
+        id: "youtube-study-traps",
         title: "YouTube Study Mistake: 90% Coders गलत वीडियो देख रहे हैं!",
         description: 'Are you watching the wrong YouTube videos? This video reveals the correct way to study programming and avoid the most common trap.',
         thumbnail: `https://img.youtube.com/vi/B_AJ01MTK2s/maxresdefault.jpg`,

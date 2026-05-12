@@ -20,7 +20,11 @@ const GenericCoursePage = () => {
     }, [courseId]);
 
     // Find course info from constants
-    const courseInfo = COURSES.find(c => c.youtubeLink.includes(courseId || ''));
+    const courseIdStr = courseId?.toLowerCase() || '';
+    const courseInfo = COURSES.find(c => 
+        c.id.toString().toLowerCase() === courseIdStr || 
+        c.youtubeLink.toLowerCase().includes(courseIdStr)
+    );
 
     // Mock topics if specific data isn't found
     const mockTopics = [

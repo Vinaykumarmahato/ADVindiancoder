@@ -433,7 +433,13 @@ const HomePage = () => {
 
                                             {/* Share Button Overlay */}
                                             <div className="absolute top-24 right-8 z-30 group/share">
-                                                <button className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary transition-all duration-300 shadow-lg relative z-50">
+                                                <button 
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                    }}
+                                                    className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary transition-all duration-300 shadow-lg relative z-50"
+                                                >
                                                     <Share2 className="w-4 h-4 text-white" />
                                                 </button>
                                                 
@@ -441,24 +447,27 @@ const HomePage = () => {
                                                 <div className="absolute top-10 right-0 opacity-0 invisible group-hover/share:opacity-100 group-hover/share:visible transition-all duration-300 translate-y-2 group-hover/share:translate-y-0 z-[60]">
                                                     <div className="bg-[#0f172a]/95 backdrop-blur-2xl border border-white/10 p-2 rounded-2xl flex flex-col gap-1 shadow-2xl min-w-[140px]">
                                                         <a 
-                                                            href={`https://wa.me/?text=Check out this amazing course: ${course.title} %0A https://advindiancoder.com/course/${course.id}`} 
+                                                            href={`https://wa.me/?text=${encodeURIComponent(`Check out this amazing course: ${course.title}\n\n${window.location.origin}/course/${course.id}`)}`}
                                                             target="_blank" rel="noopener noreferrer"
+                                                            onClick={(e) => e.stopPropagation()}
                                                             className="flex items-center gap-3 px-3 py-2 hover:bg-green-500/20 rounded-xl transition-colors text-xs font-bold text-gray-300 hover:text-green-400"
                                                         >
                                                             <div className="w-7 h-7 rounded-lg bg-green-500/20 flex items-center justify-center"><MessageCircle size={14} /></div>
                                                             WhatsApp
                                                         </a>
                                                         <a 
-                                                            href={`https://www.linkedin.com/sharing/share-offsite/?url=https://advindiancoder.com/course/${course.id}`} 
+                                                            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${window.location.origin}/course/${course.id}`)}`} 
                                                             target="_blank" rel="noopener noreferrer"
+                                                            onClick={(e) => e.stopPropagation()}
                                                             className="flex items-center gap-3 px-3 py-2 hover:bg-blue-500/20 rounded-xl transition-colors text-xs font-bold text-gray-300 hover:text-blue-400"
                                                         >
                                                             <div className="w-7 h-7 rounded-lg bg-blue-500/20 flex items-center justify-center"><Linkedin size={14} /></div>
                                                             LinkedIn
                                                         </a>
                                                         <a 
-                                                            href={`https://www.facebook.com/sharer/sharer.php?u=https://advindiancoder.com/course/${course.id}`} 
+                                                            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${window.location.origin}/course/${course.id}`)}`} 
                                                             target="_blank" rel="noopener noreferrer"
+                                                            onClick={(e) => e.stopPropagation()}
                                                             className="flex items-center gap-3 px-3 py-2 hover:bg-blue-600/20 rounded-xl transition-colors text-xs font-bold text-gray-300 hover:text-blue-500"
                                                         >
                                                             <div className="w-7 h-7 rounded-lg bg-blue-600/20 flex items-center justify-center"><Facebook size={14} /></div>
@@ -468,7 +477,7 @@ const HomePage = () => {
                                                             onClick={(e) => {
                                                                 e.preventDefault();
                                                                 e.stopPropagation();
-                                                                navigator.clipboard.writeText(`https://advindiancoder.com/course/${course.id}`);
+                                                                navigator.clipboard.writeText(`${window.location.origin}/course/${course.id}`);
                                                                 alert('Link copied to clipboard!');
                                                             }}
                                                             className="flex items-center gap-3 px-3 py-2 hover:bg-pink-500/20 rounded-xl transition-colors text-xs font-bold text-gray-300 hover:text-pink-400"

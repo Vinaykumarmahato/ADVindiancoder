@@ -1,6 +1,6 @@
 
 export interface Course {
-    id: number;
+    id: string | number;
     title: string;
     description: string;
     thumbnail: string;
@@ -13,7 +13,7 @@ export interface Course {
 }
 
 export interface Masterclass {
-    id: number;
+    id: string | number;
     title: string;
     description: string;
     price: number;
@@ -24,7 +24,7 @@ export interface Masterclass {
 }
 
 export interface Resource {
-    id: number;
+    id: string | number;
     title: string;
     category: string;
     subject: string;
@@ -39,7 +39,7 @@ export interface Resource {
 }
 
 export interface Testimonial {
-    id: number;
+    id: string | number;
     name: string;
     role: string;
     quote: string;
@@ -47,7 +47,7 @@ export interface Testimonial {
 }
 
 export interface Company {
-    id: number;
+    id: string | number;
     name: string;
     logo: string;
     tagline: string;
