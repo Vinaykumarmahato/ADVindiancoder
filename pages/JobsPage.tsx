@@ -1,11 +1,32 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Briefcase, MapPin, Building, Clock, ArrowUpRight, Search, Send } from 'lucide-react';
+import { Briefcase, MapPin, Building, Clock, ArrowUpRight, Search, Send, Zap, Filter, Code } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
+import PlaylistAd from '../components/PlaylistAd';
+import CompactAd from '../components/CompactAd';
 
 const WHATSAPP_JOBS = [
+    {
+        id: "unisys-internship-2026",
+        company: "Unisys",
+        role: "Intern / Student Tech",
+        location: "Bangalore",
+        batch: "Freshers / Students",
+        postedAt: "May 12, 2026",
+        skills: ["Technical Support", "Cloud", "Networking", "Python"]
+    },
+    {
+        id: "google-software-engineering-intern-masters-2026",
+        role: "Software Engineering Intern, Masters — Summer 2026",
+        company: "Google",
+        location: "Bengaluru / Hyderabad / Pune",
+        batch: "Master's Students (Summer 2026)",
+        postedAt: "May 12, 2026",
+        skills: ["Java", "C++", "Python", "Go", "DSA", "AI/ML"],
+        experience: "Freshers (Internship)"
+    },
     {
         id: "lnt-software-engineer-land-systems-2026",
         role: "Software Engineer – Land Systems",
@@ -373,6 +394,29 @@ const fadeUp = {
     show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
+const VIDEO_ADS = [
+    {
+        videoId: "n_1RfLUrjBw",
+        title: "What Is KDB+ & Q? Ultra-Fast Database Every Java Developer Should Know",
+        description: "High-performance databases are crucial for modern Java backend systems. Learn how KDB+ works in the real world."
+    },
+    {
+        videoId: "81tyBnxODyU",
+        title: "No Interview? Fix Your GitHub Profile (2026 Step-by-Step)",
+        description: "Recruiters ignore weak profiles. Follow this guide to make your GitHub stand out and get hired fast."
+    },
+    {
+        videoId: "yIahHYjkIjs",
+        title: "How to Create an ATS Friendly Resume | Get Shortlisted Instantly",
+        description: "Master the art of creating resumes that bypass ATS filters and land you more interviews in 2026."
+    },
+    {
+        videoId: "2DwvB9gsVw0",
+        title: "LinkedIn Masterclass 2026: Zero to Pro Guide (Step-by-Step)",
+        description: "Optimize your professional network. Learn LinkedIn profile secrets from creation to high-level strategy."
+    }
+];
+
 const JobsPage = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedLoc, setSelectedLoc] = useState("All");
@@ -384,12 +428,11 @@ const JobsPage = () => {
 
     const dateOptions = ["All", "Today", "Last 2 Days", "Last 4 Days", "Last 6 Days", "Last 8 Days", "Last 10 Days", "Last 12 Days"];
 
-    // Gather unique locations, experience ranges, roles, years, and skills dynamically
     const locations = ["All", "Bangalore", "Hyderabad", "Remote", "Kochi", "Bengaluru", "Pune", "Multiple", "Chennai", "Mumbai", "Noida", "Gurgaon"];
     const experiences = ["All", "Freshers", "0–2 Years", "1-3 Years", "4+ Years"];
     const roles = ["All", "Engineer", "Intern", "DevOps", "Tester", "Associate", "Scientist"];
     const years = ["All", "2024", "2025", "2026"];
-    const skills = ["All", "Java", "Python", "React", "Docker", "Kubernetes", "C++", "C#", "Testing", "Manual Testing", "Automation", "Finance", "Linux", "SaaS", "Cloud", "Data Science", "Power BI", "CI/CD", "Rust", "Distributed Systems"];
+    const skills = ["All", "Java", "Python", "React", "Docker", "Kubernetes", "C++", "C#", "Testing", "Manual Testing", "Automation", "Finance", "Linux", "SaaS", "Cloud", "Data Science", "Power BI", "CI/CD", "Rust", "Distributed Systems", "AI/ML"];
 
     const filteredJobs = WHATSAPP_JOBS.filter(job => {
         const matchesSearch = 
@@ -398,11 +441,8 @@ const JobsPage = () => {
             job.batch.toLowerCase().includes(searchTerm.toLowerCase());
 
         const matchesLoc = selectedLoc === "All" || job.location.toLowerCase().includes(selectedLoc.toLowerCase());
-        
         const matchesExp = selectedExp === "All" || job.experience.toLowerCase().includes(selectedExp.toLowerCase()) || (selectedExp === "Freshers" && job.experience.toLowerCase().includes("fresher"));
-        
         const matchesSkill = selectedSkill === "All" || job.skills.some(s => s.toLowerCase() === selectedSkill.toLowerCase());
-
         const matchesRole = selectedRole === "All" || job.role.toLowerCase().includes(selectedRole.toLowerCase());
 
         const matchesYear = selectedYear === "All" || (() => {
@@ -416,7 +456,7 @@ const JobsPage = () => {
             if (job.postedAt === "Recently Active") return true;
             try {
                 const jobDate = new Date(job.postedAt);
-                const today = new Date();
+                const today = new Date("May 12, 2026");
                 today.setHours(0, 0, 0, 0);
                 jobDate.setHours(0, 0, 0, 0);
                 
@@ -468,7 +508,6 @@ const JobsPage = () => {
                     </motion.a>
                 </div>
 
-                {/* Search Bar */}
                 <div className="mb-6 max-w-2xl mx-auto relative group">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <Search className="h-5 w-5 text-gray-400 group-focus-within:text-primary transition-colors" />
@@ -482,23 +521,23 @@ const JobsPage = () => {
                     />
                 </div>
 
-                {/* Filters Row */}
                 <div className="max-w-6xl mx-auto mb-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    {/* Location Filter */}
                     <div className="flex flex-col gap-1.5 col-span-2 md:col-span-1">
                         <label className="text-xs text-gray-400 font-mono">Location</label>
-                        <select 
-                            value={selectedLoc}
-                            onChange={(e) => setSelectedLoc(e.target.value)}
-                            className="w-full bg-black/40 text-white border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm font-medium"
-                        >
-                            {locations.map((loc, index) => (
-                                <option key={index} value={loc} className="bg-slate-900 text-white">{loc}</option>
-                            ))}
-                        </select>
+                        <div className="relative">
+                            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                            <select 
+                                value={selectedLoc}
+                                onChange={(e) => setSelectedLoc(e.target.value)}
+                                className="w-full bg-black/40 text-white border border-white/10 rounded-xl pl-9 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm font-medium appearance-none cursor-pointer"
+                            >
+                                {locations.map((loc, index) => (
+                                    <option key={index} value={loc} className="bg-slate-900 text-white">{loc}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
 
-                    {/* Role Filter */}
                     <div className="flex flex-col gap-1.5">
                         <label className="text-xs text-gray-400 font-mono">Role</label>
                         <select 
@@ -512,21 +551,22 @@ const JobsPage = () => {
                         </select>
                     </div>
 
-                    {/* Skills Filter */}
                     <div className="flex flex-col gap-1.5">
                         <label className="text-xs text-gray-400 font-mono">Skills</label>
-                        <select 
-                            value={selectedSkill}
-                            onChange={(e) => setSelectedSkill(e.target.value)}
-                            className="w-full bg-black/40 text-white border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm font-medium"
-                        >
-                            {skills.map((skill, index) => (
-                                <option key={index} value={skill} className="bg-slate-900 text-white">{skill}</option>
-                            ))}
-                        </select>
+                        <div className="relative">
+                            <Code className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                            <select 
+                                value={selectedSkill}
+                                onChange={(e) => setSelectedSkill(e.target.value)}
+                                className="w-full bg-black/40 text-white border border-white/10 rounded-xl pl-9 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm font-medium appearance-none cursor-pointer"
+                            >
+                                {skills.map((skill, index) => (
+                                    <option key={index} value={skill} className="bg-slate-900 text-white">{skill}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
 
-                    {/* Experience Filter */}
                     <div className="flex flex-col gap-1.5">
                         <label className="text-xs text-gray-400 font-mono">Experience</label>
                         <select 
@@ -540,7 +580,6 @@ const JobsPage = () => {
                         </select>
                     </div>
 
-                    {/* Batch Year Filter */}
                     <div className="flex flex-col gap-1.5">
                         <label className="text-xs text-gray-400 font-mono">Grad Year</label>
                         <select 
@@ -554,7 +593,6 @@ const JobsPage = () => {
                         </select>
                     </div>
 
-                    {/* Date Posted Filter */}
                     <div className="flex flex-col gap-1.5">
                         <label className="text-xs text-gray-400 font-mono">Date Posted</label>
                         <select 
@@ -569,71 +607,86 @@ const JobsPage = () => {
                     </div>
                 </div>
 
-                {/* Job Listings Grid */}
                 <div className="grid gap-6">
                     {filteredJobs.length > 0 ? (
-                        filteredJobs.map((job, i) => (
-                            <motion.div
-                                key={job.id}
-                                variants={fadeUp}
-                                initial="hidden"
-                                animate="show"
-                                transition={{ delay: i * 0.1 }}
-                                className="group bg-gradient-to-r from-[#0d1527] to-[#070b14] border border-white/5 hover:border-primary/40 rounded-3xl p-6 md:p-8 transition-all duration-300 shadow-2xl hover:shadow-[0_0_30px_rgba(0,120,255,0.2)] flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden"
-                            >
-                                {/* Futuristic Top Border Glow */}
-                                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                
-                                <div className="flex flex-col sm:flex-row items-start gap-5 flex-1 w-full">
-                                    {/* Premium Logo Icon */}
-                                    <div className="shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-primary/20 border border-primary/30 flex items-center justify-center text-primary shadow-[0_0_20px_rgba(0,120,255,0.15)] group-hover:scale-110 transition-transform duration-300">
-                                        <Briefcase className="w-5 h-5 text-primary" />
-                                    </div>
+                        filteredJobs.map((job, i) => {
+                            const adIndex = Math.floor(i / 2) % VIDEO_ADS.length;
+                            const showCompactAd = (i + 1) % 2 === 0 && (i + 1) % 4 !== 0;
+                            const showPlaylistAd = (i + 1) % 4 === 0;
 
-                                    <div className="flex-1 w-full">
-                                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                                            <h3 className="text-xl md:text-2xl font-extrabold text-white group-hover:text-primary transition-colors duration-300">
-                                                {job.role}
-                                            </h3>
-                                            <span className="w-fit px-3 py-1 bg-green-500/10 text-green-400 text-xs font-mono font-semibold rounded-full border border-green-500/20 whitespace-nowrap shadow-[0_0_10px_rgba(34,197,94,0.1)]">
-                                                {job.postedAt}
-                                            </span>
+                            return (
+                                <React.Fragment key={job.id}>
+                                    <motion.div
+                                        variants={fadeUp}
+                                        initial="hidden"
+                                        whileInView="show"
+                                        viewport={{ once: true }}
+                                        transition={{ delay: (i % 4) * 0.1 }}
+                                        className="group bg-gradient-to-r from-[#0d1527] to-[#070b14] border border-white/5 hover:border-primary/40 rounded-3xl p-6 md:p-8 transition-all duration-300 shadow-2xl hover:shadow-[0_0_30px_rgba(0,120,255,0.2)] flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden"
+                                    >
+                                        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                        
+                                        <div className="flex flex-col sm:flex-row items-start gap-5 flex-1 w-full">
+                                            <div className="shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-primary/20 border border-primary/30 flex items-center justify-center text-primary shadow-[0_0_20px_rgba(0,120,255,0.15)] group-hover:scale-110 transition-transform duration-300">
+                                                <Briefcase className="w-5 h-5 text-primary" />
+                                            </div>
+
+                                            <div className="flex-1 w-full">
+                                                <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                                                    <h3 className="text-xl md:text-2xl font-extrabold text-white group-hover:text-primary transition-colors duration-300">
+                                                        {job.role}
+                                                    </h3>
+                                                    <span className="w-fit px-3 py-1 bg-green-500/10 text-green-400 text-xs font-mono font-semibold rounded-full border border-green-500/20 whitespace-nowrap shadow-[0_0_10px_rgba(34,197,94,0.1)]">
+                                                        {job.postedAt}
+                                                    </span>
+                                                </div>
+
+                                                <div className="flex flex-col gap-y-3 text-sm text-gray-400 font-medium mb-4">
+                                                    <div className="flex items-start gap-2">
+                                                        <Building className="w-4 h-4 text-primary/70 mt-0.5 shrink-0" /> 
+                                                        <span className="text-gray-300">{job.company}</span>
+                                                    </div>
+                                                    <div className="flex items-start gap-2">
+                                                        <MapPin className="w-4 h-4 text-primary/70 mt-0.5 shrink-0" /> 
+                                                        <span className="text-gray-300">{job.location}</span>
+                                                    </div>
+                                                    <div className="flex items-start gap-2">
+                                                        <Clock className="w-4 h-4 text-primary/70 mt-0.5 shrink-0" /> 
+                                                        <span className="text-gray-300">{job.batch}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex flex-wrap gap-2 mt-4">
+                                                    {job.skills && job.skills.map((skill, index) => (
+                                                        <span key={index} className="px-2.5 py-1 bg-white/5 border border-white/10 hover:border-primary/30 rounded-lg text-xs text-gray-300 font-mono transition-colors">
+                                                            {skill}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div className="flex flex-col gap-y-3 text-sm text-gray-400 font-medium mb-4">
-                                            <div className="flex items-start gap-2">
-                                                <Building className="w-4 h-4 text-primary/70 mt-0.5 shrink-0" /> 
-                                                <span className="text-gray-300">{job.company}</span>
-                                            </div>
-                                            <div className="flex items-start gap-2">
-                                                <MapPin className="w-4 h-4 text-primary/70 mt-0.5 shrink-0" /> 
-                                                <span className="text-gray-300">{job.location}</span>
-                                            </div>
-                                            <div className="flex items-start gap-2">
-                                                <Clock className="w-4 h-4 text-primary/70 mt-0.5 shrink-0" /> 
-                                                <span className="text-gray-300">{job.batch}</span>
-                                            </div>
-                                        </div>
+                                        <Link
+                                            to={`/jobs/${job.id}`}
+                                            className="w-full md:w-auto shrink-0 inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-700 text-white font-extrabold rounded-2xl shadow-[0_4px_20px_rgba(0,120,255,0.3)] hover:shadow-[0_4px_30px_rgba(0,120,255,0.5)] active:scale-95 transition-all duration-300 whitespace-nowrap group-hover:-translate-y-1"
+                                        >
+                                            View Details <ArrowUpRight className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                        </Link>
+                                    </motion.div>
+                                    
+                                    {showCompactAd && (
+                                        <CompactAd 
+                                            videoId={VIDEO_ADS[adIndex].videoId}
+                                            title={VIDEO_ADS[adIndex].title}
+                                            description={VIDEO_ADS[adIndex].description}
+                                            className="my-4" 
+                                        />
+                                    )}
 
-                                        {/* Skills Badges */}
-                                        <div className="flex flex-wrap gap-2 mt-4">
-                                            {job.skills && job.skills.map((skill, index) => (
-                                                <span key={index} className="px-2.5 py-1 bg-white/5 border border-white/10 hover:border-primary/30 rounded-lg text-xs text-gray-300 font-mono transition-colors">
-                                                    {skill}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <Link
-                                    to={`/jobs/${job.id}`}
-                                    className="w-full md:w-auto shrink-0 inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-700 text-white font-extrabold rounded-2xl shadow-[0_4px_20px_rgba(0,120,255,0.3)] hover:shadow-[0_4px_30px_rgba(0,120,255,0.5)] active:scale-95 transition-all duration-300 whitespace-nowrap group-hover:-translate-y-1"
-                                >
-                                    View Details <ArrowUpRight className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                </Link>
-                            </motion.div>
-                        ))
+                                    {showPlaylistAd && <PlaylistAd className="my-8" />}
+                                </React.Fragment>
+                            );
+                        })
                     ) : (
                         <div className="text-center py-20 bg-white/5 rounded-2xl border border-white/10 border-dashed">
                             <Briefcase className="w-12 h-12 text-gray-500 mx-auto mb-4 opacity-50" />

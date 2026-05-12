@@ -4,9 +4,114 @@ import { Briefcase, MapPin, Clock, DollarSign, Send, ArrowLeft, Building2, Check
 import PageWrapper from '../components/PageWrapper';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../components/SEO';
+import PlaylistAd from '../components/PlaylistAd';
 
 // Expanded Mock job database
 const jobListings = [
+    {
+        id: 'unisys-internship-2026',
+        title: 'Intern / Student Tech',
+        company: 'Unisys',
+        location: 'Bangalore, Karnataka, India',
+        type: 'Internship',
+        salary: 'Best in Industry',
+        experience: 'Less than 1 Year / Freshers',
+        postedDate: 'May 12, 2026',
+        aboutCompany: 'Unisys is a leading global technology solutions company specializing in Cloud Computing, Cybersecurity, Digital Workplace Solutions, Enterprise Computing, Networking & Infrastructure, and IT Consulting Services. The company works with top enterprises and government organizations worldwide to deliver innovative digital solutions.',
+        description: 'Unisys Internship 2026 is a great opportunity for freshers and students who want to start their career in the IT industry. Selected candidates will work with experienced professionals and gain practical exposure in technical support, software development, data analysis, networking, cloud technologies, and infrastructure management.',
+        responsibilities: [
+            'Troubleshoot hardware & software issues and resolve network connectivity problems',
+            'Assist in system setup, device management, and support users with technical queries',
+            'Write basic scripts and code, and assist in testing and debugging',
+            'Learn version control systems and participate in development activities',
+            'Collect and organize data, create reports, and dashboards using Excel & PowerPoint',
+            'Assist in network configuration and monitor system performance',
+            'Automate routine technical tasks and assist in CI/CD operations',
+            'Support cloud infrastructure management and learn deployment processes'
+        ],
+        skills: [
+            'Technical Support', 'Software Development', 'Data Analysis', 'Networking', 'Cloud Technologies', 'DevSecOps', 'Infrastructure Management', 'Python', 'Excel'
+        ],
+        eligibility: [
+            'Currently pursuing technical/vocational education or high school diploma/GED',
+            'Students and Freshers (Batch 2024, 2025, 2026) are eligible',
+            'Strong willingness to learn and basic computer knowledge',
+            'Basic coding/scripting knowledge is a plus',
+            'Good communication skills and teamwork ability'
+        ],
+        benefits: [
+            'Work with experienced IT professionals and world-class mentors',
+            'Gain real-world industry exposure and professional corporate culture',
+            'Learn modern technologies & workflows (Cloud, DevSecOps, AI)',
+            'Improve technical and communication skills',
+            'Build a strong career foundation at a global technology leader'
+        ],
+        applicationProcess: [
+            'Step 1: Application via official Unisys Careers Portal (Workday)',
+            'Step 2: Technical Screening and Resume Shortlisting',
+            'Step 3: Technical Interview and Problem Solving Round',
+            'Step 4: HR Discussion and Final Selection'
+        ],
+        faqs: [
+            { q: 'Is this internship remote or onsite?', a: 'This is a full-time onsite internship based in Bangalore.' },
+            { q: 'What batches can apply?', a: 'Freshers and students from recent batches (2024, 2025, 2026) are encouraged to apply.' },
+            { q: 'What is the duration?', a: 'The duration will be communicated during the interview process.' }
+        ],
+        applyLink: 'https://unisys.wd5.myworkdayjobs.com/External/job/Bangalore-KA-India/Student-technical_REQ572963'
+    },
+    {
+        id: 'google-software-engineering-intern-masters-2026',
+        title: 'Software Engineering Intern, Masters — Summer 2026',
+        company: 'Google',
+        location: 'Bengaluru / Hyderabad / Pune',
+        type: 'Internship / Apprenticeship',
+        salary: 'Paid Summer Internship',
+        experience: 'Master’s Students (Summer 2026)',
+        postedDate: 'May 12, 2026',
+        aboutCompany: 'Google’s mission is to organize the world’s information and make it universally accessible and useful. As a Software Engineering Intern at Google, you will work on technologies that impact billions of users globally. Google’s engineering teams work across areas such as AI, Machine Learning, Distributed Systems, Cloud Computing, and advanced software solutions.',
+        description: 'Join one of the world’s leading technology companies as a Software Engineering Intern and work on technologies that impact billions of users globally. This internship is designed for Master’s students passionate about solving large-scale engineering challenges, building intelligent systems, and developing next-generation software solutions.',
+        responsibilities: [
+            'Develop scalable software solutions for Google products',
+            'Build and maintain large-scale systems infrastructure',
+            'Work on AI-powered applications and engineering systems',
+            'Collaborate with cross-functional engineering teams',
+            'Analyze technical challenges and deliver effective solutions',
+            'Apply computer science fundamentals to real-world problems',
+            'Contribute to innovation, productivity, and engineering excellence',
+            'Support the continuous evolution of Google’s technical ecosystem'
+        ],
+        skills: [
+            'Java', 'C++', 'Python', 'JavaScript', 'Go', 'Distributed Systems', 'Data Structures', 'Algorithms', 'AI/ML'
+        ],
+        eligibility: [
+            'Currently pursuing a Master’s degree in CS, Software Engineering, AI, IT, or related fields',
+            'Strong understanding of at least one programming language (Java, C/C++, Python, JS, Go)',
+            'Experience with Data Structures & Algorithms and Software Design Principles',
+            'Knowledge of Distributed Systems, Concurrency, and Multi-threading',
+            'English proficiency for effective collaboration across international teams',
+            'Willingness to relocate to Bengaluru, Hyderabad, or Pune for the internship'
+        ],
+        benefits: [
+            'Paid 12+ week internship (Timeline: May – August 2026)',
+            'Work on impactful real-world engineering projects used by billions',
+            'Mentorship from industry experts and world-class engineers',
+            'Executive speaker sessions and networking opportunities',
+            'Exposure to AI-driven technologies and scalable infrastructure',
+            'Inclusive and innovation-focused work environment'
+        ],
+        applicationProcess: [
+            'Step 1: Online Application via Google Careers Portal',
+            'Step 2: Technical Screening & Assessments (Coding challenges)',
+            'Step 3: Technical Interviews (DSA, System Design, Problem Solving)',
+            'Step 4: Team Matching and Offer Rollout'
+        ],
+        faqs: [
+            { q: 'What is the duration of this internship?', a: 'The internship lasts for 12+ weeks, typically from May to August 2026.' },
+            { q: 'Which locations can I apply for?', a: 'Applicants can indicate their preferred work location from Bengaluru, Hyderabad, and Pune during the application process.' },
+            { q: 'Is this a paid internship?', a: 'Yes, this is a paid summer internship at Google.' }
+        ],
+        applyLink: 'https://www.google.com/about/careers/applications/jobs/results/84757208843068102-software-engineering-intern'
+    },
     {
         id: 'lnt-software-engineer-land-systems-2026',
         title: 'Software Engineer – Land Systems',
@@ -1801,36 +1906,36 @@ const JobDetailsPage = () => {
                                     </span>
                                     <span className="text-gray-400 text-sm flex items-center"><Clock className="w-4 h-4 mr-1" /> {job.postedDate}</span>
                                 </div>
-                                <h1 className="text-4xl md:text-5xl font-black mb-6 leading-tight">{job.title}</h1>
+                                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight">{job.title}</h1>
                                 
                                 {/* Quick Overview Badges */}
-                                <div className="flex flex-wrap gap-4 text-sm font-medium">
-                                    <div className="flex items-center bg-black/40 border border-white/10 px-4 py-2 rounded-xl">
-                                        <Building2 className="w-5 h-5 mr-3 text-blue-400" />
-                                        <div>
-                                            <p className="text-xs text-gray-400 uppercase tracking-wider">Company</p>
-                                            <p className="text-white">{job.company}</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium">
+                                    <div className="flex items-center bg-black/40 border border-white/10 px-4 py-3 rounded-xl">
+                                        <Building2 className="w-5 h-5 mr-3 text-blue-400 shrink-0" />
+                                        <div className="min-w-0">
+                                            <p className="text-[10px] text-gray-400 uppercase tracking-wider">Company</p>
+                                            <p className="text-white truncate">{job.company}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center bg-black/40 border border-white/10 px-4 py-2 rounded-xl">
-                                        <MapPin className="w-5 h-5 mr-3 text-red-400" />
-                                        <div>
-                                            <p className="text-xs text-gray-400 uppercase tracking-wider">Location</p>
-                                            <p className="text-white">{job.location}</p>
+                                    <div className="flex items-center bg-black/40 border border-white/10 px-4 py-3 rounded-xl">
+                                        <MapPin className="w-5 h-5 mr-3 text-red-400 shrink-0" />
+                                        <div className="min-w-0">
+                                            <p className="text-[10px] text-gray-400 uppercase tracking-wider">Location</p>
+                                            <p className="text-white truncate">{job.location}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center bg-black/40 border border-white/10 px-4 py-2 rounded-xl">
-                                        <Briefcase className="w-5 h-5 mr-3 text-green-400" />
-                                        <div>
-                                            <p className="text-xs text-gray-400 uppercase tracking-wider">Experience</p>
-                                            <p className="text-white">{job.experience}</p>
+                                    <div className="flex items-center bg-black/40 border border-white/10 px-4 py-3 rounded-xl">
+                                        <Briefcase className="w-5 h-5 mr-3 text-green-400 shrink-0" />
+                                        <div className="min-w-0">
+                                            <p className="text-[10px] text-gray-400 uppercase tracking-wider">Experience</p>
+                                            <p className="text-white truncate">{job.experience}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center bg-black/40 border border-white/10 px-4 py-2 rounded-xl">
-                                        <DollarSign className="w-5 h-5 mr-3 text-yellow-400" />
-                                        <div>
-                                            <p className="text-xs text-gray-400 uppercase tracking-wider">Salary</p>
-                                            <p className="text-white">{job.salary}</p>
+                                    <div className="flex items-center bg-black/40 border border-white/10 px-4 py-3 rounded-xl">
+                                        <DollarSign className="w-5 h-5 mr-3 text-yellow-400 shrink-0" />
+                                        <div className="min-w-0">
+                                            <p className="text-[10px] text-gray-400 uppercase tracking-wider">Salary</p>
+                                            <p className="text-white truncate">{job.salary}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1956,6 +2061,8 @@ const JobDetailsPage = () => {
                                 </div>
                             </div>
 
+                            <PlaylistAd variant="compact" />
+
                             <div className="bg-white/5 border border-white/10 rounded-[2rem] p-8 shadow-xl backdrop-blur-sm">
                                 <h3 className="text-xl font-bold mb-6 flex items-center"><Gift className="w-5 h-5 mr-3 text-yellow-400" /> Salary & Benefits</h3>
                                 <ul className="space-y-4">
@@ -1968,17 +2075,59 @@ const JobDetailsPage = () => {
                                 </ul>
                             </div>
 
-                            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-8 shadow-xl backdrop-blur-sm">
-                                <h3 className="text-xl font-bold mb-6 flex items-center"><Briefcase className="w-5 h-5 mr-3 text-blue-400" /> Application Process</h3>
-                                <div className="space-y-6 relative before:absolute before:inset-0 before:ml-[11px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
+                            <div className="bg-white/5 border border-white/10 rounded-[2.5rem] p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden group/process">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[50px] rounded-full -z-10 group-hover/process:bg-primary/20 transition-colors"></div>
+                                <h3 className="text-2xl font-black mb-8 flex items-center tracking-tight">
+                                    <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center mr-4 border border-primary/30 shadow-[0_0_15px_rgba(0,120,255,0.2)]">
+                                        <Briefcase className="w-5 h-5 text-primary" />
+                                    </div>
+                                    Application Process
+                                </h3>
+                                
+                                <div className="relative space-y-8">
+                                    {/* Vertical Line Gradient */}
+                                    <div className="absolute left-[19px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary via-blue-500/50 to-transparent"></div>
+                                    
                                     {job.applicationProcess.map((step, idx) => (
-                                        <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                                            <div className="flex items-center justify-center w-6 h-6 rounded-full border-4 border-[#050914] bg-primary text-slate-500 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_10px_#0078FF] z-10"></div>
-                                            <div className="w-[calc(100%-2.5rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-white/10 bg-black/40 text-sm text-gray-300">
-                                                {step}
+                                        <motion.div 
+                                            key={idx}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: idx * 0.1 }}
+                                            className="relative flex items-start gap-6 group/item"
+                                        >
+                                            {/* Step Indicator */}
+                                            <div className="relative z-10 shrink-0">
+                                                <div className="w-10 h-10 rounded-full bg-[#050914] border-2 border-primary flex items-center justify-center text-primary font-black text-sm shadow-[0_0_15px_rgba(0,120,255,0.3)] group-hover/item:scale-110 group-hover/item:shadow-[0_0_25px_rgba(0,120,255,0.5)] transition-all duration-300">
+                                                    {idx + 1}
+                                                </div>
+                                                {/* Pulsing Outer Ring for the current/first step */}
+                                                {idx === 0 && (
+                                                    <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping -z-10"></div>
+                                                )}
                                             </div>
-                                        </div>
+
+                                            {/* Step Content Card */}
+                                            <div className="flex-1 pt-0.5">
+                                                <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/5 group-hover/item:bg-white/[0.07] group-hover/item:border-primary/30 transition-all duration-300 shadow-lg backdrop-blur-sm">
+                                                    <div className="flex flex-col gap-1">
+                                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/70 mb-1">Step 0{idx + 1}</span>
+                                                        <p className="text-gray-200 font-medium leading-relaxed group-hover/item:text-white transition-colors">
+                                                            {step}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </motion.div>
                                     ))}
+                                </div>
+
+                                {/* Bottom Glow */}
+                                <div className="mt-8 flex justify-center">
+                                    <div className="px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] font-black tracking-widest uppercase animate-pulse">
+                                        Hiring in Progress
+                                    </div>
                                 </div>
                             </div>
                         </div>
