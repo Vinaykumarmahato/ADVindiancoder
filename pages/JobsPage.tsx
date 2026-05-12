@@ -441,7 +441,7 @@ const JobsPage = () => {
             job.batch.toLowerCase().includes(searchTerm.toLowerCase());
 
         const matchesLoc = selectedLoc === "All" || job.location.toLowerCase().includes(selectedLoc.toLowerCase());
-        const matchesExp = selectedExp === "All" || job.experience.toLowerCase().includes(selectedExp.toLowerCase()) || (selectedExp === "Freshers" && job.experience.toLowerCase().includes("fresher"));
+        const matchesExp = selectedExp === "All" || (job.experience || "").toLowerCase().includes(selectedExp.toLowerCase()) || (selectedExp === "Freshers" && (job.experience || "").toLowerCase().includes("fresher"));
         const matchesSkill = selectedSkill === "All" || job.skills.some(s => s.toLowerCase() === selectedSkill.toLowerCase());
         const matchesRole = selectedRole === "All" || job.role.toLowerCase().includes(selectedRole.toLowerCase());
 
