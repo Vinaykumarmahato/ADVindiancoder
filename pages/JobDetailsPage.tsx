@@ -9,6 +9,58 @@ import PlaylistAd from '../components/PlaylistAd';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'hitachi-java-developer-2026',
+        title: 'Java Developer',
+        company: 'Hitachi Digital Services',
+        location: 'Bengaluru, Karnataka, India',
+        type: 'Full-Time (Hybrid)',
+        salary: 'Competitive',
+        experience: 'Experienced Professionals',
+        postedDate: 'May 12, 2026',
+        aboutCompany: 'Hitachi Digital Services is a global digital transformation and technology solutions company focused on innovation, cloud computing, engineering excellence, and data-driven solutions. The company works across multiple industries to build impactful technologies that improve businesses and society.',
+        description: 'Hitachi Digital Services is looking for skilled Java Developers to design, develop, and maintain scalable enterprise applications. Selected candidates will work on modern Java technologies, cloud-based systems, REST APIs, and enterprise-grade software solutions while collaborating with cross-functional engineering teams.',
+        responsibilities: [
+            'Design and develop Java-based applications with scalable and high-performance solutions',
+            'Develop services, RESTful APIs, and enterprise software components',
+            'Write clean, maintainable, and optimized code following industry standards',
+            'Participate in code reviews and support Agile/Scrum development processes',
+            'Troubleshoot technical issues and resolve bugs/performance bottlenecks',
+            'Work with cross-functional teams to implement technical solutions effectively',
+            'Prepare technical documentation, API specifications, and design notes',
+            'Deploy enterprise applications efficiently and maintain software quality'
+        ],
+        skills: [
+            'Java SE/EE', 'Spring Boot', 'Spring MVC', 'Spring Security', 'Microservices', 'RESTful APIs', 'Oracle', 'MySQL', 'PostgreSQL', 'Git', 'Agile'
+        ],
+        eligibility: [
+            'Bachelor’s Degree in Computer Science, Engineering, or related technical fields',
+            'Strong understanding of Java and Object-Oriented Programming (OOP)',
+            'Knowledge of Design Patterns and Microservices Architecture',
+            'Experience with Spring Framework and Database systems (Oracle/MySQL)',
+            'Excellent problem-solving and communication skills'
+        ],
+        benefits: [
+            'Work on cutting-edge enterprise technologies and global-scale projects',
+            'Opportunity to collaborate with global engineering teams',
+            'Exposure to cloud & data engineering and digital transformation projects',
+            'Flexible hybrid work environment and inclusive workplace culture',
+            'Competitive employee benefits and wellbeing support',
+            'Clear career growth and professional learning opportunities'
+        ],
+        applicationProcess: [
+            'Step 1: Online Application via official Hitachi Careers Portal (Workday)',
+            'Step 2: Technical Assessment and Coding Challenge',
+            'Step 3: Technical Interview (Core Java, Spring, Microservices, System Design)',
+            'Step 4: Management/HR Interview and Final Offer Rollout'
+        ],
+        faqs: [
+            { q: 'What is the job ID for this role?', a: 'The job ID is R0126543.' },
+            { q: 'Is this a remote or hybrid role?', a: 'This is a hybrid role based in Bengaluru, Karnataka.' },
+            { q: 'Which technologies are primarily used?', a: 'Java, Spring Boot, Microservices, and Cloud-based infrastructure.' }
+        ],
+        applyLink: 'https://hitachi.wd1.myworkdayjobs.com/hitachi/job/Bengaluru-Karnataka-India/Java-65727_R0126543'
+    },
+    {
         id: 'unisys-internship-2026',
         title: 'Intern / Student Tech',
         company: 'Unisys',

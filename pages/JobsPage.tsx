@@ -9,6 +9,15 @@ import CompactAd from '../components/CompactAd';
 
 const WHATSAPP_JOBS = [
     {
+        id: "hitachi-java-developer-2026",
+        company: "Hitachi Digital Services",
+        role: "Java Developer",
+        location: "Bengaluru",
+        batch: "Experienced Professionals",
+        postedAt: "May 12, 2026",
+        skills: ["Java", "Spring Boot", "Microservices", "REST APIs"]
+    },
+    {
         id: "unisys-internship-2026",
         company: "Unisys",
         role: "Intern / Student Tech",
