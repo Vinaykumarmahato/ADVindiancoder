@@ -9,6 +9,15 @@ import CompactAd from '../components/CompactAd';
 
 const WHATSAPP_JOBS = [
     {
+        id: "google-silicon-engineer-university-graduate-2026",
+        company: "Google",
+        role: "Silicon Engineer, University Graduate 2026",
+        location: "Bangalore / Hyderabad / Pune",
+        batch: "University Graduate 2026",
+        postedAt: "May 12, 2026",
+        skills: ["Silicon Engineering", "Hardware", "Automation", "AI/ML"]
+    },
+    {
         id: "hitachi-java-developer-2026",
         company: "Hitachi Digital Services",
         role: "Java Developer",

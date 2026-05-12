@@ -9,6 +9,59 @@ import PlaylistAd from '../components/PlaylistAd';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'google-silicon-engineer-university-graduate-2026',
+        title: 'Silicon Engineer, University Graduate 2026',
+        company: 'Google',
+        location: 'Bangalore / Hyderabad / Pune, India',
+        type: 'Full-Time',
+        salary: 'Best in Industry',
+        experience: 'University Graduate / Freshers',
+        postedDate: 'May 12, 2026',
+        aboutCompany: 'Google is one of the world’s leading technology companies, known for innovation in Artificial Intelligence (AI), Cloud Computing, Search Technologies, Advertising Platforms, Software Engineering, and Data & Analytics. Founded by Larry Page and Sergey Brin, Google continues to build products and technologies used by billions of people worldwide.',
+        description: 'Google is hiring graduates and freshers for the role of Silicon Engineer. Selected candidates will work on advanced engineering systems, AI-powered products, cloud technologies, troubleshooting, analytics, and automation solutions. This role provides an opportunity to collaborate with global engineering teams and contribute to products used at massive scale.',
+        responsibilities: [
+            'Support Google’s AI-powered products and advanced engineering systems',
+            'Troubleshoot technical issues, analyze root causes, and provide diagnostics',
+            'Develop automation tools and scripts to improve operational workflows',
+            'Enhance system reliability, performance, and operational efficiency',
+            'Analyze technical and business data to create dashboards and reports',
+            'Work with Product, Engineering, and Sales teams to improve customer experience',
+            'Explain complex technical concepts clearly to non-technical users and partners',
+            'Participate in development activities and collaborate with global teams'
+        ],
+        skills: [
+            'Silicon Engineering', 'SQL & Data Analysis', 'Automation & Scripting', 'Cloud Technologies', 'Troubleshooting', 'Web Technologies', 'AI/ML'
+        ],
+        eligibility: [
+            'Bachelor’s or Master’s Degree in Computer Science, Engineering, or related technical domains',
+            'University Graduate (Batch 2026) or Freshers with relevant technical knowledge',
+            'Basic understanding of Cloud Technologies and Analytics',
+            'Strong problem-solving ability and team collaboration mindset',
+            'Good communication skills and willingness to learn cutting-edge tech'
+        ],
+        benefits: [
+            'Work with cutting-edge technologies and AI-driven systems at global scale',
+            'Competitive salary packages and comprehensive benefits at a world-class leader',
+            'Inclusive and flexible work culture with a focus on career growth',
+            'Collaborate with world-class engineers and visionary leaders',
+            'Opportunity to build products used by billions of people worldwide',
+            'Professional mentorship and continuous learning opportunities'
+        ],
+        applicationProcess: [
+            'Step 1: Application via Google Careers Portal with updated resume',
+            'Step 2: Technical Screening and Initial Skills Assessment',
+            'Step 3: Multi-round Technical Interviews (Coding, Architecture, Diagnostics)',
+            'Step 4: Googliness and Leadership Interview Round',
+            'Step 5: Final Selection and Offer Negotiation'
+        ],
+        faqs: [
+            { q: 'Which batches can apply?', a: 'Primarily University Graduates of 2026 and recent freshers.' },
+            { q: 'Where are the job locations?', a: 'Bangalore, Hyderabad, and Pune.' },
+            { q: 'Is there a specific last date?', a: 'There is no fixed date, but it is recommended to apply as early as possible.' }
+        ],
+        applyLink: 'https://www.google.com/about/careers/applications/jobs/results/131079854375215814-silicon-engineer-university-graduate-2026'
+    },
+    {
         id: 'hitachi-java-developer-2026',
         title: 'Java Developer',
         company: 'Hitachi Digital Services',
