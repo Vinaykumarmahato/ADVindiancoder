@@ -122,6 +122,15 @@ export const COURSES: Course[] = [
         category: 'Career',
         youtubeLink: 'https://youtu.be/NFhKdwdBvyw'
     },
+    {
+        id: "only-1-percent-developers-survive",
+        title: 'Only 1% Developers Will Survive — Are You One of Them?',
+        description: 'The harsh reality of AI and software development in 2026. Find out if you have what it takes to survive and thrive in the changing tech landscape.',
+        thumbnail: `https://img.youtube.com/vi/8ch7uaBHaBc/maxresdefault.jpg`,
+        tags: ['Career', 'AI', 'Developer'],
+        category: 'Career',
+        youtubeLink: 'https://youtu.be/8ch7uaBHaBc'
+    },
     // ── Technical Tutorials ──
     {
         id: "git-github-full-course-2026",
