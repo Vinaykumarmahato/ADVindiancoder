@@ -9,6 +9,111 @@ import PlaylistAd from '../components/PlaylistAd';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'honeywell-se-csharp-2026',
+        title: 'Software Engineer I',
+        company: 'Honeywell',
+        location: 'Bengaluru, Karnataka',
+        type: 'Full-Time',
+        salary: '₹7 – ₹9 LPA',
+        experience: 'Freshers / 0–2 Years',
+        postedDate: 'May 14, 2026',
+        aboutCompany: 'Honeywell is a globally recognized Fortune 100 technology company known for innovation in Aerospace, Industrial Automation, Safety Solutions, Building Technologies, Cloud Platforms, Artificial Intelligence, and Engineering Systems. Honeywell has major development centers across India including Bengaluru, Hyderabad, Pune, Gurgaon, and Madurai.',
+        description: 'Honeywell has officially started hiring freshers for the role of Software Engineer I through its latest Off Campus Drive 2026. This is a perfect opportunity for B.E / B.Tech and MCA freshers to build careers in Cloud Computing, Web Development, REST APIs, Enterprise Software, and Backend Engineering.',
+        responsibilities: [
+            'Develop scalable applications using C# & .NET and build REST APIs using ASP.NET Core',
+            'Write SQL Queries, Stored Procedures, and optimize database performance (SQL Server & Azure SQL)',
+            'Deploy applications on Azure & AWS and work with CI/CD pipelines',
+            'Participate in sprint planning, stand-up meetings, and collaborate with developers & testers',
+            'Fix application bugs, improve performance & reliability, and implement monitoring solutions',
+            'Connect frontend with backend APIs and support frontend integration',
+            'Maintain API documentation and create deployment notes'
+        ],
+        skills: [
+            'C#', '.NET Framework', 'ASP.NET Core', 'REST APIs', 'SQL Server', 'Azure', 'AWS', 'Unit Testing'
+        ],
+        eligibility: [
+            'B.E / B.Tech / MCA graduates in Computer Science, IT, Electronics, Software Engineering',
+            'Eligible Batches: 2024, 2025, and 2026',
+            'Freshers and candidates with up to 2 years of experience can apply',
+            'Strong OOP Concepts, C#, and .NET Framework fundamentals',
+            'Knowledge of SQL Queries, Joins, and Database Normalization',
+            'Basic understanding of Cloud (Azure/AWS) and Unit Testing Frameworks'
+        ],
+        benefits: [
+            'Expected Salary: ₹7 – ₹9 LPA for Freshers',
+            'Health Insurance and Performance Bonuses',
+            'Fortune 100 Company Experience and Global Engineering Projects',
+            'Strong Learning Culture and Mentorship Programs',
+            'Excellent Work-Life Balance and Paid Leaves'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening based on academics and technical skills',
+            'Step 2: Online Assessment (Aptitude, Logical Reasoning, Programming MCQs, Coding)',
+            'Step 3: Technical Interview (C#, .NET, Data Structures, SQL, OOP)',
+            'Step 4: Advanced Technical Interview (Cloud Computing, REST APIs, Project Discussion, System Design)',
+            'Step 5: HR Interview (Communication, Career Goals, Teamwork)'
+        ],
+        faqs: [
+            { q: 'What is the job ID for this role?', a: 'The Job ID is 146102.' },
+            { q: 'Which batches are eligible to apply?', a: 'Candidates from 2024, 2025, and 2026 batches can apply.' },
+            { q: 'What is the expected salary for this role?', a: 'The expected salary is between ₹7 – ₹9 LPA for freshers.' }
+        ],
+        applyLink: 'https://careers.honeywell.com/'
+    },
+    {
+        id: 'ey-consulting-support-services-intern-2026',
+        title: 'Consulting Support Services Intern',
+        company: 'EY Global Delivery Services (GDS)',
+        location: 'Kochi, Kerala',
+        type: 'Internship',
+        salary: 'Competitive Stipend',
+        experience: 'Freshers',
+        postedDate: 'May 14, 2026',
+        aboutCompany: 'EY is one of the world’s largest professional services organizations and a proud member of the Big 4 firms. Operating in 150+ countries with 400,000+ employees globally. EY Global Delivery Services (GDS) works with global EY teams to deliver innovative solutions in Consulting, Assurance, Tax, and Strategy & Transactions.',
+        description: 'One of the world’s leading Big 4 companies, EY is hiring fresh B.E/B.Tech graduates for the role of Consulting Support Services Intern (MENA Technology Intern) in Kochi. This is a golden opportunity for freshers who want to build a strong career in Technology Consulting, Cloud Computing, AI, Cyber Security, Data Analytics, and Digital Transformation. Selected candidates will collaborate with experienced consultants and global technology teams on real-world projects.',
+        responsibilities: [
+            'Work on real-world projects involving Cloud Technologies and Enterprise Applications',
+            'Assist in implementing Cybersecurity Solutions and Data Analytics platforms',
+            'Contribute to Software Development and Digital Platforms',
+            'Collaborate with experienced consultants and global technology teams',
+            'Gain exposure to Digital Technologies (Cloud Native, Full Stack, DevSecOps)',
+            'Work with Data & Analytics tools (BI, AI, Advanced Analytics)',
+            'Learn Enterprise Technology implementations (Oracle, SAP S/4HANA)',
+            'Support Software Development, Testing & QA, and Enterprise Application Support'
+        ],
+        skills: [
+            'Java', 'Python', '.NET', 'SQL', 'SDLC', 'Cloud Computing', 'Cyber Security', 'Data Analytics', 'AI'
+        ],
+        eligibility: [
+            'B.E / B.Tech in Information Technology, Computer Science, or Circuit Branches',
+            'Freshers are eligible to apply',
+            'Minimum 60% and above throughout academics',
+            'No Active Backlogs allowed',
+            'Good English Communication & Presentation Skills',
+            'Understanding of SDLC and basic Database/SQL knowledge',
+            'Knowledge of Java / Python / .NET'
+        ],
+        benefits: [
+            'Global Exposure and work with a Big 4 Company',
+            'Expert Mentorship and Structured Learning Programs',
+            'Work on Modern Enterprise Technologies and International Projects',
+            'Pre-Placement Opportunities (PPO) based on performance',
+            'Competitive Stipend and Fast Career Growth'
+        ],
+        applicationProcess: [
+            'Step 1: Apply through the official EY career portal with an updated ATS-friendly resume',
+            'Step 2: Online Assessment (Aptitude, Technical MCQs, Behavioural Assessment)',
+            'Step 3: Technical Interview (Programming, SQL, SDLC, Academic Projects)',
+            'Step 4: HR / Partner Interview (Communication, Consulting Mindset, Career Goals)'
+        ],
+        faqs: [
+            { q: 'Which batches are eligible for this internship?', a: 'B.E/B.Tech Freshers from Information Technology, Computer Science, and Circuit Branches are eligible.' },
+            { q: 'Is there any academic criteria?', a: 'Yes, candidates must have a minimum of 60% throughout academics with no active backlogs.' },
+            { q: 'What is the job location?', a: 'The job location is Kochi, Kerala.' }
+        ],
+        applyLink: 'https://careers.ey.com/ey'
+    },
+    {
         id: 'google-silicon-engineer-university-graduate-2026',
         title: 'Silicon Engineer, University Graduate 2026',
         company: 'Google',

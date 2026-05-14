@@ -9,6 +9,24 @@ import CompactAd from '../components/CompactAd';
 
 const WHATSAPP_JOBS = [
     {
+        id: "honeywell-se-csharp-2026",
+        company: "Honeywell",
+        role: "Software Engineer I",
+        location: "Bengaluru, Karnataka",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 14, 2026",
+        skills: ["C#", ".NET", "ASP.NET Core", "REST APIs", "Azure", "SQL"]
+    },
+    {
+        id: "ey-consulting-support-services-intern-2026",
+        company: "EY Global Delivery Services (GDS)",
+        role: "Consulting Support Services Intern",
+        location: "Kochi, Kerala",
+        batch: "Freshers (B.E / B.Tech)",
+        postedAt: "May 14, 2026",
+        skills: ["Cloud", "AI", "Cyber Security", "Data Analytics", "Java"]
+    },
+    {
         id: "google-silicon-engineer-university-graduate-2026",
         company: "Google",
         role: "Silicon Engineer, University Graduate 2026",
