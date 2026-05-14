@@ -492,7 +492,7 @@ const JobsPage = () => {
             if (job.postedAt === "Recently Active") return true;
             try {
                 const jobDate = new Date(job.postedAt);
-                const today = new Date("May 12, 2026");
+                const today = new Date();
                 today.setHours(0, 0, 0, 0);
                 jobDate.setHours(0, 0, 0, 0);
                 
