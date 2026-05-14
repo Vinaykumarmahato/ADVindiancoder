@@ -28,14 +28,23 @@ const Footer = () => {
                     <div className="col-span-1">
                         <h3 className="font-semibold mb-4 text-gray-900 dark:text-gray-100">Quick Links</h3>
                         <ul className="space-y-2">
-                            {NAV_LINKS.filter(link => ['Home', 'Courses', 'ADV Lab', 'Notes', 'Live Masterclass'].includes(link.name)).map(link => (
-                                <li key={link.name}>
-                                    <Link to={link.path} className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2">
-                                        {link.name}
-                                        {link.name === 'Live Masterclass' && <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.5 rounded-full font-black">LIVE</span>}
-                                    </Link>
-                                </li>
-                            ))}
+                            {NAV_LINKS.filter(link => ['Home', 'Courses', 'ADV Lab', 'ADV ExamHub', 'Notes', 'Live Masterclass'].includes(link.name)).map(link => {
+                                const isExternal = link.path.startsWith('http');
+                                const LinkComponent = isExternal ? 'a' : Link;
+                                const linkProps = isExternal 
+                                    ? { href: link.path }
+                                    : { to: link.path };
+
+                                return (
+                                    <li key={link.name}>
+                                        <LinkComponent {...linkProps} className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2">
+                                            {link.name}
+                                            {link.name === 'Live Masterclass' && <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.5 rounded-full font-black">LIVE</span>}
+                                            {link.name === 'ADV ExamHub' && <span className="text-[9px] bg-orange-600 text-white px-1.5 py-0.5 rounded-full font-black animate-bounce">HOT</span>}
+                                        </LinkComponent>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
                     
