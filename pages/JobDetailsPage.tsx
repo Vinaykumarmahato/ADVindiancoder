@@ -9,6 +9,212 @@ import PlaylistAd from '../components/PlaylistAd';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'amazon-sde-i-2026',
+        title: 'Software Dev Engineer I (SDE-I)',
+        company: 'Amazon',
+        location: 'Bengaluru, Hyderabad, Chennai, Delhi, Maharashtra',
+        type: 'Full-time',
+        salary: 'Highly Competitive Package',
+        experience: 'Freshers (0–1 Year)',
+        postedDate: 'May 23, 2026',
+        aboutCompany: 'Amazon is one of the world’s largest technology companies, known for innovation in eCommerce, Cloud Computing (AWS), Artificial Intelligence, Logistics, Smart Devices, and Digital Streaming. Amazon’s engineering culture focuses heavily on customer obsession, ownership, innovation, continuous learning, and problem-solving.',
+        description: 'Amazon has officially opened applications for the Amazon Off Campus Drive 2026 for the role of Software Dev Engineer I (SDE-I) across multiple locations in India. SDE-Is at Amazon work on large-scale distributed systems, cloud technologies, scalable software platforms, and high-impact customer products.',
+        responsibilities: [
+            'Design and develop scalable, high-performance customer-focused software solutions',
+            'Develop fault-tolerant distributed systems that handle massive-scale traffic and transactions',
+            'Analyze complex technical problems and build optimized software solutions',
+            'Write clean, maintainable, and efficient code following software best practices',
+            'Work in Agile/Scrum teams and participate in fast-paced software release cycles',
+            'Improve application performance, scalability, reliability, and operational efficiency',
+            'Take ownership of features from design and development to deployment and support',
+            'Experiment with emerging technologies to improve global customer experience'
+        ],
+        skills: [
+            'Java', 'Python', 'C++', 'DSA', 'DBMS', 'Operating Systems', 'Computer Networks', 'Distributed Systems'
+        ],
+        eligibility: [
+            'Bachelor’s degree or higher in Computer Science, Computer Engineering, IT, or related fields',
+            'Eligible Batches: 2024, 2025, and 2026 Graduates',
+            '0–1 year experience (Freshers are highly encouraged to apply)'
+        ],
+        benefits: [
+            'Highly competitive base salary',
+            'Attractive joining bonuses and Restricted Stock Units (RSUs)',
+            'Comprehensive health insurance and wellness programs',
+            'Mentorship from experienced senior engineers',
+            'Global scale project exposure and learning programs',
+            'Flexible work culture and robust career growth opportunities'
+        ],
+        applicationProcess: [
+            'Step 1: Online Assessment (Coding, debugging, work-style assessment)',
+            'Step 2: Technical Interview (DSA coding, complexity analysis, problem-solving)',
+            'Step 3: Technical & Low-Level Design (OOD, LLD basics, system design fundamentals)',
+            'Step 4: Bar Raiser / HR Round (Amazon Leadership Principles using the STAR method)'
+        ],
+        faqs: [
+            { q: 'How should I prepare for the interview?', a: 'Focus on Data Structures & Algorithms (Arrays, Trees, Graphs, DP) on platforms like LeetCode or GFG, and study Amazon Leadership Principles.' },
+            { q: 'Which programming languages are allowed?', a: 'Proficiency in at least one object-oriented language like Java, C++, C, or Python is expected.' }
+        ],
+        applyLink: 'https://www.amazon.jobs/?utm_source=chatgpt.com'
+    },
+    {
+        id: 'harman-devops-2026',
+        title: 'Associate Engineer – AWS DevOps',
+        company: 'Harman International',
+        location: 'Bangalore, Karnataka',
+        type: 'Full-time (Onsite)',
+        salary: 'Competitive Package',
+        experience: '0–1 Year / Freshers',
+        postedDate: 'May 23, 2026',
+        aboutCompany: 'Harman International is a globally recognized technology company specializing in connected technologies for automotive, consumer electronics, and enterprise solutions. As a subsidiary of Samsung Electronics, Harman owns premium brands like JBL, AKG, Harman Kardon, Mark Levinson, and Revel, focusing on connected cars, cloud platforms, digital transformation, and smart audio systems.',
+        description: 'Harman International has officially opened applications for the Harman Off Campus Drive 2026 for the role of Associate Engineer – AWS DevOps at its Bangalore office. This opportunity is ideal for fresh graduates who are passionate about cloud technologies, DevOps engineering, CI/CD pipelines, Kubernetes, Docker, and infrastructure automation.',
+        responsibilities: [
+            'Build and maintain CI/CD pipelines using GitLab CI and Jenkins',
+            'Automate software build, testing, and deployment workflows',
+            'Support automation initiatives across development and QA teams',
+            'Work with Docker for application containerization',
+            'Maintain container-based deployment and staging environments',
+            'Support deployment and monitoring in Kubernetes environments (Pods, services, scaling)',
+            'Monitor CI/CD pipelines and deployment health, troubleshooting infrastructure failures',
+            'Collaborate with developers, testers, and DevOps engineers in Agile cycles'
+        ],
+        skills: [
+            'AWS', 'GitLab CI', 'Jenkins', 'Docker', 'Kubernetes', 'Linux Fundamentals', 'Shell Scripting', 'Python'
+        ],
+        eligibility: [
+            'Bachelor’s degree in Computer Science, IT, or related technical disciplines',
+            'Batch: 2024, 2025, or 2026 Graduates',
+            '0–1 year experience (Freshers, internships, academic projects, or DevOps labs are accepted)'
+        ],
+        benefits: [
+            'Competitive salary package',
+            'Learning opportunities through Harman University',
+            'Exposure to cloud-native technologies',
+            'Global project experience',
+            'Career growth opportunities',
+            'Employee recognition programs',
+            'Inclusive and collaborative work culture'
+        ],
+        applicationProcess: [
+            'Step 1: Resume Screening (DevOps projects, certifications, internships)',
+            'Step 2: Technical Assessment (Linux, CI/CD, Docker, Kubernetes basics, scripting)',
+            'Step 3: Technical Interview (DevOps workflows, container orchestration, troubleshooting)',
+            'Step 4: HR & Managerial Round (Communication, teamwork, culture-fit)'
+        ],
+        faqs: [
+            { q: 'What is the job ID for this role?', a: 'The Job ID is R-53259-2026.' },
+            { q: 'Where is the office located in Bangalore?', a: 'The office is located at Kalyani Platina, Bangalore.' },
+            { q: 'Is this role hybrid or remote?', a: 'No, this is an onsite role requiring 5 days work a week in office.' }
+        ],
+        applyLink: 'https://jobs.harman.com/?utm_source=chatgpt.com'
+    },
+    {
+        id: 'honeywell-se-i-blr-2026',
+        title: 'Software Engineer I',
+        company: 'Honeywell',
+        location: 'Bengaluru, Karnataka',
+        type: 'Full-time (Hybrid)',
+        salary: 'Competitive Package',
+        experience: 'Freshers / Early Career (0–1 Year)',
+        postedDate: 'May 23, 2026',
+        aboutCompany: 'Honeywell is a multinational technology and manufacturing company known for innovation in Aerospace technologies, Industrial automation, Building automation, Energy transition, and Sustainability solutions. The company develops intelligent, connected, and secure systems that help industries improve operational efficiency, safety, productivity, and sustainability.',
+        description: 'Honeywell has officially opened applications for the Honeywell Off Campus Drive 2026 for the role of Software Engineer I at its Bengaluru office. This opportunity is ideal for engineering graduates who want to work on innovative software solutions across automation, aviation, industrial technologies, and energy transition sectors.',
+        responsibilities: [
+            'Develop and maintain software applications across Honeywell platforms',
+            'Enhance existing systems and features',
+            'Work with engineering, product, and business teams to deliver scalable and efficient solutions',
+            'Design software solutions based on customer requirements and engineering practices',
+            'Identify and resolve software issues (debugging in dev and prod environments)',
+            'Participate in code reviews and maintain coding standards',
+            'Stay updated with emerging technologies, development tools, and modern methodologies',
+            'Contribute to an innovative and collaborative engineering culture'
+        ],
+        skills: [
+            'Java', 'Python', 'C#', 'OOP', 'SDLC', 'Software Debugging', 'Data Structures', 'Algorithms'
+        ],
+        eligibility: [
+            'Bachelor’s degree in Computer Science, IT, Electronics, Software Engineering, Mathematics, or related STEM disciplines',
+            'Freshers and early-career professionals (0–1 year experience) are eligible',
+            'Internship or academic project experience is an advantage'
+        ],
+        benefits: [
+            'Competitive salary package',
+            'Health insurance coverage',
+            'Learning & development programs',
+            'Internal mobility opportunities',
+            'Hybrid work flexibility',
+            'Global engineering exposure',
+            'Employee wellness initiatives'
+        ],
+        applicationProcess: [
+            'Step 1: Online Assessment (Aptitude, coding, software fundamentals)',
+            'Step 2: Technical Interview (DSA, Java/Python coding, problem-solving, OOP)',
+            'Step 3: Advanced Technical Discussion (Software design concepts, projects, problem-solving)',
+            'Step 4: HR & Managerial Interview (Behavioral, teamwork, culture-fit)'
+        ],
+        faqs: [
+            { q: 'What is the location of the office?', a: 'The role is based at Honeywell’s Bengaluru campus situated at RMZ Ecoworld, Bengaluru.' },
+            { q: 'Is there a hybrid work option?', a: 'Yes, this role offers hybrid work flexibility.' },
+            { q: 'Which batches can apply?', a: 'Graduates from 2024, 2025, and 2026 batches are eligible to apply.' }
+        ],
+        applyLink: 'https://careers.honeywell.com/?utm_source=chatgpt.com'
+    },
+    {
+        id: 'honeywell-ca-internship-2026',
+        title: 'Bachelor’s Intern (CA Industrial Training)',
+        company: 'Honeywell',
+        location: 'Pune, Maharashtra',
+        type: 'Internship (12 Months)',
+        salary: '₹20,000 / Month',
+        experience: 'Freshers',
+        postedDate: 'May 23, 2026',
+        aboutCompany: 'Honeywell is a multinational company known for innovation in Automation, Aerospace technologies, Industrial software, Building automation, and Energy solutions. The company develops advanced technologies that help businesses improve efficiency, sustainability, and operational performance. Honeywell’s finance teams play a major role in financial compliance, reporting accuracy, strategic business decision-making, and supporting global operations.',
+        description: 'Honeywell has officially opened applications for the Honeywell Internship 2026 Hiring Drive for the role of Bachelor’s Intern – CA Industrial Training (Finance) at its Pune office. This internship is designed for Chartered Accountancy students who are eligible for Industrial Training under ICAI guidelines and want practical exposure in corporate finance and accounting operations.',
+        responsibilities: [
+            'Post monthly journal entries accurately within timelines',
+            'Maintain proper documentation and accounting compliance',
+            'Upload Trial Balance into the Hyperion consolidation system',
+            'Support group-level financial reporting activities',
+            'Assist in monthly closing of books of accounts',
+            'Prepare schedules and supporting reports for consolidation',
+            'Prepare audit schedules and supporting documents',
+            'Coordinate with auditors and resolve audit-related queries',
+            'Assist in finance-related data analysis and reporting',
+            'Work with multiple teams to support finance operations and process improvements'
+        ],
+        skills: [
+            'Finance', 'Accounting', 'MS Excel', 'Audit Basics', 'Data Analysis', 'Journal Entries', 'Financial Consolidation'
+        ],
+        eligibility: [
+            'Pursuing Chartered Accountancy (CA)',
+            'Eligible for Industrial Training under ICAI guidelines',
+            'Strong understanding of accounting principles, financial reporting, and journal entries',
+            'Good analytical and problem-solving skills',
+            'Ability to work effectively in a collaborative environment',
+            'Proficiency in MS Excel and financial systems'
+        ],
+        benefits: [
+            '₹20,000 monthly stipend',
+            'Exposure to corporate finance operations',
+            'Hands-on experience with Hyperion and reporting systems',
+            'Mentorship from senior finance professionals',
+            'Industry-ready accounting skills',
+            'Potential future full-time opportunities based on performance'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening (Academic background & ICAI eligibility)',
+            'Step 2: Technical Interview (Accounting concepts, journal entries, Excel, audit basics)',
+            'Step 3: Managerial Interview (Practical accounting scenarios, audit handling, team collaboration)',
+            'Step 4: HR Interview (Career goals, availability, stipend & joining)'
+        ],
+        faqs: [
+            { q: 'What is the job ID for this role?', a: 'The Job ID is 149095.' },
+            { q: 'Where is the job location?', a: 'The internship is based onsite at Honeywell’s Pune office in Hadapsar Industrial Estate.' },
+            { q: 'What is the duration of this industrial training?', a: 'The duration of the training is 12 Months.' }
+        ],
+        applyLink: 'https://ibqbjb.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/149095?utm_source=chatgpt.com'
+    },
+    {
         id: 'honeywell-se-csharp-2026',
         title: 'Software Engineer I',
         company: 'Honeywell',

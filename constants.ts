@@ -36,7 +36,7 @@ export const WHY_CHOOSE_US_FEATURES = [
     'Free Mentorship + Community Access',
 ];
 
-// ─── Java Full Course Playlist (All 40 Episodes) ────────────────────────────
+// ─── Java Full Course Playlist (All 42 Episodes) ────────────────────────────
 export const JAVA_PLAYLIST = [
     { id: 1,  title: "EP 01 – What is Programming? | Introduction to Programming | Java Full Course 2026 #1", thumbnail: `/Thumbnail/${encodeURIComponent("ep-01-programming-introduction-thumbnail.png")}`, tags: ['Java', 'Basics'], category: 'Java Series', youtubeLink: '#' },
     { id: 2,  title: "EP 02 – Low Level vs High Level Languages | Java Full Course 2026 #2", thumbnail: `/Thumbnail/${encodeURIComponent("ep-02-low-vs-high-level-thumbnail.png")}`, tags: ['Java', 'Theory'], category: 'Java Series', youtubeLink: '#' },
@@ -78,13 +78,15 @@ export const JAVA_PLAYLIST = [
     { id: 38, title: "EP 38 – Objects, Memory Management & Method Overloading | Java Full Course 2026 #38", thumbnail: `https://img.youtube.com/vi/T2EJGxuu1yE/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'Memory'], category: 'Java Series', youtubeLink: 'https://youtu.be/T2EJGxuu1yE' },
     { id: 39, title: "EP 39 – Constructors in Java 🔥 | Default, Parameterized & Constructor Overloading | Java Full Course 2026 #39", thumbnail: `https://img.youtube.com/vi/hJV7qCee03I/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'Constructors'], category: 'Java Series', youtubeLink: 'https://youtu.be/hJV7qCee03I' },
     { id: 40, title: "EP 40 – Static Keyword Deep Dive | Class Loading, JVM Memory & Static Blocks | Java Full Course 2026 #40", thumbnail: `https://img.youtube.com/vi/h2OQ4kw43yQ/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'JVM', 'Static'], category: 'Java Series', youtubeLink: 'https://youtu.be/h2OQ4kw43yQ' },
+    { id: 41, title: "EP 41 – Static Variable से Website का Visitor Counter कैसे बनाएं? | Java Project | Java Full Course 2026 #41", thumbnail: `https://img.youtube.com/vi/Sf7BbI1UJHs/maxresdefault.jpg`, tags: ['Java', 'OOPs', 'Project', 'Static'], category: 'Java Series', youtubeLink: 'https://youtu.be/Sf7BbI1UJHs' },
+    { id: 42, title: "EP 42 – Array Ka Janam | Why Arrays Exist | Memory Architecture (Stack & Heap) | Java Full Course 2026 #42", thumbnail: `https://img.youtube.com/vi/4n8aYTA6gjQ/maxresdefault.jpg`, tags: ['Java', 'Basics', 'Arrays'], category: 'Java Series', youtubeLink: 'https://youtu.be/4n8aYTA6gjQ' },
 ];
 
 export const COURSES: Course[] = [
     {
         id: "java-full-course-2026",
-        title: "Java Full Course 2026: Zero to Hero (40 Episodes)",
-        description: "Master Java from scratch with zero prior knowledge. This 40-episode series covers everything from basics to advanced OOPs, patterns, and DSA foundations with AI-driven learning approach.",
+        title: "Java Full Course 2026: Zero to Hero (42 Episodes)",
+        description: "Master Java from scratch with zero prior knowledge. This 42-episode series covers everything from basics to advanced OOPs, patterns, and DSA foundations with AI-driven learning approach.",
         thumbnail: `/Thumbnail/ep-01-programming-introduction-thumbnail.png`,
         tags: ['Java', 'Playlist', 'Free'],
         category: 'Programming',

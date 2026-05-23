@@ -61,8 +61,12 @@ const GlobalSearch = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 
         // Search in Java Episodes & Quizzes
         JAVA_EPISODES.forEach(ep => {
-            // Search Episode Titles
-            if (ep.title.toLowerCase().includes(searchTerm)) {
+            // Check if search query matches "java X", "ep X", or "episode X" where X is the episode number
+            const matchEpisodeNum = searchTerm.match(/(?:java|ep|episode)\s*(\d+)/);
+            const isSpecificEpisodeMatch = matchEpisodeNum && parseInt(matchEpisodeNum[1], 10) === ep.id;
+
+            // Search Episode Titles or check for a specific episode code match
+            if (ep.title.toLowerCase().includes(searchTerm) || isSpecificEpisodeMatch) {
                 filteredResults.push({ 
                     type: 'Episode', 
                     title: ep.title, 

@@ -9,6 +9,46 @@ import CompactAd from '../components/CompactAd';
 
 const WHATSAPP_JOBS = [
     {
+        id: "amazon-sde-i-2026",
+        company: "Amazon",
+        role: "Software Dev Engineer I (SDE-I)",
+        location: "Bengaluru / Hyderabad / Chennai / Maharashtra / Delhi",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 23, 2026",
+        skills: ["Java", "Python", "C++", "DSA", "DBMS", "OS", "Networking"],
+        experience: "Freshers"
+    },
+    {
+        id: "harman-devops-2026",
+        company: "Harman International",
+        role: "Associate Engineer – AWS DevOps",
+        location: "Bangalore, Karnataka",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 23, 2026",
+        skills: ["AWS", "GitLab CI", "Jenkins", "Docker", "Kubernetes", "Linux", "Python", "DevOps"],
+        experience: "Freshers"
+    },
+    {
+        id: "honeywell-se-i-blr-2026",
+        company: "Honeywell",
+        role: "Software Engineer I",
+        location: "Bengaluru, Karnataka",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 23, 2026",
+        skills: ["Java", "Python", "C#", "OOP", "SDLC"],
+        experience: "Freshers"
+    },
+    {
+        id: "honeywell-ca-internship-2026",
+        company: "Honeywell",
+        role: "Bachelor’s Intern (CA Industrial Training)",
+        location: "Pune, Maharashtra",
+        batch: "2025 / 2026",
+        postedAt: "May 23, 2026",
+        skills: ["Finance", "Accounting", "Excel", "Audit", "Reporting"],
+        experience: "Freshers"
+    },
+    {
         id: "honeywell-se-csharp-2026",
         company: "Honeywell",
         role: "Software Engineer I",
@@ -468,7 +508,7 @@ const JobsPage = () => {
     const experiences = ["All", "Freshers", "0–2 Years", "1-3 Years", "4+ Years"];
     const roles = ["All", "Engineer", "Intern", "DevOps", "Tester", "Associate", "Scientist"];
     const years = ["All", "2024", "2025", "2026"];
-    const skills = ["All", "Java", "Python", "React", "Docker", "Kubernetes", "C++", "C#", "Testing", "Manual Testing", "Automation", "Finance", "Linux", "SaaS", "Cloud", "Data Science", "Power BI", "CI/CD", "Rust", "Distributed Systems", "AI/ML"];
+    const skills = ["All", "Java", "Python", "React", "Docker", "Kubernetes", "C++", "C#", "Testing", "Manual Testing", "Automation", "Finance", "Accounting", "AWS", "DevOps", "Linux", "SaaS", "Cloud", "Data Science", "Power BI", "CI/CD", "Rust", "Distributed Systems", "AI/ML"];
 
     const filteredJobs = WHATSAPP_JOBS.filter(job => {
         const matchesSearch = 

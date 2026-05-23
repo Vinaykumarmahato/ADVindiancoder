@@ -2328,5 +2328,156 @@ Execution Flow:
                 }
             ],
         }
+    },
+    {
+        id: 41,
+        title: "EP 41 – Static Variable से Website का Visitor Counter कैसे बनाएं? | Java Project",
+        youtubeId: "Sf7BbI1UJHs",
+        thumbnail: "https://img.youtube.com/vi/Sf7BbI1UJHs/maxresdefault.jpg",
+        tags: ["Java", "OOPs", "Project", "Static"],
+        notes: {
+            intro: "Static Variable का उपयोग करके Website Visitor Counter बनाना एक बहुत ही व्यावहारिक और उपयोगी प्रोजेक्ट है। यह दर्शाता है कि कैसे static variables पूरी Class के लिए single copy share करते हैं।",
+            topics: [
+                "🌐 Need of visitor counter: real-life application of static variables",
+                "🏢 Why instance variables fail: resets for every new object/request",
+                "⚡ Static variables in action: shared memory across all instances",
+                "🛠️ Building the VisitorCounter logic: incrementing and displaying",
+                "💾 Server-side limitations: memory persistence and why databases are used in production"
+            ],
+            code: `// Basic Example: Visitor Counter using Static Variable
+public class VisitorCounter {
+    // Static variable to store the count (shared across all instances)
+    private static int visitorCount = 0;
+
+    // Instance variable (reset for each visitor instance)
+    private int sessionHits = 0;
+
+    public void newVisit() {
+        visitorCount++; // Increments the static variable
+        sessionHits++;  // Increments the instance variable
+    }
+
+    public void showReport() {
+        System.out.println("Session Hits: " + sessionHits);
+        System.out.println("Total Website Visitors: " + visitorCount);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("--- User 1 Visits ---");
+        VisitorCounter user1 = new VisitorCounter();
+        user1.newVisit();
+        user1.showReport(); // Session: 1, Total: 1
+
+        System.out.println("\\n--- User 2 Visits ---");
+        VisitorCounter user2 = new VisitorCounter();
+        user2.newVisit();
+        user2.showReport(); // Session: 1, Total: 2
+    }
+}`,
+            quiz: [
+                { 
+                    question: "Why can't we use a regular instance variable to count total visitors on a website?", 
+                    answer: "Because instance variables are created fresh for every new object, resetting the counter for each user.",
+                    options: ["Because instance variables are public", "Because instance variables reset for each new object", "Because instance variables are stored in stack", "None of the above"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Where in memory does the static counter variable reside?", 
+                    answer: "In the Method Area / Metaspace (part of Heap memory in modern JVMs) since it belongs to the Class.",
+                    options: ["Stack Area", "Method Area / Metaspace", "CPU Registers", "Temporary Cache"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What happens to the static visitor count if the web server restarts?", 
+                    answer: "It is reset to 0 because static variables live in RAM and only persist as long as the JVM is running.",
+                    options: ["It remains saved in DB", "It is reset to 0", "It continues from the last value", "It throws an exception"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "How do we make the static visitor counter thread-safe in a multi-threaded web application?", 
+                    answer: "By using synchronized methods, blocks, or AtomicInteger to avoid race conditions when multiple users visit simultaneously.",
+                    options: ["Using more static blocks", "Using synchronized or AtomicInteger", "Converting it to local variable", "Declaring it final"],
+                    correctIndex: 1
+                }
+            ],
+        }
+    },
+    {
+        id: 42,
+        title: "EP 42 – Array Ka Janam | Why Arrays Exist | Memory Architecture (Stack & Heap)",
+        youtubeId: "4n8aYTA6gjQ",
+        thumbnail: "https://img.youtube.com/vi/4n8aYTA6gjQ/maxresdefault.jpg",
+        tags: ["Java", "Basics", "Arrays"],
+        notes: {
+            intro: "बिना एरे का इस्तेमाल किए अगर आप 1000 कांटेक्ट्स को स्टोर करोगे, तो स्टोर करते-करते आप बोर हो जाओगे। आज हम समझेंगे कि एरे क्या होता है, इसका जन्म क्यों हुआ, और मेमोरी के अंदर (Stack और Heap में) क्या होता है जब हम एरे बनाते हैं।",
+            topics: [
+                "📱 Contacts App Analogy: Why we need arrays instead of separate variables",
+                "🏢 Memory Analogy: Understanding memory as a building with rooms and unique addresses",
+                "🧠 Stack vs Heap Zone: Where variables vs objects/arrays are stored",
+                "🧬 Array is an Object: Why arrays reside in Heap and their references in Stack",
+                "🏗️ 5 Syntaxes of Arrays: Declaration, size initialization, direct values, and default values"
+            ],
+            code: `// Demo: All Array syntaxes and memory concepts in Java
+public class ArrayDemo {
+    public static void main(String[] args) {
+        System.out.println("=== Java Arrays & Memory Demo ===");
+
+        // 1. Only Declaration (No memory allocated yet)
+        int[] marks1;
+
+        // 2. Declaration + Size (Memory allocated in Heap, filled with default 0)
+        int[] marks2 = new int[5];
+        System.out.println("marks2 length: " + marks2.length);
+        System.out.println("Default value at index 0: " + marks2[0]); // 0
+        marks2[0] = 85;
+
+        // 3. Declaration + Direct Value
+        int[] marks3 = {80, 40, 50, 95, 70};
+        System.out.println("marks3 index 3: " + marks3[3]); // 95
+
+        // 4. Declaration + new + Direct Value
+        int[] marks4 = new int[]{90, 75, 88};
+
+        // 5. First Declare, Later Initialize
+        int[] marks5;
+        marks5 = new int[3];
+        marks5[0] = 99;
+
+        // Default Values Demo
+        double[] doubleArray = new double[2];
+        boolean[] booleanArray = new boolean[2];
+        String[] stringArray = new String[2];
+        System.out.println("Default double: " + doubleArray[0]);   // 0.0
+        System.out.println("Default boolean: " + booleanArray[0]); // false
+        System.out.println("Default String: " + stringArray[0]);   // null
+    }
+}`,
+            quiz: [
+                { 
+                    question: "Why do we need arrays instead of separate variables?", 
+                    answer: "To store multiple elements of the same data type in a single structured variable, avoiding duplicate variables.",
+                    options: ["To store different data types together", "To avoid duplicate variables by storing elements of the same type in a single reference", "To run code faster", "To secure memory"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "Where is the array object itself stored in Java memory?", 
+                    answer: "In the Heap memory, while its reference variable resides on the Stack.",
+                    options: ["Stack Area", "Heap Area", "Both Stack and Heap", "CPU Registers"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the default value of elements in a boolean array of size 5?", 
+                    answer: "false, as Java automatically initializes array elements to their default data type values.",
+                    options: ["true", "false", "null", "0"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "What is the starting index of any array in Java?", 
+                    answer: "0 (zero-based indexing).",
+                    options: ["-1", "0", "1", "Depends on array size"],
+                    correctIndex: 1
+                }
+            ],
+        }
     }
 ];
