@@ -2479,5 +2479,147 @@ public class ArrayDemo {
                 }
             ],
         }
+    },
+    {
+        id: 43,
+        title: "EP 43 – Array Declaration & Initialization | 3 Ways to Declare | Memory Deep Dive",
+        youtubeId: "ugXrrzobUHs",
+        thumbnail: "https://img.youtube.com/vi/ugXrrzobUHs/maxresdefault.jpg",
+        tags: ["Java", "Arrays", "Memory"],
+        notes: {
+            intro: "पिछले वीडियो में हमने समझा कि एरे का जन्म क्यों हुआ और मेमोरी में क्या होता है। अब इस वीडियो में हम समझेंगे कि एरे को कोड में कैसे लिखते हैं — Declaration क्या है, Initialization क्या है, 3 तरीके कौन-कौन से हैं, new keyword का मतलब क्या है, और मेमोरी (Stack & Heap) में बिहाइंड द सीन क्या होता है।",
+            topics: [
+                "📝 Declaration vs Initialization — Declaration = सिर्फ नाम देना (Stack में), Initialization = मेमोरी allocate करना (Heap में)",
+                "🔤 3 Ways to Declare Arrays: int[] arr (preferred), int arr[], and multi-variable declaration",
+                "⚠️ Interview Trap: int[] a, b (दोनों array) vs int a[], b (सिर्फ a array, b normal int)",
+                "🆕 new Keyword — Heap में नया Object (Array) create करता है और address Stack को देता है",
+                "🎯 Direct Value Assignment — Curly braces {} से directly values देना (int[] arr = {1, 10, 20, 30, 40})",
+                "💀 NullPointerException — Declaration के बाद बिना Initialization के access करोगे तो Exception आएगा",
+                "📊 Default Values — int→0, double→0.0, boolean→false, String→null"
+            ],
+            code: `/**
+ * EP 43: Array Declaration & Initialization — 3 Ways to Declare
+ * Behind the Scenes: Memory (Stack & Heap) Deep Dive
+ */
+public class ArrayDeclarationDemo {
+    public static void main(String[] args) {
+
+        // ============================
+        // 1. DECLARATION (सिर्फ नाम देना)
+        // ============================
+        // Stack में सिर्फ 'arr' नाम आता है, Heap में कुछ नहीं होता
+        // arr = null (कोई address नहीं)
+
+        // Way 1: Brackets with Type (PREFERRED ✅)
+        int[] arr1;
+        String[] names1;
+
+        // Way 2: Brackets with Variable Name
+        int arr2[];
+        String names2[];
+
+        // Way 3: Multiple Declaration (INTERVIEW TRAP! ⚠️)
+        int[] a, b;       // ✅ दोनों a और b ARRAY हैं
+        int c[], d;        // ⚠️ सिर्फ c ARRAY है, d सामान्य int variable है!
+        int[] e, f[], g;   // ⚠️ e = 1D array, f = 2D array, g = 1D array
+
+        // ============================
+        // 2. INITIALIZATION (मेमोरी देना)
+        // ============================
+        // new keyword → Heap में Object बनाता है → address Stack को देता है
+
+        // Declaration + Initialization Together
+        int[] marks = new int[5];  // Heap में 5 spaces, सब 0 (default)
+        System.out.println("marks[0] default: " + marks[0]); // 0
+
+        // Separate Declaration, then Initialization
+        int[] scores;
+        scores = new int[3];      // अब Heap में memory मिली
+        scores[0] = 99;
+        System.out.println("scores[0]: " + scores[0]);       // 99
+
+        // ============================
+        // 3. DIRECT VALUE ASSIGNMENT
+        // ============================
+        // Curly braces {} — size automatically calculate होता है
+        int[] nums = {1, 10, 20, 30, 40};
+        System.out.println("nums[2]: " + nums[2]);           // 20
+
+        // new keyword + Direct Value (size मत लिखो [] में!)
+        int[] data = new int[]{90, 75, 88};
+        System.out.println("data[1]: " + data[1]);           // 75
+
+        // String Array with Direct Values
+        String[] students = {"Vinu", "Shah", "Priya"};
+        System.out.println("students[0]: " + students[0]);   // Vinu
+
+        // ============================
+        // 4. DEFAULT VALUES DEMO
+        // ============================
+        System.out.println("\\n=== Default Values ===");
+        int[] intArr = new int[2];
+        double[] dblArr = new double[2];
+        boolean[] boolArr = new boolean[2];
+        String[] strArr = new String[2];
+
+        System.out.println("int default:     " + intArr[0]);   // 0
+        System.out.println("double default:  " + dblArr[0]);   // 0.0
+        System.out.println("boolean default: " + boolArr[0]);  // false
+        System.out.println("String default:  " + strArr[0]);   // null
+
+        // ============================
+        // 5. NullPointerException DEMO
+        // ============================
+        // int[] test;
+        // System.out.println(test[0]); // ❌ Compile Error: not initialized
+        // int[] test2 = null;
+        // System.out.println(test2[0]); // ❌ NullPointerException at runtime!
+    }
+}`,
+            quiz: [
+                { 
+                    question: "Declaration और Initialization में क्या अंतर है?", 
+                    answer: "Declaration = सिर्फ compiler को बताना कि एक array आने वाला है (Stack में नाम आता है)। Initialization = actual memory allocate करना new keyword से (Heap में space मिलता है)।",
+                    options: ["दोनों का मतलब एक ही है", "Declaration = नाम देना (Stack), Initialization = memory देना (Heap)", "Declaration = memory देना, Initialization = नाम देना", "Declaration से Heap में space मिलता है"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "int a[], b; लिखने पर a और b में क्या अंतर होगा?", 
+                    answer: "a एक Array होगा (int[] type), लेकिन b एक सामान्य int variable होगा — Array नहीं। यह एक common interview trap है।",
+                    options: ["दोनों Array होंगे", "दोनों normal int होंगे", "सिर्फ a Array होगा, b normal int होगा", "Syntax error आएगा"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "new keyword का Java में क्या काम है?", 
+                    answer: "new keyword Heap Area में एक नया Object (Array) create करता है और उसका memory address Stack में stored reference variable को assign करता है।",
+                    options: ["Stack में variable बनाता है", "Heap में नया Object बनाता है और address Stack को देता है", "सिर्फ variable का नाम बदलता है", "Array को delete करता है"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "सिर्फ Declaration (int[] arr;) करने पर memory में क्या होता है?", 
+                    answer: "Stack Area में सिर्फ arr नाम का reference variable बनता है जो null होता है। Heap Area में कुछ नहीं होता — कोई memory allocate नहीं होती।",
+                    options: ["Heap में 10 spaces बनते हैं", "Stack में arr बनता है (null), Heap खाली रहता है", "दोनों में space बनता है", "कुछ नहीं होता"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "बिना Initialization के array access करने पर क्या होगा?", 
+                    answer: "अगर variable declare किया लेकिन initialize नहीं किया, तो Compile Error आएगा। अगर null assign किया तो Runtime पर NullPointerException आएगा।",
+                    options: ["0 मिलेगा", "null मिलेगा", "Compile Error या NullPointerException आएगा", "Program normal चलेगा"],
+                    correctIndex: 2
+                },
+                { 
+                    question: "int[] arr = {10, 20, 30}; और int[] arr = new int[]{10, 20, 30}; में क्या अंतर है?", 
+                    answer: "दोनों functionally same हैं — दोनों 3 elements का array बनाते हैं। लेकिन curly braces वाला syntax सिर्फ declaration time पर ही use होता है, new int[]{} को बाद में भी assign कर सकते हैं।",
+                    options: ["पहला गलत syntax है", "दोनों same हैं, पर {} सिर्फ declaration time पर, new int[]{} बाद में भी use हो सकता है", "दूसरा गलत syntax है", "पहला Heap में, दूसरा Stack में store होता है"],
+                    correctIndex: 1
+                },
+                { 
+                    question: "String[] names = new String[5]; करने पर default values क्या होंगी?", 
+                    answer: "सभी 5 positions पर null होगा, क्योंकि String एक object type है और objects का default value null होता है।",
+                    options: ["Empty string (\"\")", "null", "0", "false"],
+                    correctIndex: 1
+                }
+            ],
+        }
     }
 ];

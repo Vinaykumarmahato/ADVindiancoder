@@ -9,6 +9,76 @@ import CompactAd from '../components/CompactAd';
 
 const WHATSAPP_JOBS = [
     {
+        id: "volvo-group-apprentice-2026",
+        company: "Volvo Group",
+        role: "Graduate Apprentice Trainee",
+        location: "Bangalore, India",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 26, 2026",
+        skills: ["MS Excel", "Accounting", "Payroll", "HR Operations"],
+        experience: "Freshers"
+    },
+    {
+        id: "sp-global-data-analyst-2026",
+        company: "S&P Global",
+        role: "Data Analyst / Associate",
+        location: "Hyderabad, Telangana",
+        batch: "Any Degree / MBA / CA / CFA",
+        postedAt: "May 26, 2026",
+        skills: ["ESG Concepts", "Data Analytics", "SQL", "Power BI", "MS Excel"],
+        experience: "0 to 2 Years"
+    },
+    {
+        id: "deloitte-qa-intern-2026",
+        company: "Deloitte",
+        role: "QA Intern",
+        location: "Bangalore, India",
+        batch: "Bachelor’s Degree",
+        postedAt: "May 26, 2026",
+        skills: ["QA", "Sourcing", "Communication", "Analytical Skills"],
+        experience: "Freshers"
+    },
+    {
+        id: "accenture-tech-support-2026",
+        company: "Accenture",
+        role: "Tech Support Associate Services",
+        location: "Bangalore, India",
+        batch: "Any Graduate",
+        postedAt: "May 26, 2026",
+        skills: ["ServiceNow", "BMC Remedy", "Hardware Troubleshooting", "Active Directory"],
+        experience: "0–2 Years"
+    },
+    {
+        id: "cognizant-service-desk-2026",
+        company: "Cognizant",
+        role: "Service Desk - Digital Workplace",
+        location: "PAN India",
+        batch: "2025 / 2026",
+        postedAt: "May 26, 2026",
+        skills: ["IT Support", "Service Desk", "Troubleshooting", "Hardware", "Software"],
+        experience: "Freshers Only"
+    },
+    {
+        id: "trimble-software-engineer-2026",
+        company: "Trimble Inc.",
+        role: "Software Engineer 1",
+        location: "Chennai, Tamil Nadu",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 26, 2026",
+        skills: ["C#", ".NET", "SQL", "Node.js", "Java", "React.js", "DSA", "GitHub Copilot", "Cursor"],
+        experience: "Freshers / Early Career"
+    },
+    {
+        id: "tech-mahindra-voice-chat-support-2026",
+        company: "Tech Mahindra",
+        role: "Voice & Chat Support Executive",
+        location: "Multiple Locations Across India",
+        batch: "Any Graduate / Undergraduate",
+        postedAt: "May 26, 2026",
+        skills: ["Voice Support", "Chat Support", "Technical Troubleshooting", "Customer Service", "Hardware", "Networking", "SCCM"],
+        experience: "0 to 5 Years"
+    },
+    {
         id: "amazon-sde-i-2026",
         company: "Amazon",
         role: "Software Dev Engineer I (SDE-I)",

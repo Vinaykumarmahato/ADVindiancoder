@@ -9,6 +9,352 @@ import PlaylistAd from '../components/PlaylistAd';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'volvo-group-apprentice-2026',
+        title: 'Graduate Apprentice Trainee (NATS)',
+        company: 'Volvo Group (Volvo India)',
+        location: 'Bangalore, India',
+        type: 'Apprenticeship (1 Year)',
+        salary: 'As per NATS norms and Volvo policy',
+        experience: 'Fresher (Student Position Type)',
+        postedDate: 'May 26, 2026',
+        aboutCompany: 'Volvo Group is one of the world’s leading manufacturers of trucks, buses, construction equipment and marine and industrial engines. Headquartered in Gothenburg, Sweden, the company operates a major engineering and shared-services hub in Bangalore, India. With close to 100,000 employees across the globe, Volvo is known for its culture of care, inclusiveness and employee empowerment.',
+        description: 'Volvo Group Apprenticeship 2026 is officially open for applications. Volvo India is inviting B.Com graduates from the 2024, 2025 and 2026 batches to apply for the Graduate Apprentice Trainee position in Bangalore under the National Apprenticeship Training Scheme (NATS). This one-year, fully structured apprenticeship sits within Volvo Financial Services and covers payroll administration, retiral benefits and HR operations.',
+        responsibilities: [
+            'Retiral Benefits Administration: Support the administration of employee retirement benefits including Provident Fund (PF), Gratuity and Superannuation operations.',
+            'FBP Claims Administration: Process Flexible Benefit Plan reimbursement claims for employees in accordance with company policy.',
+            'Payroll Administration: Assist in monthly payroll processing, validation and reconciliation activities for the Indian employee base.',
+            'EDM Administration: Scan employee hard-copy files and forward them to the respective employee’s official email ID for digital preservation.',
+            'EDM Ticket Processing: Convert scanned documents into Electronic Document Management (EDM) tickets within Volvo’s internal systems.',
+            'Document Upload: Process and resolve tickets by uploading documents to the EDM database through the ASK HR platform.',
+            'Accuracy and Documentation: Maintain accuracy and proper documentation at every process step to ensure full audit compliance.'
+        ],
+        skills: [
+            'MS Excel', 'MS Word', 'Accounting Concepts', 'Payroll Administration', 'HR Operations', 'Communication Skills'
+        ],
+        eligibility: [
+            'B.Com graduates only. No other degree will be considered for this position.',
+            'Candidates who have passed out in 2024, 2025 or 2026 are eligible.',
+            'Basic computer knowledge including MS Office applications, specifically MS Excel and MS Word.',
+            'Good written and verbal communication in English, strong attention to detail, and willingness to follow structured process guidelines.',
+            'Candidates must be willing to work from Volvo’s Bangalore office (Parin Building, 5th Floor).'
+        ],
+        benefits: [
+            'Structured training from a globally recognised HR operations team',
+            'Exposure to enterprise-grade payroll and document management systems',
+            'A strong addition to your professional profile from the very first year after graduation',
+            'Possibility of being considered for full-time roles within Volvo Group based on performance during the apprenticeship'
+        ],
+        applicationProcess: [
+            'Round 1 – Online Application: Resume submission and academic record screening through the Volvo Group careers portal.',
+            'Round 2 – Telephonic or Virtual Screening: An HR call to verify your eligibility, communication skills and interest in the role.',
+            'Round 3 – Functional Interview: A discussion with the People and Culture team covering basic accounting concepts, MS Excel proficiency and process understanding.',
+            'Round 4 – HR and Culture Fit Interview: A final round assessing your readiness to work from the Bangalore office, your learning mindset and your overall culture fit with the Volvo organisation.'
+        ],
+        faqs: [
+            { q: 'Are engineering graduates eligible?', a: 'No, this position is strictly for B.Com graduates only.' },
+            { q: 'What is the duration of this apprenticeship?', a: 'The apprenticeship is for a period of 1 year under the NATS scheme.' }
+        ],
+        applyLink: 'https://xjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?partnerid=25079&siteid=5171&PageType=JobDetails&jobid=562122'
+    },
+    {
+        id: 'sp-global-data-analyst-2026',
+        title: 'Data Analyst / Associate',
+        company: 'S&P Global',
+        location: 'Hyderabad, Telangana',
+        type: 'Full-Time',
+        salary: 'Competitive',
+        experience: '0 to 2 Years (Freshers Eligible)',
+        postedDate: 'May 26, 2026',
+        aboutCompany: 'S&P Global is one of the world’s leading providers of credit ratings, benchmarks, analytics, and financial intelligence. The company serves businesses, governments, and financial institutions across global capital and commodity markets. Its data and insights help decision-makers at every level operate with accuracy and confidence.',
+        description: 'S&P Global has announced a recruitment drive for the role of Data Analyst / Associate at its Hyderabad office. This is a significant opportunity for recent graduates and early-career professionals with a background in sustainability, economics, environmental science, or data analytics. Candidates with knowledge of ESG concepts and reporting standards are strongly encouraged to apply.',
+        responsibilities: [
+            'Data Processing: Collecting, processing, and validating sustainability and financial data in line with established process guidelines.',
+            'Data Integrity: Maintaining accuracy and consistency of data within S&P Global’s proprietary database systems.',
+            'Research and Synthesis: Summarizing and consolidating information from multiple sources, including Annual Reports, Sustainability Reports, and regulatory filings.',
+            'Collaboration and Targets: Working alongside team members to meet both individual and collective targets for quality, efficiency, and turnaround time.',
+            'Analysis and Application: Interpreting company documents and applying relevant ESG reporting standards to classify and validate data accurately.'
+        ],
+        skills: [
+            'ESG Concepts', 'Data Analytics', 'SQL', 'Power BI', 'MS Excel', 'Sustainability Reporting', 'Research and Synthesis'
+        ],
+        eligibility: [
+            'Educational Qualification: Environmental Science, Sustainability, Data Analytics, Economics, Public Policy, MBA, CA, or CFA (Master’s level qualifications are also accepted).',
+            'Open to freshers and candidates with up to 2 years of experience in a related domain.',
+            'Good understanding of ESG concepts and sustainability reporting standards.',
+            'Strong research and analytical abilities.',
+            'Proficiency in Microsoft Office tools including Word, Excel, and PowerPoint.',
+            'Working knowledge of SQL and Power BI (Preferred).'
+        ],
+        benefits: [
+            'Direct exposure to real-world corporate data and international reporting standards.',
+            'Structured professional environment in one of the most in-demand fields of the decade.',
+            'Hyderabad office is a key hub for S&P Global’s data operations in Asia.'
+        ],
+        applicationProcess: [
+            'Step 1: Apply online through the official S&P Global careers portal.',
+            'Step 2: Shortlisting based on resume and qualifications.',
+            'Step 3: Interviews and technical assessments.'
+        ],
+        faqs: [
+            { q: 'Are freshers eligible for this role?', a: 'Yes, freshers and candidates with up to 2 years of experience can apply.' },
+            { q: 'What skills are preferred?', a: 'Working knowledge of SQL and Power BI, along with ESG and sustainability reporting knowledge, is preferred.' }
+        ],
+        applyLink: 'https://careers.spglobal.com/jobs/328971'
+    },
+    {
+        id: 'deloitte-qa-intern-2026',
+        title: 'QA Intern',
+        company: 'Deloitte',
+        location: 'Bangalore, India',
+        type: 'Internship',
+        salary: 'Competitive Stipend',
+        experience: 'Freshers (0 Years)',
+        postedDate: 'May 26, 2026',
+        aboutCompany: 'Deloitte is a leading multinational professional services firm and one of the Big Four accounting organizations in the world. The company provides a broad range of services including audit and assurance, tax, financial advisory, risk management, and consulting, with a strong focus on information technology and business transformation.',
+        description: 'Deloitte has announced an exciting recruitment drive for fresh graduates to join its team as a QA Intern at its Bangalore office. This is a golden opportunity for freshers who wish to begin their professional journey with one of the Big Four accounting and consulting organizations in the world.',
+        responsibilities: [
+            'Source potential candidates through online channels such as social platforms and professional networks to build a strong talent pipeline.',
+            'Ensure utilization of all sourcing channels to reach both active and passive candidates, meeting the required hiring demand and productivity targets.',
+            'Communicate openly and in a timely manner throughout the candidate journey, ensuring that candidate needs are consistently met at every stage.',
+            'Ensure that accurate job descriptions and relevant interview questions are in place to reflect each position’s requirements.',
+            'Engage in candidate fitment evaluation based on internal parity standards and organizational guidelines.',
+            'Keep candidates engaged through various touchpoints and warm communication strategies until they successfully join the organization.',
+            'Ensure the best possible candidate experience is delivered throughout the entire recruitment process.',
+            'Leverage existing pipelines through past applicants and potential candidates to fill open positions efficiently.'
+        ],
+        skills: [
+            'Communication Skills', 'Analytical Skills', 'Quality Assurance', 'Sourcing', 'Candidate Engagement', 'Problem Solving'
+        ],
+        eligibility: [
+            'Must hold a bachelor’s degree or be currently pursuing one in Computer Science or a related technical discipline.',
+            'Should be a critical thinker who consistently questions the status quo and looks for improvements.',
+            'Must be open and flexible in approach, with the ability to adapt quickly to changing business needs and priorities.',
+            'Excellent communication skills are required, both written and verbal, to effectively interact with candidates and internal stakeholders.',
+            'Strong analytical skills with a good understanding of business processes and organizational dynamics.'
+        ],
+        benefits: [
+            'Working with a Big Four firm adds significant credibility to your resume from day one.',
+            'Deloitte invests heavily in employee development and training programs.',
+            'Work alongside experienced professionals and build connections.',
+            'Many full-time positions at Deloitte are filled by converting high-performing interns.',
+            'Competitive compensation and benefits even at the intern level.'
+        ],
+        applicationProcess: [
+            'Step 1: Apply online through the official LinkedIn job listing.',
+            'Step 2: CV screening process.',
+            'Step 3: Interview rounds and assessment tests communicated via email.'
+        ],
+        faqs: [
+            { q: 'Is this a full-time role?', a: 'No, this is an internship role with a possibility of conversion to full-time based on performance.' },
+            { q: 'What is the location of the internship?', a: 'The internship is located at the Deloitte office in Bangalore.' }
+        ],
+        applyLink: 'https://www.linkedin.com/jobs/search/?keywords=Deloitte%20QA%20Intern'
+    },
+    {
+        id: 'accenture-tech-support-2026',
+        title: 'Tech Support Associate Services',
+        company: 'Accenture',
+        location: 'Bangalore, India',
+        type: 'Full-time (Work From Office)',
+        salary: 'Competitive',
+        experience: 'Freshers (0–2 Years)',
+        postedDate: 'May 26, 2026',
+        aboutCompany: 'Accenture is a global leader with operations in over 120 countries and more than 700,000 employees worldwide. It is one of the world\'s top technology and consulting companies.',
+        description: 'Are you a fresh graduate looking for your first job in IT? Accenture is currently hiring Any Graduate Freshers for the role of Tech Support Associate Services at their Bangalore office. This is a golden opportunity to kickstart your IT career with a Fortune 500 company.',
+        responsibilities: [
+            'Providing Level 1 (L1) Technical Support through the IT Service Desk',
+            'Helping users troubleshoot and resolve hardware, software, and network issues quickly',
+            'Logging every interaction, issue, and resolution in an ITSM tool like ServiceNow or BMC Remedy',
+            'Working closely with your team to improve service delivery and customer satisfaction',
+            'Handling support via voice calls, email, chat, and remote desktop tools',
+            'Working within defined SLAs (Service Level Agreements) and understanding the complete ticket lifecycle'
+        ],
+        skills: [
+            'ServiceNow', 'BMC Remedy', 'Microsoft 365', 'Active Directory', 'Hardware Troubleshooting', 'Incident Management', 'Communication Skills'
+        ],
+        eligibility: [
+            'Education: Minimum 15 years of full-time education (10+2+3 or equivalent — any graduation degree qualifies)',
+            'Communication: Excellent verbal skills with a neutral accent; strong written communication including email etiquette',
+            'Attitude: Calm under pressure, especially while handling frustrated customers or high call volumes',
+            'Problem Solving: Good analytical thinking and customer-first mindset',
+            'Flexibility: Must be open to working in 24x7 rotational shifts (9.5-hour shifts), including US/night shifts, weekends, and Indian public holidays'
+        ],
+        benefits: [
+            'Brand name on your resume from day one',
+            'Structured training for freshers — no prior experience needed',
+            'Career growth — many senior Accenture employees started in L1 support',
+            'Exposure to global clients and international teams',
+            'Competitive salary and benefits for entry-level roles',
+            'Learning culture with access to certifications, internal courses, and upskilling programs'
+        ],
+        applicationProcess: [
+            'Step 1: Click on the official application link and fill in your personal/educational details',
+            'Step 2: Upload an updated resume highlighting your communication skills',
+            'Step 3: Submit the application and wait for a response on your registered email ID'
+        ],
+        faqs: [
+            { q: 'Are any specific degrees required?', a: 'No, any graduate with a minimum of 15 years of full-time education can apply.' },
+            { q: 'Is there a night shift?', a: 'Yes, this role requires working in 24x7 rotational shifts including US/night shifts.' }
+        ],
+        applyLink: 'https://www.accenture.com/in-en/careers/jobdetails?id=14254398_en&title=RRN00015961+-Infra+Tech+Support+Practitioner'
+    },
+    {
+        id: 'cognizant-service-desk-2026',
+        title: 'Service Desk - Digital Workplace Practice',
+        company: 'Cognizant',
+        location: 'PAN India',
+        type: 'Full-time (Shift-based)',
+        salary: 'Disclosed during the hiring process (Industry competitive)',
+        experience: 'Freshers Only',
+        postedDate: 'May 26, 2026',
+        aboutCompany: 'Cognizant is one of the world’s leading professional services companies, helping clients transform their business, operations, and technology models for the digital era. Headquartered in Teaneck, New Jersey, the company has major delivery centres across India in Chennai, Bengaluru, Hyderabad, and Pune. With over 340,000 employees globally and a consistent Fortune 500 ranking, Cognizant is a top employer of choice for Indian graduates.',
+        description: 'Cognizant has officially launched its Service Desk Off Campus Drive 2026 for fresh graduates from the 2025 and 2026 batch. This is a direct hiring opportunity to join one of India’s most reputed global IT companies in a customer-facing technical support role under the Digital Workplace Practice. The drive is open PAN India with no service bond requirement.',
+        responsibilities: [
+            'Serve as the first point of contact in the Service Desk for end-users reporting IT issues via phone, email, or ticketing portal.',
+            'Log, track, and resolve Service Desk tickets accurately and within defined Service Level Agreements (SLAs).',
+            'Troubleshoot hardware and software issues to minimise downtime and disruption for client end-users across multiple time zones.',
+            'Collaborate with internal IT teams to escalate and resolve complex technical issues in a timely and structured manner.',
+            'Build and maintain a knowledge base of articles to enable faster resolutions for recurring IT issues.',
+            'Maintain a client-focused mindset while supporting users across diverse cultures and geographies.',
+            'Work in rotational shifts from the office, including night shifts as required by client SLA commitments.'
+        ],
+        skills: [
+            'IT Support', 'Service Desk', 'Troubleshooting', 'Communication Skills', 'Hardware', 'Software', 'Customer Service'
+        ],
+        eligibility: [
+            'Any 3-year UG degree — BCom, BCA, BSc, BA, BBA, B.Voc, BMS, or equivalent',
+            '2025 and 2026 passing batch only',
+            '50% minimum in Class X, Class XII, Diploma (if applicable), and UG degree (Rounding off 49.9% to 50% is strictly not permitted)',
+            'Students with active standing arrears are NOT eligible',
+            'Students currently enrolled in full-time PG programmes are NOT eligible',
+            'Must be willing to work from any Cognizant office in India across any given shift timing'
+        ],
+        benefits: [
+            'No Service Bond',
+            'BITS Pilani Sponsored Higher Education (For Science, Tech, and Math backgrounds)',
+            'Night Shift Allowance',
+            'Safe Transport Facility (Cab pick-up and drop for shift employees)',
+            'Comprehensive Health Insurance',
+            'Rewards and Recognition programmes'
+        ],
+        applicationProcess: [
+            'Step 1: Online Application and Resume Screening via Superset portal',
+            'Step 2: Online Assessment (Aptitude, logical reasoning, English comprehension, basic IT support concepts)',
+            'Step 3: Communication Assessment (Voice-based evaluation for spoken English fluency)',
+            'Step 4: HR and Behavioural Interview (Shift willingness, location preference, cultural fit)'
+        ],
+        faqs: [
+            { q: 'Is there a service bond?', a: 'No, Cognizant does not require freshers to sign a service bond for this role.' },
+            { q: 'Which batches are eligible?', a: 'Only 2025 and 2026 passing batch graduates are eligible.' }
+        ],
+        applyLink: 'https://app.joinsuperset.com/'
+    },
+    {
+        id: 'trimble-software-engineer-2026',
+        title: 'Software Engineer 1',
+        company: 'Trimble Inc.',
+        location: 'Chennai, Tamil Nadu',
+        type: 'Hybrid',
+        salary: '₹6 LPA – ₹12 LPA (Expected)',
+        experience: 'Freshers / Early Career',
+        postedDate: 'May 26, 2026',
+        aboutCompany: 'Trimble Inc. is a global technology company known for developing software and digital solutions for industries such as construction, transportation, infrastructure, and public sector operations. The Owner & Public Sector division focuses on helping organizations manage infrastructure projects and public assets through cloud-based and data-driven technologies. Trimble promotes a culture centered around innovation, collaboration, and continuous learning.',
+        description: 'Trimble Inc. is hiring freshers and early-career engineers for the position of Software Engineer 1 in Chennai. This hybrid opportunity is designed for candidates interested in modern software development, cloud applications, and AI-assisted engineering workflows. The role offers exposure to global engineering teams, SaaS product development, Agile methodologies, and AI-powered coding tools.',
+        responsibilities: [
+            'Developing production-ready software features',
+            'Working on SaaS applications using modern development practices',
+            'Participating in Agile development cycles and sprint activities',
+            'Collaborating with global engineering teams',
+            'Writing clean, scalable, and maintainable code',
+            'Using AI-powered development tools for productivity improvement',
+            'Solving technical problems and debugging applications',
+            'Contributing to product enhancements and feature implementation'
+        ],
+        skills: [
+            'C#', '.NET Core', 'SQL', 'Node.js', 'Java', 'React.js', 'Angular', 'DSA', 'OOP', 'GitHub Copilot', 'Cursor'
+        ],
+        eligibility: [
+            'B.E / B.Tech or M.E / M.Tech in Computer Science, IT, Software Engineering, or related technical disciplines',
+            '2024, 2025, and 2026 graduates are preferred',
+            'Freshers and early-career professionals can apply',
+            'Strong understanding of Data Structures and Algorithms',
+            'Knowledge of Object-Oriented Programming concepts',
+            'Familiarity with AI-assisted development workflows (preferred)'
+        ],
+        benefits: [
+            'Opportunity to work on real-world SaaS products',
+            'Exposure to global engineering teams',
+            'Hybrid work flexibility',
+            'Learning-focused engineering culture',
+            'Mentorship from experienced developers',
+            'AI-first software development environment',
+            'Strong career growth opportunities'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening (Resumes shortlisted based on academics, projects, technical skills)',
+            'Step 2: Online Assessment (Aptitude, logical reasoning, DSA coding)',
+            'Step 3: Technical Interview (Coding, DSA, OOP, tech stack, projects)',
+            'Step 4: HR / Behavioral Interview (Communication, teamwork, cultural fit)'
+        ],
+        faqs: [
+            { q: 'What is the Job ID for this role?', a: 'The Job ID is R55420.' },
+            { q: 'Do I need to know all mentioned technologies?', a: 'No. Candidates should be comfortable with at least one of the listed technology stacks (C#/.NET/SQL OR Node.js/Java/React).' },
+            { q: 'Is AI tool experience mandatory?', a: 'It is not mandatory, but candidates familiar with AI-assisted development tools like GitHub Copilot or Cursor may have an advantage.' }
+        ],
+        applyLink: 'https://trimble.wd1.myworkdayjobs.com/TrimbleCareers/job/Chennai-India/Software-Engineer-1_R55420'
+    },
+    {
+        id: 'tech-mahindra-voice-chat-support-2026',
+        title: 'Voice & Chat Support Executive',
+        company: 'Tech Mahindra',
+        location: 'Multiple Locations Across India',
+        type: 'Full-Time (Work From Office)',
+        salary: '₹2.5 LPA – ₹3.5 LPA',
+        experience: '0 to 5 Years',
+        postedDate: 'May 26, 2026',
+        aboutCompany: 'Tech Mahindra is one of India’s leading IT and business process outsourcing companies. Headquartered in Pune, the company serves global clients across industries such as telecommunications, banking, manufacturing, healthcare, and retail. With a strong international presence and thousands of employees worldwide, Tech Mahindra provides technology-driven business solutions and customer support services to enterprises globally.',
+        description: 'Tech Mahindra is inviting applications for the position of Voice and Chat Support Executive across multiple locations in India. The company is looking for freshers as well as experienced professionals who are interested in building a career in customer support, technical operations, and service desk management. This opportunity is suitable for candidates with strong communication abilities, basic technical troubleshooting knowledge, and customer handling skills.',
+        responsibilities: [
+            'Managing customer queries through calls, chat, and email',
+            'Providing technical assistance and issue resolution',
+            'Troubleshooting desktop, laptop, printer, and network-related issues',
+            'Maintaining records of incidents and solutions',
+            'Delivering quality customer service within defined timelines',
+            'Supporting remote troubleshooting activities',
+            'Handling blended support operations efficiently',
+            'Following standard operational and ITIL procedures',
+            'Ensuring customer satisfaction through timely responses'
+        ],
+        skills: [
+            'Communication Skills', 'Hardware & Networking Basics', 'Problem-solving', 'Customer Handling', 'Antivirus Tools', 'Patch Management', 'SCCM Basics', 'Remote Support'
+        ],
+        eligibility: [
+            'Any Graduate can apply',
+            'Undergraduate candidates are also eligible',
+            'Freshers are welcome',
+            'Candidates with up to 5 years of experience can apply'
+        ],
+        benefits: [
+            'Competitive salary package (₹2.5 LPA – ₹3.5 LPA)',
+            'Career growth opportunities',
+            'Professional work environment',
+            'Employee incentives and benefits',
+            'Fast onboarding process',
+            'Cab facility for eligible locations'
+        ],
+        applicationProcess: [
+            'Step 1: HR Interview',
+            'Step 2: Voice and Accent Assessment',
+            'Step 3: Operations Round',
+            'Step 4: Onboarding information via email for selected candidates'
+        ],
+        faqs: [
+            { q: 'Is this role open for freshers?', a: 'Yes, freshers and candidates with up to 5 years of experience are eligible to apply.' },
+            { q: 'What is the work mode?', a: 'This is a Full-Time, Work From Office role.' }
+        ],
+        applyLink: 'https://careers.techmahindra.com/'
+    },
+    {
         id: 'amazon-sde-i-2026',
         title: 'Software Dev Engineer I (SDE-I)',
         company: 'Amazon',
