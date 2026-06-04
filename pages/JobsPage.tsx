@@ -9,6 +9,36 @@ import CompactAd from '../components/CompactAd';
 
 const WHATSAPP_JOBS = [
     {
+        id: "capgemini-associate-technician-2026",
+        company: "Capgemini",
+        role: "Associate – Products & Systems Technician",
+        location: "Pune, Maharashtra",
+        batch: "2024 / 2025 / 2026",
+        postedAt: "May 30, 2026",
+        skills: ["Operating Systems", "Networking", "Database", "ITIL", "Troubleshooting"],
+        experience: "Freshers / 0–1 Year"
+    },
+    {
+        id: "danaher-ai-ml-intern-2026",
+        company: "Danaher Corporation",
+        role: "Intern – AI/ML",
+        location: "Bangalore, Karnataka",
+        batch: "BE/B.Tech (CS/IT), ME/M.Tech (AI/ML)",
+        postedAt: "June 1, 2026",
+        skills: ["Machine Learning", "Deep Learning", "Python", "SQL", "TensorFlow", "PyTorch"],
+        experience: "Freshers"
+    },
+    {
+        id: "sharechat-manual-qa-intern-2026",
+        company: "ShareChat",
+        role: "Manual QA Intern",
+        location: "Bengaluru, Karnataka",
+        batch: "Pursuing or Recently Graduated",
+        postedAt: "June 1, 2026",
+        skills: ["QA", "SDLC", "Jira", "Python", "JavaScript", "Manual Testing"],
+        experience: "Freshers"
+    },
+    {
         id: "volvo-group-apprentice-2026",
         company: "Volvo Group",
         role: "Graduate Apprentice Trainee",

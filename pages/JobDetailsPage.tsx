@@ -9,6 +9,162 @@ import PlaylistAd from '../components/PlaylistAd';
 // Expanded Mock job database
 const jobListings = [
     {
+        id: 'capgemini-associate-technician-2026',
+        title: 'Associate – Products & Systems Technician',
+        company: 'Capgemini',
+        location: 'Pune, Maharashtra',
+        type: 'Full-Time',
+        salary: 'Competitive Package',
+        experience: 'Freshers / 0–1 Year',
+        postedDate: 'May 30, 2026',
+        aboutCompany: 'Capgemini is a global leader in consulting, technology services, engineering, and digital transformation. With more than 340,000 employees across 50+ countries, the company helps organizations accelerate innovation through cloud, AI, cybersecurity, software engineering, and enterprise technologies.',
+        description: 'Capgemini has officially launched its Off Campus Drive 2026 for the role of Associate – Products & Systems Technician at its Pune office. This role provides hands-on experience in product support, incident management, system monitoring, and troubleshooting. Job ID: 1398805133',
+        responsibilities: [
+            'Provide L1/L2 support for enterprise products and systems.',
+            'Troubleshoot incidents and resolve issues within SLA timelines.',
+            'Monitor and maintain production environments.',
+            'Assist with product configuration and deployments.',
+            'Create technical documentation and knowledge-base articles.',
+            'Collaborate with engineering, QA, and support teams.',
+            'Participate in root cause analysis (RCA) activities.',
+            'Continuously improve operational processes and monitoring mechanisms.'
+        ],
+        skills: [
+            'Operating Systems', 'Networking', 'Database', 'Incident Management', 'Troubleshooting', 'Scripting', 'ITIL', 'Communication Skills'
+        ],
+        eligibility: [
+            'B.E / B.Tech / Diploma (CS, IT, ECE & Related Branches)',
+            '2024, 2025, & 2026 Pass-outs',
+            'Freshers and candidates with up to 1 year of experience are eligible.'
+        ],
+        benefits: [
+            'Competitive Fresher Package',
+            'Comprehensive Training Programs',
+            'Certification Support',
+            'Health Insurance',
+            'Provident Fund Benefits',
+            'Career Growth Opportunities',
+            'Mentorship from Industry Experts'
+        ],
+        applicationProcess: [
+            'Step 1: Update your resume with Academic Details, Technical Skills, Projects, Internships, and Certifications.',
+            'Step 2: Visit the official Capgemini Careers Portal.',
+            'Step 3: Search using Job ID: 1398805133.',
+            'Step 4: Complete the application form and upload your updated resume.',
+            'Step 5: Submit your application and save the reference number for future tracking.'
+        ],
+        faqs: [
+            { q: 'Is this role suitable for freshers?', a: 'Yes. Freshers from eligible branches can apply.' },
+            { q: 'Can Diploma students apply?', a: 'Yes, eligible Diploma candidates can apply if they meet the required criteria.' },
+            { q: 'Is this a work-from-home role?', a: 'The role is primarily based in Pune and may follow a hybrid work model depending on business requirements.' }
+        ],
+        applyLink: 'https://www.capgemini.com/careers/'
+    },
+    {
+        id: 'danaher-ai-ml-intern-2026',
+        title: 'Intern – AI/ML',
+        company: 'Danaher Corporation',
+        location: 'Bangalore, Karnataka',
+        type: 'Internship (1 Year Full-Time)',
+        salary: 'Not disclosed (Industry Standard)',
+        experience: 'Freshers / 1–2 Years',
+        postedDate: 'June 1, 2026',
+        aboutCompany: 'Danaher is a global science and technology company operating across Life Sciences, Diagnostics, and Environmental & Applied Solutions. With operations in over 60 countries, Danaher develops innovative technologies that help improve healthcare outcomes and scientific research worldwide.',
+        description: 'Danaher Corporation is hiring an AI/ML Intern for a one-year full-time internship at their Bangalore office. This is an excellent opportunity for students and fresh graduates interested in Artificial Intelligence, Machine Learning, Data Science, and Healthcare Technology. Job ID: R1310701',
+        responsibilities: [
+            'Develop and optimize Machine Learning models.',
+            'Work on Deep Learning frameworks such as TensorFlow and PyTorch.',
+            'Build data pipelines and preprocessing workflows using Python.',
+            'Analyze and process large datasets.',
+            'Write SQL queries for data extraction and reporting.',
+            'Collaborate with engineering, product, and research teams.',
+            'Document experiments, findings, and model performance.',
+            'Contribute to healthcare informatics and AI-driven solutions.'
+        ],
+        skills: [
+            'Python', 'Machine Learning', 'Deep Learning', 'TensorFlow', 'PyTorch', 'SQL', 'Scikit-Learn', 'Pandas', 'NumPy', 'Java', 'C#'
+        ],
+        eligibility: [
+            'M.E./M.Tech in AI, Machine Learning, Information Technology, Software Engineering (Preferred).',
+            'B.E./B.Tech in Computer Science or Information Technology.',
+            'Freshers can apply.',
+            'Candidates with up to 2 years of relevant experience may receive preference.'
+        ],
+        benefits: [
+            'Global Fortune 500 Company',
+            'Work on Real AI/ML Projects',
+            'Healthcare Technology Exposure',
+            'International Team Collaboration',
+            'Strong Learning Environment',
+            'Excellent Resume Value'
+        ],
+        applicationProcess: [
+            'Step 1: Update your resume with AI/ML Projects, Python Skills, SQL Experience, and GitHub Portfolio.',
+            'Step 2: Visit the official Danaher Careers Portal.',
+            'Step 3: Search for Job ID R1310701 and submit your application.'
+        ],
+        faqs: [
+            { q: 'Is this internship paid?', a: 'Danaher has not publicly disclosed the stipend details. Compensation information may be shared during the hiring process.' },
+            { q: 'Can freshers apply?', a: 'Yes, eligible freshers can apply.' },
+            { q: 'Is there a PPO opportunity?', a: 'High-performing interns may receive full-time opportunities based on business requirements and performance.' }
+        ],
+        applyLink: 'https://jobs.danaher.com/global/en'
+    },
+    {
+        id: 'sharechat-manual-qa-intern-2026',
+        title: 'Manual QA Intern',
+        company: 'ShareChat (Mohalla Tech Pvt Ltd)',
+        location: 'Bengaluru, Karnataka',
+        type: 'Internship',
+        salary: 'Stipend based on performance',
+        experience: 'Freshers',
+        postedDate: 'June 1, 2026',
+        aboutCompany: 'ShareChat (Mohalla Tech Pvt Ltd) is India\'s largest homegrown social media company, serving over 200 million monthly monetizable users through products like ShareChat, Moj, and QuickTV.',
+        description: 'ShareChat is looking for a Manual QA Intern to join their team in Bengaluru. The ideal candidate will be responsible for designing and executing manual test cases, validating AI-generated code, and ensuring product quality before releases reach millions of users.',
+        responsibilities: [
+            'Design and execute manual test cases for web and mobile applications.',
+            'Perform functional, regression, exploratory, smoke, sanity, and UAT testing.',
+            'Validate AI-generated code produced by tools such as GitHub Copilot and Cursor.',
+            'Identify, document, and track defects using Jira, Linear, or similar tools.',
+            'Collaborate with developers and product teams during Agile development cycles.',
+            'Maintain test plans, test cases, and QA documentation.',
+            'Ensure product quality before releases reach millions of users.'
+        ],
+        skills: [
+            'SDLC', 'QA Methodologies', 'Python', 'JavaScript', 'Jira', 'Linear', 'Trello', 'Postman', 'Git', 'GitHub'
+        ],
+        eligibility: [
+            'B.E./B.Tech/B.Sc. in Computer Science, IT, Electronics, or related field',
+            'Pursuing or Recently Graduated',
+            'Understanding of Software Development Life Cycle (SDLC)',
+            'Basic knowledge of QA methodologies and testing concepts',
+            'Ability to read and understand Python or JavaScript code',
+            'Familiarity with bug-tracking tools such as Jira, Linear, or Trello',
+            'Strong analytical and problem-solving skills',
+            'Good written and verbal communication skills',
+            'Preferred: Exposure to AI tools like ChatGPT, GitHub Copilot, or Cursor, API testing using Postman, Knowledge of Git and GitHub, Mobile application testing experience'
+        ],
+        benefits: [
+            'Work on AI-powered products used by millions of users.',
+            'Gain hands-on experience in software quality assurance.',
+            'Opportunity for full-time conversion based on performance.',
+            'Hybrid work environment.',
+            'Exposure to Bengaluru\'s leading technology ecosystem.'
+        ],
+        applicationProcess: [
+            'Step 1: Application Screening',
+            'Step 2: Online Assessment / Assignment (if applicable)',
+            'Step 3: Technical Interview',
+            'Step 4: HR Discussion',
+            'Step 5: Final Selection'
+        ],
+        faqs: [
+            { q: 'Is this an onsite role?', a: 'No, it is a Hybrid role based in Bengaluru.' },
+            { q: 'What is the selection process?', a: 'The process includes Application Screening, Online Assessment (if applicable), Technical Interview, HR Discussion, and Final Selection.' }
+        ],
+        applyLink: 'https://sharechat.com/about/careers'
+    },
+    {
         id: 'volvo-group-apprentice-2026',
         title: 'Graduate Apprentice Trainee (NATS)',
         company: 'Volvo Group (Volvo India)',
