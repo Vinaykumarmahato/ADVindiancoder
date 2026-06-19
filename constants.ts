@@ -5,7 +5,7 @@ export const NAV_LINKS = [
     { name: 'Home', path: '/' },
     { name: 'Courses', path: '/courses' },
     { name: 'ADV Lab', path: '/adv-lab' },
-    { name: 'ADV ExamHub', path: 'https://advexamhub.vercel.app/' },
+    { name: 'ADV ExamHub', path: 'https://mscbahrauli.vercel.app/' },
     { name: 'Live Masterclass', path: '/masterclass' },
     { name: 'Notes', path: '/resources' },
     { name: 'Success Stories', path: '/success-stories' },
