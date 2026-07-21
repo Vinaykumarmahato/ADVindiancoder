@@ -561,9 +561,29 @@ const WHATSAPP_JOBS = [
         batch: "2024 / 2025 / 2026",
         postedAt: "April 19, 2026",
         skills: ["Manual Testing", "JIRA"],
-        experience: "Freshers"
-    }
-];
+        experience: "Freshers",
+    },
+    {
+        id: 'cisco-recruitment-2026',
+        company: 'Cisco',
+        role: 'Software Engineer',
+        location: 'Bangalore (Hybrid)',
+        batch: '2027',
+        postedAt: 'July 21, 2026',
+        skills: ['Java', 'Python', 'C', 'C++', 'Data Structures', 'Algorithms', 'Object-Oriented Programming', 'Git', 'Problem Solving'],
+        experience: 'Freshers'
+    },
+    {
+        id: 'amazon-off-campus-2026',
+        company: 'Amazon',
+        role: 'Software Development Engineer I (SDE I)',
+        location: 'Bangalore, Hyderabad, Chennai, Maharashtra, Delhi',
+        batch: '2024 / 2025 / 2026',
+        postedAt: 'July 21, 2026',
+        skills: ['Java', 'Python', 'C', 'C++', 'Data Structures', 'Algorithms', 'Problem Solving', 'Object-Oriented Programming'],
+        experience: 'Freshers & Experienced'
+    },
+    ];
 
 const fadeUp = {
     hidden: { opacity: 0, y: 30 },

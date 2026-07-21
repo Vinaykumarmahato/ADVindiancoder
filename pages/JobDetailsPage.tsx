@@ -1201,7 +1201,54 @@ const jobListings = [
         ],
         applyLink: 'https://jobs.cisco.com'
     },
-    {
+        {
+            id: 'cisco-recruitment-2026',
+            title: 'Software Engineer',
+            company: 'Cisco',
+            location: 'Bangalore (Hybrid)',
+            type: 'Full-Time',
+            salary: 'Competitive Salary (As per Company Standards)',
+            experience: 'Freshers',
+            postedDate: 'May 30, 2026',
+            aboutCompany: 'Cisco is a global technology company known for its innovations in networking, cybersecurity, cloud, and enterprise solutions.',
+            description: 'Cisco is inviting applications from students graduating in 2027 for the position of Software Engineer through its Code with Cisco – University Hiring (UHR FY27) program. This opportunity is designed for engineering and master\'s students who want to begin their careers in software engineering while working on networking, cloud, security, and enterprise technologies.',
+            responsibilities: [
+                'Develop software solutions for networking and cloud platforms',
+                'Collaborate with cross-functional engineering teams',
+                'Participate in code reviews and Agile ceremonies',
+                'Contribute to AI-driven networking projects',
+                'Write clean, maintainable code following best practices'
+            ],
+            skills: [
+                'Java', 'Python', 'C++', 'Data Structures', 'Algorithms', 'Problem Solving', 'Object-Oriented Programming'
+            ],
+            eligibility: [
+                "Bachelor's or Master's Degree in Computer Science, IT, or related fields",
+                'Graduating batch 2027',
+                'Strong academic record and passion for technology'
+            ],
+            benefits: [
+                'Competitive Salary',
+                'Hybrid work model',
+                'Mentorship from senior engineers',
+                'Access to learning resources and certifications',
+                'Opportunity for growth within Cisco'
+            ],
+            applicationProcess: [
+                'Step 1: Update your resume with academic details, technical skills, projects, internships, and certifications.',
+                'Step 2: Visit the official Cisco Careers portal.',
+                'Step 3: Search using Job ID or filter by Code with Cisco program.',
+                'Step 4: Complete the application form and upload your resume.',
+                'Step 5: Submit and save reference number for tracking.'
+            ],
+            faqs: [
+                { q: 'Is this role suitable for freshers?', a: 'Yes. Freshers from eligible batches can apply.' },
+                { q: 'Can Diploma students apply?', a: 'Yes, eligible Diploma candidates can apply if they meet the criteria.' },
+                { q: 'Is this a hybrid role?', a: 'The role follows a hybrid work model in Bangalore.' }
+            ],
+            applyLink: 'https://jobs.cisco.com'
+        },
+        {
         id: 'barclays-software-engineer-2026',
         title: 'Software Engineer',
         company: 'Barclays',
