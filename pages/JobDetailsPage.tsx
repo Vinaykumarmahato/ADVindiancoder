@@ -508,7 +508,7 @@ const jobListings = [
             { q: 'Is this role open for freshers?', a: 'Yes, freshers and candidates with up to 5 years of experience are eligible to apply.' },
             { q: 'What is the work mode?', a: 'This is a Full-Time, Work From Office role.' }
         ],
-        applyLink: 'https://careers.techmahindra.com/'
+        applyLink: 'https://www.amazon.jobs/en/jobs/10477224/software-dev-engineer-temp'
     },
     {
         id: 'amazon-sde-i-2026',
@@ -1199,7 +1199,7 @@ const jobListings = [
             { q: 'What are the location requirements?', a: 'This is an onsite role based at Cisco\'s Bangalore campus.' },
             { q: 'What is the NATS requirement?', a: 'Applicants must have a valid student enrolment number from the official NATS portal.' }
         ],
-        applyLink: 'https://jobs.cisco.com'
+        applyLink: 'https://careers.cisco.com/global/en/job/CISCISGLOBAL2016168EXTERNALENGLOBAL/Software-Engineer-India-Engineering-UHR-FY27-Code-with-Cisco'
     },
         {
             id: 'cisco-recruitment-2026',
@@ -1246,7 +1246,7 @@ const jobListings = [
                 { q: 'Can Diploma students apply?', a: 'Yes, eligible Diploma candidates can apply if they meet the criteria.' },
                 { q: 'Is this a hybrid role?', a: 'The role follows a hybrid work model in Bangalore.' }
             ],
-            applyLink: 'https://jobs.cisco.com'
+            applyLink: 'https://careers.cisco.com/global/en/job/CISCISGLOBAL2016168EXTERNALENGLOBAL/Software-Engineer-India-Engineering-UHR-FY27-Code-with-Cisco'
         },
         {
         id: 'barclays-software-engineer-2026',
@@ -2684,7 +2684,7 @@ const jobListings = [
             { q: 'What is SRE (Site Reliability Engineering)?', a: 'SRE combines software engineering with IT operations — ensuring systems are highly available, scalable, and reliable.' },
             { q: 'Is this remote or hybrid?', a: 'Hybrid at Bangalore.' }
         ],
-        applyLink: 'https://careers.hpe.com/'
+        applyLink: 'https://www.amazon.jobs/en/jobs/10477224/software-dev-engineer-temp'
     },
     {
         id: 'amazon-vcs-2026',
@@ -2728,7 +2728,7 @@ const jobListings = [
             { q: 'Is this fully work from home?', a: 'Yes, 100% remote across India.' },
             { q: 'Do I need a laptop?', a: 'Yes, a working laptop/PC and a stable internet connection are typically required.' }
         ],
-        applyLink: 'https://amazon.jobs/'
+        applyLink: 'https://www.amazon.jobs/en/jobs/10477224/software-dev-engineer-temp'
     },
     {
         id: 'upgrad-qa-intern-2026',
