@@ -116,7 +116,7 @@ const Footer = () => {
                         <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Subscribe to receive fast-track job postings, tech interview questions, and compiler updates.</p>
                         
                         <form onSubmit={handleSubscribe} className="space-y-2 mt-4">
-                            <div className="flex gap-2">
+                            <div className="flex flex-col sm:flex-row gap-2">
                                 <input 
                                     type="email"
                                     value={email}
@@ -124,12 +124,12 @@ const Footer = () => {
                                     placeholder="Enter your email"
                                     required
                                     disabled={subscribing}
-                                    className="flex-1 px-4 py-2.5 text-xs rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-805 dark:text-white font-semibold outline-none focus:border-green-500 transition-all placeholder:text-gray-400 disabled:opacity-50"
+                                    className="w-full flex-1 px-4 py-2.5 text-xs rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-805 dark:text-white font-semibold outline-none focus:border-green-500 transition-all placeholder:text-gray-400 disabled:opacity-50"
                                 />
                                 <button 
                                     type="submit"
                                     disabled={subscribing}
-                                    className="px-4 py-2.5 rounded-xl bg-green-600 hover:bg-green-500 text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(34,197,94,0.2)] hover:scale-105 active:scale-[0.98] cursor-pointer disabled:opacity-50"
+                                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-green-600 hover:bg-green-500 text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(34,197,94,0.2)] hover:scale-105 active:scale-[0.98] cursor-pointer disabled:opacity-50"
                                 >
                                     {subscribing ? '...' : 'Subscribe'}
                                 </button>

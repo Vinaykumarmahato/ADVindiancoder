@@ -104,7 +104,7 @@ const HomePage = () => {
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans overflow-x-hidden transition-colors duration-300">
 
                 {/* 1. HERO SECTION */}
-                <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center pt-10 md:pt-28 lg:pt-32 pb-8 md:pb-12 overflow-hidden">
+                <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center pt-28 md:pt-28 lg:pt-32 pb-8 md:pb-12 overflow-hidden">
                     {/* Background Effects */}
                     <div className="absolute inset-0 z-0">
                         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
@@ -176,7 +176,7 @@ const HomePage = () => {
                                 initial={{ opacity: 0, scale: 0.9, y: 30 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                className="lg:col-span-5 w-full relative z-20"
+                                className="lg:col-span-5 w-full relative z-20 min-w-0"
                             >
                                 <InteractiveSimulator />
                             </motion.div>

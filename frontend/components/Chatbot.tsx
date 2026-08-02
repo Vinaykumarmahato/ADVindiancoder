@@ -102,7 +102,7 @@ const Chatbot = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 50, scale: 0.9 }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed bottom-6 right-6 z-[2000] w-[360px] sm:w-[400px] h-[550px] bg-[#0c0f1d]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden"
+                        className="fixed bottom-6 right-6 z-[2000] w-[calc(100vw-3rem)] sm:w-[400px] h-[75vh] sm:h-[550px] bg-[#0c0f1d]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden"
                     >
                         {/* Header */}
                         <div className="p-4 bg-black/40 border-b border-white/10 flex items-center justify-between">
