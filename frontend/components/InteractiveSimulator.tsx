@@ -249,7 +249,7 @@ print(check_streak(45))`;
                                     <button
                                         onClick={handleRunCode}
                                         disabled={executionState === 'running'}
-                                        className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs shadow-lg transition-all active:scale-[0.97] cursor-pointer ${
+                                        className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs shadow-lg transition-all active:scale-[0.97] cursor-pointer whitespace-nowrap min-w-max ${
                                             executionState === 'running' 
                                                 ? 'bg-blue-600/30 text-blue-300 border border-blue-500/20' 
                                                 : activeTab === 'java'
