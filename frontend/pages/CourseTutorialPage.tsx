@@ -236,7 +236,7 @@ const CourseTutorialPage = () => {
             const enrollUser = async () => {
                 const token = localStorage.getItem('adv_coder_token');
                 try {
-                    await fetch('http://localhost:8080/api/enrollments/enroll', {
+                    await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/enrollments/enroll`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -305,7 +305,7 @@ const CourseTutorialPage = () => {
         const completedVideosStr = completedVideoIds.join(',');
 
         try {
-            await fetch('http://localhost:8080/api/enrollments/update-progress', {
+            await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/enrollments/update-progress`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -342,7 +342,7 @@ const CourseTutorialPage = () => {
         const completedVideosStr = updated.join(',');
 
         try {
-            await fetch('http://localhost:8080/api/enrollments/update-progress', {
+            await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/enrollments/update-progress`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

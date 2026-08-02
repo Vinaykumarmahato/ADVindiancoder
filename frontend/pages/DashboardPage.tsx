@@ -90,7 +90,7 @@ const DashboardPage: React.FC = () => {
         const token = localStorage.getItem('adv_coder_token');
         if (!token) return;
         try {
-            const res = await fetch('http://localhost:8080/api/auth/submissions', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/submissions`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {
@@ -137,7 +137,7 @@ const DashboardPage: React.FC = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/auth/profile', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/profile`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 }

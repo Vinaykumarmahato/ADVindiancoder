@@ -175,7 +175,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8080/api/auth/email/send-otp', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/email/send-otp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -238,7 +238,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8080/api/auth/mobile/send-otp', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/mobile/send-otp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -631,7 +631,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
                                                                         setError(null);
                                                                         setIsLoading(true);
                                                                         try {
-                                                                            const response = await fetch('http://localhost:8080/api/auth/email/send-otp', {
+                                                                            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/email/send-otp`, {
                                                                                 method: 'POST',
                                                                                 headers: {
                                                                                     'Content-Type': 'application/json',

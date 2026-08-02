@@ -68,7 +68,7 @@ const PracticeHubPage: React.FC = () => {
             }
 
             try {
-                const response = await fetch('http://localhost:8080/api/practice/problems', { headers });
+                const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems`, { headers });
                 if (!response.ok) {
                     throw new Error('Failed to fetch practice problems.');
                 }

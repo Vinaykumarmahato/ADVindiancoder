@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const login = async (email: string, password: string): Promise<void> => {
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:8080/api/auth/login', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setLoading(true);
         try {
             const uniqueUsername = name.replace(/\s+/g, '').toLowerCase() + '_' + Math.floor(100 + Math.random() * 900);
-            const response = await fetch('http://localhost:8080/api/auth/register', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setLoading(true);
         try {
             if (provider === 'google' && token) {
-                const response = await fetch('http://localhost:8080/api/auth/google', {
+                const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/google`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -179,7 +179,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 };
             }
 
-            const response = await fetch('http://localhost:8080/api/auth/social', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/social`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -217,7 +217,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const loginMobile = async (phoneNumber: string, otpCode: string): Promise<void> => {
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:8080/api/auth/mobile/verify-otp', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/mobile/verify-otp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -255,7 +255,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const loginEmailOtp = async (email: string, otpCode: string): Promise<void> => {
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:8080/api/auth/email/verify-otp', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/email/verify-otp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -294,7 +294,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) return;
         try {
-            const response = await fetch('http://localhost:8080/api/auth/profile', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/profile`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

@@ -75,7 +75,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, da
         if (!token) return;
 
         try {
-            const response = await fetch('http://localhost:8080/api/auth/profile', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/profile`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

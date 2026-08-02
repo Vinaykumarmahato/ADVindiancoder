@@ -70,7 +70,7 @@ const ExamHubPage: React.FC = () => {
     useEffect(() => {
         const fetchExams = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/exams');
+                const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/exams`);
                 if (response.ok) {
                     const data = await response.json();
                     
@@ -142,7 +142,7 @@ const ExamHubPage: React.FC = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/auth/track-mock-score', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/track-mock-score`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

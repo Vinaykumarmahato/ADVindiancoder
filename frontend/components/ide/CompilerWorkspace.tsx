@@ -255,7 +255,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
             const currentCode = activeFile ? activeFile.content : code;
             const activeName = activeFile ? activeFile.name : (language === 'java' ? 'Main.java' : 'main');
 
-            const res = await fetch('http://localhost:8080/api/share/create', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/share/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -303,7 +303,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         const token = localStorage.getItem('adv_coder_token');
         if (!token) return null;
         try {
-            const response = await fetch('http://localhost:8080/api/auth/projects', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/projects`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -324,7 +324,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         const token = localStorage.getItem('adv_coder_token');
         if (!token) return;
         try {
-            await fetch('http://localhost:8080/api/auth/log-activity', {
+            await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/log-activity`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -354,7 +354,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         };
         
         try {
-            await fetch('http://localhost:8080/api/auth/projects', {
+            await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/projects`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -378,7 +378,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
 
             const fileCode = activeFile ? activeFile.content : code;
 
-            await fetch('http://localhost:8080/api/auth/track-compile', {
+            await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/track-compile`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -388,7 +388,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
             });
             
             if (success) {
-                const profileRes = await fetch('http://localhost:8080/api/auth/profile', {
+                const profileRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/profile`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

@@ -669,7 +669,7 @@ const PracticeWorkspacePage: React.FC = () => {
                 // Increment total compiles count on backend
                 const token = localStorage.getItem('adv_coder_token');
                 if (token) {
-                    await fetch('http://localhost:8080/api/auth/track-compile', {
+                    await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/track-compile`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

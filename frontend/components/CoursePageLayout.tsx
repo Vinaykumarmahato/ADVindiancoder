@@ -27,7 +27,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                 return;
             }
             try {
-                const response = await fetch('http://localhost:8080/api/enrollments/progress', {
+                const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/enrollments/progress`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -57,7 +57,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
         const completedTopicsStr = updatedTopics.join(',');
 
         try {
-            await fetch('http://localhost:8080/api/enrollments/update-progress', {
+            await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/enrollments/update-progress`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

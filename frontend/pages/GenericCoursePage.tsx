@@ -48,7 +48,7 @@ const GenericCoursePage = () => {
         const token = localStorage.getItem('adv_coder_token');
 
         try {
-            const response = await fetch('http://localhost:8080/api/enrollments/enroll', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/enrollments/enroll`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ const GenericCoursePage = () => {
         const token = localStorage.getItem('adv_coder_token');
 
         try {
-            const response = await fetch('http://localhost:8080/api/enrollments/update-progress', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/enrollments/update-progress`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
