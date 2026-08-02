@@ -1,0 +1,5 @@
+fetch('https://leetcode.com/graphql', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ query: 'query { question(titleSlug: "two-sum") { content } }' })
+}).then(r => r.json()).then(r => console.log(r.data.question.content.substring(0, 100))).catch(console.error);

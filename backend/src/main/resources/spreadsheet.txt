@@ -1,0 +1,515 @@
+DSA Master Sheet									
+"Sr 
+No."	"Sub
+Sr No."	Topic	Subtopic	Problem Name	Link	Difficulty	Status	Notes	Revisit
+PHASE 1 : FUNDAMENTALS & LINEAR DATA STRUCTURES									
+1	1	Arrays	Array Basics	Find Element at a Given Index	Link	★☆☆☆☆	Not Attempted		Not Attempted
+2	2			Min and Max in Array	Link	★☆☆☆☆	Tried (couldn't think of logic)		Revisit
+3	3			Sum of Array	Link	★☆☆☆☆	Logic Done (couldn't code)		Can Revisit 
+4	4			Sum of Digits	Link	★☆☆☆☆	Code Done (but has error)		No Revisit Required
+5	5			Check If Array is Sorted	Link	★☆☆☆☆	Done 		
+6	6			Alternates In Array	Link	★☆☆☆☆	Done 		
+7	7		Core Manipulations	Remove Duplicates from Array	Link	★★☆☆☆			
+8	8			Second Largest in Array	Link	★★☆☆☆			
+9	9			Reverse an Array	Link	★★☆☆☆			
+10	10			Missing Number	Link	★★☆☆☆			
+11	11			Segregate 0s and 1s	Link	★★☆☆☆			
+12	12			Maximum Consecutive Ones	Link	★★☆☆☆			
+13	13			Palindromic Array	Link	★★☆☆☆			
+14	14			Move Zeroes to End	Link	★★☆☆☆			
+15	15			Sort array with 0's 1's and 2's (Dutch Flag)	Link	★★☆☆☆			
+16	16		Intermediate Problems	Equilibrium Point	Link	★★★☆☆			
+17	17			Reverse Integer	Link	★★★☆☆			
+18	18			Leaders in Array	Link	★★★☆☆			
+19	19			Increasing Array	Link	★★★☆☆			
+20	20			Rearrange Array Elements by Sign	Link	★★★☆☆			
+21	21			Rotate Array by One	Link	★★★☆☆			
+22	22			Majority Element I (Boyer - Moore)	Link	★★★☆☆			
+23	23		Advanced Problems	Rotate Array by K steps	Link	★★★★☆			
+24	24			Wiggle Sort II	Link	★★★★☆			
+25	25			Majority Element II	Link	★★★★☆			
+26	26			Best Time to Buy and Sell Stock	Link	★★★★☆			
+27	27			Next Permutation	Link	★★★★☆			
+28	28			Maximum Value Of Expression	Link	★★★★☆			
+29	29			First Missing Positive	Link	★★★★★			
+30	1	2D Arrays	Matrix Basics	Sum of elements in a matrix	Link	★★☆☆☆			
+31	2			Count Number Of Zeroes	Link	★★☆☆☆			
+32	3			Count Negative Numbers in a matrix	Link	★★☆☆☆			
+33	4			Matrix Diagonal Sum	Link	★★☆☆☆			
+34	5		Matrix Operations	Addition of Two Square Matrix	Link	★★★☆☆			
+35	6			Multiply Matrices	Link	★★★☆☆			
+36	7			Transpose Matrix	Link	★★★☆☆			
+37	8		Advanced Matrix	Spiral Matrix	Link	★★★★☆			
+38	9			ZigZag Matrix	Link	★★★★☆			
+39	10			Rotate Matrix (90°)	Link	★★★★☆			
+40	11			Determine Whether matrix can be obtained by rotation	Link	★★★★☆			
+41	12			Set Matrix Zeroes	Link	★★★★★			
+42	1	Basic Maths	Number Theory Basics	Check if a number is Armstrong	Link	★☆☆☆☆			
+43	2			Print all Divisors of a Number	Link	★☆☆☆☆			
+44	3			Check if a number is Prime	Link	★☆☆☆☆			
+45	4			GCD / HCF of 2 numbers	Link	★☆☆☆☆			
+46	5			Prime Factorisation of a Number	Link	★★☆☆☆			
+47	6			Count Primes in range L to R	Link	★★★☆☆			
+48	1	Strings	String Fundamentals	Maximum Occuring Character	Link	★☆☆☆☆			
+49	2			Remove Spaces	Link	★☆☆☆☆			
+50	3			Print first letter of every word in the string	Link	★★☆☆☆			
+51	4			Remove Consecutive Characters	Link	★★☆☆☆			
+52	5			Valid Palindrome	Link	★★☆☆☆			
+53	6			Valid Anagram	Link	★★☆☆☆			
+54	7			Isomorphic Strings	Link	★★☆☆☆			
+55	8		String Manipulation	Delete Characters To Make Fancy String	Link	★★★☆☆			
+56	9			Reverse Words in a String	Link	★★★☆☆			
+57	10			String to integer (atoi)	Link	★★★☆☆			
+58	11			Roman to integer	Link	★★★☆☆			
+59	12			Rotate String	Link	★★★☆☆			
+60	13			Longest common prefix	Link	★★★☆☆			
+61	14		Advanced Problems	Longest palindromic substring	Link	★★★★☆			
+62	15			Multiply Two Strings	Link	★★★★☆			
+63	16			Maximum Nesting Depth of the Parentheses	Link	★★★★☆			
+64	17			Beauty Of All substrings	Link	★★★★☆			
+PHASE 2 : SEARCHING ALGORITHM									
+65	1	Binary Search	BS on 1D Array Basics	Search X in sorted array	Link	★★☆☆☆			
+66	2			Lower Bound	Link	★★☆☆☆			
+67	3			Upper Bound	Link	★★☆☆☆			
+68	4			Search insert position	Link	★★☆☆☆			
+69	5			Floor In Sorted Array	Link	★★☆☆☆			
+70	6			Ceil In Sorted Array	Link	★★☆☆☆			
+71	7			Guess Number Higher or Lower API	Link	★★☆☆☆			
+72	8			First 1 in a Sorted Binary Array	Link	★★☆☆☆			
+73	9			Kth Missing Positive Number	Link	★★☆☆☆			
+74	10			Find minimum in Rotated Sorted Array	Link	★★☆☆☆			
+75	11		BS on 1D Array Intermediate	First and last occurrence	Link	★★★☆☆			
+76	12			Search in rotated sorted array-I	Link	★★★☆☆			
+77	13			Search in rotated sorted array-II	Link	★★★☆☆			
+78	14			Single element in a Sorted Array	Link	★★★☆☆			
+79	15			Find kth Rotation	Link	★★★☆☆			
+80	16			Find Peak Element	Link	★★★☆☆			
+81	17		BS on 2D Arrays	Count Negative Numbers in a Sorted Matrix	Link	★★☆☆☆			
+82	18			Find row with maximum 1's	Link	★★☆☆☆			
+83	19			Search a 2D Matrix I	Link	★★☆☆☆			
+84	20			Search a 2D Matrix  II	Link	★★★☆☆			
+85	21			Find Peak Element - II	Link	★★★★☆			
+86	22			Median in a row-wise sorted Matrix	Link	★★★★☆			
+87	23		BS on Answer	Sqrt (x)	Link	★★☆☆☆			
+88	24			Valid Perfect Square	Link	★★☆☆☆			
+89	25			Find Nth root of a number	Link	★★★☆☆			
+90	26			Koko eating bananas	Link	★★★☆☆			
+91	27			Find the Smallest Divisor Given a Threshold	Link	★★★☆☆			
+92	28			Minimum Speed to Arrive on Time	Link	★★★☆☆			
+93	29			Minimum days to make M bouquets	Link	★★★☆☆			
+94	30			Capacity to Ship Packages Within D Days	Link	★★★☆☆			
+95	31			Book Allocation Problem	Link	★★★☆☆			
+96	32			Split Array Largest Sum	Link	★★★★☆			
+97	33			Painter's Partition Problem	Link	★★★★☆			
+98	34			K-th element of two sorted Arrays	Link	★★★★☆			
+99	35			Aggressive Cows	Link	★★★★★			
+100	36			Minimize Max Distance to Gas Station	Link	★★★★★			
+101	37			Median of Two Sorted Arrays	Link	★★★★★			
+PHASE 3 : ALGORITHMIC THINKING									
+102	1	Recursion	Introduction to Recursion	Print 1 to N without using loops	Link	★☆☆☆☆			
+103	2			Print N to 1 without loop	Link	★☆☆☆☆			
+104	3			Sum of first N numbers	Link	★☆☆☆☆			
+105	4			Factorial of a given number	Link	★☆☆☆☆			
+106	5			Fibonacci Number	Link	★☆☆☆☆			
+107	6		Recursion on Arrays & Math	Reverse an array	Link	★★☆☆☆			
+108	7			Pow(x, n)	Link	★★☆☆☆			
+109	8			Count Good Numbers	Link	★★☆☆☆			
+110	9			Recursive Implementation of atoi()	Link	★★★☆☆			
+111	10		Recursion On strings	Generate Binary Strings Without Consecutive 1s	Link	★★★☆☆			
+112	1	Sorting	Sorting Fundamentals	Linear Search	Link	★☆☆☆☆			
+113	2			Sort An Array (Implement Merge / Quick Sort)	Link	★★☆☆☆			
+114	3			Sort Array By Parity	Link	★★☆☆☆			
+115	4			Maximum Gap	Link	★★★☆☆			
+116	5		Custom Comparator Sorting	Sort Elements by Decreasing Frequency	Link	★★★☆☆			
+117	6			Reorder Data In Log Files	Link	★★★★☆			
+118	7		Advanced Sorting	Merge Intervals	Link	★★★☆☆			
+119	8			Count Inversions (Merge Sort)	Link	★★★★★			
+120	9			Reverse Pairs (Merge Sort)	Link	★★★★★			
+PHASE 4 : OBJECT ORIENTED CONCEPTS									
+121	1	OOPS	OOPS Fundamentals	Classes, Objects & Constructors		★☆☆☆☆			
+122	2			Inheritance & Polymorphism		★★☆☆☆			
+123	3			Encapsulation & Abstraction		★★☆☆☆			
+124	4			Interfaces & Abstract Classes		★★★☆☆			
+125	5		Design Patterns	Singleton Pattern		★★★☆☆			
+126	6			Factory Pattern		★★★★☆			
+PHASE 5 : ADVANCED LINEAR DATA STRUCTURES									
+127	1	Linkedlist	Foundation	Array to Linked List	Link	★☆☆☆☆			
+128	2			Count Nodes / Find Length of Linked List	Link	★☆☆☆☆			
+129	3			Search in a Linked List	Link	★☆☆☆☆			
+130	4		Insertion and Deletion	Insert Node at Head / Tail	Link	★★☆☆☆			
+131	5			Insert in Middle of Linked List	Link	★★☆☆☆			
+132	6			Remove Linked List Elements (By Value)	Link	★★☆☆☆			
+133	7			Remove Duplicates from Sorted List	Link	★★☆☆☆			
+134	8			Delete Node in a Linked List (Given only node ref)	Link	★★★☆☆			
+135	9			Remove Duplicates from Unsorted List	Link	★★★☆☆			
+136	10			Delete the Middle Node of a Linked List	Link	★★★☆☆			
+137	11		Fast and Slow Pointer	Middle of the Linked List	Link	★★☆☆☆			
+138	12			Linked List Cycle	Link	★★☆☆☆			
+139	13			Intersection of Two Linked Lists	Link	★★☆☆☆			
+140	14			Length of Loop in Linked List	Link	★★★☆☆			
+141	15			Linked List Cycle II (Find Starting Point)	Link	★★★☆☆			
+142	16			Remove Loop in Linked List	Link	★★★☆☆			
+143	17			Remove Nth Node From End of List	Link	★★★☆☆			
+144	18		Reversals and Rotations	Reverse a Linked List (Iterative & Recursive)	Link	★★☆☆☆			
+145	19			Palindrome Linked List	Link	★★☆☆☆			
+146	20			Swap Nodes in Pairs	Link	★★★☆☆			
+147	21			Odd Even Linked List (By Index)	Link	★★★☆☆			
+148	22			Reorder List	Link	★★★★☆			
+149	23			Rotate List	Link	★★★★☆			
+150	24		Math in Linked List	Add One to a Number Represented by LL	Link	★★★☆☆			
+151	25			Add Two Numbers (Reverse Order)	Link	★★★☆☆			
+152	26			Add Two Numbers II (Forward Order)	Link	★★★★☆			
+153	27		Sorting, Merging & Segregating	Merge Two Sorted Lists	Link	★★☆☆☆			
+154	28			Sort a Linked List of 0s, 1s, and 2s	Link	★★★☆☆			
+155	29			Segregate Even and Odd Nodes (By Value)	Link	★★★☆☆			
+156	30			Partition List	Link	★★★★☆			
+157	31			Insertion Sort List	Link	★★★★☆			
+158	32			Sort List (Merge Sort on LL)	Link	★★★★★			
+159	33		Doubly Linked Lists (DLL)	Array to Doubly Linked List	Link	★☆☆☆☆			
+160	34			Insert/Delete in a Doubly Linked List		★★☆☆☆			
+161	35			Reverse a Doubly Linked List	Link	★★☆☆☆			
+162	36			Remove Duplicates from Sorted DLL	Link	★★☆☆☆			
+163	37			Insert in Sorted way in a Sorted DLL	Link	★★★☆☆			
+164	38			Delete all occurrences of a key in DLL	Link	★★★☆☆			
+165	39			Find Pairs with Given Sum in a DLL	Link	★★★☆☆			
+166	40		Advanced Problems	Copy List with Random Pointer (Clone LL)	Link	★★★★☆			
+167	41			Flattening a Linked List	Link	★★★★☆			
+168	42			Reverse Linked List in Groups of Size K	Link	★★★★★			
+169	43			Reverse Alternate K Nodes	Link	★★★★★			
+170	1	Stacks	Core Implementation	Implement Stack using Arrays	Link	★☆☆☆☆			
+171	2			Implement Stack using Linked List	Link	★☆☆☆☆			
+172	3		Parentheses & String Parsing	Valid Parentheses	Link	★★☆☆☆			
+173	4			Remove Outermost Parentheses	Link	★★☆☆☆			
+174	5			Remove All Adjacent Duplicates In String	Link	★★☆☆☆			
+175	6			Minimum Add to Make Parentheses Valid	Link	★★☆☆☆			
+176	7			Minimum Remove to Make Valid Parentheses	Link	★★★☆☆			
+177	8			Evaluate Reverse Polish Notation	Link	★★★☆☆			
+178	9		Recursion Based Stack Problems	Sort a Stack Using Recursion	Link	★★★☆☆			
+179	10			Reverse a Stack (Using Recursion)	Link	★★★☆☆			
+180	11		Expression Conversions	Infix to Postfix Conversion	Link	★★☆☆☆			
+181	12			Prefix to Infix Conversion	Link	★★☆☆☆			
+182	13			Postfix to Prefix Conversion	Link	★★☆☆☆			
+183	14			Infix to Prefix Conversion	Link	★★★☆☆			
+184	15		The Monotonic Stack Pattern	Next Greater Element I	Link	★★☆☆☆			
+185	16			Next Smaller Element / Help Classmates	Link	★★★☆☆			
+186	17			Next Greater Element II (Circular Array)	Link	★★★☆☆			
+187	18			Stock Span Problem	Link	★★★☆☆			
+188	19			Number of Greater Elements to the Right	Link	★★★☆☆			
+189	20			Asteroid Collision	Link	★★★☆☆			
+190	21			Remove K Digits	Link	★★★★☆			
+191	22			Remove Duplicate Letters	Link	★★★★☆			
+192	23		Advanced Monotonic Stack & Applications	Largest Rectangle in Histogram	Link	★★★★☆			
+193	24			Sum of Subarray Minimums	Link	★★★★☆			
+194	25			Sum of Subarray Ranges	Link	★★★★☆			
+195	26			Maximal Rectangle (2D Grid)	Link	★★★★★			
+196	27		Classic Design Problems	Min Stack (Design a stack with O(1) getMin)	Link	★★★☆☆			
+197	28			The Celebrity Problem (Elimination via Stack)	Link	★★★☆☆			
+198	1	Queues	Queue Implementation	Implement Queue using Arrays	Link	★☆☆☆☆			
+199	2			Implement Queue using Linked List	Link	★☆☆☆☆			
+200	3			Implement Queue using Stacks	Link	★★☆☆☆			
+201	4			Implement Stack using Queues	Link	★★☆☆☆			
+202	5			Reverse First K elements of Queue	Link	★★☆☆☆			
+203	6		Queue Applications	Number of Students Unable to Eat Lunch	Link	★★☆☆☆			
+204	7			First non-repeating character in a stream	Link	★★★☆☆			
+205	8		Deque & Sliding Window Max	Sliding Window Maximum	Link	★★★★☆			
+206	9			Longest Continuous Subarray With Abs Diff ≤ Limit	Link	★★★★☆			
+207	10			Constrained Subsequence Sum	Link	★★★★★			
+PHASE 6 - HIERARCHIAL DATA STRUCTURES									
+208	1	Binary Trees	Traversals & Views (Fundamentals)	Preorder Traversal (Recursive & Iterative)	Link	★★★☆☆			
+209	2			Inorder Traversal (Recursive & Iterative)	Link	★★★☆☆			
+210	3			Postorder Traversal (Recursive & Iterative)	Link	★★★☆☆			
+211	4			Binary Tree Level Order Traversal	Link	★★★★☆			
+212	5			Binary Tree Zigzag Level Order Traversal	Link	★★★★☆			
+213	6			Left / Right View of Binary Tree	Link	★★★★☆			
+214	7			Top / Bottom View of Binary Tree	Link	★★★★☆			
+215	8			Boundary Traversal of Binary Tree	Link	★★★★☆			
+216	9			Diagonal Traversal of Binary Tree	Link	★★★★☆			
+217	10			Vertical Order Traversal of a Binary Tree	Link	★★★★★			
+218	11		Tree Properties & Dimensions	Maximum Depth of Binary Tree	Link	★★★☆☆			
+219	12			Same Tree	Link	★★★☆☆			
+220	13			Invert Binary Tree	Link	★★★☆☆			
+221	14			Symmetric Tree	Link	★★★★☆			
+222	15			Maximum Width of Binary Tree	Link	★★★★☆			
+223	16			Count Complete Tree Nodes	Link	★★★★☆			
+224	17			Diameter of Binary Tree	Link	★★★★★			
+225	18			Balanced Binary Tree	Link	★★★★★			
+226	19		Paths, Sums & LCA	Path Sum I	Link	★★★☆☆			
+227	20			Path Sum II	Link	★★★★☆			
+228	21			Sum Root to Leaf Numbers	Link	★★★★☆			
+229	22			Maximum Difference Between Node and Ancestor	Link	★★★★☆			
+230	23			Lowest Common Ancestor of a Binary Tree	Link	★★★★★			
+231	24			Binary Tree Maximum Path Sum	Link	★★★★★			
+232	25			Path Sum III	Link	★★★★★			
+233	26		Graph-Like Traversals in Trees	Minimum time taken to burn the BT	Link	★★★★☆			
+234	27			All Nodes Distance K in Binary Tree	Link	★★★★★			
+235	28			Step-By-Step Directions From a Binary Tree Node to Another	Link	★★★★★			
+236	29		Structural Modifications & Construction	Merge Two Binary Trees	Link	★★★☆☆			
+237	30			Children Sum Property in a Binary Tree	Link	★★★☆☆			
+238	31			Construct Binary Tree from Preorder and Inorder Traversal	Link	★★★★★			
+239	32			Construct Binary Tree from Inorder and Postorder Traversal	Link	★★★★☆			
+240	33			Flatten Binary Tree to Linked List	Link	★★★★☆			
+241	34			Serialize and Deserialize Binary Tree	Link	★★★★★			
+242	1	Binary Search Trees	Core Properties & Search	Search in a Binary Search Tree	Link	★★☆☆☆			
+243	2			Find Minimum/Maximum in BST	Link	★★☆☆☆			
+244	3			Insert into a Binary Search Tree	Link	★★★☆☆			
+245	4			Floor and Ceil in a BST	Link	★★★☆☆			
+246	5			Inorder Successor in BST	Link	★★★★☆			
+247	6			Lowest Common Ancestor of a Binary Search Tree	Link	★★★★☆			
+248	7			Validate Binary Search Tree	Link	★★★★★			
+249	8			Kth Smallest Element in a BST	Link	★★★★★			
+250	9		Standard Modifications & Deletions	Delete Node in a BST	Link	★★★★☆			
+251	10			Two Sum IV - Input is a BST	Link	★★★★★			
+252	11		Construction & Advanced Operations	Convert Sorted Array to Binary Search Tree	Link	★★★☆☆			
+253	12			Construct BST from Preorder Traversal	Link	★★★★☆			
+254	13			Balance a Binary Search Tree	Link	★★★★☆			
+255	14			Merge Two Balanced Binary Search Trees	Link	★★★★☆			
+256	15			Recover Binary Search Tree	Link	★★★★★			
+257	16			Largest BST in a Binary Tree	Link	★★★★★			
+258	1	Tries	Implementation & String Search	Implement Trie (Prefix Tree)	Link	★★★★☆			
+259	2			Design Add and Search Words Data Structure	Link	★★★★☆			
+260	3			Longest Word with All Prefixes	Link	★★★★☆			
+261	4			Number of Distinct Substrings in a String	Link	★★★★☆			
+262	5			Word Search II	Link	★★★★★			
+263	6		Bitwise Tries (Advanced)	Maximum XOR of Two Numbers in an Array	Link	★★★★★			
+264	7			Maximum XOR With an Element From Array	Link	★★★★★			
+PHASE 7 : CORE DATA STRUCTURES AND TECHNIQUES									
+265	1	Hashmaps	Hashmap Fundamentals	Contains Duplicate	Link	★☆☆☆☆			
+266	2			Valid Anagram (Hashmap Approach)	Link	★☆☆☆☆			
+267	3			Unique Number of Occurrences	Link	★☆☆☆☆			
+268	4			Find distinct elements / Find the Frequency	Link	★☆☆☆☆			
+269	5			Two Sum	Link	★★☆☆☆			
+270	6			Intersection of Two Arrays	Link	★★☆☆☆			
+271	7			Count Number of Pairs With Absolute Difference K	Link	★★☆☆☆			
+272	8			Design HashMap	Link	★★★☆☆			
+273	9		Intermediate Hashmap Problems	Group Anagrams	Link	★★★☆☆			
+274	10			Longest Consecutive Sequence	Link	★★★☆☆			
+275	11			Subarray Sum Equals K	Link	★★★☆☆			
+276	12			Contiguous Array / Largest subarray with 0 sum	Link	★★★☆☆			
+277	13			Count subarrays with given XOR	Link	★★★☆☆			
+278	14			Subarray Sums Divisible by K	Link	★★★☆☆			
+279	15			Continuous Subarray Sum	Link	★★★☆☆			
+280	16		Advanced / Multi Concept	Maximum Size Subarray Sum Equals k	Link	★★★☆☆			
+281	17			Top K Frequent Elements	Link	★★★☆☆			
+282	18			LRU Cache (Least Recently Used)	Link	★★★★☆			
+283	19			LFU Cache (Least Frequently Used)	Link	★★★★★			
+284	1	Heaps / Priority Queues	Heap Fundamentals	Check if an array represents a min heap	Link	★★☆☆☆			
+285	2			Convert Min Heap to Max Heap	Link	★★☆☆☆			
+286	3			Implement Min/Max Heap		★★★☆☆			
+287	4		The Top-K Pattern	Last Stone Weight	Link	★★★☆☆			
+288	5			Kth Largest Element in an Array	Link	★★★★☆			
+289	6			K Closest Points to Origin	Link	★★★★☆			
+290	7			Sort a K Sorted Array / Nearly Sorted Algorithm	Link	★★★★☆			
+291	8			Top K Frequent Elements (Heap Approach)	Link	★★★★☆			
+292	9		Merging & Combinations	Minimum Cost of Ropes 	Link	★★★★☆			
+293	10			Merge K Sorted Lists	Link	★★★★★			
+294	11			Kth Smallest Element in a Sorted Matrix	Link	★★★★☆			
+295	12		Advanced / Two-Heaps / Scheduling	Task Scheduler	Link	★★★★★			
+296	13			Reorganize String	Link	★★★★★			
+297	14			Minimum Number of Refueling Stops	Link	★★★★★			
+298	15			Find Median from Data Stream	Link	★★★★★			
+299	1	Prefix Sum	1d Prefix Sum	Running Sum of 1D Array	Link	★☆☆☆☆			
+300	2			Find the Highest Altitude	Link	★★☆☆☆			
+301	3			Find Pivot Index	Link	★★☆☆☆			
+302	4			Range Sum Query - Immutable	Link	★★☆☆☆			
+303	5			Product of Array Except Self	Link	★★★☆☆			
+304	6			Corporate Flight Bookings	Link	★★★★☆			
+305	7			Trapping Rain Water (Prefix Max / Min)	Link	★★★★☆			
+306	8		2d Prefix Sum	Range Sum Query 2D - Immutable	Link	★★★☆☆			
+307	9			Matrix Block Sum	Link	★★★☆☆			
+308	10			Maximum Sum of a 2D Subgrid of size K x K	Link	★★★★☆			
+309	1	Two Pointers & Sliding Window	Two Pointers Basics	Move Zeroes (Two Pointer Intution)	Link	★☆☆☆☆			
+310	2			Valid Palindrome (Two Pointers)	Link	★☆☆☆☆			
+311	3			Two Sum II - Input Array Is Sorted	Link	★★☆☆☆			
+312	4			Sort Colors (Dutch National Flag)	Link	★★☆☆☆			
+313	5			Container With Most Water	Link	★★★☆☆			
+314	6			3Sum	Link	★★★☆☆			
+315	7		Fixed Size Slding Window	Maximum Average Subarray I	Link	★★☆☆☆			
+316	8			Max Sum Subarray of size K	Link	★★☆☆☆			
+317	9			Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold	Link	★★☆☆☆			
+318	10			Minimum Consecutive Cards to Pick Up	Link	★★☆☆☆			
+319	11			Maximum Points You Can Obtain from Cards	Link	★★★☆☆			
+320	12		Variable Size Sliding Window	Find All Anagrams in a String	Link	★★★☆☆			
+321	13			Permutation in String	Link	★★★☆☆			
+322	14			Minimum Size Subarray Sum	Link	★★★☆☆			
+323	15			Longest Substring Without Repeating Characters	Link	★★★☆☆			
+324	16			Longest Repeating Character Replacement	Link	★★★☆☆			
+325	17			Max Consecutive Ones III	Link	★★★☆☆			
+326	18			Fruit Into Baskets	Link	★★★☆☆			
+327	19			Maximum Erasure Value	Link	★★★☆☆			
+328	20			Number of Substrings Containing All Three Characters	Link	★★★☆☆			
+329	21		Advanced Sliding Window / Counting / Atmost K	Binary Subarrays With Sum	Link	★★★☆☆			
+330	22			Count Number of Nice Subarrays	Link	★★★☆☆			
+331	23			Subarrays with K Different Integers	Link	★★★★☆			
+332	24			Minimum Window Subsequence	Link	★★★★☆			
+333	25			Minimum Window Substring	Link	★★★★★			
+334	1	Bit Manipulation	Bit Basics & Properties	K-th Bit is Set or Not	Link	★☆☆☆☆			
+335	2			Check if a Number is Odd or Not	Link	★☆☆☆☆			
+336	3			Check If Number Power of 2 or Not	Link	★★☆☆☆			
+337	4			Number Of Even and Odd Bits	Link	★★☆☆☆			
+338	5			Minimum Bit Flips To Convert Number	Link	★★★☆☆			
+339	6		XOR Tricks	Swap Two Numbers (XOR Trick)	Link	★★☆☆☆			
+340	7			Single Number I	Link	★★☆☆☆			
+341	8			Is Binary Number Multiple of 3	Link	★★☆☆☆			
+342	9			Find the repeating and missing number	Link	★★★☆☆			
+343	10			Single Number II	Link	★★★★☆			
+344	11			Single Number III	Link	★★★★★			
+345	12		Bit Counting & Advanced	Count Set Bits From 1 to N	Link	★★★★☆			
+346	13			Bleak Numbers	Link	★★★★☆			
+347	14			Minimum Xor Pair	Link	★★★★☆			
+348	15			Divide Two Integers (Bit Shifting)	Link	★★★★☆			
+PHASE 8 : STANDARD ALGORITHMS									
+349	1	Greedy	Basics & Array Manipulation	Assign Cookies	Link	★☆☆☆☆			
+350	2			Lemonade Change	Link	★★☆☆☆			
+351	3			Maximize Sum of Array After K Negations	Link	★★☆☆☆			
+352	4			Shortest Job First	Link	★★☆☆☆			
+353	5			Activity Selection / N Meetings in One Room	Link	★★☆☆☆			
+354	6		Intervals & Scheduling	Merge Intervals (Greedy View)	Link	★★★☆☆			
+355	7			Insert Interval	Link	★★★☆☆			
+356	8			Non-overlapping Intervals	Link	★★★☆☆			
+357	9			Minimum Number of Arrows to Burst Balloons	Link	★★★☆☆			
+358	10			Job Sequencing Problem	Link	★★★☆☆			
+359	11			Minimum Platforms required for a railway	Link	★★★☆☆			
+360	12			Maximum Meetings in One Room	Link	★★★☆☆			
+361	13			Task Scheduler (Greedy Approach)	Link	★★★☆☆			
+362	14		Array & Jump Greedy	Jump Game	Link	★★★☆☆			
+363	15			Valid Parenthesis String	Link	★★★☆☆			
+364	16			Gas Station	Link	★★★☆☆			
+365	17			Jump Game II	Link	★★★☆☆			
+366	18		Advanced Greedy	Minimize the Heights II	Link	★★★★☆			
+367	19			Candy	Link	★★★★☆			
+368	20			Huffman Decoding / Coding	Link	★★★★☆			
+369	21			Minimum Number of Taps to Open to Water a Garden	Link	★★★★☆			
+370	22			Course Schedule III	Link	★★★★★			
+371	1	Graphs	Graphs Fundamentals & Traversals	BFS of Graph	Link	★☆☆☆☆			
+372	2			DFS of Graph	Link	★☆☆☆☆			
+373	3			Find if Path Exists in Graph	Link	★★☆☆☆			
+374	4			Number of Provinces	Link	★★☆☆☆			
+375	5			Clone Graph	Link	★★★☆☆			
+376	6			Is Graph Bipartite?	Link	★★★☆☆			
+377	7		Matrix / Grid BFS Problems	Flood Fill	Link	★★☆☆☆			
+378	8			Max Area of Island	Link	★★☆☆☆			
+379	9			Number of Islands	Link	★★★☆☆			
+380	10			Rotting Oranges	Link	★★★☆☆			
+381	11			01 Matrix / Distance of nearest cell having 1	Link	★★★☆☆			
+382	12			Surrounded Regions	Link	★★★☆☆			
+383	13			Number of Enclaves	Link	★★★☆☆			
+384	14			Shortest Path in Binary Matrix	Link	★★★☆☆			
+385	15			Swim in Rising Water	Link	★★★★☆			
+386	16			Making A Large Island	Link	★★★★☆			
+387	17		Cycle Detection	Cycle Detection in Undirected Graph	Link	★★☆☆☆			
+388	18			Detect Cycle in a Directed Graph	Link	★★★☆☆			
+389	19			Find Eventual Safe States	Link	★★★☆☆			
+390	20		Topological Sorting (Kahn's Algorithm)	Topological Sort	Link	★★☆☆☆			
+391	21			Course Schedule	Link	★★★☆☆			
+392	22			Course Schedule II	Link	★★★☆☆			
+393	23			Alien Dictionary	Link	★★★★☆			
+394	24			Parallel Courses III	Link	★★★★☆			
+395	25		Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)	Shortest Path in Undirected Graph (Unit Weights)	Link	★★☆☆☆			
+396	26			Shortest Path in DAG	Link	★★☆☆☆			
+397	27			Dijkstra's Algorithm	Link	★★★☆☆			
+398	28			Network Delay Time	Link	★★★☆☆			
+399	29			Path With Minimum Effort	Link	★★★☆☆			
+400	30			Cheapest Flights Within K Stops	Link	★★★☆☆			
+401	31			Path with Maximum Probability	Link	★★★☆☆			
+402	32			Bellman-Ford Algorithm	Link	★★★☆☆			
+403	33			Floyd Warshall Algorithm	Link	★★★☆☆			
+404	34			Find the City With the Smallest Number of Neighbors	Link	★★★☆☆			
+405	35			Minimum Multiplications to Reach End	Link	★★★☆☆			
+406	36			Number of Ways to Arrive at Destination	Link	★★★☆☆			
+407	37		Minimum Spanning Tree (MST)	Minimum Spanning Tree	Link	★★☆☆☆			
+408	38			Prim's Algorithm	Link	★★★☆☆			
+409	39			Min Cost to Connect All Points (Kruskal)	Link	★★★☆☆			
+410	40		Disjoint Set Union (DSU) / Union Find	Disjoint Set	Link	★★☆☆☆			
+411	41			Number of Operations to Make Network Connected	Link	★★★☆☆			
+412	42			Accounts Merge	Link	★★★☆☆			
+413	43			Most Stones Removed with Same Row or Column	Link	★★★☆☆			
+414	44			Redundant Connection	Link	★★★☆☆			
+415	45			Evaluate Division	Link	★★★★☆			
+416	46			Number of Islands II	Link	★★★★☆			
+417	47		Bridges, Articulation Points & Strongly Connected Components	Kosaraju's Algorithm		★★★★☆			
+418	48			Tarjan's Algorithm / Bridges in Graph	Link	★★★★☆			
+419	49			Articulation Point in Graph	Link	★★★★☆			
+420	50			Critical Connections in a Network	Link	★★★★☆			
+421	51		Advanced Graphs Problems	Snake and Ladder Problem	Link	★★★☆☆			
+422	52			Word Ladder	Link	★★★★☆			
+423	53			Reorder Routes to Make All Paths Lead to the City Zero	Link	★★★★☆			
+424	54			Word Ladder II	Link	★★★★★			
+425	55			Escape the Spreading Fire	Link	★★★★★			
+PHASE 9 : EXHAUSTIVE SEARCH & OPTIMISATION									
+426	1	Backtracking	Subsequence & Subset Fundamentals	Check if subsequence with sum K Exists	Link	★★☆☆☆			
+427	2			Count all subsequences with sum K		★★☆☆☆			
+428	3			Subsets / Power Set	Link	★★★☆☆			
+429	4			Subsets II (With Duplicates)	Link	★★★☆☆			
+430	5			Subset Sums	Link	★★★☆☆			
+431	6		Combinations	Combination Sum I	Link	★★★☆☆			
+432	7			Combination Sum II	Link	★★★☆☆			
+433	8			Combination Sum III	Link	★★★☆☆			
+434	9			N Digit numbers with digits in increasing order	Link	★★★☆☆			
+435	10		Permutations	Permutations II (With Duplicates)	Link	★★★☆☆			
+436	11			Letter Combinations of a Phone Number	Link	★★★☆☆			
+437	12			Generate Parentheses	Link	★★★☆☆			
+438	13		String BackTracking	Palindrome Partitioning	Link	★★★★☆			
+439	14			Word Break 	Link	★★★★☆			
+440	15			Remove Invalid Parentheses	Link	★★★★★			
+441	16			Expression Add Operators	Link	★★★★★			
+442	17		Grid & Maze Backtracking	Rat in a Maze	Link	★★★★☆			
+443	18			Word Search	Link	★★★★☆			
+444	19			M-Coloring Problem	Link	★★★★☆			
+445	20			N-Queens	Link	★★★★★			
+446	21			N-Queens II	Link	★★★★★			
+447	22			Sudoku Solver	Link	★★★★★			
+448	1	Dynamic Programming	1D DP (Intro to State & Transitions)	Fibonacci Number	Link	★☆☆☆☆			
+449	2			Climbing Stairs	Link	★☆☆☆☆			
+450	3			Min Cost Climbing Stairs	Link	★★☆☆☆			
+451	4			Frog Jump	Link	★★☆☆☆			
+452	5			Frog Jump with K Distances	Link	★★☆☆☆			
+453	6			House Robber	Link	★★☆☆☆			
+454	7			House Robber II	Link	★★★☆☆			
+455	8			Decode Ways	Link	★★★☆☆			
+456	9		2D Grids & Paths	Unique Paths	Link	★★☆☆☆			
+457	10			Unique Paths II	Link	★★★☆☆			
+458	11			Minimum Path Sum	Link	★★★☆☆			
+459	12			Triangle	Link	★★★☆☆			
+460	13			Minimum Falling Path Sum	Link	★★★☆☆			
+461	14			Dungeon Game	Link	★★★★☆			
+462	15			Cherry Pickup II / Ninja and his Friends	Link	★★★★☆			
+463	16		0/1 Knapsack & Subsets	Subset Sum Problem	Link	★★☆☆☆			
+464	17			Partition Equal Subset Sum	Link	★★★☆☆			
+465	18			Count Subsets with Sum K	Link	★★★☆☆			
+466	19			Target Sum	Link	★★★☆☆			
+467	20			Count Partitions with Given Difference	Link	★★★☆☆			
+468	21			0/1 Knapsack Problem	Link	★★★☆☆			
+469	22			Partition Array Into Two Arrays to Minimize Sum Difference	Link	★★★★☆			
+470	23			Last Stone Weight II	Link	★★★★☆			
+471	24		Unbounded Knapsack	Rod Cutting Problem	Link	★★★☆☆			
+472	25			Coin Change	Link	★★★☆☆			
+473	26			Coin Change II	Link	★★★☆☆			
+474	27			Perfect Squares	Link	★★★☆☆			
+475	28		DP on Strings (LCS & Edit Distance Patterns)	Longest Common Subsequence	Link	★★★☆☆			
+476	29			Print Longest Common Subsequence	Link	★★★☆☆			
+477	30			Longest Common Substring	Link	★★★☆☆			
+478	31			Longest Palindromic Subsequence	Link	★★★☆☆			
+479	32			Minimum Insertions to Make String Palindrome	Link	★★★☆☆			
+480	33			Delete Operation for Two Strings	Link	★★★☆☆			
+481	34			Shortest Common Supersequence	Link	★★★★☆			
+482	35			Distinct Subsequences	Link	★★★★☆			
+483	36			Edit Distance	Link	★★★★☆			
+484	37			Wildcard Matching	Link	★★★★☆			
+485	38			Regular Expression Matching	Link	★★★★★			
+486	39		DP on Stocks	Best Time to Buy and Sell Stock	Link	★☆☆☆☆			
+487	40			Best Time to Buy and Sell Stock II	Link	★★☆☆☆			
+488	41			Best Time to Buy and Sell Stock with Cooldown	Link	★★☆☆☆			
+489	42			Best Time to Buy and Sell Stock with Transaction Fee	Link	★★★☆☆			
+490	43			Best Time to Buy and Sell Stock III	Link	★★★★☆			
+491	44			Best Time to Buy and Sell Stock IV	Link	★★★★☆			
+492	45		Longest Increasing Subsequence (LIS)	Longest Increasing Subsequence	Link	★★★☆☆			
+493	46			Print Longest Increasing Subsequence	Link	★★★☆☆			
+494	47			Largest Divisible Subset	Link	★★★☆☆			
+495	48			Longest String Chain	Link	★★★☆☆			
+496	49			Longest Bitonic Subsequence	Link	★★★★☆			
+497	50			Number of Longest Increasing Subsequences	Link	★★★★☆			
+498	51			Russian Doll Envelopes	Link	★★★★★			
+499	52		Partition DP & Matrix Chain Multiplication (MCM)	Matrix Chain Multiplication	Link	★★★★☆			
+500	53			Minimum Cost to Cut a Stick	Link	★★★★☆			
+501	54			Burst Balloons	Link	★★★★★			
+502	55			Palindrome Partitioning II	Link	★★★★★
