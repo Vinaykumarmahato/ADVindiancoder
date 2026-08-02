@@ -700,11 +700,11 @@ const HomePage = () => {
                                 Enrollment for the next industry-ready coding bootcamp is open. Available in both <span className="text-gray-900 dark:text-white font-bold">English</span> & <span className="text-gray-900 dark:text-white font-bold">Hindi</span> for global students.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-                                <Link to="/masterclass" className="w-full sm:w-auto inline-flex items-center justify-center h-16 px-10 rounded-full bg-gray-900 dark:bg-white text-white dark:text-black font-extrabold text-lg transition-transform hover:scale-105 shadow-[0_0_40px_rgba(0,120,255,0.2)] dark:shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+                            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+                                <Link to="/masterclass" className="w-full sm:w-auto inline-flex items-center justify-center min-h-[4rem] px-6 sm:px-10 rounded-full bg-gray-900 dark:bg-white text-white dark:text-black font-extrabold text-base sm:text-lg transition-transform hover:scale-105 shadow-[0_0_40px_rgba(0,120,255,0.2)] dark:shadow-[0_0_40px_rgba(255,255,255,0.3)] whitespace-nowrap">
                                     Join the Live Masterclass
                                 </Link>
-                                <a href="https://wa.me/919931860964" className="w-full sm:w-auto inline-flex items-center justify-center h-16 px-10 rounded-full bg-[#1da851]/10 text-[#25D366] border border-[#25d366]/30 font-bold text-lg hover:bg-[#1da851]/20 transition-colors">
+                                <a href="https://wa.me/919931860964" className="w-full sm:w-auto inline-flex items-center justify-center min-h-[4rem] px-6 sm:px-10 rounded-full bg-[#1da851]/10 text-[#25D366] border border-[#25d366]/30 font-bold text-base sm:text-lg hover:bg-[#1da851]/20 transition-colors whitespace-nowrap">
                                     <MessageSquare className="mr-2 w-5 h-5" /> Chat on WhatsApp
                                 </a>
                             </div>
