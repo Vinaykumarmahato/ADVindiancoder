@@ -187,7 +187,7 @@ print(check_streak(45))`;
                                 className="flex-1 flex flex-col justify-between"
                             >
                                 {/* Code Editor Visual */}
-                                <div className="font-mono text-xs text-left leading-relaxed text-gray-300 bg-black/20 p-4 rounded-2xl border border-white/5 mb-4 overflow-x-auto whitespace-pre">
+                                <div className="font-mono text-xs text-left leading-relaxed text-gray-300 bg-black/20 p-4 rounded-2xl border border-white/5 mb-4 overflow-x-auto whitespace-pre custom-scrollbar">
                                     {activeTab === 'java' ? (
                                         <>
                                             <span className="text-purple-400">public class</span> <span className="text-yellow-200">ADVLab</span> {'{\n'}

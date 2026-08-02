@@ -86,7 +86,7 @@ const Chatbot = () => {
                             className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-red-600 via-orange-500 to-yellow-500 text-white shadow-2xl hover:shadow-[0_0_30px_rgba(239,68,68,0.5)] transition-all active:scale-95"
                             whileHover={{ scale: 1.05 }}
                         >
-                            <MessageSquare className="w-6 h-6 animate-pulse" />
+                            <Bot className="w-6 h-6 animate-pulse" />
                             {/* Inner Glow */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-red-600 via-orange-500 to-yellow-500 rounded-full blur opacity-40 group-hover:opacity-80 transition-opacity -z-10"></div>
                         </motion.button>
