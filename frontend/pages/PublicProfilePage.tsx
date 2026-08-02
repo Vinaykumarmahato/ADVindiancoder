@@ -22,7 +22,7 @@ const PublicProfilePage: React.FC = () => {
 
     const fetchProfile = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/public/profile/${username}`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/public/profile/${username}`);
             if (!response.ok) {
                 throw new Error('Profile not found');
             }

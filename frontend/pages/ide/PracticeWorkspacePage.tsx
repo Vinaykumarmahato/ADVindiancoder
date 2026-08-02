@@ -565,7 +565,7 @@ const PracticeWorkspacePage: React.FC = () => {
     useEffect(() => {
         const fetchProblemDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/practice/problems/${problemSlug}`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems/${problemSlug}`);
                 if (!response.ok) {
                     throw new Error('Problem not found or backend server is offline.');
                 }
@@ -762,7 +762,7 @@ const PracticeWorkspacePage: React.FC = () => {
             // Persist progress to DB
             const token = localStorage.getItem('adv_coder_token');
             if (token) {
-                await fetch(`http://localhost:8080/api/practice/problems/${problemSlug}/submit`, {
+                await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems/${problemSlug}/submit`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

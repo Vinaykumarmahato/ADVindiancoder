@@ -42,7 +42,7 @@ const Chatbot = () => {
 
         // Always query local Spring Boot backend with Spring AI (configured with Groq Key)
         try {
-            const response = await fetch(`http://localhost:8080/api/ai/chat?prompt=${encodeURIComponent(text)}`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/ai/chat?prompt=${encodeURIComponent(text)}`);
             if (!response.ok) {
                 throw new Error(`Server returned ${response.status}`);
             }

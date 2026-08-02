@@ -158,7 +158,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
             // Initial fetch of shared session
             const fetchInitialSession = async () => {
                 try {
-                    const res = await fetch(`http://localhost:8080/api/share/${collabId}`);
+                    const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/share/${collabId}`);
                     if (res.ok) {
                         const data = await res.json();
                         setCode(data.code);
@@ -189,7 +189,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                 const timestampToSend = isLocalEditRecent ? Date.now() : 0; // 0 indicates we are just listening
 
                 try {
-                    const res = await fetch(`http://localhost:8080/api/share/${collabId}/sync`, {
+                    const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/share/${collabId}/sync`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
