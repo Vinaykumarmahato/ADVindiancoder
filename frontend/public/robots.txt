@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Allow: /online-java-compiler
+Allow: /online-python-compiler
+Allow: /online-c-compiler
+Allow: /online-cpp-compiler
+Allow: /online-javascript-compiler
 
-Sitemap: https://advindiancoder.com/sitemap.xml
+Sitemap: https://www.advindiancoder.com/sitemap.xml
