@@ -41,8 +41,10 @@ const ContactPage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="Contact Us - ADV Indian Coder" 
-                description="Get in touch with ADV Indian Coder for queries, support and collaborations"
+                title="Contact Us | Adv Indian Coder Support & Mentorship" 
+                description="Get in touch with Adv Indian Coder for course inquiries, corporate collaborations, sponsorships, or technical support. Our mentors are ready to help."
+                keywords="Contact Adv Indian Coder, Tech Mentor Support, Coding Course Help, Vinay Kumar Mahato Contact, Sponsor Coding Masterclass"
+                exactTitle={true}
             />
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white min-h-screen font-sans relative overflow-hidden flex flex-col transition-colors duration-300">
                 {/* Background Grid */}

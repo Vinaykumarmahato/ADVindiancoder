@@ -18,8 +18,10 @@ const AboutPage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="About Us - ADV Indian Coder" 
-                description="Learn about ADV Indian Coder's mission to make coding education accessible in India"
+                title="About Us | Adv Indian Coder | Vinay Kumar Mahato" 
+                description="Learn about Adv Indian Coder and Vinay Kumar Mahato. Discover our mission to provide premium software engineering education, coding masterclasses, and placement support."
+                keywords="Adv Indian Coder, Vinay Kumar Mahato, Inoglle Founder, Software Engineering Education, Coding Bootcamp India"
+                exactTitle={true}
             />
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white min-h-screen font-sans relative overflow-hidden transition-colors duration-300">
                 {/* Background Grid */}

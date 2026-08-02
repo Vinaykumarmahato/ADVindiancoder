@@ -8,8 +8,9 @@ interface SEOProps {
     keywords?: string;
     canonical?: string;
     ogImage?: string;
-    ogType?: 'website' | 'article' | 'course';
-    schema?: any;
+    ogType?: 'website' | 'article' | 'course' | 'profile';
+    schema?: any | any[]; // Support array of schemas
+    exactTitle?: boolean; // Don't append site name if true
 }
 
 const SEO: React.FC<SEOProps> = ({ 
@@ -17,18 +18,33 @@ const SEO: React.FC<SEOProps> = ({
     description, 
     keywords,
     canonical, 
-    ogImage = '/assets/og-image.png', 
+    ogImage = '/og-image.png', 
     ogType = 'website',
-    schema
+    schema,
+    exactTitle = false
 }) => {
     const location = useLocation();
     const siteTitle = "ADV Indian Coder";
-    const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
-    const siteUrl = "https://advindiancoder.com"; 
+    const fullTitle = exactTitle ? title : (title ? `${title} | ${siteTitle}` : siteTitle);
+    const siteUrl = "https://www.advindiancoder.com"; 
     
     // Auto-detect canonical if not provided
     const currentPath = canonical || location.pathname;
     const fullCanonical = `${siteUrl}${currentPath === '/' ? '' : currentPath}`;
+
+    // Helper to render schema safely
+    const renderSchema = () => {
+        if (!schema) return null;
+        
+        // If it's an array of schemas, wrap them in a graph or output multiple
+        const schemaData = Array.isArray(schema) ? schema : [schema];
+        
+        return schemaData.map((sch, index) => (
+            <script type="application/ld+json" key={index}>
+                {JSON.stringify(sch)}
+            </script>
+        ));
+    };
 
     return (
         <Helmet>
@@ -45,24 +61,20 @@ const SEO: React.FC<SEOProps> = ({
             <meta property="og:site_name" content="ADV Indian Coder" />
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
-            <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+            <meta property="og:image" content={`${siteUrl}${ogImage.startsWith('/') ? ogImage : '/' + ogImage}`} />
             <meta property="og:url" content={fullCanonical} />
             <meta property="og:locale" content="en_IN" />
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:site" content="@advindiancoder" />
-            <meta name="twitter:creator" content="@vinaykumarmahato" />
+            <meta name="twitter:creator" content="@advindiancoder" />
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
-            <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+            <meta name="twitter:image" content={`${siteUrl}${ogImage.startsWith('/') ? ogImage : '/' + ogImage}`} />
 
             {/* JSON-LD Structured Data */}
-            {schema && (
-                <script type="application/ld+json">
-                    {JSON.stringify(schema)}
-                </script>
-            )}
+            {renderSchema()}
         </Helmet>
     );
 };

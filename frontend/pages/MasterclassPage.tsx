@@ -103,9 +103,11 @@ const MasterclassPage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="Live Masterclass" 
-                description="Join live coding masterclasses and learn from expert Indian developers. 30-day intensive coding bootcamps."
+                title="Live 30-Day Coding Masterclass & Mentorship | Adv Indian Coder" 
+                description="Join Adv Indian Coder's Live 30-Day Masterclass. Build real-world projects, get live doubt solving, and prepare for top software engineering interviews."
+                keywords="Live Coding Masterclass India, Advanced Coding Mentorship, 30 Day Coding Bootcamp, Full Stack Live Classes, Software Developer Mentorship Program"
                 schema={masterclassSchema}
+                exactTitle={true}
             />
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white min-h-screen font-sans relative overflow-hidden transition-colors duration-300">
                 {/* Background Grid */}

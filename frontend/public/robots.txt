@@ -5,5 +5,16 @@ Allow: /online-python-compiler
 Allow: /online-c-compiler
 Allow: /online-cpp-compiler
 Allow: /online-javascript-compiler
+Allow: /exam-hub
+Allow: /practice
+Allow: /courses
+Allow: /lab
+Allow: /jobs
+Allow: /masterclass
+Allow: /notes
+Allow: /success-stories
+Allow: /about
+Allow: /faq
+Allow: /contact
 
 Sitemap: https://www.advindiancoder.com/sitemap.xml

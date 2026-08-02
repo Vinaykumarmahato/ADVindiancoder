@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { useAuth } from '../contexts/AuthContext';
+import PracticeHubSEO from '../components/seo/PracticeHubSEO';
 
 interface PracticeProblemItem {
     id: number;
@@ -124,12 +125,111 @@ const PracticeHubPage: React.FC = () => {
         return <div className="w-5 h-5 rounded-full border-2 border-gray-600 shrink-0" />;
     };
 
+    const schema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "name": "Full Stack Practice Hub: Code Real Projects | Adv Indian Coder",
+                "description": "Level up your coding skills with our Full Stack Practice Hub. Build real-world React, Node.js, and Python projects to build your ultimate portfolio.",
+                "url": "https://advindiancoder.com/practice"
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is the Practice Hub?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The Practice Hub is a collection of real-world coding challenges designed to help you improve your full stack web development skills."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Are these coding projects free?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, the majority of our practice projects and challenges are completely free to access and build."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What technologies are covered in the Practice Hub?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We cover HTML, CSS, JavaScript, React, Node.js, Python, MongoDB, and PostgreSQL among others."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do I need prior coding experience?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "While we have beginner projects, a fundamental understanding of syntax is recommended before diving into the Practice Hub."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I put these projects on my resume?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely! These projects are designed specifically to be showcased in your developer portfolio to attract employers."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do I get feedback on my code?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can share your GitHub repository links in our community Discord for peer review and expert feedback."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Are there backend challenges available?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we have a dedicated section for API development, database design, and server security."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is React included in the frontend projects?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, React is the primary framework we focus on for our advanced frontend UI/UX challenges."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How often are new projects added?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We add new, industry-relevant projects to the hub every single month."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do I get a certificate upon completion?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "While the focus is on the portfolio piece itself, completing capstone projects does grant a verified certificate of achievement."
+                  }
+                }
+              ]
+            }
+        ]
+    };
+
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#070b13] py-24 px-4 sm:px-6 lg:px-8">
             <SEO 
-                title="Practice Hub - Learn, Code, Master"
-                description="Level up your coding skills through guided learning roadmaps, topic mastery tracks, interview preparation journeys, and coding challenges."
-                keywords="coding practice, LeetCode style problems, online editor, interview preparation roadmap, DSA tracks, coding challenge"
+                title="Full Stack Practice Hub: Code Real Projects | Adv Indian Coder"
+                description="Level up your coding skills with our Full Stack Practice Hub. Build real-world React, Node.js, and Python projects to build your ultimate portfolio."
+                keywords="full stack practice projects, frontend practice hub, react practice projects for beginners, backend coding challenges, web development practice sites, advanced indian coder practice"
+                schema={schema}
+                exactTitle={true}
             />
             
             <div className="max-w-7xl mx-auto space-y-12">
@@ -490,6 +590,8 @@ const PracticeHubPage: React.FC = () => {
                     </div>
                 </div>
 
+                {/* SEO Content Component rendered at the bottom */}
+                <PracticeHubSEO />
             </div>
         </div>
     );

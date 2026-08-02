@@ -13,6 +13,7 @@ import PageWrapper from '../components/PageWrapper';
 import SEO from '../components/SEO';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import ExamHubSEO from '../components/seo/ExamHubSEO';
 
 // Icon Map helper
 const getExamIcon = (iconName: string) => {
@@ -324,8 +325,8 @@ const ExamHubPage: React.FC = () => {
         "@graph": [
             {
                 "@type": "WebPage",
-                "name": "ADV ExamHub - India's Ultimate Competitive Exam Portal",
-                "description": "Practice past 5 years of authentic exam MCQs & test yourself with AI-Predicted questions for UPSC, GATE, JEE, NEET, SSC, Banking, and more.",
+                "name": "Exam Hub: Top Tech & Engineering Exam Prep | AdvIndianCoder",
+                "description": "Discover the ultimate Exam Hub for Indian coders. Get preparation guides, syllabus details, and updates for GATE, tech certifications, and govt exams.",
                 "url": "https://advindiancoder.com/exam-hub"
             },
             {
@@ -337,6 +338,91 @@ const ExamHubPage: React.FC = () => {
                     { "@type": "ListItem", "position": 4, "name": "SSC CGL (Combined Graduate Level)", "url": "https://advindiancoder.com/exam-hub?category=SSC" },
                     { "@type": "ListItem", "position": 5, "name": "IBPS PO / SBI PO", "url": "https://advindiancoder.com/exam-hub?category=Banking" }
                 ]
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What exams are covered in the Exam Hub?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We cover major tech and engineering exams including GATE CS/IT, ISRO, DRDO recruitments, and top cloud/software certifications."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Are the study materials free?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we offer a wide range of free study materials, alongside premium mock tests."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How often is the exam calendar updated?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our calendar is updated weekly to reflect any changes in official notifications."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I find previous year question papers here?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. We have a dedicated section for past papers with detailed solutions."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is this platform suitable for beginners?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our resources range from foundational tutorials to advanced problem-solving guides."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do you provide guidance for technical interviews?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we have specialized modules for coding rounds and system design interviews."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How can I stay updated on new exam notifications?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can subscribe to our newsletter or join our Telegram channel linked on this page."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I contribute study notes to the platform?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We welcome community contributions. Please visit our 'Contribute' page for guidelines."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Are there video lectures available?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we curate the best video lectures and also provide our own exclusive video content."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do I report an error in a mock test?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use the 'Report Issue' button at the bottom of any test page."
+                  }
+                }
+              ]
             }
         ]
     };
@@ -344,10 +430,11 @@ const ExamHubPage: React.FC = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="ADV ExamHub | Past 5 Years MCQs, Present & AI Predicted 2026 Questions" 
-                description="Practice past 5 years of authentic exam MCQs, present year mocks, & test yourself with AI-Predicted upcoming questions for UPSC, GATE, JEE, NEET, SSC, Banking, and more."
-                keywords="competitive exam mcqs, past 5 years papers, present year mock test, upcoming 2026 exam predictions, upsc prelims mcq, gate cse mcq, jee advanced practice, neet ug question bank, ssc cgl mock test, ibps po questions, ai predicted exam questions"
+                title="Top Competitive Exams Preparation Hub | Adv Indian Coder" 
+                description="Master UPSC, GATE, NEET, and SSC with Adv Indian Coder Exam Hub. Get AI-predicted question papers, mock tests, and real-time performance analytics."
+                keywords="Competitive Exams Preparation, UPSC Mock Tests Online, GATE CSE Practice Papers, AI Predicted Exam Questions, Best NEET Mock Tests, SSC CGL Preparation"
                 schema={schema}
+                exactTitle={true}
             />
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans pb-24 overflow-x-hidden relative transition-colors duration-300">
                 
@@ -1115,6 +1202,8 @@ const ExamHubPage: React.FC = () => {
                     )}
                 </AnimatePresence>
 
+                {/* SEO Content Component rendered at the bottom */}
+                <ExamHubSEO />
             </div>
         </PageWrapper>
     );

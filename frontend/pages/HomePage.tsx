@@ -7,6 +7,7 @@ import { Toast } from '../components/Toast';
 import { COURSES } from '../constants';
 import SEO from '../components/SEO';
 import InteractiveSimulator from '../components/InteractiveSimulator';
+import { globalOrganizationSchema, globalWebsiteSchema } from '../utils/seoHelpers';
 
 // Elegant fade-in up variant
 const fadeUp = {
@@ -62,44 +63,14 @@ const HomePage = () => {
         };
     }, [showRoadmap]);
 
-    const homeSchema = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "Organization",
-                "name": "ADV Indian Coder",
-                "url": "https://advindiancoder.com",
-                "logo": "https://advindiancoder.com/assets/logo.png",
-                "description": "Premium coding education platform focusing on industry-ready skills, live masterclasses, and career growth.",
-                "sameAs": [
-                    "https://youtube.com/@advindiancoder",
-                    "https://github.com/Vinaykumarmahato"
-                ]
-            },
-            {
-                "@type": "ItemList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "ADV Lab", "url": "https://advindiancoder.com/adv-lab" },
-                    { "@type": "ListItem", "position": 2, "name": "Live Masterclass", "url": "https://advindiancoder.com/masterclass" },
-                    { "@type": "ListItem", "position": 3, "name": "Notes", "url": "https://advindiancoder.com/resources" },
-                    { "@type": "ListItem", "position": 4, "name": "Success Stories", "url": "https://advindiancoder.com/success-stories" },
-                    { "@type": "ListItem", "position": 5, "name": "About", "url": "https://advindiancoder.com/about" },
-                    { "@type": "ListItem", "position": 6, "name": "FAQ", "url": "https://advindiancoder.com/faq" },
-                    { "@type": "ListItem", "position": 7, "name": "Jobs", "url": "https://advindiancoder.com/jobs" },
-                    { "@type": "ListItem", "position": 8, "name": "Contact", "url": "https://advindiancoder.com/contact" },
-                    { "@type": "ListItem", "position": 9, "name": "Courses", "url": "https://advindiancoder.com/courses" }
-                ]
-            }
-        ]
-    };
-
     return (
         <PageWrapper>
             <SEO 
-                title="ADV Indian Coder | ADV Lab, Live Masterclass, Notes, Courses & Jobs" 
-                description="What is ADV? ADV Indian Coder is India's premium tech learning platform. Features include the ADV Lab (Free online IDE), Interactive Live Masterclasses (LIVE), Premium Notes, Success Stories, Tech Jobs (NEW), FAQ, and free job-ready Courses."
-                keywords="adv indian coder, adv lab, live masterclass, notes, success stories, about adv, faq, jobs, new jobs, contact, free coding courses, learn to code, software engineer roadmap"
-                schema={homeSchema}
+                title="ADV Indian Coder | Learn Java, DSA, Coding & Get Hired" 
+                description="Learn Java, DSA, System Design, coding practice, interview preparation, jobs, notes, and masterclasses at ADV Indian Coder. India’s modern platform for developers and students."
+                keywords="java tutorial, dsa course, coding practice, interview preparation, software jobs, system design, react tutorial, spring boot tutorial, learn programming, adv indian coder"
+                schema={[globalWebsiteSchema, globalOrganizationSchema]}
+                exactTitle={true}
             />
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white selection:bg-primary/30 selection:text-white min-h-screen font-sans overflow-x-hidden transition-colors duration-300">
 

@@ -48,11 +48,37 @@ const FaqItem = ({ question, answer }: { question: string, answer: React.ReactNo
 };
 
 const FaqPage = () => {
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Who exactly are these cohorts designed for?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our programs target complete beginners wanting strict guidance, college students preparing for placement seasons, and freshers struggling to cross the initial employment barrier."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I need a strong computer science background?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely not. You need zero prior experience. You only need a laptop, decent internet, and the mental grit to practice every single day for 30 days."
+                }
+            }
+        ]
+    };
+
     return (
         <PageWrapper>
             <SEO 
-                title="FAQ - ADV Indian Coder" 
-                description="Frequently asked questions about courses, pricing and learning at ADV Indian Coder"
+                title="Frequently Asked Questions (FAQ) | Adv Indian Coder" 
+                description="Find answers to all your questions about Adv Indian Coder courses, masterclasses, placement assistance, and enrollment process."
+                keywords="Adv Indian Coder FAQ, Coding Bootcamp Cost India, Placement Guarantee FAQs, Live Classes Doubt Clearing, Learn to Code FAQ"
+                schema={faqSchema}
+                exactTitle={true}
             />
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white min-h-screen font-sans relative overflow-hidden flex flex-col transition-colors duration-300">
                 {/* Background Grid */}

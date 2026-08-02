@@ -117,11 +117,12 @@ const AdvLabDashboard = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="ADV Lab - Online Code Compiler" 
-                description="India's smartest browser IDE. Write code, run it instantly, commit to GitHub & post on LinkedIn."
+                title="ADV Lab - Free Online IDE & Coding Practice Platform | Adv Indian Coder" 
+                description="Experience ADV Lab, India's smartest browser IDE. Write Java, Python, C++ code, run it instantly, auto-commit to GitHub & post on LinkedIn. Zero setup needed."
                 keywords="online java compiler, online python compiler, adv lab ide, github auto commit, linkedin post from code, free ide browser, adv indian coder"
                 ogType="website"
                 schema={advLabSchema}
+                exactTitle={true}
             />
             <div className="min-h-screen bg-white dark:bg-[#05060f] text-gray-900 dark:text-white font-sans selection:bg-primary/30 overflow-x-hidden transition-colors duration-300">
                 

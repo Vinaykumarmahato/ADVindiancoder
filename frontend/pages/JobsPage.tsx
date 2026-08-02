@@ -673,9 +673,11 @@ const JobsPage = () => {
 
     return (
         <PageWrapper>
-            <SEO
-                title="Jobs - ADV Indian Coder"
-                description="Latest job opportunities and placement support for Indian developers"
+            <SEO 
+                title="Latest Software Developer Jobs for Freshers | Adv Indian Coder"
+                description="Find the latest software engineering, full stack developer, and IT jobs for freshers in India. Direct apply links for top product-based companies and MNCs."
+                keywords="Software Developer Jobs for Freshers, Full Stack Developer Jobs India, Direct Apply IT Jobs 2026, Off Campus Drive for 2026 Batch, Best Coding Jobs in Bangalore"
+                exactTitle={true}
             />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 overflow-x-hidden">
                 <div className="text-center mb-12 relative overflow-hidden py-4">

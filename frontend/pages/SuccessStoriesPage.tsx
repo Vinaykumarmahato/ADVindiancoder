@@ -17,8 +17,10 @@ const SuccessStoriesPage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="Success Stories - ADV Indian Coder" 
-                description="Real success stories of Indian students who got jobs after learning with us"
+                title="Student Success Stories & Placements | Adv Indian Coder" 
+                description="Read inspiring success stories from Adv Indian Coder alumni. See how our students transformed their careers and landed high-paying software engineering jobs."
+                keywords="Coding Bootcamp Success Stories, Software Developer Placement Reviews, Adv Indian Coder Reviews, Career Transition in Tech, Student Placements India"
+                exactTitle={true}
             />
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white min-h-screen font-sans relative overflow-hidden transition-colors duration-300">
                 {/* Background Grid */}

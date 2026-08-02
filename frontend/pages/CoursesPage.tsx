@@ -113,9 +113,11 @@ const CoursesPage = () => {
     return (
         <PageWrapper>
             <SEO 
-                title="Courses" 
-                description="Explore premium coding courses, development paths, and live cohorts. Zero to hero training for developers."
+                title="Top Full Stack Web Development Courses | Adv Indian Coder" 
+                description="Master modern web development with Adv Indian Coder. Explore expert-led courses in MERN Stack, Python, and Frontend frameworks. Build real-world projects and launch your tech career today!"
+                keywords="Full Stack Web Development Courses, MERN Stack Course Online, Advanced Coding Bootcamp India, Python Django Web Development, Best Coding Courses for Beginners"
                 schema={coursesSchema}
+                exactTitle={true}
             />
             <div className="bg-white dark:bg-[#050914] text-gray-900 dark:text-white min-h-screen font-sans relative overflow-hidden transition-colors duration-300">
                 {/* Background Grid */}
