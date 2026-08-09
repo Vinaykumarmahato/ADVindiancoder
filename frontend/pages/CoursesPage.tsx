@@ -107,7 +107,7 @@ const CoursesPage = () => {
         "@type": "WebPage",
         "name": "Courses - ADV Indian Coder",
         "description": "Explore premium coding courses, development paths, and live cohorts. Zero to hero training for developers.",
-        "url": "https://advindiancoder.com/courses"
+        "url": "https://www.advindiancoder.com/courses"
     };
 
     return (

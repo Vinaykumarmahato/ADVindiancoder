@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Disc, Send, Users, User, Calendar, GraduationCap } from 'lucide-react';
 import PageWrapper from '../components/PageWrapper';
+import SEO from '../components/SEO';
 import { SOCIAL_LINKS, TESTIMONIALS } from '../constants';
 
 const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: number }) => {
@@ -36,6 +37,12 @@ const CommunityPage = () => {
 
     return (
         <PageWrapper>
+            <SEO 
+                title="Developer Community | Discord, Telegram & WhatsApp"
+                description="Join ADV Indian Coder developer community on Discord, Telegram, and WhatsApp. Connect with 10,000+ developers, get daily job updates, and collaborate on tech projects."
+                keywords="adv indian coder community, coding discord, tech telegram channel, developer whatsapp group, learn programming india"
+                canonical="/community"
+            />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-extrabold tracking-tight">Join Our Coding Community</h1>

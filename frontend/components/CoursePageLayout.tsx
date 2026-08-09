@@ -1,5 +1,6 @@
 import React from 'react';
 import PageWrapper from './PageWrapper';
+import SEO from './SEO';
 import { BookOpen, Video, Code, Check, CheckCircle2 } from 'lucide-react';
 
 interface CoursePageLayoutProps {
@@ -109,8 +110,27 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
 
     const colors = colorMap[colorClass] || colorMap['gray'];
 
+    const courseSchema = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": title,
+        "description": description,
+        "provider": {
+            "@type": "Organization",
+            "name": "ADV Indian Coder",
+            "sameAs": "https://www.advindiancoder.com"
+        }
+    };
+
     return (
         <PageWrapper>
+            <SEO 
+                title={`${title} - Free Online Course & Tutorial`}
+                description={description}
+                keywords={`${title}, learn ${title}, ${title} tutorial, ${title} online course, free ${title} tutorial, coding course india`}
+                ogType="course"
+                schema={courseSchema}
+            />
             <div className="min-h-screen bg-gray-50 dark:bg-black relative">
                 {/* Background decorative elements */}
                 <div className={`absolute top-0 right-0 w-1/2 h-96 bg-gradient-to-b ${colors.gradientFrom}/5 to-transparent pointer-events-none`} />
