@@ -47,6 +47,19 @@ const TOPIC_ORDER = [
     { name: 'Dynamic Programming', icon: '⚡' },
 ];
 
+const FALLBACK_PRACTICE_PROBLEMS: PracticeProblemItem[] = [
+    { id: 1, slug: 'two-sum', title: 'Two Sum', difficulty: 'EASY', topic: 'Arrays', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 2, slug: 'reverse-array', title: 'Reverse an Array', difficulty: 'EASY', topic: 'Arrays', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 3, slug: 'max-subarray', title: 'Kadane\'s Algorithm (Max Subarray)', difficulty: 'MEDIUM', topic: 'Arrays', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 4, slug: 'valid-palindrome', title: 'Valid Palindrome', difficulty: 'EASY', topic: 'Strings', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 5, slug: 'binary-search', title: 'Binary Search Implementation', difficulty: 'EASY', topic: 'Binary Search', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 6, slug: 'reverse-linked-list', title: 'Reverse a Linked List', difficulty: 'MEDIUM', topic: 'Linkedlist', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 7, slug: 'valid-parentheses', title: 'Valid Parentheses', difficulty: 'EASY', topic: 'Stacks', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 8, slug: 'climbing-stairs', title: 'Climbing Stairs', difficulty: 'EASY', topic: 'Dynamic Programming', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 9, slug: 'lowest-common-ancestor', title: 'Lowest Common Ancestor of BST', difficulty: 'MEDIUM', topic: 'Binary Search Trees', category: 'DSA', status: 'UNTOUCHED' },
+    { id: 10, slug: 'number-of-islands', title: 'Number of Islands', difficulty: 'HARD', topic: 'Graphs', category: 'DSA', status: 'UNTOUCHED' },
+];
+
 const PracticeHubPage: React.FC = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
@@ -74,9 +87,11 @@ const PracticeHubPage: React.FC = () => {
                     throw new Error('Failed to fetch practice problems.');
                 }
                 const data = await response.json();
-                setProblems(data);
+                setProblems(Array.isArray(data) && data.length > 0 ? data : FALLBACK_PRACTICE_PROBLEMS);
             } catch (err: any) {
-                setError(err.message || 'Error fetching data.');
+                console.warn('Backend server unavailable, loading fallback practice problems.', err);
+                setProblems(FALLBACK_PRACTICE_PROBLEMS);
+                setError(null);
             } finally {
                 setLoading(false);
             }
