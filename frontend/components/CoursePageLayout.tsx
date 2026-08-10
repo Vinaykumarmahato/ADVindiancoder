@@ -113,23 +113,61 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
     const courseSchema = {
         "@context": "https://schema.org",
         "@type": "Course",
-        "name": title,
+        "name": `${title} Course in Bengaluru, Hyderabad, Pune & India`,
         "description": description,
         "provider": {
-            "@type": "Organization",
+            "@type": "EducationalOrganization",
             "name": "ADV Indian Coder",
-            "sameAs": "https://www.advindiancoder.com"
+            "sameAs": "https://www.advindiancoder.com",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Bengaluru",
+                "addressRegion": "Karnataka",
+                "addressCountry": "IN"
+            },
+            "areaServed": ["Bengaluru", "Bangalore", "Hyderabad", "Pune", "Noida", "Gurgaon", "Delhi NCR", "Chennai", "Mumbai", "Kolkata", "India"]
+        },
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": ["Online", "Interactive", "Self-Paced"],
+            "courseWorkload": "PT25H",
+            "instructor": {
+                "@type": "Person",
+                "name": "Vinay Kumar Mahato",
+                "jobTitle": "Lead Software Engineer & Instructor"
+            }
         }
+    };
+
+    const localBusinessSchema = {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": `ADV Indian Coder - Best ${title} Institute Bengaluru & India`,
+        "url": "https://www.advindiancoder.com",
+        "description": `Premier ${title} course & certification training in Bengaluru, Hyderabad, Pune, Noida, Gurgaon & India.`,
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 12.9716,
+            "longitude": 77.5946
+        },
+        "telephone": "+91-8147438334",
+        "priceRange": "Free"
     };
 
     return (
         <PageWrapper>
             <SEO 
-                title={`${title} - Free Online Course & Tutorial`}
-                description={description}
-                keywords={`${title}, learn ${title}, ${title} tutorial, ${title} online course, free ${title} tutorial, coding course india`}
+                title={`${title} Course in Bengaluru, Hyderabad, Pune, Noida & India | ADV Indian Coder`}
+                description={`Best ${title} course in Bengaluru (Bangalore), Hyderabad, Pune, Noida, Gurgaon & India. Learn ${title} with hands-on projects, free certification, and 100% placement assistance at ADV Indian Coder.`}
+                keywords={`${title} course in bengaluru, ${title} training bangalore, ${title} course hyderabad, ${title} course pune, ${title} training noida, ${title} course gurgaon, ${title} course chennai, ${title} course mumbai, best ${title} institute india, learn ${title} online bengaluru, ADV Indian Coder`}
                 ogType="course"
-                schema={courseSchema}
+                schema={[courseSchema, localBusinessSchema]}
             />
             <div className="min-h-screen bg-gray-50 dark:bg-black relative">
                 {/* Background decorative elements */}
@@ -201,6 +239,16 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                         {/* Main Content */}
                         <div className="lg:col-span-3">
                             <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-200/50 dark:border-gray-800/50 min-h-[60vh]">
+                                {/* IT Hubs Pan-India Location Badge */}
+                                <div className="flex flex-wrap items-center gap-2 mb-4">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 text-xs font-black tracking-wide uppercase">
+                                        📍 #1 Rated Course in Bengaluru, Hyderabad, Pune, NCR & India
+                                    </span>
+                                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-bold">
+                                        ✨ Free Certificate & Job Placement Training
+                                    </span>
+                                </div>
+
                                 <h1 className={`text-4xl md:text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}>{title}</h1>
                                 <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">{description}</p>
 
