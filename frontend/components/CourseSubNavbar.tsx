@@ -45,7 +45,7 @@ const CourseSubNavbar: React.FC = () => {
 
     const handleScroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
-            const scrollAmount = direction === 'left' ? -200 : 200;
+            const scrollAmount = direction === 'left' ? -220 : 220;
             scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     };
@@ -65,7 +65,7 @@ const CourseSubNavbar: React.FC = () => {
     }, [location.pathname]);
 
     return (
-        <div className="relative w-full backdrop-blur-2xl bg-gray-900/95 dark:bg-black/90 text-gray-200 rounded-2xl md:rounded-full border border-white/20 dark:border-white/10 p-1 shadow-[0_8px_32px_rgba(0,0,0,0.3)] z-30 select-none">
+        <div className="relative w-full backdrop-blur-2xl bg-gray-900/95 dark:bg-[#070b14]/95 text-gray-200 rounded-xl sm:rounded-full border border-white/20 dark:border-white/10 p-1 sm:p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.35)] z-30 select-none">
             <div className="flex items-center relative w-full">
                 {/* Desktop Left Scroll Button */}
                 <button
@@ -76,14 +76,14 @@ const CourseSubNavbar: React.FC = () => {
                     <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
 
-                {/* Horizontal Touch Scroll Container with Padding Buffer */}
+                {/* Horizontal Touch Scroll Container with generous padding buffers */}
                 <div
                     ref={scrollContainerRef}
-                    className="flex items-center overflow-x-auto py-1 px-3 sm:px-4 space-x-1.5 sm:space-x-2 scroll-smooth w-full no-scrollbar touch-pan-x"
+                    className="flex items-center overflow-x-auto py-1 px-3 sm:px-6 space-x-2 sm:space-x-2.5 scroll-smooth w-full no-scrollbar touch-pan-x"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                     {/* Start padding buffer */}
-                    <div className="w-1 shrink-0" aria-hidden="true" />
+                    <div className="w-2 sm:w-3 shrink-0" aria-hidden="true" />
 
                     {COURSE_NAV_ITEMS.map((item) => {
                         const active = isCourseActive(item.path);
@@ -92,7 +92,7 @@ const CourseSubNavbar: React.FC = () => {
                                 key={item.path}
                                 data-active={active}
                                 onClick={() => navigate(item.path)}
-                                className={`px-3.5 sm:px-4 py-1.5 text-[11px] sm:text-xs font-black tracking-wider uppercase whitespace-nowrap rounded-xl sm:rounded-full transition-all duration-200 cursor-pointer shrink-0 ${
+                                className={`px-3.5 sm:px-4.5 py-1.5 text-[11px] sm:text-xs font-black tracking-wider uppercase whitespace-nowrap rounded-lg sm:rounded-full transition-all duration-200 cursor-pointer shrink-0 ${
                                     active
                                         ? 'bg-gradient-to-r from-red-600 via-orange-500 to-red-600 text-white shadow-lg shadow-red-600/30 ring-1 ring-white/30 scale-[1.02]'
                                         : 'text-gray-300 dark:text-gray-400 hover:text-white hover:bg-white/10 active:scale-95'
@@ -103,8 +103,8 @@ const CourseSubNavbar: React.FC = () => {
                         );
                     })}
 
-                    {/* End padding buffer to prevent character clipping */}
-                    <div className="w-3 shrink-0" aria-hidden="true" />
+                    {/* Generous End padding buffer (40px) to guarantee zero character clipping on mobile rounded corners */}
+                    <div className="w-10 sm:w-12 shrink-0" aria-hidden="true" />
                 </div>
 
                 {/* Desktop Right Scroll Button */}
