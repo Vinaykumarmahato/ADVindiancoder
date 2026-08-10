@@ -143,10 +143,12 @@ const Header = () => {
             <header className="fixed top-0 left-0 right-0 z-[1000] px-4 py-4 md:py-6 pointer-events-none">
                 <nav className="max-w-7xl mx-auto pointer-events-auto">
                     {/* Unified Header Shell Container (W3Schools Style Integration) */}
-                    <div className={`relative flex flex-col backdrop-blur-2xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-500 overflow-hidden ${
+                    <div className={`relative flex flex-col backdrop-blur-2xl border transition-all duration-500 overflow-hidden ${
                         (location.pathname.startsWith('/course') || location.pathname === '/courses')
-                            ? 'rounded-2xl bg-gray-900/95 dark:bg-[#070b14]/95 text-white'
-                            : `rounded-2xl md:rounded-full ${isDarkPage ? 'bg-black/30 text-white' : 'bg-white/40 dark:bg-black/30 text-gray-800 dark:text-white'}`
+                            ? (theme === 'dark' 
+                                ? 'rounded-2xl bg-[#070b14]/95 text-white border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]' 
+                                : 'rounded-2xl bg-white/95 text-gray-900 border-gray-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]')
+                            : `rounded-2xl md:rounded-full ${isDarkPage ? 'bg-black/30 text-white border-white/20' : 'bg-white/40 dark:bg-black/30 text-gray-800 dark:text-white border-white/20'}`
                     }`}>
                         {/* Row 1: Main Header Navigation Bar */}
                         <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-2.5 w-full">
@@ -308,7 +310,11 @@ const Header = () => {
 
                         {/* Row 2: W3Schools-Style Attached Course Sub-Navbar Bar (Seamless, No Gap!) */}
                         {(location.pathname.startsWith('/course') || location.pathname === '/courses') && (
-                            <div className="border-t border-white/10 bg-black/40 dark:bg-black/60 w-full py-1">
+                            <div className={`border-t w-full py-1 ${
+                                theme === 'dark' 
+                                    ? 'border-white/10 bg-black/60 text-gray-200' 
+                                    : 'border-gray-200 bg-[#1e293b] text-gray-100'
+                            }`}>
                                 <CourseSubNavbar />
                             </div>
                         )}
