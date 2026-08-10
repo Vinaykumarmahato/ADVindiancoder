@@ -45,7 +45,7 @@ const CourseSubNavbar: React.FC = () => {
 
     const handleScroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
-            const scrollAmount = direction === 'left' ? -220 : 220;
+            const scrollAmount = direction === 'left' ? -240 : 240;
             scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     };
@@ -54,7 +54,7 @@ const CourseSubNavbar: React.FC = () => {
         return location.pathname.toLowerCase() === path.toLowerCase();
     };
 
-    // Auto-scroll active item into view on page load / route change
+    // Auto-scroll active item into view on route change
     useEffect(() => {
         if (scrollContainerRef.current) {
             const activeElem = scrollContainerRef.current.querySelector('[data-active="true"]');
@@ -65,7 +65,7 @@ const CourseSubNavbar: React.FC = () => {
     }, [location.pathname]);
 
     return (
-        <div className="relative w-full backdrop-blur-2xl bg-gray-900/95 dark:bg-[#070b14]/95 text-gray-200 rounded-xl sm:rounded-full border border-white/20 dark:border-white/10 p-1 sm:p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.35)] z-30 select-none">
+        <div className="relative w-full backdrop-blur-2xl bg-gray-950/95 dark:bg-[#070b14]/95 text-gray-200 rounded-none sm:rounded-full border-y sm:border border-white/15 dark:border-white/10 p-1 sm:p-1.5 shadow-xl z-30 select-none">
             <div className="flex items-center relative w-full">
                 {/* Desktop Left Scroll Button */}
                 <button
@@ -76,15 +76,12 @@ const CourseSubNavbar: React.FC = () => {
                     <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
 
-                {/* Horizontal Touch Scroll Container with generous padding buffers */}
+                {/* Horizontal Touch Scroll Container */}
                 <div
                     ref={scrollContainerRef}
-                    className="flex items-center overflow-x-auto py-1 px-3 sm:px-6 space-x-2 sm:space-x-2.5 scroll-smooth w-full no-scrollbar touch-pan-x"
+                    className="flex items-center overflow-x-auto py-1 px-3 sm:px-5 space-x-2 sm:space-x-2.5 scroll-smooth w-full no-scrollbar touch-pan-x"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
-                    {/* Start padding buffer */}
-                    <div className="w-2 sm:w-3 shrink-0" aria-hidden="true" />
-
                     {COURSE_NAV_ITEMS.map((item) => {
                         const active = isCourseActive(item.path);
                         return (
@@ -102,9 +99,6 @@ const CourseSubNavbar: React.FC = () => {
                             </button>
                         );
                     })}
-
-                    {/* Generous End padding buffer (40px) to guarantee zero character clipping on mobile rounded corners */}
-                    <div className="w-10 sm:w-12 shrink-0" aria-hidden="true" />
                 </div>
 
                 {/* Desktop Right Scroll Button */}
