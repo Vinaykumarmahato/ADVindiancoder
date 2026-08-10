@@ -220,11 +220,23 @@ const Header = () => {
                             <div className="flex items-center space-x-1.5 md:space-x-3">
                                 <button
                                     onClick={() => setIsSearchOpen(true)}
-                                    className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10 transition-all group relative overflow-hidden"
-                                    aria-label="Search"
+                                    className={`group relative flex items-center justify-between gap-2.5 px-3.5 md:px-4.5 py-1.5 md:py-2 rounded-full border transition-all duration-300 shadow-sm cursor-pointer ${
+                                        theme === 'dark'
+                                            ? 'bg-white/10 hover:bg-white/15 border-white/20 hover:border-red-500/50 text-gray-200 hover:text-white shadow-black/40'
+                                            : 'bg-gray-100/90 dark:bg-white/10 hover:bg-gray-200/90 dark:hover:bg-white/15 border-gray-300 dark:border-white/20 hover:border-red-500/50 text-gray-700 dark:text-gray-200'
+                                    }`}
+                                    aria-label="Search Courses"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <Search className={`h-4.5 w-4.5 relative z-10 ${isDarkPage ? 'text-white' : 'text-gray-800 dark:text-white'}`} />
+                                    <div className="flex items-center gap-2">
+                                        <Search className="h-4 w-4 text-gray-400 group-hover:text-red-500 transition-colors shrink-0" />
+                                        <span className="hidden sm:inline-block text-xs font-semibold tracking-wide italic text-gray-400 group-hover:text-gray-200 dark:group-hover:text-white transition-colors">
+                                            Search...
+                                        </span>
+                                    </div>
+                                    
+                                    <kbd className="hidden lg:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono font-black text-gray-400 dark:text-gray-400 bg-white/20 dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-full group-hover:border-red-500/40 group-hover:text-red-400 transition-all">
+                                        <span className="text-[9px]">⌘</span>K
+                                    </kbd>
                                 </button>
 
 
