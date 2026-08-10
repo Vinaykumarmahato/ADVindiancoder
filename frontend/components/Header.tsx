@@ -387,82 +387,46 @@ const Header = () => {
                         variants={menuVariants}
                         initial="hidden"
                         animate="visible"
-                        className="fixed top-[72px] md:top-[88px] left-4 right-4 z-[2000] xl:hidden p-4 bg-white/95 dark:bg-[#0a0f1c]/95 backdrop-blur-xl rounded-2xl border border-white/20 dark:border-white/10 shadow-2xl max-h-[calc(100vh-120px)] overflow-y-auto"
+                        exit="hidden"
+                        className="fixed top-[72px] md:top-[88px] left-3 right-3 sm:left-4 sm:right-4 z-[2000] xl:hidden p-4 sm:p-5 bg-slate-900/98 dark:bg-[#070b14]/98 backdrop-blur-2xl rounded-3xl border border-white/15 dark:border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] max-h-[calc(100vh-100px)] overflow-y-auto [&::-webkit-scrollbar]:hidden text-white"
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
-                        <div className="flex flex-col space-y-2">
+                        {/* Drawer Header */}
+                        <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 px-2">
+                            <div className="flex items-center gap-2">
+                                <Sparkles className="w-4 h-4 text-red-500" />
+                                <span className="text-xs font-mono font-black uppercase tracking-wider text-gray-400">Navigation Menu</span>
+                            </div>
+                            <button 
+                                onClick={() => setIsMenuOpen(false)}
+                                className="p-1.5 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                            >
+                                <X className="w-4 h-4" />
+                            </button>
+                        </div>
+
+                        <div className="flex flex-col space-y-1.5">
                             {NAV_LINKS.map((link) => {
                                 const isExternal = link.path.startsWith('http');
                                 const LinkComponent = isExternal ? 'a' : NavLink;
-                                const linkProps = isExternal 
-                                    ? { href: link.path }
-                                    : { to: link.path, onClick: () => setIsMenuOpen(false) };
 
                                 const getMobileClassName = (isActive: boolean = false) => 
-                                    `flex items-center justify-between py-3.5 px-5 rounded-2xl transition-all duration-300 font-bold group ${isActive
-                                        ? 'bg-red-600 text-white shadow-xl shadow-red-600/20'
-                                        : 'text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10'
+                                    `flex items-center justify-between py-3 px-4 rounded-2xl transition-all duration-300 font-bold group cursor-pointer ${isActive
+                                        ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white shadow-lg shadow-red-500/25 border border-white/20'
+                                        : 'text-gray-300 dark:text-gray-200 hover:bg-white/10 dark:hover:bg-white/10 border border-transparent'
                                     }`;
-
-                                const renderMobileLinkContent = (link: any, isActive: boolean) => (
-                                    <>
-                                        <div className="flex items-center gap-3">
-                                            {link.name === 'Live Masterclass' ? (
-                                                <>
-                                                    <div className="relative flex h-2.5 w-2.5">
-                                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
-                                                    </div>
-                                                    <span>Live Masterclass</span>
-                                                </>
-                                            ) : link.name === 'ADV Lab' ? (
-                                                <>
-                                                    <Sparkles className="w-5 h-5 text-blue-500" />
-                                                    <span>ADV Lab</span>
-                                                </>
-                                            ) : link.name === 'ADV ExamHub' ? (
-                                                <>
-                                                    <Rocket className="w-5 h-5 text-orange-500" />
-                                                    <span>ExamHub</span>
-                                                </>
-                                            ) : link.name === 'Jobs' ? (
-                                                <>
-                                                    <Rocket className="w-5 h-5 text-indigo-500 rotate-45" />
-                                                    <span>Jobs</span>
-                                                </>
-                                            ) : link.name === 'Home' ? (
-                                                <>
-                                                    <Home className="w-5 h-5" />
-                                                    <span>Home</span>
-                                                </>
-                                            ) : (
-                                                <span>{link.name}</span>
-                                            )}
-                                        </div>
-
-                                        {/* Badges for Mobile */}
-                                        <div className="flex items-center gap-2">
-                                            {link.name === 'Live Masterclass' && (
-                                                <span className={`text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full border ${isActive ? 'bg-white/20 text-white border-white/20' : 'bg-red-600 text-white border-transparent'}`}>LIVE</span>
-                                            )}
-                                            {link.name === 'ADV ExamHub' && (
-                                                <span className="text-[10px] font-black tracking-widest bg-orange-500 text-white px-2 py-0.5 rounded-full shadow-lg shadow-orange-500/40">HOT</span>
-                                            )}
-                                            {link.name === 'Jobs' && (
-                                                <span className="text-[10px] font-black tracking-widest bg-blue-500 text-white px-2 py-0.5 rounded-full shadow-lg shadow-blue-500/40">NEW</span>
-                                            )}
-                                            {link.path.startsWith('http') && <ExternalLink className="w-4 h-4 opacity-40" />}
-                                        </div>
-                                    </>
-                                );
 
                                 return (
                                     <MotionDiv key={link.name} variants={menuItemVariants}>
                                         {isExternal ? (
                                             <a 
                                                 href={link.path}
-                                                className={getMobileClassName()}
+                                                className={getMobileClassName(false)}
                                             >
-                                                {renderMobileLinkContent(link, false)}
+                                                <div className="flex items-center gap-3 text-xs sm:text-sm">
+                                                    {renderLinkContent(link)}
+                                                </div>
+                                                <ExternalLink className="w-4 h-4 opacity-40" />
                                             </a>
                                         ) : (
                                             <NavLink 
@@ -470,7 +434,13 @@ const Header = () => {
                                                 onClick={() => setIsMenuOpen(false)}
                                                 className={({ isActive }) => getMobileClassName(isActive)}
                                             >
-                                                {({ isActive }) => renderMobileLinkContent(link, isActive)}
+                                                {({ isActive }) => (
+                                                    <div className="flex items-center justify-between w-full">
+                                                        <div className="flex items-center gap-3 text-xs sm:text-sm">
+                                                            {renderLinkContent(link)}
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </NavLink>
                                         )}
                                     </MotionDiv>
@@ -478,31 +448,31 @@ const Header = () => {
                             })}
 
                             {/* Mobile Auth Options */}
-                            <div className="h-px bg-gray-200 dark:bg-white/10 my-3.5" />
+                            <div className="h-px bg-white/10 my-3" />
                             {user ? (
-                                <div className="space-y-3.5">
-                                    <div className="flex items-center gap-3 px-3 py-1.5">
-                                        <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full object-cover border border-gray-200 dark:border-white/10 shadow-sm" />
+                                <div className="space-y-3 pt-1">
+                                    <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10">
+                                        <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full object-cover border border-red-500/30 shadow-md" />
                                         <div className="min-w-0 flex-1">
-                                            <p className="text-sm font-black text-gray-900 dark:text-white truncate leading-snug">{user.name}</p>
-                                            <p className="text-[11px] text-gray-500 dark:text-gray-400 truncate leading-none mt-0.5">{user.email}</p>
+                                            <p className="text-xs font-black text-white truncate leading-snug">{user.name}</p>
+                                            <p className="text-[10px] text-gray-400 truncate leading-none mt-0.5">{user.email}</p>
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-2">
                                         <Link
                                             to={`/u/${user.name}`}
                                             onClick={() => setIsMenuOpen(false)}
-                                            className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs bg-gray-100 dark:bg-white/5 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-all border border-gray-200/50 dark:border-white/5"
+                                            className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl font-bold text-xs bg-white/5 text-gray-200 hover:text-white hover:bg-white/10 transition-all border border-white/10"
                                         >
-                                            <LayoutDashboard className="w-4 h-4 text-red-500" />
+                                            <LayoutDashboard className="w-3.5 h-3.5 text-red-500" />
                                             <span>View Profile</span>
                                         </Link>
                                         <Link
                                             to="/courses"
                                             onClick={() => setIsMenuOpen(false)}
-                                            className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs bg-gray-100 dark:bg-white/5 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-all border border-gray-200/50 dark:border-white/5"
+                                            className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl font-bold text-xs bg-white/5 text-gray-200 hover:text-white hover:bg-white/10 transition-all border border-white/10"
                                         >
-                                            <BookOpen className="w-4 h-4 text-blue-500" />
+                                            <BookOpen className="w-3.5 h-3.5 text-blue-400" />
                                             <span>Courses</span>
                                         </Link>
                                     </div>
@@ -511,21 +481,21 @@ const Header = () => {
                                             logout();
                                             setIsMenuOpen(false);
                                         }}
-                                        className="w-full flex items-center justify-center gap-2 py-3.5 px-5 rounded-2xl font-bold text-sm bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-600/10 active:scale-[0.98] transition-all cursor-pointer border border-transparent"
+                                        className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs bg-red-600/20 hover:bg-red-600/30 text-red-400 hover:text-red-300 border border-red-500/30 transition-all cursor-pointer"
                                     >
-                                        <LogOut className="w-4 h-4" />
+                                        <LogOut className="w-3.5 h-3.5" />
                                         <span>Sign Out</span>
                                     </button>
                                 </div>
                             ) : (
-                                <div className="flex flex-col gap-2.5">
+                                <div className="flex flex-col gap-2 pt-1">
                                     <button
                                         onClick={() => {
                                             setAuthModalTab('login');
                                             setIsAuthModalOpen(true);
                                             setIsMenuOpen(false);
                                         }}
-                                        className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-orange-500 hover:brightness-110 text-white font-bold text-sm shadow-xl shadow-red-600/10 active:scale-[0.98] transition-all cursor-pointer text-center border border-transparent"
+                                        className="w-full py-3 rounded-xl bg-gradient-to-r from-red-600 to-orange-500 hover:brightness-110 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 active:scale-[0.98] transition-all cursor-pointer text-center border border-transparent"
                                     >
                                         Sign In
                                     </button>
@@ -535,7 +505,7 @@ const Header = () => {
                                             setIsAuthModalOpen(true);
                                             setIsMenuOpen(false);
                                         }}
-                                        className="w-full py-3.5 rounded-2xl bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200/50 dark:border-white/10 text-gray-800 dark:text-gray-200 font-bold text-sm active:scale-[0.98] transition-all cursor-pointer text-center"
+                                        className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 hover:text-white font-bold text-xs active:scale-[0.98] transition-all cursor-pointer text-center"
                                     >
                                         Create Account
                                     </button>
