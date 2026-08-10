@@ -174,10 +174,10 @@ const Header = () => {
             <header className="fixed top-0 left-0 right-0 z-[1000] px-4 py-4 md:py-6 pointer-events-none">
                 <nav className="max-w-7xl mx-auto pointer-events-auto">
                     {/* Unified Header Shell Container (W3Schools Style Integration on ALL Pages) */}
-                    <div className={`relative flex flex-col backdrop-blur-2xl border transition-all duration-500 overflow-hidden ${
+                    <div className={`relative flex flex-col backdrop-blur-2xl border transition-all duration-500 rounded-2xl ${
                         theme === 'dark' 
-                            ? 'rounded-2xl bg-[#070b14]/95 text-white border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]' 
-                            : 'rounded-2xl bg-white/95 text-gray-900 border-gray-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]'
+                            ? 'bg-[#070b14]/95 text-white border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]' 
+                            : 'bg-white/95 text-gray-900 border-gray-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]'
                     }`}>
                         {/* Row 1: Main Header Navigation Bar */}
                         <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-2.5 w-full">
@@ -361,7 +361,7 @@ const Header = () => {
                         </div>
 
                         {/* Row 2: W3Schools-Style Attached Course Sub-Navbar Bar (ON EVERY PAGE!) */}
-                        <div className={`border-t w-full py-1 ${
+                        <div className={`border-t w-full py-1 rounded-b-2xl overflow-hidden ${
                             theme === 'dark' 
                                 ? 'border-white/10 bg-black/60 text-gray-200' 
                                 : 'border-gray-200 bg-[#1e293b] text-gray-100'
