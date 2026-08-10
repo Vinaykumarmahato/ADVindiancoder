@@ -122,10 +122,10 @@ const GlobalSearch = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[2000] flex items-start justify-center pt-[15vh] px-4">
+                <div className="fixed inset-0 z-[2000] flex items-start justify-center pt-6 sm:pt-[12vh] px-3 sm:px-4">
                     <motion.div 
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-md"
+                        className="fixed inset-0 bg-black/70 backdrop-blur-md"
                         onClick={onClose}
                     />
                     
@@ -133,63 +133,63 @@ const GlobalSearch = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                         initial={{ scale: 0.95, opacity: 0, y: -20 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.95, opacity: 0, y: -20 }}
-                        className="relative w-full max-w-2xl bg-[#0a0f1c] border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
+                        className="relative w-full max-w-2xl bg-[#090d16]/95 backdrop-blur-2xl border border-white/15 dark:border-white/10 rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.8)] overflow-hidden z-10"
                     >
-                        <div className="p-6 border-b border-white/5 flex items-center gap-4">
-                            <Search className="text-gray-400 w-6 h-6" />
+                        <div className="p-3.5 sm:p-5 border-b border-white/10 flex items-center gap-2.5 sm:gap-4 min-w-0">
+                            <Search className="text-gray-400 w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
                             <input 
                                 ref={inputRef}
                                 type="text" 
-                                placeholder="Search courses, episodes (e.g. Java Variables), or masterclasses..."
-                                className="flex-1 bg-transparent border-none text-white text-lg focus:outline-none placeholder-gray-500"
+                                placeholder="Search courses, episodes, masterclasses..."
+                                className="flex-1 min-w-0 bg-transparent border-none text-white text-sm sm:text-lg focus:outline-none placeholder-gray-500 font-medium"
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                             />
-                            <div className="hidden sm:flex items-center gap-1.5 px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-gray-500 font-mono">
+                            <div className="hidden sm:flex items-center gap-1.5 px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-gray-500 font-mono shrink-0">
                                 <Command size={10} /> K
                             </div>
-                            <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-full text-gray-400">
+                            <button onClick={onClose} className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-gray-400 shrink-0 cursor-pointer transition-colors" aria-label="Close search">
                                 <X size={20} />
                             </button>
                         </div>
 
-                        <div className="max-h-[60vh] overflow-y-auto p-4 custom-scrollbar">
+                        <div className="max-h-[60vh] overflow-y-auto p-3 sm:p-4 custom-scrollbar">
                             {results.length > 0 ? (
                                 <div className="space-y-2">
                                     {results.map((res, i) => (
                                         <button
                                             key={i}
                                             onClick={() => handleSelect(res.path)}
-                                            className="w-full flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 text-left transition-colors group"
+                                            className="w-full flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl hover:bg-white/5 text-left transition-colors group cursor-pointer"
                                         >
-                                            <div className="p-3 bg-white/5 rounded-xl group-hover:bg-primary/20 group-hover:text-primary transition-colors">
-                                                {res.type === 'Course' && <Book size={20} />}
-                                                {res.type === 'Masterclass' && <Play size={20} />}
-                                                {res.type === 'Page' && <AppWindow size={20} />}
-                                                {res.type === 'Episode' && <Youtube size={20} className="text-red-500" />}
-                                                {res.type === 'Quiz' && <HelpCircle size={20} className="text-amber-500" />}
-                                                {res.type === 'Service' && <ShieldCheck size={20} className="text-green-500" />}
-                                                {res.type === 'Exam' && <Target size={20} className="text-indigo-500" />}
+                                            <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl group-hover:bg-red-500/20 group-hover:text-red-400 transition-colors shrink-0">
+                                                {res.type === 'Course' && <Book size={18} className="sm:w-5 sm:h-5" />}
+                                                {res.type === 'Masterclass' && <Play size={18} className="sm:w-5 sm:h-5" />}
+                                                {res.type === 'Page' && <AppWindow size={18} className="sm:w-5 sm:h-5" />}
+                                                {res.type === 'Episode' && <Youtube size={18} className="text-red-500 sm:w-5 sm:h-5" />}
+                                                {res.type === 'Quiz' && <HelpCircle size={18} className="text-amber-500 sm:w-5 sm:h-5" />}
+                                                {res.type === 'Service' && <ShieldCheck size={18} className="text-green-500 sm:w-5 sm:h-5" />}
+                                                {res.type === 'Exam' && <Target size={18} className="text-indigo-500 sm:w-5 sm:h-5" />}
                                             </div>
-                                            <div className="flex-1">
-                                                <div className="flex justify-between items-center mb-1">
-                                                    <h4 className="font-bold text-white">{res.title}</h4>
-                                                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-black">{res.type}</span>
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex justify-between items-center gap-2 mb-1">
+                                                    <h4 className="font-bold text-white text-xs sm:text-sm truncate">{res.title}</h4>
+                                                    <span className="text-[9px] uppercase tracking-widest text-gray-400 font-black shrink-0 px-2 py-0.5 rounded-full bg-white/5">{res.type}</span>
                                                 </div>
-                                                {res.description && <p className="text-xs text-gray-400 font-light">{res.description}</p>}
+                                                {res.description && <p className="text-[11px] sm:text-xs text-gray-400 font-light truncate">{res.description}</p>}
                                             </div>
                                         </button>
                                     ))}
                                 </div>
                             ) : query.trim() ? (
-                                <div className="text-center py-20 text-gray-500">
-                                    <p className="text-lg">No results found for "{query}"</p>
-                                    <p className="text-xs mt-2 uppercase tracking-widest">Try another keyword</p>
+                                <div className="text-center py-16 sm:py-20 text-gray-500">
+                                    <p className="text-base sm:text-lg">No results found for "{query}"</p>
+                                    <p className="text-[10px] sm:text-xs mt-2 uppercase tracking-widest">Try another keyword</p>
                                 </div>
                             ) : (
-                                <div className="py-12 px-6 text-center text-gray-500">
-                                    <Search size={40} className="mx-auto mb-4 opacity-20" />
-                                    <p className="text-sm">Type to begin searching the platform...</p>
+                                <div className="py-10 sm:py-12 px-4 text-center text-gray-500">
+                                    <Search size={36} className="mx-auto mb-3 opacity-20 sm:w-10 sm:h-10" />
+                                    <p className="text-xs sm:text-sm">Type to begin searching the platform...</p>
                                 </div>
                             )}
                         </div>
