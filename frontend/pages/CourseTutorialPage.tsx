@@ -671,7 +671,7 @@ const CourseTutorialPage = () => {
             <div className="min-h-screen bg-white dark:bg-[#050914] text-gray-900 dark:text-white overflow-x-hidden transition-colors duration-300">
                 <div className="absolute top-0 w-full h-[500px] bg-gradient-to-b from-red-700/10 to-transparent pointer-events-none" />
 
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-20 md:pb-32 relative z-10">
                     {/* Header */}
                     <div className="flex items-center gap-4 mb-8">
                         <Link to="/courses" className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-950 dark:hover:text-white transition-colors text-sm group">

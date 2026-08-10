@@ -122,7 +122,7 @@ const UpscSyllabusPage = () => {
 
     return (
         <PageWrapper>
-            <div className="min-h-screen bg-[#FDFDFD] dark:bg-dark-bg pt-10 md:py-24">
+            <div className="min-h-screen bg-[#FDFDFD] dark:bg-dark-bg pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header */}
                     <div className="text-center mb-20">

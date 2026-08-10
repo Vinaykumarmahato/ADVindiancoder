@@ -43,7 +43,7 @@ const CommunityPage = () => {
                 keywords="adv indian coder community, coding discord, tech telegram channel, developer whatsapp group, learn programming india"
                 canonical="/community"
             />
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-16">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-extrabold tracking-tight">Join Our Coding Community</h1>
                     <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">Connect, collaborate, and grow with fellow developers.</p>

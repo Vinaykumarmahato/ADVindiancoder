@@ -53,7 +53,7 @@ const CertificateDirectoryPage = () => {
             />
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
+            <section className="relative pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-20 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] animate-pulse" />
                     <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-[120px]" />

@@ -223,7 +223,7 @@ const PracticeHubPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-[#070b13] py-24 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-slate-50 dark:bg-[#070b13] pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-24 px-4 sm:px-6 lg:px-8">
             <SEO 
                 title="Full Stack Practice Hub: Code Real Projects | Adv Indian Coder"
                 description="Level up your coding skills with our Full Stack Practice Hub. Build real-world React, Node.js, and Python projects to build your ultimate portfolio."

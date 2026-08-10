@@ -1351,7 +1351,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                     <div className="absolute bottom-[-10%] left-[-10%] w-[80%] md:w-[50%] h-[50%] bg-blue-600/10 blur-[120px] rounded-full"></div>
                 </div>
 
-                <div className="relative z-20 px-3 md:px-4 pt-6 md:pt-10 pb-2">
+                <div className="relative z-20 px-3 md:px-4 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-2">
                     <div className="max-w-[1700px] mx-auto bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2rem] p-2 md:p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xl">
                                 <div className="flex items-center gap-4 overflow-x-auto no-scrollbar w-full md:w-auto px-1">
                                     <div className="px-4 py-2 border-r border-white/10 flex items-center gap-3">

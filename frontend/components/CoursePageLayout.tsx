@@ -173,7 +173,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                 {/* Background decorative elements */}
                 <div className={`absolute top-0 right-0 w-1/2 h-96 bg-gradient-to-b ${colors.gradientFrom}/5 to-transparent pointer-events-none`} />
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 md:pt-40 pb-12 relative z-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-12 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                         {/* Sidebar / Table of Contents */}
                         <div className="lg:col-span-1">

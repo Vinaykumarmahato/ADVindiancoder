@@ -444,7 +444,7 @@ const ExamHubPage: React.FC = () => {
                 <GlowingOrb className="bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-indigo-900/20" />
 
                 {/* ── 1. HERO BANNER ── */}
-                <section className="relative pt-8 sm:pt-12 pb-16 sm:pb-20 px-4 max-w-7xl mx-auto z-10 text-center">
+                <section className="relative pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-16 sm:pb-20 px-4 max-w-7xl mx-auto z-10 text-center">
                     <motion.div 
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}

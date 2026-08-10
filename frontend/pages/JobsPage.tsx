@@ -679,7 +679,7 @@ const JobsPage = () => {
                 keywords="Software Developer Jobs for Freshers, Full Stack Developer Jobs India, Direct Apply IT Jobs 2026, Off Campus Drive for 2026 Batch, Best Coding Jobs in Bangalore"
                 exactTitle={true}
             />
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 overflow-x-hidden">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-16 overflow-x-hidden">
                 <div className="text-center mb-12 relative overflow-hidden py-4">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -z-10"></div>
                     <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] md:text-sm uppercase px-4 py-1.5 rounded-full mb-4 inline-block shadow-[0_0_15px_rgba(0,120,255,0.2)]">
