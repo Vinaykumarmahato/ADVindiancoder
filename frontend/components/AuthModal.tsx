@@ -551,6 +551,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
                                                         <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold leading-relaxed">
                                                             Enter the 6-digit verification code sent to <span className="font-bold text-gray-700 dark:text-gray-200">{countryCode} {phoneNumber}</span>.
                                                         </p>
+                                                        <p className="text-xs text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 p-2.5 rounded-xl border border-amber-200 dark:border-amber-800/50 font-semibold">
+                                                            💡 <strong>Demo / Direct OTP:</strong> Use test code <code className="bg-amber-100 dark:bg-amber-900/60 px-1.5 py-0.5 rounded font-mono font-bold text-amber-900 dark:text-amber-100">111111</code> to verify instantly!
+                                                        </p>
 
                                                         <div className="flex justify-between gap-2">
                                                             {otpDigits.map((digit, idx) => (
@@ -667,7 +670,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
                                                 ) : (
                                                     <form onSubmit={handleVerifyEmailOtp} className="space-y-5">
                                                         <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold leading-relaxed">
-                                                            Enter the 6-digit verification code sent to <span className="font-bold text-gray-700 dark:text-gray-200">{emailForOtp}</span>. <span className="text-red-500 block mt-1 font-bold">(Please check your Spam or Junk folder if the mail is not in your Inbox)</span>
+                                                            Enter the 6-digit verification code sent to <span className="font-bold text-gray-700 dark:text-gray-200">{emailForOtp}</span>.
+                                                        </p>
+                                                        <p className="text-xs text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 p-2.5 rounded-xl border border-amber-200 dark:border-amber-800/50 font-semibold">
+                                                            💡 <strong>Demo / Direct OTP:</strong> Check inbox/spam or use test code <code className="bg-amber-100 dark:bg-amber-900/60 px-1.5 py-0.5 rounded font-mono font-bold text-amber-900 dark:text-amber-100">111111</code> to verify instantly!
                                                         </p>
 
                                                         <div className="flex justify-between gap-2">
