@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Search, ChevronDown, Rocket, Sparkles, ExternalLink, Home, LogOut, LayoutDashboard, BookOpen } from 'lucide-react';
+import { Sun, Moon, Menu, X, Search, ChevronDown, Rocket, Sparkles, ExternalLink, Home, LogOut, LayoutDashboard, BookOpen, FileText, Trophy, HelpCircle, Mail, Users, Briefcase } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
 import { NAV_LINKS } from '../constants';
@@ -85,8 +85,8 @@ const Header = () => {
 
     const [isMoreOpen, setIsMoreOpen] = useState(false);
 
-    const mainLinks = NAV_LINKS.filter(link => ['Home', 'Courses', 'ADV Lab', 'ADV ExamHub', 'Practice Hub', 'Live Masterclass', 'Jobs'].includes(link.name));
-    const moreLinks = NAV_LINKS.filter(link => !['Home', 'Courses', 'ADV Lab', 'ADV ExamHub', 'Practice Hub', 'Live Masterclass', 'Jobs'].includes(link.name));
+    const mainLinks = NAV_LINKS.filter(link => ['Home', 'Courses', 'ADV Lab', 'ADV ExamHub', 'Practice Hub'].includes(link.name));
+    const moreLinks = NAV_LINKS.filter(link => !['Home', 'Courses', 'ADV Lab', 'ADV ExamHub', 'Practice Hub'].includes(link.name));
 
     const isDarkPage = theme === 'dark';
 
@@ -131,8 +131,39 @@ const Header = () => {
         );
         if (link.name === 'Jobs') return (
             <>
+                <Briefcase className="w-3.5 h-3.5 text-purple-400" />
                 <span>Jobs</span>
                 <span className="ml-auto text-[9px] font-black tracking-tighter bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-2 py-0.5 rounded-full shadow-lg shadow-blue-500/40 border border-white/20">NEW</span>
+            </>
+        );
+        if (link.name === 'Notes') return (
+            <>
+                <FileText className="w-3.5 h-3.5 text-yellow-400" />
+                <span>Notes</span>
+            </>
+        );
+        if (link.name === 'Success Stories') return (
+            <>
+                <Trophy className="w-3.5 h-3.5 text-amber-400" />
+                <span>Success Stories</span>
+            </>
+        );
+        if (link.name === 'About') return (
+            <>
+                <Users className="w-3.5 h-3.5 text-cyan-400" />
+                <span>About</span>
+            </>
+        );
+        if (link.name === 'FAQ') return (
+            <>
+                <HelpCircle className="w-3.5 h-3.5 text-indigo-400" />
+                <span>FAQ</span>
+            </>
+        );
+        if (link.name === 'Contact') return (
+            <>
+                <Mail className="w-3.5 h-3.5 text-pink-400" />
+                <span>Contact</span>
             </>
         );
         return link.name;
@@ -187,11 +218,11 @@ const Header = () => {
                                     );
                                 })}
 
-                                {/* More Dropdown */}
+                                {/* Ultra-Modern More Dropdown */}
                                 <div className="relative" onMouseEnter={() => setIsMoreOpen(true)} onMouseLeave={() => setIsMoreOpen(false)}>
-                                    <button className={`px-3 py-1.5 text-xs font-bold transition-all duration-300 flex items-center gap-1 rounded-full hover:bg-white/10 dark:hover:bg-white/5 whitespace-nowrap shrink-0 ${isMoreOpen ? 'text-white' : (isDarkPage ? 'text-gray-200' : 'text-gray-700 dark:text-gray-300')}`}>
+                                    <button className={`px-3.5 py-1.5 text-xs font-bold transition-all duration-300 flex items-center gap-1.5 rounded-full border border-white/15 dark:border-white/10 hover:border-red-500/50 hover:bg-white/15 dark:hover:bg-white/10 whitespace-nowrap shrink-0 shadow-sm cursor-pointer ${isMoreOpen ? 'text-white bg-white/15 border-red-500/50' : (isDarkPage ? 'text-gray-200' : 'text-gray-700 dark:text-gray-300')}`}>
                                         <span>More</span>
-                                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 shrink-0 ${isMoreOpen ? 'rotate-180' : ''}`} />
+                                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 shrink-0 ${isMoreOpen ? 'rotate-180 text-red-500' : 'text-gray-400'}`} />
                                     </button>
                                     
                                     <AnimatePresence>
@@ -200,17 +231,25 @@ const Header = () => {
                                                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                className="absolute top-full right-0 mt-2 w-56 p-2 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+                                                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                                                className="absolute top-full right-0 mt-3 w-64 p-2.5 bg-gray-900/95 dark:bg-[#070b14]/95 backdrop-blur-2xl border border-white/15 dark:border-white/10 rounded-2xl shadow-[0_16px_48px_rgba(0,0,0,0.5)] overflow-hidden z-50 text-gray-200"
                                             >
-                                                {moreLinks.map((link) => (
-                                                    <Link
-                                                        key={link.name}
-                                                        to={link.path}
-                                                        className="flex items-center gap-3 px-3 py-2 text-xs font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
-                                                    >
-                                                        {renderLinkContent(link)}
-                                                    </Link>
-                                                ))}
+                                                <div className="text-[10px] font-mono font-black uppercase tracking-wider text-gray-400 px-3 py-1.5 border-b border-white/10 mb-1.5 flex items-center justify-between">
+                                                    <span>Explore Platform</span>
+                                                    <Sparkles className="w-3 h-3 text-red-500" />
+                                                </div>
+
+                                                <div className="space-y-1">
+                                                    {moreLinks.map((link) => (
+                                                        <Link
+                                                            key={link.name}
+                                                            to={link.path}
+                                                            className="flex items-center gap-3 px-3 py-2 text-xs font-bold text-gray-300 hover:text-white hover:bg-white/10 dark:hover:bg-white/10 rounded-xl transition-all group/item"
+                                                        >
+                                                            {renderLinkContent(link)}
+                                                        </Link>
+                                                    ))}
+                                                </div>
                                             </MotionDiv>
                                         )}
                                     </AnimatePresence>
