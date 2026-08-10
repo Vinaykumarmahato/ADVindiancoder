@@ -83,6 +83,11 @@ const Header = () => {
         visible: { opacity: 1, x: 0 },
     };
 
+    const [isMoreOpen, setIsMoreOpen] = useState(false);
+
+    const mainLinks = NAV_LINKS.filter(link => ['Home', 'Courses', 'ADV Lab', 'ADV ExamHub', 'Practice Hub', 'Live Masterclass', 'Jobs'].includes(link.name));
+    const moreLinks = NAV_LINKS.filter(link => !['Home', 'Courses', 'ADV Lab', 'ADV ExamHub', 'Practice Hub', 'Live Masterclass', 'Jobs'].includes(link.name));
+
     const isDarkPage = theme === 'dark';
 
     const getClassName = useCallback((isActive: boolean = false) => 
@@ -153,9 +158,12 @@ const Header = () => {
                                 </div>
                             </Link>
 
-                            {/* Desktop Navigation (All Links on First Layer) */}
-                            <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 overflow-x-auto no-scrollbar py-0.5">
-                                {NAV_LINKS.map((link) => {
+                            {/* Desktop Navigation */}
+                            <div 
+                                className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 [&::-webkit-scrollbar]:hidden py-0.5"
+                                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                            >
+                                {mainLinks.map((link) => {
                                     const isExternal = link.path.startsWith('http');
 
                                     return (
@@ -178,6 +186,35 @@ const Header = () => {
                                         </React.Fragment>
                                     );
                                 })}
+
+                                {/* More Dropdown */}
+                                <div className="relative" onMouseEnter={() => setIsMoreOpen(true)} onMouseLeave={() => setIsMoreOpen(false)}>
+                                    <button className={`px-3 py-1.5 text-xs font-bold transition-all duration-300 flex items-center gap-1 rounded-full hover:bg-white/10 dark:hover:bg-white/5 whitespace-nowrap shrink-0 ${isMoreOpen ? 'text-white' : (isDarkPage ? 'text-gray-200' : 'text-gray-700 dark:text-gray-300')}`}>
+                                        <span>More</span>
+                                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 shrink-0 ${isMoreOpen ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    
+                                    <AnimatePresence>
+                                        {isMoreOpen && (
+                                            <MotionDiv
+                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                className="absolute top-full right-0 mt-2 w-56 p-2 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+                                            >
+                                                {moreLinks.map((link) => (
+                                                    <Link
+                                                        key={link.name}
+                                                        to={link.path}
+                                                        className="flex items-center gap-3 px-3 py-2 text-xs font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+                                                    >
+                                                        {renderLinkContent(link)}
+                                                    </Link>
+                                                ))}
+                                            </MotionDiv>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             </div>
 
                             {/* Action Buttons */}
