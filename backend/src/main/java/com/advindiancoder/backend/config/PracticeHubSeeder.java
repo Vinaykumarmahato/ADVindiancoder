@@ -18,13 +18,17 @@ public class PracticeHubSeeder implements CommandLineRunner {
     private PracticeProblemRepository problemRepository;
 
     @Override
-    public void run(String... args) throws Exception {
-        if (problemRepository.count() < 355) {
-            System.out.println("[PracticeHubSeeder] Clearing old problems and seeding new challenges...");
-            problemRepository.deleteAll();
-            seedProblems();
-        } else {
-            System.out.println("[PracticeHubSeeder] Practice Hub already has " + problemRepository.count() + " problems. Seeding skipped.");
+    public void run(String... args) {
+        try {
+            if (problemRepository.count() < 355) {
+                System.out.println("[PracticeHubSeeder] Clearing old problems and seeding new challenges...");
+                problemRepository.deleteAll();
+                seedProblems();
+            } else {
+                System.out.println("[PracticeHubSeeder] Practice Hub already has " + problemRepository.count() + " problems. Seeding skipped.");
+            }
+        } catch (Exception e) {
+            System.err.println("[PracticeHubSeeder] Unable to run seeder (database may be unreachable): " + e.getMessage());
         }
     }
 
