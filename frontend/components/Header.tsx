@@ -301,7 +301,7 @@ const Header = () => {
 
                     {/* W3Schools-Style Course Sub-Navbar Bar */}
                     {(location.pathname.startsWith('/course') || location.pathname === '/courses') && (
-                        <div className="mt-2.5 sm:mt-3 rounded-2xl overflow-hidden shadow-2xl border border-white/20 dark:border-gray-800/80 backdrop-blur-2xl">
+                        <div className="mt-2 sm:mt-2.5">
                             <CourseSubNavbar />
                         </div>
                     )}
