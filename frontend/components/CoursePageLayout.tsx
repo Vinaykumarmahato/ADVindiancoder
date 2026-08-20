@@ -30,14 +30,15 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const [copiedUrl, setCopiedUrl] = useState(false);
 
-    // Slug generator helper
-    const getSlug = (topic: string) => {
+    // Slug generator helper (100% null-safe)
+    const getSlug = (topic: any) => {
+        if (!topic || typeof topic !== 'string') return '';
         return topic.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
     };
 
-    // Helper to parse level and clean title from raw topic string
-    const parseTopic = (raw: string) => {
-        if (!raw) return { level: '', cleanTitle: '' };
+    // Helper to parse level and clean title from raw topic string (100% null-safe)
+    const parseTopic = (raw: any) => {
+        if (!raw || typeof raw !== 'string') return { level: '', cleanTitle: '' };
         let clean = raw.replace(/^\d+[\.\)\-]\s*/, '').trim(); // Remove leading "1. ", "2) ", etc.
         let level = '';
 
@@ -51,6 +52,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
     };
 
     const getLevelBadgeStyles = (level: string) => {
+        if (!level) return 'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20';
         switch (level.toLowerCase()) {
             case 'beginner':
             case 'basic':
@@ -71,15 +73,16 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
 
     // Deep linking & URL Hash listener on mount
     useEffect(() => {
-        if (!onTopicClick || topics.length === 0) return;
+        if (!onTopicClick || !Array.isArray(topics) || topics.length === 0) return;
 
-        const hash = window.location.hash.replace('#', '').trim();
+        const hash = (window.location.hash || '').replace('#', '').trim();
         const searchParams = new URLSearchParams(window.location.search);
         const topicQuery = searchParams.get('topic');
 
         const targetIdentifier = hash || topicQuery;
         if (targetIdentifier) {
             const matchedIndex = topics.findIndex((t, idx) => {
+                if (!t || typeof t !== 'string') return false;
                 const slug = getSlug(t);
                 return slug === targetIdentifier || String(idx + 1) === targetIdentifier || t.toLowerCase().includes(targetIdentifier.toLowerCase());
             });
@@ -94,9 +97,11 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
     const handleTopicSelect = (index: number) => {
         if (onTopicClick) {
             onTopicClick(index);
-            if (topics[index]) {
+            if (topics && topics[index]) {
                 const slug = getSlug(topics[index]);
-                window.history.replaceState(null, '', `${location.pathname}#${slug}`);
+                if (slug) {
+                    window.history.replaceState(null, '', `${location.pathname}#${slug}`);
+                }
             }
         }
     };
@@ -246,19 +251,19 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                 "sameAs": "https://www.linkedin.com/in/vinaykumarmahato"
             }
         },
-        "hasPart": topics.slice(0, 15).map((t, idx) => ({
+        "hasPart": (topics || []).slice(0, 15).map((t, idx) => ({
             "@type": "Course",
-            "name": parseTopic(t).cleanTitle,
+            "name": parseTopic(t).cleanTitle || `Topic ${idx + 1}`,
             "position": idx + 1,
-            "url": `https://www.advindiancoder.com${location.pathname}#${getSlug(t)}`
+            "url": `https://www.advindiancoder.com${location.pathname}#${getSlug(t) || idx + 1}`
         }))
     };
 
     const techArticleSchema = {
         "@context": "https://schema.org",
         "@type": "TechArticle",
-        "headline": `${cleanTopicName} - ${title} Tutorial and Examples`,
-        "description": `Comprehensive technical explanation of ${cleanTopicName} in ${title} with syntax blueprint, diagrams, and runnable code in ADV Lab.`,
+        "headline": `${cleanTopicName || title} - ${title} Tutorial and Examples`,
+        "description": `Comprehensive technical explanation of ${cleanTopicName || title} in ${title} with syntax blueprint, diagrams, and runnable code in ADV Lab.`,
         "author": {
             "@type": "Person",
             "name": "Vinay Kumar Mahato",
@@ -302,7 +307,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
             ...(rawTopic ? [{
                 "@type": "ListItem",
                 "position": 4,
-                "name": cleanTopicName,
+                "name": cleanTopicName || 'Topic',
                 "item": `https://www.advindiancoder.com${location.pathname}#${activeSlug}`
             }] : [])
         ]
@@ -311,8 +316,8 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
     // Course FAQs tailored for search intent
     const faqs = [
         {
-            q: `What is ${cleanTopicName} in ${title}?`,
-            a: `${cleanTopicName} is a fundamental concept in ${title} engineered for writing clean, efficient, and maintainable software. You can study the full syntax blueprint, diagrams, and execute code live on ADV Indian Coder.`
+            q: `What is ${cleanTopicName || title} in ${title}?`,
+            a: `${cleanTopicName || title} is a fundamental concept in ${title} engineered for writing clean, efficient, and maintainable software. You can study the full syntax blueprint, diagrams, and execute code live on ADV Indian Coder.`
         },
         {
             q: `How can I practice and run ${title} code online?`,
@@ -345,14 +350,15 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
 
     const renderTopicList = (isMobile = false) => (
         <ul className="space-y-1">
-            {topics.map((topic, index) => {
-                const slug = getSlug(topic);
+            {(topics || []).map((topic, index) => {
+                if (!topic) return null;
+                const slug = getSlug(topic) || `topic-${index + 1}`;
                 const isActive = activeTopicIndex === index;
-                const isCompleted = completedTopics.includes(index);
+                const isCompleted = Array.isArray(completedTopics) && completedTopics.includes(index);
                 const parsed = parseTopic(topic);
                 
                 // Check if we should render a Section Tier Divider (e.g. Beginner, Intermediate, etc.)
-                const prevParsed = index > 0 ? parseTopic(topics[index - 1]) : null;
+                const prevParsed = index > 0 && topics[index - 1] ? parseTopic(topics[index - 1]) : null;
                 const showTierHeader = parsed.level && (!prevParsed || prevParsed.level !== parsed.level);
 
                 const baseClasses = `block w-full text-left px-3.5 py-2.5 rounded-xl text-sm transition-all duration-200 border border-transparent`;
