@@ -35,6 +35,40 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
         return topic.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
     };
 
+    // Helper to parse level and clean title from raw topic string
+    const parseTopic = (raw: string) => {
+        if (!raw) return { level: '', cleanTitle: '' };
+        let clean = raw.replace(/^\d+[\.\)\-]\s*/, '').trim(); // Remove leading "1. ", "2) ", etc.
+        let level = '';
+
+        const levelMatch = clean.match(/^\[(Beginner|Intermediate|Advanced|Professional|Expert|Mastery|Basic|Overview)\]\s*/i);
+        if (levelMatch) {
+            level = levelMatch[1].charAt(0).toUpperCase() + levelMatch[1].slice(1).toLowerCase();
+            clean = clean.substring(levelMatch[0].length).trim();
+        }
+
+        return { level, cleanTitle: clean };
+    };
+
+    const getLevelBadgeStyles = (level: string) => {
+        switch (level.toLowerCase()) {
+            case 'beginner':
+            case 'basic':
+            case 'overview':
+                return 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
+            case 'intermediate':
+                return 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20';
+            case 'advanced':
+                return 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20';
+            case 'professional':
+            case 'expert':
+            case 'mastery':
+                return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
+            default:
+                return 'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20';
+        }
+    };
+
     // Deep linking & URL Hash listener on mount
     useEffect(() => {
         if (!onTopicClick || topics.length === 0) return;
@@ -67,11 +101,11 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
         }
     };
 
-    // Clean topic name (removes leading "1. ", "12) ", etc.)
+    // Clean topic name (removes leading "1. ", "[Beginner] ", etc.)
     const rawTopic = (activeTopicIndex !== undefined && topics[activeTopicIndex]) ? topics[activeTopicIndex] : null;
-    const cleanTopicName = useMemo(() => {
-        if (!rawTopic) return title;
-        return rawTopic.replace(/^\d+[\.\)\-]\s*/, '').trim();
+    const { level: currentTopicLevel, cleanTitle: cleanTopicName } = useMemo(() => {
+        if (!rawTopic) return { level: '', cleanTitle: title };
+        return parseTopic(rawTopic);
     }, [rawTopic, title]);
 
     const activeSlug = rawTopic ? getSlug(rawTopic) : '';
@@ -214,7 +248,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
         },
         "hasPart": topics.slice(0, 15).map((t, idx) => ({
             "@type": "Course",
-            "name": t,
+            "name": parseTopic(t).cleanTitle,
             "position": idx + 1,
             "url": `https://www.advindiancoder.com${location.pathname}#${getSlug(t)}`
         }))
@@ -355,36 +389,56 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                                         const slug = getSlug(topic);
                                         const isActive = activeTopicIndex === index;
                                         const isCompleted = completedTopics.includes(index);
-                                        const baseClasses = `block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 border border-transparent`;
+                                        const parsed = parseTopic(topic);
+                                        
+                                        // Check if we should render a Section Tier Divider (e.g. Beginner, Intermediate, etc.)
+                                        const prevParsed = index > 0 ? parseTopic(topics[index - 1]) : null;
+                                        const showTierHeader = parsed.level && (!prevParsed || prevParsed.level !== parsed.level);
+
+                                        const baseClasses = `block w-full text-left px-3.5 py-2.5 rounded-xl text-sm transition-all duration-200 border border-transparent`;
                                         const activeClasses = `${colors.bg} ${colors.text} ${colors.border} dark:bg-gray-800 dark:text-white font-bold shadow-sm`;
                                         const inactiveClasses = `text-gray-600 dark:text-gray-400 ${colors.hoverBg} dark:hover:bg-gray-800 ${colors.hoverText} dark:hover:text-white ${colors.hoverBorder} dark:hover:border-gray-700`;
 
                                         return (
-                                            <li key={index}>
-                                                {onTopicClick ? (
-                                                    <button
-                                                        onClick={() => handleTopicSelect(index)}
-                                                        className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses} flex items-center justify-between group/item`}
-                                                    >
-                                                        <div className="flex items-center min-w-0">
-                                                            <span className={`mr-2 shrink-0 ${isActive ? 'opacity-100 font-black text-red-500' : 'opacity-50'}`}>{index + 1}.</span> 
-                                                            <span className="truncate">{topic.replace(/^\d+[\.\)\-]\s*/, '')}</span>
+                                            <React.Fragment key={index}>
+                                                {showTierHeader && (
+                                                    <li className="pt-4 pb-2 px-1">
+                                                        <div className="flex items-center gap-2">
+                                                            <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border ${getLevelBadgeStyles(parsed.level)}`}>
+                                                                {parsed.level} Tier
+                                                            </span>
+                                                            <div className="h-[1px] flex-1 bg-gray-200 dark:bg-gray-800" />
                                                         </div>
-                                                        {isCompleted && <Check className="w-4 h-4 ml-2 text-green-500 shrink-0" />}
-                                                    </button>
-                                                ) : (
-                                                    <a
-                                                        href={`#${slug}`}
-                                                        className={`${baseClasses} ${inactiveClasses} flex items-center justify-between`}
-                                                    >
-                                                        <div className="flex items-center min-w-0">
-                                                            <span className="mr-2 opacity-50 shrink-0">{index + 1}.</span> 
-                                                            <span className="truncate">{topic.replace(/^\d+[\.\)\-]\s*/, '')}</span>
-                                                        </div>
-                                                        {isCompleted && <Check className="w-4 h-4 ml-2 text-green-500 shrink-0" />}
-                                                    </a>
+                                                    </li>
                                                 )}
-                                            </li>
+                                                <li>
+                                                    {onTopicClick ? (
+                                                        <button
+                                                            onClick={() => handleTopicSelect(index)}
+                                                            className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses} flex items-center justify-between group/item`}
+                                                        >
+                                                            <div className="flex items-center min-w-0 pr-2">
+                                                                <span className={`mr-2.5 shrink-0 text-xs ${isActive ? 'opacity-100 font-black text-red-500' : 'opacity-40 font-semibold'}`}>
+                                                                    {index + 1}.
+                                                                </span> 
+                                                                <span className="truncate leading-tight font-medium">{parsed.cleanTitle}</span>
+                                                            </div>
+                                                            {isCompleted && <Check className="w-4 h-4 ml-1 text-green-500 shrink-0" />}
+                                                        </button>
+                                                    ) : (
+                                                        <a
+                                                            href={`#${slug}`}
+                                                            className={`${baseClasses} ${inactiveClasses} flex items-center justify-between`}
+                                                        >
+                                                            <div className="flex items-center min-w-0 pr-2">
+                                                                <span className="mr-2.5 opacity-40 shrink-0 text-xs font-semibold">{index + 1}.</span> 
+                                                                <span className="truncate leading-tight font-medium">{parsed.cleanTitle}</span>
+                                                            </div>
+                                                            {isCompleted && <Check className="w-4 h-4 ml-1 text-green-500 shrink-0" />}
+                                                        </a>
+                                                    )}
+                                                </li>
+                                            </React.Fragment>
                                         );
                                     })}
                                 </ul>
@@ -417,7 +471,17 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                                     </div>
                                 </div>
 
-                                <h1 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}>
+                                {/* Active Topic Level Tag (if any) */}
+                                {currentTopicLevel && (
+                                    <div className="mb-3">
+                                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border shadow-sm ${getLevelBadgeStyles(currentTopicLevel)}`}>
+                                            <Sparkles className="w-3.5 h-3.5" />
+                                            {currentTopicLevel} Module
+                                        </span>
+                                    </div>
+                                )}
+
+                                <h1 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo} leading-tight`}>
                                     {cleanTopicName}
                                 </h1>
 
