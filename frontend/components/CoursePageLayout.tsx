@@ -447,13 +447,13 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-24 lg:pb-12 relative z-10">
                     
-                    {/* Mobile Sticky Quick Switcher Bar */}
+                    {/* Mobile Sticky Quick Switcher Bar with Expandable Dropdown */}
                     <div className="lg:hidden mb-6 sticky top-28 z-30">
-                        <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-gray-200/80 dark:border-gray-800 flex items-center justify-between gap-3">
+                        <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md p-3.5 rounded-2xl shadow-lg border border-gray-200/80 dark:border-gray-800 flex items-center justify-between gap-3">
                             <div className="flex items-center gap-2.5 min-w-0">
                                 {Icon && <Icon className={`w-5 h-5 shrink-0 ${colors.text}`} />}
                                 <div className="min-w-0">
-                                    <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                                         Topic {activeTopicIndex !== undefined ? activeTopicIndex + 1 : 1} of {topics.length}
                                     </div>
                                     <div className="text-sm font-black text-gray-900 dark:text-white truncate">
@@ -462,14 +462,48 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                                 </div>
                             </div>
                             <button
-                                onClick={() => setIsMobileDrawerOpen(true)}
+                                onClick={() => setIsMobileDrawerOpen(!isMobileDrawerOpen)}
                                 type="button"
-                                className={`px-4 py-2 rounded-xl text-xs font-black text-white shadow-md active:scale-95 transition-transform flex items-center gap-1.5 shrink-0 ${colors.btnBg}`}
+                                className={`px-4 py-2.5 rounded-xl text-xs font-black text-white shadow-md active:scale-95 transition-all flex items-center gap-1.5 shrink-0 ${colors.btnBg}`}
                             >
-                                <span>📚 Index</span>
-                                <ChevronDown className="w-3.5 h-3.5" />
+                                <span>{isMobileDrawerOpen ? 'Close' : '📚 Topics Index'}</span>
+                                {isMobileDrawerOpen ? (
+                                    <ChevronUp className="w-4 h-4" />
+                                ) : (
+                                    <ChevronDown className="w-4 h-4" />
+                                )}
                             </button>
                         </div>
+
+                        {/* Mobile Expandable Dropdown Card */}
+                        {isMobileDrawerOpen && (
+                            <div className="mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                                {/* Header / Progress */}
+                                <div className="p-4 border-b border-gray-100 dark:border-gray-800/80 flex items-center justify-between">
+                                    <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                        Course Curriculum ({completionPercent}% Done)
+                                    </span>
+                                    <button
+                                        onClick={() => setIsMobileDrawerOpen(false)}
+                                        className="text-xs font-bold text-red-500 hover:text-red-600"
+                                    >
+                                        Hide ▲
+                                    </button>
+                                </div>
+                                <div className="px-4 pt-2">
+                                    <div className="bg-gray-200 dark:bg-gray-800 rounded-full h-1.5 overflow-hidden">
+                                        <div 
+                                            className={`h-full bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}
+                                            style={{ width: `${completionPercent}%` }}
+                                        />
+                                    </div>
+                                </div>
+                                {/* Topics List */}
+                                <div className="max-h-[55vh] overflow-y-auto p-3 custom-scrollbar">
+                                    {renderTopicList(true)}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -496,54 +530,6 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                                 {renderTopicList(false)}
                             </div>
                         </div>
-
-                        {/* Mobile Slide-Over Drawer Modal */}
-                        {isMobileDrawerOpen && (
-                            <div className="fixed inset-0 z-50 lg:hidden">
-                                <div 
-                                    className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
-                                    onClick={() => setIsMobileDrawerOpen(false)}
-                                />
-                                <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-                                    <div className="w-screen max-w-sm bg-white dark:bg-gray-900 shadow-2xl flex flex-col border-l border-gray-200 dark:border-gray-800 animate-in slide-in-from-right duration-300">
-                                        {/* Drawer Header */}
-                                        <div className="p-5 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-gray-50/50 dark:bg-gray-800/50">
-                                            <div className="flex items-center gap-2.5">
-                                                {Icon && <Icon className={`w-5 h-5 ${colors.text}`} />}
-                                                <h3 className="font-black text-base text-gray-900 dark:text-white truncate">
-                                                    {title}
-                                                </h3>
-                                            </div>
-                                            <button 
-                                                onClick={() => setIsMobileDrawerOpen(false)}
-                                                className="p-2 rounded-xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-                                            >
-                                                ✕
-                                            </button>
-                                        </div>
-
-                                        {/* Progress Bar in Drawer */}
-                                        <div className="p-5 pb-3 border-b border-gray-100 dark:border-gray-800/60">
-                                            <div className="flex justify-between items-center text-xs font-bold text-gray-500 mb-2">
-                                                <span>Course Completion</span>
-                                                <span>{completionPercent}%</span>
-                                            </div>
-                                            <div className="bg-gray-200 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
-                                                <div 
-                                                    className={`h-full bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}
-                                                    style={{ width: `${completionPercent}%` }}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        {/* Topics List in Drawer */}
-                                        <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
-                                            {renderTopicList(true)}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
 
                         {/* Main Content */}
                         <div className="lg:col-span-3">
