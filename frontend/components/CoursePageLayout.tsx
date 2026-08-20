@@ -195,17 +195,25 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
         hoverBg: string;
         hoverText: string;
         hoverBorder: string;
+        btnBg: string;
     }> = {
-        orange: { text: 'text-orange-600', bg: 'bg-orange-50', border: 'border-orange-500', gradientFrom: 'from-orange-600', gradientTo: 'to-yellow-500', shadow: 'shadow-orange-900/20', hoverBg: 'hover:bg-orange-50', hoverText: 'hover:text-orange-600', hoverBorder: 'hover:border-orange-100' },
-        blue: { text: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-500', gradientFrom: 'from-blue-600', gradientTo: 'to-cyan-500', shadow: 'shadow-blue-900/20', hoverBg: 'hover:bg-blue-50', hoverText: 'hover:text-blue-600', hoverBorder: 'hover:border-blue-100' },
-        yellow: { text: 'text-yellow-500', bg: 'bg-yellow-50', border: 'border-yellow-500', gradientFrom: 'from-yellow-500', gradientTo: 'to-orange-400', shadow: 'shadow-yellow-900/20', hoverBg: 'hover:bg-yellow-50', hoverText: 'hover:text-yellow-600', hoverBorder: 'hover:border-yellow-100' },
-        green: { text: 'text-green-600', bg: 'bg-green-50', border: 'border-green-500', gradientFrom: 'from-green-600', gradientTo: 'to-emerald-500', shadow: 'shadow-green-900/20', hoverBg: 'hover:bg-green-50', hoverText: 'hover:text-green-600', hoverBorder: 'hover:border-green-100' },
-        red: { text: 'text-red-600', bg: 'bg-red-50', border: 'border-red-500', gradientFrom: 'from-red-600', gradientTo: 'to-rose-500', shadow: 'shadow-red-900/20', hoverBg: 'hover:bg-red-50', hoverText: 'hover:text-red-600', hoverBorder: 'hover:border-red-100' },
-        purple: { text: 'text-purple-600', bg: 'bg-purple-50', border: 'border-purple-500', gradientFrom: 'from-purple-600', gradientTo: 'to-indigo-500', shadow: 'shadow-purple-900/20', hoverBg: 'hover:bg-purple-50', hoverText: 'hover:text-purple-600', hoverBorder: 'hover:border-purple-100' },
-        cyan: { text: 'text-cyan-600', bg: 'bg-cyan-50', border: 'border-cyan-500', gradientFrom: 'from-cyan-600', gradientTo: 'to-blue-500', shadow: 'shadow-cyan-900/20', hoverBg: 'hover:bg-cyan-50', hoverText: 'hover:text-cyan-600', hoverBorder: 'hover:border-cyan-100' },
-        indigo: { text: 'text-indigo-600', bg: 'bg-indigo-50', border: 'border-indigo-500', gradientFrom: 'from-indigo-600', gradientTo: 'to-purple-500', shadow: 'shadow-indigo-900/20', hoverBg: 'hover:bg-indigo-50', hoverText: 'hover:text-indigo-600', hoverBorder: 'hover:border-indigo-100' },
-        pink: { text: 'text-pink-600', bg: 'bg-pink-50', border: 'border-pink-500', gradientFrom: 'from-pink-600', gradientTo: 'to-rose-500', shadow: 'shadow-pink-900/20', hoverBg: 'hover:bg-pink-50', hoverText: 'hover:text-pink-600', hoverBorder: 'hover:border-pink-100' },
-        gray: { text: 'text-gray-600', bg: 'bg-gray-50', border: 'border-gray-500', gradientFrom: 'from-gray-600', gradientTo: 'to-gray-500', shadow: 'shadow-gray-900/20', hoverBg: 'hover:bg-gray-50', hoverText: 'hover:text-gray-600', hoverBorder: 'hover:border-gray-100' },
+        orange: { text: 'text-orange-600', bg: 'bg-orange-50', border: 'border-orange-500', gradientFrom: 'from-orange-600', gradientTo: 'to-yellow-500', shadow: 'shadow-orange-900/20', hoverBg: 'hover:bg-orange-50', hoverText: 'hover:text-orange-600', hoverBorder: 'hover:border-orange-100', btnBg: 'bg-orange-600' },
+        amber: { text: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-500', gradientFrom: 'from-amber-600', gradientTo: 'to-yellow-500', shadow: 'shadow-amber-900/20', hoverBg: 'hover:bg-amber-50', hoverText: 'hover:text-amber-600', hoverBorder: 'hover:border-amber-100', btnBg: 'bg-amber-600' },
+        blue: { text: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-500', gradientFrom: 'from-blue-600', gradientTo: 'to-cyan-500', shadow: 'shadow-blue-900/20', hoverBg: 'hover:bg-blue-50', hoverText: 'hover:text-blue-600', hoverBorder: 'hover:border-blue-100', btnBg: 'bg-blue-600' },
+        sky: { text: 'text-sky-600', bg: 'bg-sky-50', border: 'border-sky-500', gradientFrom: 'from-sky-600', gradientTo: 'to-blue-500', shadow: 'shadow-sky-900/20', hoverBg: 'hover:bg-sky-50', hoverText: 'hover:text-sky-600', hoverBorder: 'hover:border-sky-100', btnBg: 'bg-sky-600' },
+        cyan: { text: 'text-cyan-600', bg: 'bg-cyan-50', border: 'border-cyan-500', gradientFrom: 'from-cyan-600', gradientTo: 'to-blue-500', shadow: 'shadow-cyan-900/20', hoverBg: 'hover:bg-cyan-50', hoverText: 'hover:text-cyan-600', hoverBorder: 'hover:border-cyan-100', btnBg: 'bg-cyan-600' },
+        teal: { text: 'text-teal-600', bg: 'bg-teal-50', border: 'border-teal-500', gradientFrom: 'from-teal-600', gradientTo: 'to-emerald-500', shadow: 'shadow-teal-900/20', hoverBg: 'hover:bg-teal-50', hoverText: 'hover:text-teal-600', hoverBorder: 'hover:border-teal-100', btnBg: 'bg-teal-600' },
+        emerald: { text: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-500', gradientFrom: 'from-emerald-600', gradientTo: 'to-teal-500', shadow: 'shadow-emerald-900/20', hoverBg: 'hover:bg-emerald-50', hoverText: 'hover:text-emerald-600', hoverBorder: 'hover:border-emerald-100', btnBg: 'bg-emerald-600' },
+        green: { text: 'text-green-600', bg: 'bg-green-50', border: 'border-green-500', gradientFrom: 'from-green-600', gradientTo: 'to-emerald-500', shadow: 'shadow-green-900/20', hoverBg: 'hover:bg-green-50', hoverText: 'hover:text-green-600', hoverBorder: 'hover:border-green-100', btnBg: 'bg-green-600' },
+        yellow: { text: 'text-yellow-500', bg: 'bg-yellow-50', border: 'border-yellow-500', gradientFrom: 'from-yellow-500', gradientTo: 'to-orange-400', shadow: 'shadow-yellow-900/20', hoverBg: 'hover:bg-yellow-50', hoverText: 'hover:text-yellow-600', hoverBorder: 'hover:border-yellow-100', btnBg: 'bg-yellow-600' },
+        red: { text: 'text-red-600', bg: 'bg-red-50', border: 'border-red-500', gradientFrom: 'from-red-600', gradientTo: 'to-rose-500', shadow: 'shadow-red-900/20', hoverBg: 'hover:bg-red-50', hoverText: 'hover:text-red-600', hoverBorder: 'hover:border-red-100', btnBg: 'bg-red-600' },
+        rose: { text: 'text-rose-600', bg: 'bg-rose-50', border: 'border-rose-500', gradientFrom: 'from-rose-600', gradientTo: 'to-red-500', shadow: 'shadow-rose-900/20', hoverBg: 'hover:bg-rose-50', hoverText: 'hover:text-rose-600', hoverBorder: 'hover:border-rose-100', btnBg: 'bg-rose-600' },
+        pink: { text: 'text-pink-600', bg: 'bg-pink-50', border: 'border-pink-500', gradientFrom: 'from-pink-600', gradientTo: 'to-rose-500', shadow: 'shadow-pink-900/20', hoverBg: 'hover:bg-pink-50', hoverText: 'hover:text-pink-600', hoverBorder: 'hover:border-pink-100', btnBg: 'bg-pink-600' },
+        purple: { text: 'text-purple-600', bg: 'bg-purple-50', border: 'border-purple-500', gradientFrom: 'from-purple-600', gradientTo: 'to-indigo-500', shadow: 'shadow-purple-900/20', hoverBg: 'hover:bg-purple-50', hoverText: 'hover:text-purple-600', hoverBorder: 'hover:border-purple-100', btnBg: 'bg-purple-600' },
+        violet: { text: 'text-violet-600', bg: 'bg-violet-50', border: 'border-violet-500', gradientFrom: 'from-violet-600', gradientTo: 'to-purple-500', shadow: 'shadow-violet-900/20', hoverBg: 'hover:bg-violet-50', hoverText: 'hover:text-violet-600', hoverBorder: 'hover:border-violet-100', btnBg: 'bg-violet-600' },
+        indigo: { text: 'text-indigo-600', bg: 'bg-indigo-50', border: 'border-indigo-500', gradientFrom: 'from-indigo-600', gradientTo: 'to-purple-500', shadow: 'shadow-indigo-900/20', hoverBg: 'hover:bg-indigo-50', hoverText: 'hover:text-indigo-600', hoverBorder: 'hover:border-indigo-100', btnBg: 'bg-indigo-600' },
+        slate: { text: 'text-slate-600', bg: 'bg-slate-50', border: 'border-slate-500', gradientFrom: 'from-slate-600', gradientTo: 'to-gray-500', shadow: 'shadow-slate-900/20', hoverBg: 'hover:bg-slate-50', hoverText: 'hover:text-slate-600', hoverBorder: 'hover:border-slate-100', btnBg: 'bg-slate-600' },
+        gray: { text: 'text-gray-600', bg: 'bg-gray-50', border: 'border-gray-500', gradientFrom: 'from-gray-600', gradientTo: 'to-gray-500', shadow: 'shadow-gray-900/20', hoverBg: 'hover:bg-gray-50', hoverText: 'hover:text-gray-600', hoverBorder: 'hover:border-gray-100', btnBg: 'bg-gray-600' },
     };
 
     const colors = colorMap[colorClass] || colorMap['gray'];
@@ -348,6 +356,13 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
 
     const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
 
+    const handleShare = () => {
+        const fullUrl = window.location.href;
+        navigator.clipboard.writeText(fullUrl);
+        setCopiedUrl(true);
+        setTimeout(() => setCopiedUrl(false), 2000);
+    };
+
     const renderTopicList = (isMobile = false) => (
         <ul className="space-y-1">
             {(topics || []).map((topic, index) => {
@@ -449,7 +464,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                             <button
                                 onClick={() => setIsMobileDrawerOpen(true)}
                                 type="button"
-                                className={`px-4 py-2 rounded-xl text-xs font-black text-white shadow-md active:scale-95 transition-transform flex items-center gap-1.5 shrink-0 ${colors.bg.replace('bg-', 'bg-').replace('50', '600')}`}
+                                className={`px-4 py-2 rounded-xl text-xs font-black text-white shadow-md active:scale-95 transition-transform flex items-center gap-1.5 shrink-0 ${colors.btnBg}`}
                             >
                                 <span>📚 Index</span>
                                 <ChevronDown className="w-3.5 h-3.5" />
@@ -592,7 +607,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                                             </h2>
                                             <div className={`aspect-video bg-black rounded-2xl flex items-center justify-center shadow-2xl ${colors.shadow} border border-gray-800 relative overflow-hidden group cursor-pointer`}>
                                                 <div className={`absolute inset-0 bg-gradient-to-tr ${colors.gradientFrom}/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                                                <div className={`w-20 h-20 ${colors.bg.replace('bg-', 'bg-').replace('50', '600')} rounded-full flex items-center justify-center shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300 z-10`}>
+                                                <div className={`w-20 h-20 ${colors.btnBg} rounded-full flex items-center justify-center shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300 z-10`}>
                                                     <Video className="w-10 h-10 text-white fill-current" />
                                                 </div>
                                             </div>
@@ -639,7 +654,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                                                         }
                                                         handleTopicSelect(activeTopicIndex + 1);
                                                     }}
-                                                    className={`w-full flex items-center justify-center px-6 py-4 rounded-xl text-base font-bold text-white shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 ${colors.bg.replace('bg-', 'bg-').replace('50', '600')} hover:brightness-110`}
+                                                    className={`w-full flex items-center justify-center px-6 py-4 rounded-xl text-base font-bold text-white shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 ${colors.btnBg} hover:brightness-110`}
                                                 >
                                                     Next →
                                                 </button>
