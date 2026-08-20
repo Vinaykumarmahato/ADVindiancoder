@@ -341,12 +341,74 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
         }))
     };
 
-    const handleShare = () => {
-        const fullUrl = window.location.href;
-        navigator.clipboard.writeText(fullUrl);
-        setCopiedUrl(true);
-        setTimeout(() => setCopiedUrl(false), 2000);
-    };
+    const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+
+    const renderTopicList = (isMobile = false) => (
+        <ul className="space-y-1">
+            {topics.map((topic, index) => {
+                const slug = getSlug(topic);
+                const isActive = activeTopicIndex === index;
+                const isCompleted = completedTopics.includes(index);
+                const parsed = parseTopic(topic);
+                
+                // Check if we should render a Section Tier Divider (e.g. Beginner, Intermediate, etc.)
+                const prevParsed = index > 0 ? parseTopic(topics[index - 1]) : null;
+                const showTierHeader = parsed.level && (!prevParsed || prevParsed.level !== parsed.level);
+
+                const baseClasses = `block w-full text-left px-3.5 py-2.5 rounded-xl text-sm transition-all duration-200 border border-transparent`;
+                const activeClasses = `${colors.bg} ${colors.text} ${colors.border} dark:bg-gray-800 dark:text-white font-bold shadow-sm`;
+                const inactiveClasses = `text-gray-600 dark:text-gray-400 ${colors.hoverBg} dark:hover:bg-gray-800 ${colors.hoverText} dark:hover:text-white ${colors.hoverBorder} dark:hover:border-gray-700`;
+
+                return (
+                    <React.Fragment key={index}>
+                        {showTierHeader && (
+                            <li className="pt-4 pb-2 px-1">
+                                <div className="flex items-center gap-2">
+                                    <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border ${getLevelBadgeStyles(parsed.level)}`}>
+                                        {parsed.level} Tier
+                                    </span>
+                                    <div className="h-[1px] flex-1 bg-gray-200 dark:bg-gray-800" />
+                                </div>
+                            </li>
+                        )}
+                        <li>
+                            {onTopicClick ? (
+                                <button
+                                    onClick={() => {
+                                        handleTopicSelect(index);
+                                        if (isMobile) setIsMobileDrawerOpen(false);
+                                    }}
+                                    className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses} flex items-center justify-between group/item`}
+                                >
+                                    <div className="flex items-center min-w-0 pr-2">
+                                        <span className={`mr-2.5 shrink-0 text-xs ${isActive ? 'opacity-100 font-black text-red-500' : 'opacity-40 font-semibold'}`}>
+                                            {index + 1}.
+                                        </span> 
+                                        <span className="truncate leading-tight font-medium">{parsed.cleanTitle}</span>
+                                    </div>
+                                    {isCompleted && <Check className="w-4 h-4 ml-1 text-green-500 shrink-0" />}
+                                </button>
+                            ) : (
+                                <a
+                                    href={`#${slug}`}
+                                    onClick={() => {
+                                        if (isMobile) setIsMobileDrawerOpen(false);
+                                    }}
+                                    className={`${baseClasses} ${inactiveClasses} flex items-center justify-between`}
+                                >
+                                    <div className="flex items-center min-w-0 pr-2">
+                                        <span className="mr-2.5 opacity-40 shrink-0 text-xs font-semibold">{index + 1}.</span> 
+                                        <span className="truncate leading-tight font-medium">{parsed.cleanTitle}</span>
+                                    </div>
+                                    {isCompleted && <Check className="w-4 h-4 ml-1 text-green-500 shrink-0" />}
+                                </a>
+                            )}
+                        </li>
+                    </React.Fragment>
+                );
+            })}
+        </ul>
+    );
 
     return (
         <PageWrapper>
@@ -362,10 +424,36 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                 {/* Background decorative elements */}
                 <div className={`absolute top-0 right-0 w-1/2 h-96 bg-gradient-to-b ${colors.gradientFrom}/5 to-transparent pointer-events-none`} />
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-12 relative z-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-24 lg:pb-12 relative z-10">
+                    
+                    {/* Mobile Sticky Quick Switcher Bar */}
+                    <div className="lg:hidden mb-6 sticky top-28 z-30">
+                        <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-gray-200/80 dark:border-gray-800 flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-2.5 min-w-0">
+                                {Icon && <Icon className={`w-5 h-5 shrink-0 ${colors.text}`} />}
+                                <div className="min-w-0">
+                                    <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                                        Topic {activeTopicIndex !== undefined ? activeTopicIndex + 1 : 1} of {topics.length}
+                                    </div>
+                                    <div className="text-sm font-black text-gray-900 dark:text-white truncate">
+                                        {cleanTopicName}
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setIsMobileDrawerOpen(true)}
+                                type="button"
+                                className={`px-4 py-2 rounded-xl text-xs font-black text-white shadow-md active:scale-95 transition-transform flex items-center gap-1.5 shrink-0 ${colors.bg.replace('bg-', 'bg-').replace('50', '600')}`}
+                            >
+                                <span>📚 Index</span>
+                                <ChevronDown className="w-3.5 h-3.5" />
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                        {/* Sidebar / Table of Contents */}
-                        <div className="lg:col-span-1">
+                        {/* Desktop Sidebar / Table of Contents (Hidden on Mobile) */}
+                        <div className="hidden lg:block lg:col-span-1">
                             <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/50 dark:border-gray-800/50 sticky top-32 max-h-[80vh] overflow-y-auto custom-scrollbar">
                                 <h3 className="font-black text-lg mb-4 flex items-center text-gray-900 dark:text-white sticky top-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl py-2 z-10">
                                     {Icon && <Icon className={`w-5 h-5 mr-3 ${colors.text}`} />}
@@ -384,70 +472,61 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({
                                     <span>{completionPercent}%</span>
                                 </div>
 
-                                <ul className="space-y-1">
-                                    {topics.map((topic, index) => {
-                                        const slug = getSlug(topic);
-                                        const isActive = activeTopicIndex === index;
-                                        const isCompleted = completedTopics.includes(index);
-                                        const parsed = parseTopic(topic);
-                                        
-                                        // Check if we should render a Section Tier Divider (e.g. Beginner, Intermediate, etc.)
-                                        const prevParsed = index > 0 ? parseTopic(topics[index - 1]) : null;
-                                        const showTierHeader = parsed.level && (!prevParsed || prevParsed.level !== parsed.level);
-
-                                        const baseClasses = `block w-full text-left px-3.5 py-2.5 rounded-xl text-sm transition-all duration-200 border border-transparent`;
-                                        const activeClasses = `${colors.bg} ${colors.text} ${colors.border} dark:bg-gray-800 dark:text-white font-bold shadow-sm`;
-                                        const inactiveClasses = `text-gray-600 dark:text-gray-400 ${colors.hoverBg} dark:hover:bg-gray-800 ${colors.hoverText} dark:hover:text-white ${colors.hoverBorder} dark:hover:border-gray-700`;
-
-                                        return (
-                                            <React.Fragment key={index}>
-                                                {showTierHeader && (
-                                                    <li className="pt-4 pb-2 px-1">
-                                                        <div className="flex items-center gap-2">
-                                                            <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border ${getLevelBadgeStyles(parsed.level)}`}>
-                                                                {parsed.level} Tier
-                                                            </span>
-                                                            <div className="h-[1px] flex-1 bg-gray-200 dark:bg-gray-800" />
-                                                        </div>
-                                                    </li>
-                                                )}
-                                                <li>
-                                                    {onTopicClick ? (
-                                                        <button
-                                                            onClick={() => handleTopicSelect(index)}
-                                                            className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses} flex items-center justify-between group/item`}
-                                                        >
-                                                            <div className="flex items-center min-w-0 pr-2">
-                                                                <span className={`mr-2.5 shrink-0 text-xs ${isActive ? 'opacity-100 font-black text-red-500' : 'opacity-40 font-semibold'}`}>
-                                                                    {index + 1}.
-                                                                </span> 
-                                                                <span className="truncate leading-tight font-medium">{parsed.cleanTitle}</span>
-                                                            </div>
-                                                            {isCompleted && <Check className="w-4 h-4 ml-1 text-green-500 shrink-0" />}
-                                                        </button>
-                                                    ) : (
-                                                        <a
-                                                            href={`#${slug}`}
-                                                            className={`${baseClasses} ${inactiveClasses} flex items-center justify-between`}
-                                                        >
-                                                            <div className="flex items-center min-w-0 pr-2">
-                                                                <span className="mr-2.5 opacity-40 shrink-0 text-xs font-semibold">{index + 1}.</span> 
-                                                                <span className="truncate leading-tight font-medium">{parsed.cleanTitle}</span>
-                                                            </div>
-                                                            {isCompleted && <Check className="w-4 h-4 ml-1 text-green-500 shrink-0" />}
-                                                        </a>
-                                                    )}
-                                                </li>
-                                            </React.Fragment>
-                                        );
-                                    })}
-                                </ul>
+                                {renderTopicList(false)}
                             </div>
                         </div>
 
+                        {/* Mobile Slide-Over Drawer Modal */}
+                        {isMobileDrawerOpen && (
+                            <div className="fixed inset-0 z-50 lg:hidden">
+                                <div 
+                                    className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+                                    onClick={() => setIsMobileDrawerOpen(false)}
+                                />
+                                <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+                                    <div className="w-screen max-w-sm bg-white dark:bg-gray-900 shadow-2xl flex flex-col border-l border-gray-200 dark:border-gray-800 animate-in slide-in-from-right duration-300">
+                                        {/* Drawer Header */}
+                                        <div className="p-5 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-gray-50/50 dark:bg-gray-800/50">
+                                            <div className="flex items-center gap-2.5">
+                                                {Icon && <Icon className={`w-5 h-5 ${colors.text}`} />}
+                                                <h3 className="font-black text-base text-gray-900 dark:text-white truncate">
+                                                    {title}
+                                                </h3>
+                                            </div>
+                                            <button 
+                                                onClick={() => setIsMobileDrawerOpen(false)}
+                                                className="p-2 rounded-xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                            >
+                                                ✕
+                                            </button>
+                                        </div>
+
+                                        {/* Progress Bar in Drawer */}
+                                        <div className="p-5 pb-3 border-b border-gray-100 dark:border-gray-800/60">
+                                            <div className="flex justify-between items-center text-xs font-bold text-gray-500 mb-2">
+                                                <span>Course Completion</span>
+                                                <span>{completionPercent}%</span>
+                                            </div>
+                                            <div className="bg-gray-200 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
+                                                <div 
+                                                    className={`h-full bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}
+                                                    style={{ width: `${completionPercent}%` }}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Topics List in Drawer */}
+                                        <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+                                            {renderTopicList(true)}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {/* Main Content */}
                         <div className="lg:col-span-3">
-                            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-200/50 dark:border-gray-800/50 min-h-[60vh]">
+                            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-gray-200/50 dark:border-gray-800/50 min-h-[60vh]">
                                 {/* Badges and Quick Tools */}
                                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                                     <div className="flex flex-wrap items-center gap-2">
