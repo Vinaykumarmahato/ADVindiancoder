@@ -18,7 +18,7 @@ const SEO: React.FC<SEOProps> = ({
     description, 
     keywords,
     canonical, 
-    ogImage = '/og-image.png', 
+    ogImage = '/assets/og-image.png', 
     ogType = 'website',
     schema,
     exactTitle = false
@@ -56,12 +56,15 @@ const SEO: React.FC<SEOProps> = ({
             <meta name="author" content="Vinay Kumar Mahato - ADV Indian Coder" />
             <link rel="canonical" href={fullCanonical} />
 
-            {/* Open Graph / Facebook / LinkedIn */}
+            {/* Open Graph / Facebook / LinkedIn / WhatsApp */}
             <meta property="og:type" content={ogType} />
             <meta property="og:site_name" content="ADV Indian Coder" />
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={`${siteUrl}${ogImage.startsWith('/') ? ogImage : '/' + ogImage}`} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:type" content="image/png" />
             <meta property="og:url" content={fullCanonical} />
             <meta property="og:locale" content="en_IN" />
 
