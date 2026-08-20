@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PageWrapper from './PageWrapper';
 import SEO from './SEO';
-import { BookOpen, Video, Code, Check, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Video, Code, Check, CheckCircle2, HelpCircle, ChevronDown, ChevronUp, Share2, Sparkles, Terminal } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface CoursePageLayoutProps {
     title: string;
@@ -14,13 +15,73 @@ interface CoursePageLayoutProps {
     onTopicClick?: (index: number) => void;
 }
 
-const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description, topics, icon: Icon, colorClass, children, activeTopicIndex, onTopicClick }) => {
+const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ 
+    title, 
+    description, 
+    topics, 
+    icon: Icon, 
+    colorClass, 
+    children, 
+    activeTopicIndex, 
+    onTopicClick 
+}) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [openFaq, setOpenFaq] = useState<number | null>(null);
+    const [copiedUrl, setCopiedUrl] = useState(false);
+
+    // Slug generator helper
+    const getSlug = (topic: string) => {
+        return topic.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+    };
+
+    // Deep linking & URL Hash listener on mount
+    useEffect(() => {
+        if (!onTopicClick || topics.length === 0) return;
+
+        const hash = window.location.hash.replace('#', '').trim();
+        const searchParams = new URLSearchParams(window.location.search);
+        const topicQuery = searchParams.get('topic');
+
+        const targetIdentifier = hash || topicQuery;
+        if (targetIdentifier) {
+            const matchedIndex = topics.findIndex((t, idx) => {
+                const slug = getSlug(t);
+                return slug === targetIdentifier || String(idx + 1) === targetIdentifier || t.toLowerCase().includes(targetIdentifier.toLowerCase());
+            });
+
+            if (matchedIndex !== -1 && matchedIndex !== activeTopicIndex) {
+                onTopicClick(matchedIndex);
+            }
+        }
+    }, [topics, onTopicClick]);
+
+    // Update URL hash when active topic changes
+    const handleTopicSelect = (index: number) => {
+        if (onTopicClick) {
+            onTopicClick(index);
+            if (topics[index]) {
+                const slug = getSlug(topics[index]);
+                window.history.replaceState(null, '', `${location.pathname}#${slug}`);
+            }
+        }
+    };
+
+    // Clean topic name (removes leading "1. ", "12) ", etc.)
+    const rawTopic = (activeTopicIndex !== undefined && topics[activeTopicIndex]) ? topics[activeTopicIndex] : null;
+    const cleanTopicName = useMemo(() => {
+        if (!rawTopic) return title;
+        return rawTopic.replace(/^\d+[\.\)\-]\s*/, '').trim();
+    }, [rawTopic, title]);
+
+    const activeSlug = rawTopic ? getSlug(rawTopic) : '';
+
     // Progress Tracking
     const storageKey = `course_progress_${title.toLowerCase().replace(/\s+/g, '_')}`;
-    const [completedTopics, setCompletedTopics] = React.useState<number[]>([]);
-    const [isLoaded, setIsLoaded] = React.useState(false);
+    const [completedTopics, setCompletedTopics] = useState<number[]>([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const loadProgress = async () => {
             const token = localStorage.getItem('adv_coder_token');
             if (!token) {
@@ -110,64 +171,158 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
 
     const colors = colorMap[colorClass] || colorMap['gray'];
 
+    // Dynamic Programmatic SEO Meta
+    const seoTitle = (activeTopicIndex !== undefined && activeTopicIndex > 0)
+        ? `${cleanTopicName} - ${title} Tutorial, Code & Online Compiler | ADV Indian Coder`
+        : `${title} Tutorial & Certification Course with Online Compiler | ADV Indian Coder`;
+
+    const seoDescription = (activeTopicIndex !== undefined && activeTopicIndex > 0)
+        ? `Learn ${cleanTopicName} in ${title} with step-by-step definitions, syntax blueprints, visual diagrams, real-world examples, and interactive live execution in ADV Lab. Free tutorial at ADV Indian Coder.`
+        : `${description} Learn ${title} with hands-on practice in ADV Lab, visual diagrams, real-world projects, free certification, and placement assistance.`;
+
+    const seoKeywords = `${cleanTopicName}, ${cleanTopicName} in ${title}, ${cleanTopicName} syntax, ${cleanTopicName} examples, ${cleanTopicName} tutorial, ${title} tutorial, ${title} course, learn ${title} online, ${title} compiler, ADV Lab, ADV Indian Coder, Vinay Kumar Mahato`;
+
+    // Dynamic Rich Schemas for Google Search Dominance
     const courseSchema = {
         "@context": "https://schema.org",
         "@type": "Course",
-        "name": `${title} Course in Bengaluru, Hyderabad, Pune & India`,
+        "name": `${title} - Complete Hands-on Course & Certification`,
         "description": description,
         "provider": {
             "@type": "EducationalOrganization",
             "name": "ADV Indian Coder",
             "sameAs": "https://www.advindiancoder.com",
+            "url": "https://www.advindiancoder.com",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Bengaluru",
                 "addressRegion": "Karnataka",
                 "addressCountry": "IN"
             },
-            "areaServed": ["Bengaluru", "Bangalore", "Hyderabad", "Pune", "Noida", "Gurgaon", "Delhi NCR", "Chennai", "Mumbai", "Kolkata", "India"]
+            "areaServed": ["Bengaluru", "Hyderabad", "Pune", "Noida", "Gurgaon", "Delhi NCR", "Chennai", "Mumbai", "Kolkata", "India"]
         },
         "hasCourseInstance": {
             "@type": "CourseInstance",
             "courseMode": ["Online", "Interactive", "Self-Paced"],
-            "courseWorkload": "PT25H",
+            "courseWorkload": "PT30H",
             "instructor": {
                 "@type": "Person",
                 "name": "Vinay Kumar Mahato",
-                "jobTitle": "Lead Software Engineer & Instructor"
+                "jobTitle": "Lead Software Engineer & Instructor",
+                "sameAs": "https://www.linkedin.com/in/vinaykumarmahato"
             }
-        }
+        },
+        "hasPart": topics.slice(0, 15).map((t, idx) => ({
+            "@type": "Course",
+            "name": t,
+            "position": idx + 1,
+            "url": `https://www.advindiancoder.com${location.pathname}#${getSlug(t)}`
+        }))
     };
 
-    const localBusinessSchema = {
+    const techArticleSchema = {
         "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": `ADV Indian Coder - Best ${title} Institute Bengaluru & India`,
-        "url": "https://www.advindiancoder.com",
-        "description": `Premier ${title} course & certification training in Bengaluru, Hyderabad, Pune, Noida, Gurgaon & India.`,
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Bengaluru",
-            "addressRegion": "Karnataka",
-            "addressCountry": "IN"
+        "@type": "TechArticle",
+        "headline": `${cleanTopicName} - ${title} Tutorial and Examples`,
+        "description": `Comprehensive technical explanation of ${cleanTopicName} in ${title} with syntax blueprint, diagrams, and runnable code in ADV Lab.`,
+        "author": {
+            "@type": "Person",
+            "name": "Vinay Kumar Mahato",
+            "url": "https://www.linkedin.com/in/vinaykumarmahato"
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 12.9716,
-            "longitude": 77.5946
+        "publisher": {
+            "@type": "Organization",
+            "name": "ADV Indian Coder",
+            "url": "https://www.advindiancoder.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.advindiancoder.com/assets/logo.png"
+            }
         },
-        "telephone": "+91-8147438334",
-        "priceRange": "Free"
+        "mainEntityOfPage": `https://www.advindiancoder.com${location.pathname}${activeSlug ? '#' + activeSlug : ''}`,
+        "keywords": seoKeywords
+    };
+
+    const breadcrumbsSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.advindiancoder.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Courses",
+                "item": "https://www.advindiancoder.com/courses"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": title,
+                "item": `https://www.advindiancoder.com${location.pathname}`
+            },
+            ...(rawTopic ? [{
+                "@type": "ListItem",
+                "position": 4,
+                "name": cleanTopicName,
+                "item": `https://www.advindiancoder.com${location.pathname}#${activeSlug}`
+            }] : [])
+        ]
+    };
+
+    // Course FAQs tailored for search intent
+    const faqs = [
+        {
+            q: `What is ${cleanTopicName} in ${title}?`,
+            a: `${cleanTopicName} is a fundamental concept in ${title} engineered for writing clean, efficient, and maintainable software. You can study the full syntax blueprint, diagrams, and execute code live on ADV Indian Coder.`
+        },
+        {
+            q: `How can I practice and run ${title} code online?`,
+            a: `You can practice ${title} code for free using ADV Lab — our high-performance interactive online compiler with zero setup required directly in your browser.`
+        },
+        {
+            q: `Is the ${title} course certificate free on ADV Indian Coder?`,
+            a: `Yes! Complete all course topics, track your progress, and take the final assessment to earn a verifiable Certificate of Completion at no cost.`
+        },
+        {
+            q: `Why choose ADV Indian Coder for learning ${title}?`,
+            a: `ADV Indian Coder delivers industry-standard curriculums, interactive Mermaid architecture diagrams, real-world case studies, and integrated compiler execution so you learn by doing.`
+        }
+    ];
+
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.q,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.a
+            }
+        }))
+    };
+
+    const handleShare = () => {
+        const fullUrl = window.location.href;
+        navigator.clipboard.writeText(fullUrl);
+        setCopiedUrl(true);
+        setTimeout(() => setCopiedUrl(false), 2000);
     };
 
     return (
         <PageWrapper>
             <SEO 
-                title={`${title} Course in Bengaluru, Hyderabad, Pune, Noida & India | ADV Indian Coder`}
-                description={`Best ${title} course in Bengaluru (Bangalore), Hyderabad, Pune, Noida, Gurgaon & India. Learn ${title} with hands-on projects, free certification, and 100% placement assistance at ADV Indian Coder.`}
-                keywords={`${title} course in bengaluru, ${title} training bangalore, ${title} course hyderabad, ${title} course pune, ${title} training noida, ${title} course gurgaon, ${title} course chennai, ${title} course mumbai, best ${title} institute india, learn ${title} online bengaluru, ADV Indian Coder`}
-                ogType="course"
-                schema={[courseSchema, localBusinessSchema]}
+                title={seoTitle}
+                description={seoDescription}
+                keywords={seoKeywords}
+                canonical={`${location.pathname}${activeSlug ? '#' + activeSlug : ''}`}
+                ogType="article"
+                schema={[courseSchema, techArticleSchema, breadcrumbsSchema, faqSchema]}
             />
             <div className="min-h-screen bg-gray-50 dark:bg-black relative">
                 {/* Background decorative elements */}
@@ -197,23 +352,23 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
 
                                 <ul className="space-y-1">
                                     {topics.map((topic, index) => {
-                                        const slug = topic.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+                                        const slug = getSlug(topic);
                                         const isActive = activeTopicIndex === index;
                                         const isCompleted = completedTopics.includes(index);
                                         const baseClasses = `block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 border border-transparent`;
-                                        const activeClasses = `${colors.bg} ${colors.text} ${colors.border} dark:bg-gray-800 dark:text-white`;
+                                        const activeClasses = `${colors.bg} ${colors.text} ${colors.border} dark:bg-gray-800 dark:text-white font-bold shadow-sm`;
                                         const inactiveClasses = `text-gray-600 dark:text-gray-400 ${colors.hoverBg} dark:hover:bg-gray-800 ${colors.hoverText} dark:hover:text-white ${colors.hoverBorder} dark:hover:border-gray-700`;
 
                                         return (
                                             <li key={index}>
                                                 {onTopicClick ? (
                                                     <button
-                                                        onClick={() => onTopicClick(index)}
+                                                        onClick={() => handleTopicSelect(index)}
                                                         className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses} flex items-center justify-between group/item`}
                                                     >
                                                         <div className="flex items-center min-w-0">
-                                                            <span className={`mr-2 shrink-0 ${isActive ? 'opacity-100 font-bold' : 'opacity-50'}`}>{index + 1}.</span> 
-                                                            <span className="truncate">{topic}</span>
+                                                            <span className={`mr-2 shrink-0 ${isActive ? 'opacity-100 font-black text-red-500' : 'opacity-50'}`}>{index + 1}.</span> 
+                                                            <span className="truncate">{topic.replace(/^\d+[\.\)\-]\s*/, '')}</span>
                                                         </div>
                                                         {isCompleted && <Check className="w-4 h-4 ml-2 text-green-500 shrink-0" />}
                                                     </button>
@@ -224,7 +379,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                                                     >
                                                         <div className="flex items-center min-w-0">
                                                             <span className="mr-2 opacity-50 shrink-0">{index + 1}.</span> 
-                                                            <span className="truncate">{topic}</span>
+                                                            <span className="truncate">{topic.replace(/^\d+[\.\)\-]\s*/, '')}</span>
                                                         </div>
                                                         {isCompleted && <Check className="w-4 h-4 ml-2 text-green-500 shrink-0" />}
                                                     </a>
@@ -239,21 +394,36 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                         {/* Main Content */}
                         <div className="lg:col-span-3">
                             <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-200/50 dark:border-gray-800/50 min-h-[60vh]">
-                                {/* IT Hubs Pan-India Location Badge */}
-                                <div className="flex flex-wrap items-center gap-2 mb-4">
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 text-xs font-black tracking-wide uppercase">
-                                        📍 #1 Rated Course in Bengaluru, Hyderabad, Pune, NCR & India
-                                    </span>
-                                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-bold">
-                                        ✨ Free Certificate & Job Placement Training
-                                    </span>
+                                {/* Badges and Quick Tools */}
+                                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 text-xs font-black tracking-wide uppercase">
+                                            📍 #1 Rated Course in Bengaluru, Hyderabad, Pune & India
+                                        </span>
+                                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-bold">
+                                            ✨ Free Certificate & Lab IDE
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <button 
+                                            onClick={handleShare}
+                                            type="button"
+                                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-semibold transition-all"
+                                            title="Share this topic link"
+                                        >
+                                            <Share2 className="w-3.5 h-3.5" />
+                                            <span>{copiedUrl ? 'Copied Link!' : 'Share Topic'}</span>
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <h1 className={`text-4xl md:text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}>{title}</h1>
+                                <h1 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}>
+                                    {cleanTopicName}
+                                </h1>
 
                                 {(activeTopicIndex === undefined || activeTopicIndex === 0) && (
                                     <>
-                                        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">{description}</p>
+                                        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">{description}</p>
                                         <div className={`bg-gradient-to-r ${colors.bg} to-transparent dark:from-gray-800 dark:to-transparent border-l-4 ${colors.border} p-6 rounded-r-xl mb-10`}>
                                             <p className={`font-medium ${colors.text} dark:text-gray-200 flex items-start`}>
                                                 <span className="text-2xl mr-4">💡</span>
@@ -287,7 +457,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                                         <div className="w-full sm:w-1/3">
                                             {activeTopicIndex !== undefined && activeTopicIndex > 0 && onTopicClick ? (
                                                 <button
-                                                    onClick={() => onTopicClick(activeTopicIndex - 1)}
+                                                    onClick={() => handleTopicSelect(activeTopicIndex - 1)}
                                                     className="w-full flex items-center justify-center px-6 py-4 rounded-xl text-base font-bold transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 border border-transparent dark:border-gray-700"
                                                 >
                                                     ← Previous
@@ -318,7 +488,7 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                                                         if (!completedTopics.includes(activeTopicIndex)) {
                                                             setCompletedTopics(prev => [...prev, activeTopicIndex]);
                                                         }
-                                                        onTopicClick(activeTopicIndex + 1);
+                                                        handleTopicSelect(activeTopicIndex + 1);
                                                     }}
                                                     className={`w-full flex items-center justify-center px-6 py-4 rounded-xl text-base font-bold text-white shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 ${colors.bg.replace('bg-', 'bg-').replace('50', '600')} hover:brightness-110`}
                                                 >
@@ -327,6 +497,39 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                                             ) : (
                                                 <div />
                                             )}
+                                        </div>
+                                    </div>
+
+                                    {/* Google Rich-Snippet FAQ Accordion Section */}
+                                    <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+                                        <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+                                            <HelpCircle className="w-5 h-5 text-red-500" />
+                                            Frequently Asked Questions about {cleanTopicName}
+                                        </h3>
+                                        <div className="space-y-3">
+                                            {faqs.map((faq, index) => (
+                                                <div 
+                                                    key={index} 
+                                                    className="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden transition-all bg-gray-50/50 dark:bg-gray-800/30"
+                                                >
+                                                    <button
+                                                        onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                                                        className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-semibold text-gray-800 dark:text-gray-200 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                                                    >
+                                                        <span>{faq.q}</span>
+                                                        {openFaq === index ? (
+                                                            <ChevronUp className="w-5 h-5 text-red-500 shrink-0" />
+                                                        ) : (
+                                                            <ChevronDown className="w-5 h-5 text-gray-400 shrink-0" />
+                                                        )}
+                                                    </button>
+                                                    {openFaq === index && (
+                                                        <div className="px-5 pb-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-800/60 pt-3">
+                                                            {faq.a}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
 
