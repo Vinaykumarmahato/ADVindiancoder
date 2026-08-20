@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserActivityLogRepository extends JpaRepository<UserActivityLog, Long> {
     List<UserActivityLog> findByEmailOrderByTimestampDesc(String email);
+    List<UserActivityLog> findTop15ByEmailOrderByTimestampDesc(String email);
 }

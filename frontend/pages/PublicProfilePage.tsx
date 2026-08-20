@@ -41,10 +41,43 @@ const PublicProfilePage: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-[70vh]">
-                <div className="flex flex-col items-center gap-3">
-                    <Loader2 className="h-10 w-10 text-red-500 animate-spin" />
-                    <p className="text-gray-500 dark:text-gray-400 font-bold text-sm">Loading profile...</p>
+            <div className="min-h-screen bg-slate-50 dark:bg-[#070b13] pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-12 px-4 sm:px-6 lg:px-8 animate-pulse">
+                <div className="max-w-6xl mx-auto space-y-8">
+                    {/* Hero Banner Skeleton */}
+                    <div className="h-48 sm:h-56 rounded-3xl bg-slate-200 dark:bg-white/5 border border-gray-200 dark:border-white/5 p-6 flex flex-col sm:flex-row items-center gap-6 justify-between">
+                        <div className="flex items-center gap-6 w-full">
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-slate-300 dark:bg-white/10 shrink-0" />
+                            <div className="space-y-3 w-full max-w-md">
+                                <div className="h-7 bg-slate-300 dark:bg-white/10 rounded-lg w-1/2" />
+                                <div className="h-4 bg-slate-300 dark:bg-white/10 rounded-md w-3/4" />
+                                <div className="h-4 bg-slate-300 dark:bg-white/10 rounded-md w-1/3" />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Stats Grid Skeleton */}
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        {[1, 2, 3, 4].map((i) => (
+                            <div key={i} className="h-24 bg-slate-200 dark:bg-white/5 rounded-3xl p-5 flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-2xl bg-slate-300 dark:bg-white/10 shrink-0" />
+                                <div className="space-y-2 w-full">
+                                    <div className="h-3 bg-slate-300 dark:bg-white/10 rounded w-2/3" />
+                                    <div className="h-5 bg-slate-300 dark:bg-white/10 rounded w-1/2" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Content Section Skeleton */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="lg:col-span-2 space-y-6">
+                            <div className="h-64 bg-slate-200 dark:bg-white/5 rounded-3xl p-6" />
+                        </div>
+                        <div className="space-y-6">
+                            <div className="h-40 bg-slate-200 dark:bg-white/5 rounded-3xl p-6" />
+                            <div className="h-64 bg-slate-200 dark:bg-white/5 rounded-3xl p-6" />
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -89,6 +122,9 @@ const PublicProfilePage: React.FC = () => {
                             <img 
                                 src={data.avatar} 
                                 alt={`${data.username} Avatar`}
+                                onError={(e) => {
+                                    (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(data.username)}&background=ef4444&color=fff`;
+                                }}
                                 className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-red-500/20 bg-slate-800 object-cover shrink-0"
                             />
                             <div className="flex flex-col items-center sm:items-start min-w-0 w-full">

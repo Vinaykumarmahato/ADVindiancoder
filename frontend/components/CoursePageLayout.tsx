@@ -250,26 +250,35 @@ const CoursePageLayout: React.FC<CoursePageLayoutProps> = ({ title, description,
                                 </div>
 
                                 <h1 className={`text-4xl md:text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}>{title}</h1>
-                                <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">{description}</p>
+
+                                {(activeTopicIndex === undefined || activeTopicIndex === 0) && (
+                                    <>
+                                        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">{description}</p>
+                                        <div className={`bg-gradient-to-r ${colors.bg} to-transparent dark:from-gray-800 dark:to-transparent border-l-4 ${colors.border} p-6 rounded-r-xl mb-10`}>
+                                            <p className={`font-medium ${colors.text} dark:text-gray-200 flex items-start`}>
+                                                <span className="text-2xl mr-4">💡</span>
+                                                <span>Welcome to the {title} course! This comprehensive guide will take you step-by-step from foundational concepts to production-level mastery.</span>
+                                            </p>
+                                        </div>
+                                    </>
+                                )}
 
                                 <div className="prose dark:prose-invert max-w-none">
-                                    <div className={`bg-gradient-to-r ${colors.bg} to-transparent dark:from-gray-800 dark:to-transparent border-l-4 ${colors.border} p-6 rounded-r-xl mb-10`}>
-                                        <p className={`font-medium ${colors.text} dark:text-gray-200 flex items-start`}>
-                                            <span className="text-2xl mr-4">💡</span>
-                                            <span>Welcome to the {title} course! This comprehensive guide will take you from basics to advanced concepts.</span>
-                                        </p>
-                                    </div>
-
-                                    <h2 className="text-2xl font-bold mb-6 flex items-center text-gray-900 dark:text-white">
-                                        <Video className={`w-7 h-7 mr-3 ${colors.text}`} />
-                                        Video Introduction
-                                    </h2>
-                                    <div className={`aspect-video bg-black rounded-2xl mb-10 flex items-center justify-center shadow-2xl ${colors.shadow} border border-gray-800 relative overflow-hidden group cursor-pointer`}>
-                                        <div className={`absolute inset-0 bg-gradient-to-tr ${colors.gradientFrom}/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                                        <div className={`w-20 h-20 ${colors.bg.replace('bg-', 'bg-').replace('50', '600')} rounded-full flex items-center justify-center shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300 z-10`}>
-                                            <Video className="w-10 h-10 text-white fill-current" />
+                                    {/* Render Video Overview ONLY on Topic 0 (Introduction Page) */}
+                                    {(activeTopicIndex === undefined || activeTopicIndex === 0) && (
+                                        <div className="mb-10">
+                                            <h2 className="text-2xl font-bold mb-4 flex items-center text-gray-900 dark:text-white">
+                                                <Video className={`w-7 h-7 mr-3 ${colors.text}`} />
+                                                Course Video Overview
+                                            </h2>
+                                            <div className={`aspect-video bg-black rounded-2xl flex items-center justify-center shadow-2xl ${colors.shadow} border border-gray-800 relative overflow-hidden group cursor-pointer`}>
+                                                <div className={`absolute inset-0 bg-gradient-to-tr ${colors.gradientFrom}/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                                                <div className={`w-20 h-20 ${colors.bg.replace('bg-', 'bg-').replace('50', '600')} rounded-full flex items-center justify-center shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300 z-10`}>
+                                                    <Video className="w-10 h-10 text-white fill-current" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
 
                                     {children}
 

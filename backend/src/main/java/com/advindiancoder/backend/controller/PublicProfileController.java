@@ -1,10 +1,8 @@
 package com.advindiancoder.backend.controller;
 
-import com.advindiancoder.backend.dto.DashboardStatsResponse;
 import com.advindiancoder.backend.dto.DailyActivityDto;
-import com.advindiancoder.backend.dto.FileStatsResponse;
+import com.advindiancoder.backend.dto.SubmissionSummaryProjection;
 import com.advindiancoder.backend.entity.User;
-import com.advindiancoder.backend.entity.CodeSubmission;
 import com.advindiancoder.backend.entity.UserActivityLog;
 import com.advindiancoder.backend.repository.UserRepository;
 import com.advindiancoder.backend.repository.CodeSubmissionRepository;
@@ -56,31 +54,29 @@ public class PublicProfileController {
         int codingHours = (int) user.getCodingHours();
         int totalCompiles = user.getTotalCompiles();
         double compileSuccessRate = user.getCompileSuccessRate();
-        int examMockScore = user.getExamMockScore();
         int streak = user.getStreak();
         int successfulCompiles = user.getSuccessfulCompiles();
         int failedCompiles = user.getTotalCompiles() - user.getSuccessfulCompiles();
 
-        java.util.List<CodeSubmission> submissions = codeSubmissionRepository.findByEmail(email);
-        java.util.List<FileStatsResponse> fileStats = new java.util.ArrayList<>();
+        // High-performance light projections to bypass reading megabytes of code text from DB
+        java.util.List<SubmissionSummaryProjection> submissions = codeSubmissionRepository.findSummaryByEmail(email);
+        java.util.List<SubmissionSummaryProjection> practiceSubmissions = practiceSubmissionRepository.findSummaryByEmail(email);
         
-        java.util.List<com.advindiancoder.backend.entity.PracticeSubmission> practiceSubmissions = practiceSubmissionRepository.findByEmail(email);
-        
-        java.util.List<UserActivityLog> allActivities = userActivityLogRepository.findByEmailOrderByTimestampDesc(email);
-        java.util.List<UserActivityLog> recentActivities = allActivities.stream().limit(15).collect(java.util.stream.Collectors.toList());
+        // Push LIMIT 15 down to database engine
+        java.util.List<UserActivityLog> recentActivities = userActivityLogRepository.findTop15ByEmailOrderByTimestampDesc(email);
 
-        // Weekly Activity
+        // Weekly Activity Calculation
         java.util.List<DailyActivityDto> weeklyActivity = new java.util.ArrayList<>();
         java.time.LocalDate today = java.time.LocalDate.now();
         java.util.Map<java.time.LocalDate, Integer> compilesPerDate = new java.util.HashMap<>();
         
-        for (CodeSubmission cs : submissions) {
+        for (SubmissionSummaryProjection cs : submissions) {
             if (cs.getTimestamp() != null) {
                 java.time.LocalDate d = cs.getTimestamp().toLocalDate();
                 compilesPerDate.put(d, compilesPerDate.getOrDefault(d, 0) + 1);
             }
         }
-        for (com.advindiancoder.backend.entity.PracticeSubmission ps : practiceSubmissions) {
+        for (SubmissionSummaryProjection ps : practiceSubmissions) {
             if (ps.getTimestamp() != null) {
                 java.time.LocalDate d = ps.getTimestamp().toLocalDate();
                 compilesPerDate.put(d, compilesPerDate.getOrDefault(d, 0) + 1);
@@ -109,8 +105,6 @@ public class PublicProfileController {
             weeklyActivity.add(new DailyActivityDto(dayName, percent, count, minutes));
         }
 
-        // Return a customized DTO for public view that doesn't expose sensitive info like exact email
-        // Wait, DashboardStatsResponse requires email in constructor. Let's return public profile as a Map for flexibility.
         java.util.Map<String, Object> publicProfile = new java.util.HashMap<>();
         publicProfile.put("username", user.getUsername());
         publicProfile.put("avatar", getAvatarUrl(user.getUsername(), user.getRole()));
@@ -119,7 +113,6 @@ public class PublicProfileController {
         publicProfile.put("educationJson", user.getEducationJson() != null ? user.getEducationJson() : "{}");
         publicProfile.put("bio", user.getBio() != null ? user.getBio() : "");
         
-        // Hide email for privacy on public profile, or just show domain
         publicProfile.put("codingHours", codingHours);
         publicProfile.put("streak", streak);
         publicProfile.put("successfulCompiles", successfulCompiles);
@@ -130,17 +123,15 @@ public class PublicProfileController {
         publicProfile.put("recentActivities", recentActivities);
         publicProfile.put("weeklyActivity", weeklyActivity);
 
-        // Include raw practice submissions for Contribution Graph on public view!
-        // We shouldn't send ALL code for all submissions to keep payload small. 
-        // Let's just send timestamps and success statuses.
+        // Include raw practice submissions for Contribution Graph (lightweight map)
         java.util.List<java.util.Map<String, Object>> lightSubmissions = new java.util.ArrayList<>();
-        for (com.advindiancoder.backend.entity.PracticeSubmission ps : practiceSubmissions) {
+        for (SubmissionSummaryProjection ps : practiceSubmissions) {
             java.util.Map<String, Object> lightPs = new java.util.HashMap<>();
             lightPs.put("timestamp", ps.getTimestamp());
             lightPs.put("success", ps.isSuccess());
             lightSubmissions.add(lightPs);
         }
-        for (CodeSubmission cs : submissions) {
+        for (SubmissionSummaryProjection cs : submissions) {
              java.util.Map<String, Object> lightCs = new java.util.HashMap<>();
              lightCs.put("timestamp", cs.getTimestamp());
              lightCs.put("success", cs.isSuccess());
@@ -148,6 +139,9 @@ public class PublicProfileController {
         }
         publicProfile.put("submissions", lightSubmissions);
         
-        return ResponseEntity.ok(publicProfile);
+        // Add Cache-Control header for sub-millisecond edge and browser caching on shared links
+        return ResponseEntity.ok()
+                .header("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600")
+                .body(publicProfile);
     }
 }

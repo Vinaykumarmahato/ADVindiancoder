@@ -47,7 +47,7 @@ async function seedData() {
         } else {
             console.error('Failed:', response.status, await response.text());
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error connecting to backend:', error.message);
     }
 }
