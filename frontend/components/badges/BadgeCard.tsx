@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Lock, Sparkles, Share2, Award, CheckCircle2 } from 'lucide-react';
 import { UserEarnedBadge } from '../../utils/badges';
@@ -10,15 +10,17 @@ interface BadgeCardProps {
 }
 
 const BadgeCard: React.FC<BadgeCardProps> = ({ badge, onClick, onShare }) => {
+    const isUnlocked = Boolean(badge.unlocked);
+
     return (
         <motion.div
-            whileHover={{ y: -4, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={onClick}
-            className={`relative group rounded-3xl p-5 border transition-all cursor-pointer overflow-hidden flex flex-col items-center text-center justify-between min-h-[260px] ${
-                badge.unlocked 
-                    ? 'bg-slate-900/80 dark:bg-[#0c1222]/90 border-white/15 hover:border-white/30 shadow-lg hover:shadow-2xl hover:shadow-red-500/10' 
-                    : 'bg-slate-950/40 dark:bg-black/30 border-white/5 opacity-70 hover:opacity-90'
+            whileHover={isUnlocked ? { y: -4, scale: 1.02 } : undefined}
+            whileTap={isUnlocked ? { scale: 0.98 } : undefined}
+            onClick={isUnlocked ? onClick : undefined}
+            className={`relative group rounded-3xl p-5 border transition-all overflow-hidden flex flex-col items-center text-center justify-between min-h-[260px] ${
+                isUnlocked 
+                    ? 'bg-slate-900/80 dark:bg-[#0c1222]/90 border-white/15 hover:border-white/30 shadow-lg hover:shadow-2xl hover:shadow-red-500/10 cursor-pointer' 
+                    : 'bg-slate-950/40 dark:bg-black/30 border-white/5 opacity-60 cursor-default select-none'
             }`}
         >
             {/* Ambient Background Glow for Unlocked Badges */}

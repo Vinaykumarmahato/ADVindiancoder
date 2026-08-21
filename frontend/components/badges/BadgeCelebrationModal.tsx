@@ -1,8 +1,9 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
     X, Sparkles, Share2, Download, CheckCircle2, Award, 
-    Linkedin, Twitter, MessageCircle, Copy, Check, Flame, ArrowRight
+    Linkedin, Twitter, MessageCircle, Copy, Check, Flame, ArrowRight,
+    FileText, ExternalLink
 } from 'lucide-react';
 import { Badge, UserEarnedBadge } from '../../utils/badges';
 import { useAuth } from '../../contexts/AuthContext';
@@ -27,16 +28,15 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
     onRequireLogin
 }) => {
     const { user } = useAuth();
-    const [copied, setCopied] = useState(false);
-    const certificateRef = useRef<HTMLDivElement>(null);
+    const [copiedLink, setCopiedLink] = useState(false);
+    const [copiedPost, setCopiedPost] = useState(false);
+    const [downloadingPng, setDownloadingPng] = useState(false);
 
-    // Trigger Canvas Confetti on mount if available
+    // Trigger Canvas Confetti on mount
     useEffect(() => {
         if (isOpen && typeof window !== 'undefined') {
-            // Dynamically load confetti if available or render CSS celebration particles
             try {
                 const colors = ['#ef4444', '#f59e0b', '#10b981', '#38bdf8', '#a855f7'];
-                // Create mini confetti elements in DOM
                 for (let i = 0; i < 35; i++) {
                     const confetti = document.createElement('div');
                     confetti.className = 'fixed z-[1300] pointer-events-none rounded-sm animate-ping';
@@ -58,18 +58,26 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
 
     const username = user?.name || user?.email?.split('@')[0] || 'Learner';
     const profileUrl = user?.name 
-        ? `https://www.advindiancoder.com/u/${encodeURIComponent(user.name)}`
-        : 'https://www.advindiancoder.com';
+        ? `https://www.advindiancoder.com/u/${encodeURIComponent(user.name)}?badge=${encodeURIComponent(badge.id)}`
+        : `https://www.advindiancoder.com/u/Learner?badge=${encodeURIComponent(badge.id)}`;
 
-    const shareText = `🎉 Proud to earn the '${badge.name}' badge on ADV Indian Coder by completing ${streak} days of daily coding & solving algorithmic challenges! Check out my developer journey: ${profileUrl} 🚀🔥`;
+    const linkedInPostText = `🚀 Excited to share a new milestone in my coding journey!\n\nI just unlocked the official 🏆 "${badge.name}" Achievement Badge on ADV Indian Coder (advindiancoder.com)!\n\n🔥 Active Coding Streak: ${streak} Days\n💡 Problem Solving & Hands-on Development\n\nCheck out my verified developer profile & coding achievements:\n👉 ${profileUrl}\n\n#ADVCoder #100DaysOfCode #CodingStreak #WebDevelopment #Programming #Java #Python #React #DSA #StudentDeveloper #LearningJourney`;
+
+    const twitterPostText = `🔥 Just unlocked the "${badge.name}" milestone badge on @advindiancoder with a ${streak}-day coding streak! 🚀\n\nCheck out my verified badge & profile:`;
+
+    const whatsappPostText = `🎉 *Proud Achievement on ADV Indian Coder!* 🏆\nI just unlocked the official *${badge.name}* Milestone Badge with a *${streak}-Day Coding Streak*! 💻🔥\n\nView my verified developer profile & badge:\n👉 ${profileUrl}`;
 
     const handleShareLinkedIn = () => {
         if (!user && onRequireLogin) {
             onRequireLogin();
             return;
         }
+        navigator.clipboard.writeText(linkedInPostText);
+        setCopiedPost(true);
+        setTimeout(() => setCopiedPost(false), 3500);
+
         const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(profileUrl)}`;
-        window.open(url, '_blank', 'width=600,height=600');
+        window.open(url, '_blank', 'width=650,height=650');
     };
 
     const handleShareTwitter = () => {
@@ -77,8 +85,7 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
             onRequireLogin();
             return;
         }
-        const tweetText = `Just unlocked the '${badge.name}' on @advindiancoder by coding daily! 🔥💻\nCheck out my profile:`;
-        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(profileUrl)}&hashtags=ADVIndianCoder,CodeDaily,DSA,WebDev`;
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterPostText)}&url=${encodeURIComponent(profileUrl)}&hashtags=ADVCoder,100DaysOfCode,CodingStreak,Developer`;
         window.open(url, '_blank', 'width=600,height=500');
     };
 
@@ -87,8 +94,7 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
             onRequireLogin();
             return;
         }
-        const waText = `🚀 *Achievement Unlocked!* 🏆\nI just earned the *${badge.name}* badge on ADV Indian Coder! 💻🔥\n\nView my developer profile:\n👉 ${profileUrl}`;
-        const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(waText)}`;
+        const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappPostText)}`;
         window.open(url, '_blank');
     };
 
@@ -98,14 +104,101 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
             return;
         }
         navigator.clipboard.writeText(profileUrl);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2500);
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2500);
+    };
+
+    const handleCopyFullPost = () => {
+        navigator.clipboard.writeText(linkedInPostText);
+        setCopiedPost(true);
+        setTimeout(() => setCopiedPost(false), 3000);
+    };
+
+    // Client-side Canvas rendering to generate & download badge PNG
+    const handleDownloadBadgePng = () => {
+        setDownloadingPng(true);
+        try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 630;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            // 1. Dark Modern Background
+            const bgGrad = ctx.createLinearGradient(0, 0, 1200, 630);
+            bgGrad.addColorStop(0, '#070b13');
+            bgGrad.addColorStop(0.5, '#0f172a');
+            bgGrad.addColorStop(1, '#070b13');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            // 2. Glow Accents
+            const glowGrad = ctx.createRadialGradient(600, 240, 20, 600, 240, 320);
+            glowGrad.addColorStop(0, badge.accentColor ? `${badge.accentColor}44` : 'rgba(239, 68, 68, 0.3)');
+            glowGrad.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = glowGrad;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            // 3. Neon Outer Border
+            ctx.strokeStyle = badge.accentColor || '#ef4444';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(30, 30, 1140, 570);
+
+            // 4. Header Seal
+            ctx.fillStyle = '#ef4444';
+            ctx.font = 'bold 22px system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('ADV INDIAN CODER • OFFICIAL VERIFIED ACHIEVEMENT', 600, 80);
+
+            // 5. Badge Emblem Sphere
+            ctx.beginPath();
+            ctx.arc(600, 230, 85, 0, Math.PI * 2);
+            ctx.fillStyle = '#1e293b';
+            ctx.fill();
+            ctx.strokeStyle = badge.accentColor || '#f59e0b';
+            ctx.lineWidth = 6;
+            ctx.stroke();
+
+            // Emoji / Icon
+            ctx.font = '72px system-ui, sans-serif';
+            ctx.fillText(badge.icon || '🏆', 600, 255);
+
+            // 6. Badge Name
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 36px system-ui, sans-serif';
+            ctx.fillText(badge.name, 600, 370);
+
+            // 7. Awarded To
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 20px system-ui, sans-serif';
+            ctx.fillText(`AWARDED TO: ${username.toUpperCase()}`, 600, 420);
+
+            // 8. Streak & Details
+            ctx.fillStyle = '#fbbf24';
+            ctx.font = 'bold 22px system-ui, sans-serif';
+            ctx.fillText(`🔥 ${streak} Day Daily Coding Streak • Verified Milestone`, 600, 460);
+
+            // 9. Footer stamp
+            ctx.fillStyle = '#64748b';
+            ctx.font = '16px system-ui, sans-serif';
+            ctx.fillText(`advindiancoder.com/u/${username} • Issued on ${new Date().toLocaleDateString('en-IN')}`, 600, 540);
+
+            const dataUrl = canvas.toDataURL('image/png');
+            const downloadLink = document.createElement('a');
+            downloadLink.download = `${username.toLowerCase()}_${badge.id}_badge.png`;
+            downloadLink.href = dataUrl;
+            downloadLink.click();
+        } catch (e) {
+            console.error('Failed to export badge image:', e);
+        } finally {
+            setDownloadingPng(false);
+        }
     };
 
     return (
         <AnimatePresence>
             <div className="fixed inset-0 z-[1250] flex items-center justify-center p-4">
-                {/* Backdrop with animated blur */}
+                {/* Backdrop */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -122,9 +215,9 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
                     transition={{ type: 'spring', damping: 25, stiffness: 350 }}
                     className="relative w-full max-w-lg bg-gradient-to-b from-slate-900 via-[#0a0f1d] to-[#070b13] border border-white/15 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.8)] z-10 flex flex-col max-h-[92vh] overflow-hidden"
                 >
-                    {/* Top Decorative Tier Bar */}
+                    {/* Top Accent Strip */}
                     <div 
-                        className="h-2 w-full absolute top-0 left-0 animate-gradient-x"
+                        className="h-2 w-full absolute top-0 left-0"
                         style={{
                             background: `linear-gradient(90deg, ${badge.accentColor}, #ef4444, ${badge.accentColor})`
                         }}
@@ -140,7 +233,7 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
 
                     <div className="p-6 sm:p-8 overflow-y-auto flex-1 text-center space-y-6">
                         
-                        {/* Header Milestone Header */}
+                        {/* Header Milestone */}
                         <div className="space-y-1 pt-2">
                             <span 
                                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border shadow-sm"
@@ -161,12 +254,11 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
                             </p>
                         </div>
 
-                        {/* 3D Visual Certificate & Badge Showcase Card */}
+                        {/* 3D Visual Certificate & Badge Card */}
                         <div 
-                            ref={certificateRef}
                             className="relative rounded-3xl p-6 sm:p-8 border border-white/15 bg-gradient-to-br from-slate-900/90 via-slate-950/90 to-black overflow-hidden shadow-2xl space-y-5"
                         >
-                            {/* Radial Glow Layer */}
+                            {/* Radial Glow */}
                             <div 
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none"
                                 style={{ background: badge.accentColor }}
@@ -228,14 +320,25 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
                             </div>
                         </div>
 
+                        {/* Download Badge PNG Button */}
+                        <button
+                            type="button"
+                            onClick={handleDownloadBadgePng}
+                            disabled={downloadingPng}
+                            className="w-full py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-black text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
+                        >
+                            <Download className="w-4 h-4 text-amber-400" />
+                            <span>{downloadingPng ? 'Generating PNG...' : 'Download Badge Graphic (PNG)'}</span>
+                        </button>
+
                         {/* Social Sharing Actions */}
-                        <div className="space-y-3 pt-2">
+                        <div className="space-y-3 pt-1">
                             <div className="text-xs font-black uppercase text-gray-400 tracking-wider">
-                                Share Your Achievement
+                                1-Click Social Sharing
                             </div>
 
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                                {/* LinkedIn Button */}
+                                {/* LinkedIn */}
                                 <button
                                     type="button"
                                     onClick={handleShareLinkedIn}
@@ -245,7 +348,7 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
                                     <span>LinkedIn</span>
                                 </button>
 
-                                {/* WhatsApp Button */}
+                                {/* WhatsApp */}
                                 <button
                                     type="button"
                                     onClick={handleShareWhatsApp}
@@ -255,7 +358,7 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
                                     <span>WhatsApp</span>
                                 </button>
 
-                                {/* Twitter / X Button */}
+                                {/* Twitter / X */}
                                 <button
                                     type="button"
                                     onClick={handleShareTwitter}
@@ -265,13 +368,13 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
                                     <span>Twitter / X</span>
                                 </button>
 
-                                {/* Copy Profile Link Button */}
+                                {/* Copy Badge URL */}
                                 <button
                                     type="button"
                                     onClick={handleCopyLink}
                                     className="py-3 px-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 font-bold text-xs transition-all flex flex-col items-center justify-center gap-1 shadow-sm active:scale-95 cursor-pointer"
                                 >
-                                    {copied ? (
+                                    {copiedLink ? (
                                         <>
                                             <Check className="w-4 h-4 text-emerald-400" />
                                             <span className="text-emerald-400">Copied!</span>
@@ -284,11 +387,30 @@ const BadgeCelebrationModal: React.FC<BadgeCelebrationModalProps> = ({
                                     )}
                                 </button>
                             </div>
+
+                            {/* Prewritten Post Helper */}
+                            <button
+                                type="button"
+                                onClick={handleCopyFullPost}
+                                className="w-full py-2 px-3 rounded-xl bg-slate-900/80 border border-white/10 text-gray-400 hover:text-white text-[11px] font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                            >
+                                {copiedPost ? (
+                                    <>
+                                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                                        <span className="text-emerald-400">Complete Post Text Copied to Clipboard!</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <FileText className="w-3.5 h-3.5 text-blue-400" />
+                                        <span>Copy Complete LinkedIn / Social Post Text</span>
+                                    </>
+                                )}
+                            </button>
                         </div>
 
                     </div>
 
-                    {/* Footer Close / Continue */}
+                    {/* Footer */}
                     <div className="p-4 bg-black/40 border-t border-white/5 flex items-center justify-between">
                         <button
                             onClick={onClose}

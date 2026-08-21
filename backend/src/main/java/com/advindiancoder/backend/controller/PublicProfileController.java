@@ -151,7 +151,9 @@ public class PublicProfileController {
     }
 
     @GetMapping(value = "/og-html/{username}", produces = "text/html")
-    public ResponseEntity<String> getPublicProfileOgHtml(@PathVariable String username) {
+    public ResponseEntity<String> getPublicProfileOgHtml(
+            @PathVariable String username,
+            @RequestParam(required = false) String badge) {
         Optional<User> userOpt = userRepository.findByUsername(username);
         if (userOpt.isEmpty()) {
             return ResponseEntity.status(404).body("<!DOCTYPE html><html><head><title>User Not Found</title></head><body>User not found</body></html>");
@@ -165,7 +167,17 @@ public class PublicProfileController {
         int totalCompiles = user.getTotalCompiles();
 
         String title = user.getUsername() + " - Overview | ADV Indian Coder";
-        String description = bio + " | 🔥 " + streak + " Day Streak | 💻 " + codingHours + "h Coding | 🚀 " + totalCompiles + " Compiles";
+        String description;
+
+        if (badge != null && !badge.trim().isEmpty()) {
+            String badgeName = badge.replace("-", " ").toUpperCase();
+            title = "🏆 " + user.getUsername() + " earned " + badgeName + " Badge on ADV Indian Coder";
+            description = "🎉 Official Milestone Achievement! " + user.getUsername() + " unlocked the " + badgeName + " badge with a " + streak + "-Day Coding Streak and " + user.getSuccessfulCompiles() + " problems solved on ADV Indian Coder.";
+        } else {
+            description = bio + " | 🔥 " + streak + " Day Streak | 💻 " + codingHours + "h Coding | 🚀 " + totalCompiles + " Compiles";
+        }
+
+        String profileUrl = "https://www.advindiancoder.com/u/" + user.getUsername() + (badge != null ? "?badge=" + badge : "");
 
         String html = "<!DOCTYPE html>\n"
                 + "<html lang=\"en\">\n"
@@ -181,13 +193,13 @@ public class PublicProfileController {
                 + "  <meta property=\"og:image:secure_url\" content=\"" + avatar + "\" />\n"
                 + "  <meta property=\"og:image:width\" content=\"600\" />\n"
                 + "  <meta property=\"og:image:height\" content=\"600\" />\n"
-                + "  <meta property=\"og:url\" content=\"https://www.advindiancoder.com/u/" + user.getUsername() + "\" />\n"
+                + "  <meta property=\"og:url\" content=\"" + profileUrl + "\" />\n"
                 + "  <meta name=\"twitter:card\" content=\"summary\" />\n"
                 + "  <meta name=\"twitter:site\" content=\"@advindiancoder\" />\n"
                 + "  <meta name=\"twitter:title\" content=\"" + title + "\" />\n"
                 + "  <meta name=\"twitter:description\" content=\"" + description + "\" />\n"
                 + "  <meta name=\"twitter:image\" content=\"" + avatar + "\" />\n"
-                + "  <meta http-equiv=\"refresh\" content=\"0;url=https://www.advindiancoder.com/u/" + user.getUsername() + "\" />\n"
+                + "  <meta http-equiv=\"refresh\" content=\"0;url=" + profileUrl + "\" />\n"
                 + "</head>\n"
                 + "<body style=\"font-family: sans-serif; background: #0c1222; color: #fff; text-align: center; padding: 40px;\">\n"
                 + "  <img src=\"" + avatar + "\" style=\"width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #ef4444;\" />\n"
