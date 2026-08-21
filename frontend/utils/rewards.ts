@@ -3,6 +3,8 @@ export interface RewardItem {
     name: string;
     category: 'apparel' | 'gear' | 'accessories' | 'stationery';
     coinCost: number;
+    inrPrice: number;
+    originalPrice: number;
     description: string;
     highlights: string[];
     icon: string;
@@ -19,6 +21,8 @@ export const SWAG_CATALOG: RewardItem[] = [
         name: 'Hardcover Developer Planner & Pen',
         category: 'stationery',
         coinCost: 600,
+        inrPrice: 299,
+        originalPrice: 499,
         description: 'Executive hardcover dot-grid developer diary with 120gsm bleed-proof paper for system architecture, DSA diagrams, along with a weighted matte metal pen.',
         highlights: ['192 Dot-Grid Pages', '120gsm Archival Paper', 'Includes Metal Gel Pen', 'Ribbon Bookmark'],
         icon: '📓',
@@ -32,6 +36,8 @@ export const SWAG_CATALOG: RewardItem[] = [
         name: 'ADV Insulated Stainless Steel Bottle',
         category: 'accessories',
         coinCost: 900,
+        inrPrice: 499,
+        originalPrice: 899,
         description: 'Double-walled vacuum insulated bottle in stealth matte black with laser-etched ADV Indian Coder branding. Keeps drinks cold for 24h & hot for 12h.',
         highlights: ['750ml Capacity', '304 Food-Grade Steel', '24h Cold / 12h Hot', 'Leakproof Cap'],
         icon: '💧',
@@ -45,6 +51,8 @@ export const SWAG_CATALOG: RewardItem[] = [
         name: 'Smart Temperature Coffee Mug',
         category: 'accessories',
         coinCost: 1200,
+        inrPrice: 599,
+        originalPrice: 999,
         description: 'Smart LED touch temperature display thermal mug with stainless steel vacuum insulation to keep coffee piping hot during long coding sessions.',
         highlights: ['500ml Smart Mug', 'LED Touch Display', 'Double Vacuum Insulated', 'Anti-Spill Lid'],
         icon: '☕',
@@ -58,6 +66,8 @@ export const SWAG_CATALOG: RewardItem[] = [
         name: 'ADV Indian Coder Official T-Shirt',
         category: 'apparel',
         coinCost: 1500,
+        inrPrice: 699,
+        originalPrice: 1199,
         description: 'Ultra-soft 100% bio-washed combed cotton t-shirt with premium screen-printed ADV Indian Coder developer emblem on the chest and sleeve.',
         highlights: ['100% Combed Cotton', 'Bio-Washed & Pre-Shrunk', 'Breathable Fabric', 'Sizes XS to 3XL'],
         icon: '👕',
@@ -71,6 +81,8 @@ export const SWAG_CATALOG: RewardItem[] = [
         name: 'Ergonomic Precision Wireless Mouse',
         category: 'gear',
         coinCost: 1800,
+        inrPrice: 899,
+        originalPrice: 1499,
         description: 'Ergonomic wireless developer mouse with ultra-silent clicks, 4000 DPI adjustable optical sensor, and rechargeable USB-C 60-day battery life.',
         highlights: ['Ultra-Silent Clicks', '4000 DPI Precision', 'Rechargeable USB-C', 'Dual 2.4G & Bluetooth'],
         icon: '🖱️',
@@ -84,6 +96,8 @@ export const SWAG_CATALOG: RewardItem[] = [
         name: 'ADV Pro Developer Backpack',
         category: 'gear',
         coinCost: 2400,
+        inrPrice: 1499,
+        originalPrice: 2499,
         description: 'Premium water-resistant travel & coding backpack with dedicated 15.6" padded laptop sleeve, USB charging pass-through, and ergonomic air-mesh straps.',
         highlights: ['15.6" Laptop Compartment', 'USB Port', 'Water-Resistant Cordura', 'ADV Metal Badge'],
         icon: '🎒',
@@ -97,6 +111,8 @@ export const SWAG_CATALOG: RewardItem[] = [
         name: 'RGB Mechanical Coding Keyboard',
         category: 'gear',
         coinCost: 2700,
+        inrPrice: 1899,
+        originalPrice: 3299,
         description: 'High-precision mechanical keyboard with tactile blue/brown switches, per-key RGB backlighting, braided Type-C cable, and anti-ghosting technology.',
         highlights: ['Tactile Mechanical Switches', 'Customizable RGB Effects', 'Detachable Type-C', 'Aluminum Base'],
         icon: '⌨️',
@@ -110,6 +126,8 @@ export const SWAG_CATALOG: RewardItem[] = [
         name: 'Noise-Cancelling Studio Headphones',
         category: 'gear',
         coinCost: 3000,
+        inrPrice: 2199,
+        originalPrice: 3999,
         description: 'High-fidelity over-ear headphones with Active Noise Cancellation (ANC), custom 40mm neodymium drivers, memory foam cushions, and 40h wireless battery.',
         highlights: ['Active Noise Cancellation', '40mm Hi-Res Drivers', '40h Battery Life', 'Built-in Mic'],
         icon: '🎧',
@@ -203,9 +221,9 @@ export function calculateUserCoins(
 
     // 3. Problem of the Day (10 coins per POTD solve)
     coins += Math.max(0, potdSolves) * 10;
-    if (streak >= 25) coins += 25; // 25 consecutive days bonus
-    if (streak >= 30) coins += 30; // 30 days bonus
-    if (streak >= 30) coins += 50; // Full month completion bonus
+    if (streak >= 25) coins += 25;
+    if (streak >= 30) coins += 30;
+    if (streak >= 30) coins += 50;
 
     // 4. Daily Streak Multiplier (+2 coins/day)
     if (streak > 0) {

@@ -14,6 +14,7 @@ const RewardsPage: React.FC = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [selectedItem, setSelectedItem] = useState<RewardItem | null>(null);
+    const [orderModalMode, setOrderModalMode] = useState<'coins' | 'cash'>('coins');
     const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
     const [myOrders, setMyOrders] = useState<any[]>([]);
     const [userStreak, setUserStreak] = useState(0);
@@ -367,9 +368,14 @@ const RewardsPage: React.FC = () => {
                                         <span className="absolute top-2.5 left-2.5 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-amber-400 border border-white/15">
                                             {item.badgeLabel}
                                         </span>
-                                        <span className="absolute bottom-2.5 right-2.5 text-xs font-black px-3 py-1 rounded-xl bg-black/80 backdrop-blur-md text-white border border-white/15 flex items-center gap-1">
-                                            🪙 {item.coinCost} Coins
-                                        </span>
+                                        <div className="absolute bottom-2.5 right-2.5 flex flex-col items-end gap-1">
+                                            <span className="text-[11px] font-black px-2.5 py-0.5 rounded-lg bg-black/80 backdrop-blur-md text-amber-400 border border-white/15">
+                                                🪙 {item.coinCost} Coins
+                                            </span>
+                                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-emerald-600/90 backdrop-blur-md text-white">
+                                                or ₹{item.inrPrice} <span className="line-through opacity-70 text-[9px]">₹{item.originalPrice}</span>
+                                            </span>
+                                        </div>
                                     </div>
 
                                     {/* Product Details */}
@@ -392,8 +398,23 @@ const RewardsPage: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Order Action */}
-                                <div className="pt-5 mt-4 border-t border-gray-100 dark:border-white/5">
+                                {/* Dual Action Buttons: Shop Now (INR) + Redeem (Coins) */}
+                                <div className="pt-5 mt-4 border-t border-gray-100 dark:border-white/5 flex flex-col gap-2">
+                                    {/* 1. Shop Now with Cash / Direct Purchase */}
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setSelectedItem(item);
+                                            setOrderModalMode('cash');
+                                            setIsOrderModalOpen(true);
+                                        }}
+                                        className="w-full py-2.5 rounded-xl text-xs font-black bg-gradient-to-r from-red-600 to-rose-600 hover:brightness-110 text-white transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer active:scale-95"
+                                    >
+                                        <ShoppingBag className="w-3.5 h-3.5" />
+                                        <span>Shop Now (₹{item.inrPrice})</span>
+                                    </button>
+
+                                    {/* 2. Redeem with Coins */}
                                     <button
                                         type="button"
                                         onClick={() => {
@@ -402,23 +423,24 @@ const RewardsPage: React.FC = () => {
                                                 return;
                                             }
                                             setSelectedItem(item);
+                                            setOrderModalMode('coins');
                                             setIsOrderModalOpen(true);
                                         }}
                                         disabled={Boolean(user && !canAfford)}
-                                        className={`w-full py-3 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer ${
+                                        className={`w-full py-2 rounded-xl text-[11px] font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer border ${
                                             !user
-                                                ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                                                ? 'bg-gray-100 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-white/10'
                                                 : canAfford
-                                                    ? 'bg-gradient-to-r from-amber-500 to-red-600 hover:brightness-110 text-white active:scale-95'
-                                                    : 'bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                                                    ? 'bg-amber-500/10 border-amber-500/30 text-amber-500 hover:bg-amber-500/20 active:scale-95'
+                                                    : 'bg-transparent border-gray-200 dark:border-white/5 text-gray-400 cursor-not-allowed'
                                         }`}
                                     >
                                         {!user ? (
-                                            <span>Sign In to Redeem</span>
+                                            <span>Sign In to Redeem with Coins</span>
                                         ) : canAfford ? (
                                             <>
-                                                <Gift className="w-4 h-4" />
-                                                <span>Redeem / Order Now</span>
+                                                <Gift className="w-3.5 h-3.5" />
+                                                <span>Redeem ({item.coinCost} 🪙)</span>
                                             </>
                                         ) : (
                                             <span>Need {item.coinCost - coinData.availableCoins} More Coins</span>
@@ -492,12 +514,13 @@ const RewardsPage: React.FC = () => {
                     </div>
                 )}
 
-                {/* Reward Order Modal */}
+                {/* Reward / Shop Order Modal */}
                 <RewardOrderModal
                     isOpen={isOrderModalOpen}
                     onClose={() => setIsOrderModalOpen(false)}
                     item={selectedItem}
                     availableCoins={coinData.availableCoins}
+                    initialMode={orderModalMode}
                     onOrderSuccess={() => {
                         fetchUserData();
                     }}
