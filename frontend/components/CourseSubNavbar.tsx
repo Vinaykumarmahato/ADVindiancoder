@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CourseNavItem {
@@ -40,7 +40,6 @@ const COURSE_NAV_ITEMS: CourseNavItem[] = [
 
 const CourseSubNavbar: React.FC = () => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const navigate = useNavigate();
     const location = useLocation();
 
     const handleScroll = (direction: 'left' | 'right') => {
@@ -88,18 +87,19 @@ const CourseSubNavbar: React.FC = () => {
                     {COURSE_NAV_ITEMS.map((item) => {
                         const active = isCourseActive(item.path);
                         return (
-                            <button
+                            <Link
                                 key={item.path}
+                                to={item.path}
                                 data-active={active}
-                                onClick={() => navigate(item.path)}
-                                className={`px-3.5 sm:px-4.5 py-1 text-[11px] sm:text-xs font-black tracking-wider uppercase whitespace-nowrap rounded-md sm:rounded-lg transition-all duration-200 cursor-pointer shrink-0 ${
+                                title={`${item.label} Tutorial & Course - ADV Indian Coder`}
+                                className={`px-3.5 sm:px-4.5 py-1 text-[11px] sm:text-xs font-black tracking-wider uppercase whitespace-nowrap rounded-md sm:rounded-lg transition-all duration-200 cursor-pointer shrink-0 inline-flex items-center justify-center ${
                                     active
                                         ? 'bg-gradient-to-r from-red-600 via-orange-500 to-red-600 text-white shadow-md shadow-red-600/30 ring-1 ring-white/30'
                                         : 'text-gray-300 dark:text-gray-400 hover:text-white hover:bg-white/10 active:scale-95'
                                 }`}
                             >
                                 {item.label}
-                            </button>
+                            </Link>
                         );
                     })}
 

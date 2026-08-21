@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
     ShoppingBag, Coins, Gift, Truck, CheckCircle2, ShieldCheck, 
     Sparkles, ArrowRight, Award, Trophy, PackageCheck, AlertCircle,
-    Flame, Lock, HelpCircle, Calendar, Zap, Users, Star, Box, Check
+    Flame, Lock, HelpCircle, Calendar, Zap, Users, Star, Box, Check,
+    MessageSquare
 } from 'lucide-react';
 import { SWAG_CATALOG, RewardItem, calculateUserCoins, COIN_WAYS_CATALOGUE } from '../utils/rewards';
 import RewardOrderModal from '../components/rewards/RewardOrderModal';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const RewardsPage: React.FC = () => {
     const { user } = useAuth();
@@ -119,6 +121,72 @@ const RewardsPage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#070b13] pt-32 sm:pt-36 md:pt-40 pb-16 px-4 sm:px-6 lg:px-8 font-sans">
+            <SEO 
+                title="ADV Swag Store & Developer Rewards | Official Merchandise"
+                description="Redeem your coding coins for official ADV Indian Coder developer merchandise — hoodies, t-shirts, smart thermal mugs, hardcover planners, mechanical keyboards, and tech gear."
+                keywords="adv indian coder swag store, developer merch india, coder t-shirts, programming hoodies, coding rewards, free developer swag, adv coins, developer gifts, programmer accessories"
+                canonical="/rewards"
+                ogImage="/assets/og-image.png"
+                schema={[
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "Store",
+                        "name": "ADV Swag Store & Rewards",
+                        "description": "Official developer merchandise and rewards store by ADV Indian Coder.",
+                        "url": "https://www.advindiancoder.com/rewards",
+                        "image": "https://www.advindiancoder.com/assets/og-image.png",
+                        "priceRange": "₹299 - ₹2499",
+                        "currenciesAccepted": "INR",
+                        "paymentAccepted": "ADV Coins, UPI, Net Banking, Credit Card",
+                        "department": {
+                            "@type": "EducationalOrganization",
+                            "name": "ADV Indian Coder",
+                            "url": "https://www.advindiancoder.com"
+                        }
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "OfferCatalog",
+                        "name": "ADV Developer Merchandise Catalog",
+                        "itemListElement": SWAG_CATALOG.map((item, idx) => ({
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Product",
+                                "name": item.name,
+                                "description": item.description,
+                                "image": item.image,
+                                "category": item.category,
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": item.inrPrice,
+                                    "priceCurrency": "INR",
+                                    "availability": item.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+                                    "url": "https://www.advindiancoder.com/rewards"
+                                }
+                            },
+                            "position": idx + 1
+                        }))
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "Home",
+                                "item": "https://www.advindiancoder.com/"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "name": "Swag Store & Rewards",
+                                "item": "https://www.advindiancoder.com/rewards"
+                            }
+                        ]
+                    }
+                ]}
+            />
             <div className="max-w-7xl mx-auto space-y-10">
 
                 {/* Toast Notification */}
@@ -499,7 +567,27 @@ const RewardsPage: React.FC = () => {
                                                     {ord.trackingNumber || 'Pending'}
                                                 </td>
                                                 <td className="py-3 text-right text-gray-400">
-                                                    {new Date(ord.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                                    <div className="flex items-center justify-end gap-2">
+                                                        <span>{new Date(ord.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => {
+                                                                const text = encodeURIComponent(
+                                                                    `Hello ADV Indian Coder Support! 📦\nI want to track my order status:\n\n` +
+                                                                    `🆔 *Order ID*: #ADV-SWAG-${ord.id}\n` +
+                                                                    `🚚 *Tracking Code*: ${ord.trackingNumber || 'PENDING'}\n` +
+                                                                    `📦 *Item*: ${ord.itemName}\n\n` +
+                                                                    `Please share my delivery updates!`
+                                                                );
+                                                                window.open(`https://wa.me/919931860964?text=${text}`, '_blank');
+                                                            }}
+                                                            className="px-2 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-[10px] font-bold flex items-center gap-1 cursor-pointer transition-all border border-emerald-500/20"
+                                                            title="Track on WhatsApp"
+                                                        >
+                                                            <MessageSquare className="w-3 h-3" />
+                                                            <span>Track</span>
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         ))}
@@ -517,7 +605,10 @@ const RewardsPage: React.FC = () => {
                 {/* Reward / Shop Order Modal */}
                 <RewardOrderModal
                     isOpen={isOrderModalOpen}
-                    onClose={() => setIsOrderModalOpen(false)}
+                    onClose={() => {
+                        setIsOrderModalOpen(false);
+                        setSelectedItem(null);
+                    }}
                     item={selectedItem}
                     availableCoins={coinData.availableCoins}
                     initialMode={orderModalMode}

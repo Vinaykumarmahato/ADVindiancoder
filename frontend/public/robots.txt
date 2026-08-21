@@ -5,12 +5,15 @@ Allow: /online-python-compiler
 Allow: /online-c-compiler
 Allow: /online-cpp-compiler
 Allow: /online-javascript-compiler
+Allow: /rewards
+Allow: /store
+Allow: /adv-lab
 Allow: /exam-hub
 Allow: /practice
 Allow: /courses
-Allow: /lab
 Allow: /jobs
 Allow: /masterclass
+Allow: /resources
 Allow: /notes
 Allow: /success-stories
 Allow: /about

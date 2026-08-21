@@ -92,20 +92,68 @@ const MasterclassPage = () => {
         }
     };
 
-    const masterclassSchema = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Live Masterclass - ADV Indian Coder",
-        "description": "Join live coding masterclasses and learn from expert Indian developers. 30-day intensive coding bootcamps.",
-        "url": "https://advindiancoder.com/masterclass"
-    };
+    const masterclassSchema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": "ADV Live 30-Day Coding Masterclass & Mentorship",
+            "description": "Rigorous 30-day cohort with live coding, project building, doubt solving, and career guidance led by Vinay Kumar Mahato.",
+            "provider": {
+                "@type": "EducationalOrganization",
+                "name": "ADV Indian Coder",
+                "sameAs": "https://www.advindiancoder.com"
+            },
+            "educationalCredentialAwarded": "Certificate of Completion",
+            "hasCourseInstance": {
+                "@type": "CourseInstance",
+                "courseMode": "Online Live Cohort",
+                "instructor": {
+                    "@type": "Person",
+                    "name": "Vinay Kumar Mahato",
+                    "url": "https://www.linkedin.com/in/vinaykumarmahato"
+                }
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "EducationEvent",
+            "name": "Live Masterclass & 1-on-1 Mentorship Cohort",
+            "description": "Interactive 30-day live project building bootcamp and tech interview mentorship.",
+            "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "organizer": {
+                "@type": "Organization",
+                "name": "ADV Indian Coder",
+                "url": "https://www.advindiancoder.com"
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.advindiancoder.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Live Masterclass & Mentorship",
+                    "item": "https://www.advindiancoder.com/masterclass"
+                }
+            ]
+        }
+    ];
 
     return (
         <PageWrapper>
             <SEO 
-                title="Live 30-Day Coding Masterclass & Mentorship | Adv Indian Coder" 
-                description="Join Adv Indian Coder's Live 30-Day Masterclass. Build real-world projects, get live doubt solving, and prepare for top software engineering interviews."
-                keywords="Live Coding Masterclass India, Advanced Coding Mentorship, 30 Day Coding Bootcamp, Full Stack Live Classes, Software Developer Mentorship Program"
+                title="Live 30-Day Coding Masterclass & 1-on-1 Mentorship | ADV Indian Coder" 
+                description="Join ADV Indian Coder's Live Masterclasses & 1-on-1 Mentorship. Build real-world production projects, get instant doubt resolution, and crack top tech interviews."
+                keywords="Live Coding Masterclass India, 1-on-1 coding mentorship, 30 Day Coding Bootcamp, Full Stack Live Classes, Software Developer Mentorship Program, live project building, Vinay Kumar Mahato mentorship"
+                canonical="/masterclass"
                 schema={masterclassSchema}
                 exactTitle={true}
             />
@@ -381,13 +429,39 @@ const MasterclassPage = () => {
                                     </div>
                                 ) : (
                                     <div className="space-y-8">
-                                        <div className="bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-2xl text-center relative overflow-hidden">
-                                            <div className="absolute inset-0 bg-primary/10 mix-blend-screen animate-pulse"></div>
-                                            <p className="text-sm uppercase tracking-widest text-primary font-bold mb-4 relative z-10">Scan & Pay ₹{selectedMc.price}</p>
-                                            <div className="bg-white p-3 inline-block rounded-xl relative z-10 shadow-xl">
-                                                <img src="/assets/QR_payment.jpg" alt="Payment QR Code" className="w-48 h-48 object-contain rounded-lg" />
+                                        <div 
+                                            onContextMenu={e => e.preventDefault()}
+                                            className="bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-2xl text-center relative overflow-hidden select-none"
+                                            style={{ WebkitUserSelect: 'none', userSelect: 'none' }}
+                                        >
+                                            <div className="absolute inset-0 bg-primary/10 mix-blend-screen animate-pulse pointer-events-none"></div>
+                                            <div className="flex items-center justify-between mb-3 relative z-10 px-2">
+                                                <span className="text-xs font-black uppercase tracking-wider text-emerald-500">
+                                                    🔒 Verified GPay Merchant
+                                                </span>
+                                                <span className="text-sm uppercase tracking-widest text-primary font-bold">
+                                                    Scan & Pay ₹{selectedMc.price}
+                                                </span>
                                             </div>
-                                            <p className="text-xs font-mono text-gray-650 dark:text-gray-400 mt-4 relative z-10 bg-gray-100 dark:bg-black/40 inline-block px-3 py-1 rounded-full text-gray-700 dark:text-gray-200 font-bold">UPI: advindiancoder@upi</p>
+                                            <div 
+                                                className="bg-white p-2.5 inline-block rounded-2xl relative z-10 shadow-2xl border-2 border-gray-100 dark:border-white/20"
+                                                onContextMenu={e => e.preventDefault()}
+                                            >
+                                                <img 
+                                                    src="/assets/QR_payment.jpg" 
+                                                    alt="Official Google Pay Payment QR" 
+                                                    draggable={false}
+                                                    onDragStart={e => e.preventDefault()}
+                                                    className="w-48 h-auto object-contain rounded-xl select-none pointer-events-none" 
+                                                />
+                                                <div 
+                                                    className="absolute inset-0 bg-transparent cursor-default pointer-events-auto"
+                                                    onContextMenu={e => e.preventDefault()}
+                                                />
+                                            </div>
+                                            <p className="text-xs font-mono text-gray-800 dark:text-gray-200 mt-4 relative z-10 bg-gray-100 dark:bg-black/60 inline-block px-4 py-1.5 rounded-full font-black border border-white/10">
+                                                UPI ID: 9931860964@okbizaxis
+                                            </p>
                                         </div>
 
                                         <form onSubmit={handleSubmit} className="space-y-5">

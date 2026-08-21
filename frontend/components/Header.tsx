@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Search, ChevronDown, Rocket, Sparkles, ExternalLink, Home, LogOut, LayoutDashboard, BookOpen, FileText, Trophy, HelpCircle, Mail, Users, Briefcase } from 'lucide-react';
+import { Sun, Moon, Menu, X, Search, ChevronDown, Rocket, Sparkles, ExternalLink, Home, LogOut, LayoutDashboard, BookOpen, FileText, Trophy, HelpCircle, Mail, Users, Briefcase, Gift } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
 import { NAV_LINKS } from '../constants';
@@ -127,6 +127,13 @@ const Header = () => {
             <>
                 <BookOpen className="w-3.5 h-3.5 text-green-400" />
                 <span>Practice Hub</span>
+            </>
+        );
+        if (link.name.includes('Swag Store')) return (
+            <>
+                <Gift className="w-3.5 h-3.5 text-amber-400" />
+                <span>Swag Store</span>
+                <span className="ml-auto text-[9px] font-black tracking-tighter bg-gradient-to-r from-amber-500 to-orange-500 text-white px-2 py-0.5 rounded-full shadow-lg shadow-orange-500/40 border border-white/20">FREE</span>
             </>
         );
         if (link.name === 'Jobs') return (
