@@ -4,10 +4,12 @@ import MonacoEditor from '@monaco-editor/react';
 import axios from 'axios';
 import { 
     Code, Terminal, Play, Check, AlertTriangle, ArrowLeft,
-    CheckCircle, XCircle, Loader2, Sparkles
+    CheckCircle, XCircle, Loader2, Sparkles, Award, Flame, Share2
 } from 'lucide-react';
 import SEO from '../../components/SEO';
 import { useAuth } from '../../contexts/AuthContext';
+import { BADGES_CATALOGUE, Badge, evaluateUserBadges } from '../../utils/badges';
+import BadgeCelebrationModal from '../../components/badges/BadgeCelebrationModal';
 
 interface ProblemDetails {
     id: number;
@@ -527,14 +529,7 @@ main();
 const PracticeWorkspacePage: React.FC = () => {
     const { problemSlug } = useParams<{ problemSlug: string }>();
     const navigate = useNavigate();
-    const { user, loading: authLoading } = useAuth();
-
-    useEffect(() => {
-        if (!authLoading && !user) {
-            window.dispatchEvent(new CustomEvent('open_auth_modal'));
-            navigate('/practice');
-        }
-    }, [user, authLoading, navigate]);
+    const { user, loading: authLoading, refreshUser } = useAuth();
 
     const [problem, setProblem] = useState<ProblemDetails | null>(null);
     const [loading, setLoading] = useState(true);
@@ -555,12 +550,29 @@ const PracticeWorkspacePage: React.FC = () => {
         passed: boolean;
     }[]>([]);
     
-    // Popup Modal
+    // Badge Celebration States
+    const [earnedBadge, setEarnedBadge] = useState<Badge | null>(null);
+    const [earnedStreak, setEarnedStreak] = useState<number>(1);
+    const [showBadgeModal, setShowBadgeModal] = useState<boolean>(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
 
     // Custom input states
     const [useCustomInput, setUseCustomInput] = useState<boolean>(false);
     const [customInput, setCustomInput] = useState<string>('');
+
+    // Check if there was a pending submit before login
+    useEffect(() => {
+        if (user && sessionStorage.getItem('pending_practice_submit')) {
+            const pending = JSON.parse(sessionStorage.getItem('pending_practice_submit') || '{}');
+            if (pending.slug === problemSlug) {
+                sessionStorage.removeItem('pending_practice_submit');
+                // Automatically run submission now that user is logged in
+                setTimeout(() => {
+                    runCodeAgainstTestCases(true);
+                }, 500);
+            }
+        }
+    }, [user, problemSlug]);
 
     useEffect(() => {
         const fetchProblemDetails = async () => {
@@ -691,6 +703,14 @@ const PracticeWorkspacePage: React.FC = () => {
             return;
         }
 
+        if (isSubmit && !user) {
+            // Save state to auto-resume on login
+            sessionStorage.setItem('pending_practice_submit', JSON.stringify({ slug: problemSlug, language, code }));
+            setExecOutput(prev => prev + "\n🔒 Sign In Required: Please log in or create a free account to submit your solution, maintain your daily streak, and earn official achievement badges!\n");
+            window.dispatchEvent(new CustomEvent('open_auth_modal'));
+            return;
+        }
+
         let parsedTests: TestCase[] = [];
         try {
             parsedTests = JSON.parse(problem.testCases);
@@ -761,7 +781,7 @@ const PracticeWorkspacePage: React.FC = () => {
 
             // Persist progress to DB
             const token = localStorage.getItem('adv_coder_token');
-            if (token) {
+            if (token && isSubmit) {
                 await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems/${problemSlug}/submit`, {
                     method: 'POST',
                     headers: {
@@ -777,7 +797,27 @@ const PracticeWorkspacePage: React.FC = () => {
             }
 
             if (isSubmit && allPassed) {
-                setSubmitSuccess(true);
+                // Determine streak and earned badge
+                let currentStreak = 1;
+                try {
+                    const profileRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/user`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (profileRes.ok) {
+                        const userData = await profileRes.json();
+                        currentStreak = userData.streak || 1;
+                    }
+                } catch (e) {}
+
+                setEarnedStreak(currentStreak);
+
+                // Find matching milestone badge
+                let matchingBadge = BADGES_CATALOGUE.find(b => b.requiredDays === currentStreak);
+                if (!matchingBadge) {
+                    matchingBadge = BADGES_CATALOGUE[0]; // Day 1 Pioneer fallback
+                }
+                setEarnedBadge(matchingBadge);
+                setShowBadgeModal(true);
             }
 
         } catch (err: any) {
@@ -1041,38 +1081,19 @@ const PracticeWorkspacePage: React.FC = () => {
 
             </div>
 
-            {/* Success Popup Modal */}
-            {submitSuccess && (
-                <div className="fixed inset-0 z-[1200] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setSubmitSuccess(false)} />
-                    <div className="relative w-full max-w-sm bg-slate-900 border border-white/10 rounded-3xl p-8 text-center space-y-5 shadow-2xl z-10 overflow-hidden">
-                        <div className="h-1.5 w-full bg-gradient-to-r from-green-500 via-emerald-400 to-green-500 absolute top-0 left-0" />
-                        <div className="w-16 h-16 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center mx-auto border-2 border-green-500/20">
-                            <Sparkles className="w-8 h-8" />
-                        </div>
-                        <div className="space-y-2">
-                            <h3 className="text-xl font-black text-white">Challenge Solved!</h3>
-                            <p className="text-xs text-gray-400 font-semibold leading-relaxed">
-                                Excellent coding! All test cases passed successfully. Your progress has been stored.
-                            </p>
-                        </div>
-                        <div className="flex gap-3 pt-2">
-                            <button
-                                onClick={() => setSubmitSuccess(false)}
-                                className="flex-1 py-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 font-bold text-xs cursor-pointer transition-all"
-                            >
-                                Stay Here
-                            </button>
-                            <button
-                                onClick={() => navigate('/practice')}
-                                className="flex-1 py-3 rounded-2xl bg-green-500 hover:bg-green-600 text-white font-black text-xs cursor-pointer transition-all"
-                            >
-                                Back to Hub
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            {/* 3D Badge Milestone Celebration Modal */}
+            <BadgeCelebrationModal
+                isOpen={showBadgeModal}
+                onClose={() => setShowBadgeModal(false)}
+                badge={earnedBadge}
+                streak={earnedStreak}
+                customTitle="Challenge Solved & Milestone Earned!"
+                customMessage="Outstanding performance! All test cases passed with zero runtime errors. Your daily coding streak and achievement badge have been officially recorded."
+                onRequireLogin={() => {
+                    setShowBadgeModal(false);
+                    window.dispatchEvent(new CustomEvent('open_auth_modal'));
+                }}
+            />
 
         </div>
     );

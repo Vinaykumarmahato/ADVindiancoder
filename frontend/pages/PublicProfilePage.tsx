@@ -4,13 +4,16 @@ import { motion } from 'framer-motion';
 import { 
     User, Mail, Linkedin, Code, Clock, Award, 
     Flame, CheckCircle, HelpCircle, Loader2, Share2, Facebook, Twitter, Github, LayoutTemplate,
-    Instagram, Link2, Edit3
+    Instagram, Link2, Edit3, Sparkles, Trophy
 } from 'lucide-react';
 import ContributionGraph from '../components/ContributionGraph';
 import { useAuth } from '../contexts/AuthContext';
 import ShareProfileModal from '../components/ShareProfileModal';
 import EditProfileModal from '../components/EditProfileModal';
 import SEO from '../components/SEO';
+import { evaluateUserBadges, UserEarnedBadge } from '../utils/badges';
+import BadgeCard from '../components/badges/BadgeCard';
+import BadgeCelebrationModal from '../components/badges/BadgeCelebrationModal';
 
 const PublicProfilePage: React.FC = () => {
     const { username } = useParams<{ username: string }>();
@@ -20,6 +23,8 @@ const PublicProfilePage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [isSharing, setIsSharing] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [selectedBadge, setSelectedBadge] = useState<UserEarnedBadge | null>(null);
+    const [isBadgeModalOpen, setIsBadgeModalOpen] = useState(false);
 
     const fetchProfile = async () => {
         try {
@@ -265,6 +270,44 @@ const PublicProfilePage: React.FC = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-6">
+                        {/* Achievements & Badges Showcase */}
+                        <div className="bg-white dark:bg-[#0c1222] border border-gray-200 dark:border-white/5 rounded-3xl p-6 shadow-sm space-y-6">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2.5 bg-amber-500/10 rounded-2xl text-amber-500">
+                                        <Trophy className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-lg font-black text-gray-900 dark:text-white flex items-center gap-2">
+                                            Achievements & Badges
+                                            <Sparkles className="w-4 h-4 text-amber-400" />
+                                        </h2>
+                                        <p className="text-xs text-gray-400 font-semibold">Earned milestones & daily coding streak badges</p>
+                                    </div>
+                                </div>
+                                <span className="self-start sm:self-auto text-xs font-black text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                                    {evaluateUserBadges(data.streak || 0, data.successfulCompiles || 0).filter(b => b.unlocked).length} / {evaluateUserBadges(data.streak || 0, data.successfulCompiles || 0).length} Unlocked
+                                </span>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {evaluateUserBadges(data.streak || 0, data.successfulCompiles || 0).map((badge) => (
+                                    <BadgeCard
+                                        key={badge.id}
+                                        badge={badge}
+                                        onShare={(b) => {
+                                            setSelectedBadge(b);
+                                            setIsBadgeModalOpen(true);
+                                        }}
+                                        onClick={() => {
+                                            setSelectedBadge(badge);
+                                            setIsBadgeModalOpen(true);
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
                         {/* Contribution Graph */}
                         <div className="bg-white dark:bg-[#0c1222] border border-gray-200 dark:border-white/5 rounded-3xl p-6 shadow-sm overflow-hidden">
                             <div className="flex items-center gap-3 mb-6">
@@ -400,6 +443,14 @@ const PublicProfilePage: React.FC = () => {
                     onSuccess={fetchProfile}
                 />
             )}
+
+            <BadgeCelebrationModal
+                isOpen={isBadgeModalOpen}
+                onClose={() => setIsBadgeModalOpen(false)}
+                badge={selectedBadge}
+                streak={data.streak || 1}
+                customTitle="Official Achievement Badge"
+            />
         </div>
     );
 };

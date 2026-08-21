@@ -5,7 +5,7 @@ import {
     Edit2, Save, X, Calendar, Flame, CheckCircle, 
     ArrowRight, Star, Clock, Compass, HelpCircle, Loader2,
     Activity, Plus, History, Share2, Github, LayoutTemplate,
-    Facebook, Instagram, Twitter, Link2
+    Facebook, Instagram, Twitter, Link2, Trophy, Sparkles
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +13,9 @@ import { COURSES } from '../constants';
 import ContributionGraph from '../components/ContributionGraph';
 import ShareProfileModal from '../components/ShareProfileModal';
 import EditProfileModal from '../components/EditProfileModal';
+import { evaluateUserBadges, UserEarnedBadge } from '../utils/badges';
+import BadgeCard from '../components/badges/BadgeCard';
+import BadgeCelebrationModal from '../components/badges/BadgeCelebrationModal';
 
 export interface DashboardData {
     username: string;
@@ -84,7 +87,9 @@ const DashboardPage: React.FC = () => {
     const [submissions, setSubmissions] = useState<any[]>([]);
     const [historyLoading, setHistoryLoading] = useState(true);
     const [selectedSub, setSelectedSub] = useState<any | null>(null);
-    const [activeTab, setActiveTab] = useState<'overview' | 'analytics' | 'history'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview' | 'analytics' | 'history' | 'badges'>('overview');
+    const [selectedBadge, setSelectedBadge] = useState<UserEarnedBadge | null>(null);
+    const [isBadgeModalOpen, setIsBadgeModalOpen] = useState(false);
 
     const fetchSubmissionsHistory = async () => {
         const token = localStorage.getItem('adv_coder_token');
@@ -429,6 +434,7 @@ const DashboardPage: React.FC = () => {
                 <div className="flex border-b border-gray-200 dark:border-white/5 pb-px gap-6 overflow-x-auto no-scrollbar relative z-10 my-6">
                     {[
                         { id: 'overview', name: 'Roadmap & Tools', icon: BookOpen },
+                        { id: 'badges', name: 'Badges & Achievements', icon: Trophy },
                         { id: 'analytics', name: 'Performance Analytics', icon: Activity },
                         { id: 'history', name: 'Activity & History logs', icon: History }
                     ].map((tab) => {
@@ -801,6 +807,48 @@ const DashboardPage: React.FC = () => {
                         </div>
                     )}
 
+                    {/* Tab 2: Badges & Achievements */}
+                    {activeTab === 'badges' && (
+                        <div className="space-y-8 animate-in fade-in duration-300">
+                            <div className="bg-white dark:bg-[#0c1222] border border-gray-200/50 dark:border-white/5 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-3 bg-amber-500/10 rounded-2xl text-amber-500">
+                                            <Trophy className="w-6 h-6" />
+                                        </div>
+                                        <div>
+                                            <h2 className="text-xl font-black text-gray-900 dark:text-white flex items-center gap-2">
+                                                Coding Milestone Badges
+                                                <Sparkles className="w-5 h-5 text-amber-400" />
+                                            </h2>
+                                            <p className="text-xs text-gray-400 font-medium">Earn exclusive recognition by maintaining your daily coding streak and solving algorithms.</p>
+                                        </div>
+                                    </div>
+                                    <span className="self-start sm:self-auto text-xs font-black text-amber-500 bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/20">
+                                        {evaluateUserBadges(streak, data.successfulCompiles || 0).filter(b => b.unlocked).length} / {evaluateUserBadges(streak, data.successfulCompiles || 0).length} Badges Unlocked
+                                    </span>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                                    {evaluateUserBadges(streak, data.successfulCompiles || 0).map((badge) => (
+                                        <BadgeCard
+                                            key={badge.id}
+                                            badge={badge}
+                                            onShare={(b) => {
+                                                setSelectedBadge(b);
+                                                setIsBadgeModalOpen(true);
+                                            }}
+                                            onClick={() => {
+                                                setSelectedBadge(badge);
+                                                setIsBadgeModalOpen(true);
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Tab 3: History & Logs */}
                     {activeTab === 'history' && (
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-in fade-in duration-300">
@@ -1042,6 +1090,14 @@ const DashboardPage: React.FC = () => {
                         </div>
                     )}
                 </AnimatePresence>
+
+                <BadgeCelebrationModal
+                    isOpen={isBadgeModalOpen}
+                    onClose={() => setIsBadgeModalOpen(false)}
+                    badge={selectedBadge}
+                    streak={streak}
+                    customTitle="Official Achievement Badge"
+                />
                 
             </div>
         </div>
