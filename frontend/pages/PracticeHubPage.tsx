@@ -329,16 +329,16 @@ const PracticeHubPage: React.FC = () => {
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                         {[
-                            { name: 'Day 1 Pioneer', days: 'Day 1', icon: '⚡', coins: 150, color: '#f59e0b' },
-                            { name: '10-Day Warrior', days: '10 Days', icon: '⚔️', coins: 300, color: '#94a3b8' },
-                            { name: '20-Day Dedicated', days: '20 Days', icon: '🛡️', coins: 300, color: '#cbd5e1' },
-                            { name: '30-Day Mastermind', days: '30 Days', icon: '👑', coins: 500, color: '#fbbf24' },
-                            { name: '40-Day Champion', days: '40 Days', icon: '🏅', coins: 500, color: '#f59e0b' },
-                            { name: '50-Day Legend', days: '50 Days', icon: '🔮', coins: 750, color: '#10b981' },
-                            { name: '100-Day Centurion', days: '100 Days', icon: '🏛️', coins: 1000, color: '#ef4444' },
-                            { name: '150-Day Titan', days: '150 Days', icon: '🔱', coins: 1000, color: '#0ea5e9' },
-                            { name: '175-Day Unstoppable', days: '175 Days', icon: '🪐', coins: 1200, color: '#a855f7' },
-                            { name: '365-Day Grandmaster', days: '365 Days', icon: '💎', coins: 2500, color: '#ec4899' },
+                            { name: 'Day 1 Pioneer', days: 'Day 1', icon: '⚡', coins: 50, color: '#f59e0b' },
+                            { name: '10-Day Warrior', days: '10 Days', icon: '⚔️', coins: 25, color: '#94a3b8' },
+                            { name: '20-Day Dedicated', days: '20 Days', icon: '🛡️', coins: 50, color: '#cbd5e1' },
+                            { name: '30-Day Mastermind', days: '30 Days', icon: '👑', coins: 50, color: '#fbbf24' },
+                            { name: '40-Day Champion', days: '40 Days', icon: '🏅', coins: 50, color: '#f59e0b' },
+                            { name: '50-Day Legend', days: '50 Days', icon: '🔮', coins: 75, color: '#10b981' },
+                            { name: '100-Day Centurion', days: '100 Days', icon: '🏛️', coins: 100, color: '#ef4444' },
+                            { name: '150-Day Titan', days: '150 Days', icon: '🔱', coins: 150, color: '#0ea5e9' },
+                            { name: '175-Day Unstoppable', days: '175 Days', icon: '🪐', coins: 200, color: '#a855f7' },
+                            { name: '365-Day Grandmaster', days: '365 Days', icon: '💎', coins: 500, color: '#ec4899' },
                         ].map((m, idx) => {
                             const isAchieved = streak >= (idx === 0 ? 1 : parseInt(m.days)) || (idx === 0 && solvedCount > 0);
                             return (

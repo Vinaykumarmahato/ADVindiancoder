@@ -956,12 +956,35 @@ const PracticeWorkspacePage: React.FC = () => {
                                     language={language === 'cpp' ? 'cpp' : language === 'javascript' ? 'javascript' : language === 'python' ? 'python' : 'java'}
                                     value={code}
                                     onChange={(value) => setCode(value || '')}
+                                    onMount={(editor) => {
+                                        const domNode = editor.getDomNode();
+                                        if (domNode) {
+                                            domNode.addEventListener('wheel', (e: WheelEvent) => {
+                                                const scrollHeight = editor.getScrollHeight();
+                                                const scrollTop = editor.getScrollTop();
+                                                const clientHeight = editor.getLayoutInfo().height;
+                                                const isAtTop = scrollTop <= 2 && e.deltaY < 0;
+                                                const isAtBottom = (scrollTop + clientHeight >= scrollHeight - 5) && e.deltaY > 0;
+                                                if (isAtTop || isAtBottom || scrollHeight <= clientHeight) {
+                                                    window.scrollBy({ top: e.deltaY, behavior: 'auto' });
+                                                }
+                                            }, { passive: true });
+                                        }
+                                    }}
                                     options={{
                                         fontSize: 14,
                                         fontFamily: 'Fira Code, Monaco, Courier New, monospace',
                                         minimap: { enabled: false },
                                         scrollBeyondLastLine: false,
                                         automaticLayout: true,
+                                        scrollbar: {
+                                            alwaysConsumeMouseWheel: false,
+                                            vertical: 'auto',
+                                            horizontal: 'auto',
+                                            handleMouseWheel: true
+                                        },
+                                        mouseWheelScrollSensitivity: 1,
+                                        fastScrollSensitivity: 5
                                     }}
                                 />
                             </div>
