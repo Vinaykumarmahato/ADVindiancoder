@@ -321,10 +321,10 @@ const RewardsPage: React.FC = () => {
                     <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
                         {[
                             { id: 'all', label: 'All Swag' },
-                            { id: 'stationery', label: 'Starter Gear (50🪙) 📓' },
-                            { id: 'accessories', label: 'Bottles & Mugs 💧' },
-                            { id: 'apparel', label: 'T-Shirts 👕' },
-                            { id: 'gear', label: 'Backpacks & Hardware ⌨️' }
+                            { id: 'stationery', label: 'Planners & Diaries (600🪙) 📓' },
+                            { id: 'accessories', label: 'Bottles & Mugs (900-1200🪙) 💧' },
+                            { id: 'apparel', label: 'T-Shirts (1500🪙) 👕' },
+                            { id: 'gear', label: 'Hardware & Backpacks (1800-3000🪙) ⌨️' }
                         ].map(cat => (
                             <button
                                 key={cat.id}
