@@ -33,6 +33,7 @@ const JavascriptCompilerPage = React.lazy(() => import('./pages/ide/JavascriptCo
 const CertificateDirectoryPage = React.lazy(() => import('./pages/CertificateDirectoryPage'));
 const ExamHubPage = React.lazy(() => import('./pages/ExamHubPage'));
 const DashboardPage = React.lazy(() => import('./pages/DashboardPage'));
+const RewardsPage = React.lazy(() => import('./pages/RewardsPage'));
 const PracticeHubPage = React.lazy(() => import('./pages/PracticeHubPage'));
 const PracticeWorkspacePage = React.lazy(() => import('./pages/ide/PracticeWorkspacePage'));
 const PublicProfilePage = React.lazy(() => import('./pages/PublicProfilePage'));
@@ -186,6 +187,8 @@ const AnimatedRoutes = () => {
                         <Route path="/verify" element={<CertificateDirectoryPage />} />
                         <Route path="/exam-hub" element={<ExamHubPage />} />
                         <Route path="/dashboard" element={<DashboardPage />} />
+                        <Route path="/rewards" element={<RewardsPage />} />
+                        <Route path="/store" element={<RewardsPage />} />
 
                 {/* Catch-all 404 Route */}
                 <Route path="*" element={<NotFoundPage />} />

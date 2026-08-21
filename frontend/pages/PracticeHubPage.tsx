@@ -295,6 +295,71 @@ const PracticeHubPage: React.FC = () => {
                     </div>
                 </div>
 
+                {/* 🏆 Milestone Badges & Rewards Roadmap */}
+                <div className="bg-white dark:bg-[#0c1222] border border-gray-200/60 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                            <div className="p-3 bg-amber-500/10 rounded-2xl text-amber-500">
+                                <Trophy className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-black text-gray-900 dark:text-white flex items-center gap-2">
+                                    Coding Milestone Badges & Swag Store
+                                    <Sparkles className="w-4 h-4 text-amber-400" />
+                                </h2>
+                                <p className="text-xs text-gray-400 font-semibold">Maintain your daily coding streak and solve algorithms to unlock badges and earn ADV Coins for real physical swag.</p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => navigate('/rewards')}
+                            className="self-start sm:self-auto px-4 py-2 rounded-2xl bg-gradient-to-r from-amber-500 to-red-600 text-white font-black text-xs flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-md cursor-pointer"
+                        >
+                            <span>Open Swag Store 🎁</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                    </div>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                        {[
+                            { name: 'Day 1 Pioneer', days: 'Day 1', icon: '⚡', coins: 150, color: '#f59e0b' },
+                            { name: '10-Day Warrior', days: '10 Days', icon: '⚔️', coins: 300, color: '#94a3b8' },
+                            { name: '20-Day Dedicated', days: '20 Days', icon: '🛡️', coins: 300, color: '#cbd5e1' },
+                            { name: '30-Day Mastermind', days: '30 Days', icon: '👑', coins: 500, color: '#fbbf24' },
+                            { name: '40-Day Champion', days: '40 Days', icon: '🏅', coins: 500, color: '#f59e0b' },
+                            { name: '50-Day Legend', days: '50 Days', icon: '🔮', coins: 750, color: '#10b981' },
+                            { name: '100-Day Centurion', days: '100 Days', icon: '🏛️', coins: 1000, color: '#ef4444' },
+                            { name: '150-Day Titan', days: '150 Days', icon: '🔱', coins: 1000, color: '#0ea5e9' },
+                            { name: '175-Day Unstoppable', days: '175 Days', icon: '🪐', coins: 1200, color: '#a855f7' },
+                            { name: '365-Day Grandmaster', days: '365 Days', icon: '💎', coins: 2500, color: '#ec4899' },
+                        ].map((m, idx) => {
+                            const isAchieved = streak >= (idx === 0 ? 1 : parseInt(m.days)) || (idx === 0 && solvedCount > 0);
+                            return (
+                                <div
+                                    key={idx}
+                                    className={`p-3 rounded-2xl border text-center space-y-1.5 transition-all ${
+                                        isAchieved 
+                                            ? 'bg-amber-500/10 border-amber-500/30 shadow-sm' 
+                                            : 'bg-gray-50 dark:bg-white/5 border-gray-100 dark:border-white/5 opacity-70'
+                                    }`}
+                                >
+                                    <div className="text-2xl">{m.icon}</div>
+                                    <div className="text-xs font-black text-gray-900 dark:text-white truncate">{m.name}</div>
+                                    <div className="flex items-center justify-center gap-1 text-[10px] font-bold text-amber-500">
+                                        <span>🪙 +{m.coins}</span>
+                                    </div>
+                                    <span className={`inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${
+                                        isAchieved 
+                                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                                            : 'bg-gray-200 dark:bg-white/10 text-gray-400'
+                                    }`}>
+                                        {isAchieved ? 'Unlocked ✓' : m.days}
+                                    </span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
                 {/* 🚀 Featured Learning Paths */}
                 <div className="space-y-6">
                     <div className="flex items-center justify-between">

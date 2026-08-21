@@ -7,6 +7,7 @@ export const NAV_LINKS = [
     { name: 'ADV Lab', path: '/adv-lab' },
     { name: 'ADV ExamHub', path: '/exam-hub' },
     { name: 'Practice Hub', path: '/practice' },
+    { name: 'Swag Store 🎁', path: '/rewards' },
     { name: 'Live Masterclass', path: '/masterclass' },
     { name: 'Notes', path: '/resources' },
     { name: 'Success Stories', path: '/success-stories' },

@@ -290,22 +290,28 @@ const PublicProfilePage: React.FC = () => {
                                 </span>
                             </div>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {evaluateUserBadges(data.streak || 0, data.successfulCompiles || 0).map((badge) => (
-                                    <BadgeCard
-                                        key={badge.id}
-                                        badge={badge}
-                                        onShare={(b) => {
-                                            setSelectedBadge(b);
-                                            setIsBadgeModalOpen(true);
-                                        }}
-                                        onClick={() => {
-                                            setSelectedBadge(badge);
-                                            setIsBadgeModalOpen(true);
-                                        }}
-                                    />
-                                ))}
-                            </div>
+                            {evaluateUserBadges(data.streak || 0, data.successfulCompiles || 0).filter(b => b.unlocked).length > 0 ? (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {evaluateUserBadges(data.streak || 0, data.successfulCompiles || 0).filter(b => b.unlocked).map((badge) => (
+                                        <BadgeCard
+                                            key={badge.id}
+                                            badge={badge}
+                                            onShare={(b) => {
+                                                setSelectedBadge(b);
+                                                setIsBadgeModalOpen(true);
+                                            }}
+                                            onClick={() => {
+                                                setSelectedBadge(badge);
+                                                setIsBadgeModalOpen(true);
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="py-8 text-center text-gray-400 font-semibold text-xs border border-dashed border-gray-200 dark:border-white/5 rounded-2xl">
+                                    No milestone badges unlocked yet. Start solving daily algorithmic challenges to earn official badges!
+                                </div>
+                            )}
                         </div>
 
                         {/* Contribution Graph */}
