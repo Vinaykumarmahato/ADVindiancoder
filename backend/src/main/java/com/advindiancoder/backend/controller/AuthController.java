@@ -463,24 +463,32 @@ public class AuthController {
                 return ResponseEntity.badRequest().body(new MessageResponse("Email not found in Google profile"));
             }
 
-            Optional<User> userOpt = userRepository.findByEmail(email);
+            Optional<User> userOpt = userRepository.findByEmailIgnoreCase(email);
             User user;
 
             if (userOpt.isPresent()) {
                 user = userOpt.get();
+                if ((user.getAvatarUrl() == null || user.getAvatarUrl().isEmpty()) && picture != null && !picture.isEmpty()) {
+                    user.setAvatarUrl(picture);
+                    user = userRepository.save(user);
+                }
             } else {
                 user = new User();
-                user.setEmail(email);
+                user.setEmail(email.toLowerCase().trim());
                 String baseUsername = (name != null ? name : email.split("@")[0])
                     .toLowerCase().replace(" ", "_").replaceAll("[^a-zA-Z0-9_]", "");
+                if (baseUsername.isEmpty()) baseUsername = "learner";
                 String username = baseUsername;
                 int counter = 1;
-                while (userRepository.existsByUsername(username)) {
+                while (userRepository.existsByUsernameIgnoreCase(username)) {
                     username = baseUsername + "_" + counter++;
                 }
                 user.setUsername(username);
-                user.setPassword(passwordEncoder.encode("social_bypass_pwd_" + Math.random()));
+                user.setPassword(passwordEncoder.encode("social_secure_pwd_" + Math.random()));
                 user.setRole("student");
+                if (picture != null && !picture.isEmpty()) {
+                    user.setAvatarUrl(picture);
+                }
                 user = userRepository.save(user);
             }
 
@@ -488,14 +496,14 @@ public class AuthController {
             String jwtToken = tokenProvider.generateToken(user.getEmail());
 
             return ResponseEntity.ok(new AuthResponse(
-                jwtToken,
-                user.getId(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getRole(),
-                picture != null ? picture : getAvatarUrl(user.getUsername(), user.getRole()),
-                user.getMobileNumber(),
-                user.getLinkedinUrl()
+                    jwtToken,
+                    user.getId(),
+                    user.getUsername(),
+                    user.getEmail(),
+                    user.getRole(),
+                    getAvatarUrl(user),
+                    user.getMobileNumber(),
+                    user.getLinkedinUrl()
             ));
 
         } catch (Exception e) {
