@@ -5,7 +5,8 @@ import {
     Edit2, Save, X, Calendar, Flame, CheckCircle, 
     ArrowRight, Star, Clock, Compass, HelpCircle, Loader2,
     Activity, Plus, History, Share2, Github, LayoutTemplate,
-    Facebook, Instagram, Twitter, Link2, Trophy, Sparkles
+    Facebook, Instagram, Twitter, Link2, Trophy, Sparkles,
+    Coins, ShoppingBag, Gift, Truck, CheckCircle2, PackageCheck
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +17,8 @@ import EditProfileModal from '../components/EditProfileModal';
 import { evaluateUserBadges, UserEarnedBadge } from '../utils/badges';
 import BadgeCard from '../components/badges/BadgeCard';
 import BadgeCelebrationModal from '../components/badges/BadgeCelebrationModal';
+import { SWAG_CATALOG, RewardItem, calculateUserCoins } from '../utils/rewards';
+import RewardOrderModal from '../components/rewards/RewardOrderModal';
 
 export interface DashboardData {
     username: string;
@@ -87,9 +90,34 @@ const DashboardPage: React.FC = () => {
     const [submissions, setSubmissions] = useState<any[]>([]);
     const [historyLoading, setHistoryLoading] = useState(true);
     const [selectedSub, setSelectedSub] = useState<any | null>(null);
-    const [activeTab, setActiveTab] = useState<'overview' | 'analytics' | 'history' | 'badges'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview' | 'badges' | 'rewards' | 'analytics' | 'history'>('overview');
     const [selectedBadge, setSelectedBadge] = useState<UserEarnedBadge | null>(null);
     const [isBadgeModalOpen, setIsBadgeModalOpen] = useState(false);
+
+    // Rewards & Swag Store States
+    const [selectedRewardItem, setSelectedRewardItem] = useState<RewardItem | null>(null);
+    const [isRewardModalOpen, setIsRewardModalOpen] = useState(false);
+    const [myRewardOrders, setMyRewardOrders] = useState<any[]>([]);
+    const [loadingOrders, setLoadingOrders] = useState(false);
+
+    const fetchMyRewardOrders = async () => {
+        const token = localStorage.getItem('adv_coder_token');
+        if (!token) return;
+        try {
+            setLoadingOrders(true);
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/rewards/my-orders`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setMyRewardOrders(data);
+            }
+        } catch (e) {
+            console.error("Failed to fetch reward orders", e);
+        } finally {
+            setLoadingOrders(false);
+        }
+    };
 
     const fetchSubmissionsHistory = async () => {
         const token = localStorage.getItem('adv_coder_token');
@@ -226,12 +254,11 @@ const DashboardPage: React.FC = () => {
                                         </span>
                                     )}
                                 </div>
-                                {data.bio && (
-                                    <p className="mt-3 text-sm text-gray-300 max-w-lg text-center sm:text-left leading-relaxed">
-                                        {data.bio}
-                                    </p>
-                                )}
-                                <div className="flex items-center flex-wrap justify-center sm:justify-start gap-2 mt-4 text-xs text-gray-300 w-full">
+                                <p className="mt-3 text-sm text-gray-300 max-w-lg text-center sm:text-left leading-relaxed">
+                                    {data.bio || "Full-stack developer building robust, modern scalable web applications."}
+                                </p>
+                                
+                                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-2 text-[11px] font-bold text-white/90">
                                     {data.linkedinUrl && (
                                         <a href={data.linkedinUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors bg-white/5 px-2 py-1 rounded-md border border-white/5">
                                             <Linkedin className="h-3.5 w-3.5 text-blue-400" /> LinkedIn
@@ -283,9 +310,9 @@ const DashboardPage: React.FC = () => {
                         <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-0 items-center md:items-start shrink-0">
                             <button
                                 onClick={() => setIsSharing(true)}
-                                className="w-full sm:w-auto px-4 py-2.5 rounded-2xl bg-white text-gray-900 font-bold text-xs flex items-center justify-center gap-2 hover:bg-gray-100 transition-all cursor-pointer shadow-md"
+                                className="w-full sm:w-auto px-4 py-2.5 rounded-2xl bg-white/20 text-white hover:bg-white/30 font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md backdrop-blur-md border border-white/20"
                             >
-                                <Share2 className="h-4 w-4 text-red-500" />
+                                <Share2 className="h-4 w-4" />
                                 Share Profile
                             </button>
                             <button
@@ -401,31 +428,28 @@ const DashboardPage: React.FC = () => {
                         </div>
                     </motion.div>
 
-                    {/* Stat Item 4: Success Rate */}
+                    {/* Stat Item 4: ADV Coins Wallet */}
                     <motion.div 
                         whileHover={{ y: -4 }}
-                        className="bg-white dark:bg-[#0c1222] border border-gray-200/50 dark:border-white/5 p-6 rounded-3xl shadow-sm flex flex-col justify-between"
+                        onClick={() => setActiveTab('rewards')}
+                        className="bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-slate-900 border border-amber-500/30 p-6 rounded-3xl shadow-sm flex flex-col justify-between cursor-pointer group"
                     >
                         <div className="flex items-center gap-4">
-                            <div className="p-3.5 rounded-2xl bg-indigo-500/10 text-indigo-500 shrink-0">
-                                <Award className="h-5 w-5" />
+                            <div className="p-3.5 rounded-2xl bg-amber-500/20 text-amber-400 shrink-0 group-hover:scale-110 transition-transform">
+                                <Coins className="h-5 w-5" />
                             </div>
                             <div>
-                                <span className="text-[9px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest block leading-none">Success Rate</span>
-                                <span className="text-xl font-black text-gray-800 dark:text-white mt-1.5 block leading-none">{data.compileSuccessRate}%</span>
+                                <span className="text-[9px] font-black text-amber-400 uppercase tracking-widest block leading-none">ADV Coins</span>
+                                <span className="text-xl font-black text-white mt-1.5 block leading-none flex items-center gap-1.5">
+                                    🪙 {coinData.availableCoins}
+                                </span>
                             </div>
                         </div>
-                        <div className="w-full mt-4">
-                            <div className="flex justify-between text-[10px] text-gray-400 font-bold mb-1.5">
-                                <span>Accuracy</span>
-                                <span>{data.compileSuccessRate}%</span>
-                            </div>
-                            <div className="w-full h-1.5 rounded-full bg-gray-100 dark:bg-white/5 overflow-hidden">
-                                <div 
-                                    className="h-full bg-indigo-500" 
-                                    style={{ width: `${data.compileSuccessRate}%` }}
-                                />
-                            </div>
+                        <div className="w-full mt-4 flex items-center justify-between text-[10px] text-amber-400/90 font-bold">
+                            <span>{coinData.badgesCount} Badges Unlocked</span>
+                            <span className="flex items-center gap-0.5 group-hover:translate-x-1 transition-transform text-white">
+                                Swag Store <ArrowRight className="w-3 h-3" />
+                            </span>
                         </div>
                     </motion.div>
                 </div>
@@ -435,6 +459,7 @@ const DashboardPage: React.FC = () => {
                     {[
                         { id: 'overview', name: 'Roadmap & Tools', icon: BookOpen },
                         { id: 'badges', name: 'Badges & Achievements', icon: Trophy },
+                        { id: 'rewards', name: 'Swag & Rewards Store', icon: Gift },
                         { id: 'analytics', name: 'Performance Analytics', icon: Activity },
                         { id: 'history', name: 'Activity & History logs', icon: History }
                     ].map((tab) => {
@@ -849,6 +874,180 @@ const DashboardPage: React.FC = () => {
                         </div>
                     )}
 
+                    {/* Tab: Swag & Rewards Store */}
+                    {activeTab === 'rewards' && (
+                        <div className="space-y-8 animate-in fade-in duration-300">
+                            {/* Coin Wallet Hero Banner */}
+                            <div className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-amber-600/90 via-orange-600/90 to-red-600/90 text-white shadow-2xl overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6">
+                                <div className="space-y-2 z-10 text-center sm:text-left">
+                                    <span className="text-xs font-black uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full border border-white/20">
+                                        ADV Coder Rewards Hub
+                                    </span>
+                                    <h2 className="text-2xl sm:text-3xl font-black">
+                                        Redeem Official Swag & Developer Gear
+                                    </h2>
+                                    <p className="text-xs sm:text-sm text-white/80 max-w-xl font-medium leading-relaxed">
+                                        Earn ADV Coins by solving algorithm challenges and maintaining your daily coding streak. Exchange your coins for 100% free developer backpacks, keyboards, t-shirts, and more!
+                                    </p>
+                                </div>
+
+                                <div className="z-10 flex flex-col items-center sm:items-end shrink-0 bg-black/30 backdrop-blur-md p-5 rounded-2xl border border-white/20 text-center sm:text-right">
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">Your Coin Balance</span>
+                                    <div className="text-3xl sm:text-4xl font-black flex items-center gap-2 mt-1">
+                                        <span>🪙</span>
+                                        <span>{coinData.availableCoins}</span>
+                                    </div>
+                                    <span className="text-[11px] text-white/70 font-semibold mt-1">
+                                        Total Earned: {coinData.totalCoinsEarned} Coins
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Catalog Grid */}
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between">
+                                    <h3 className="text-lg font-black text-gray-900 dark:text-white flex items-center gap-2">
+                                        <ShoppingBag className="w-5 h-5 text-red-500" />
+                                        Available Swag & Equipment
+                                    </h3>
+                                    <span className="text-xs font-bold text-gray-400">
+                                        100% Free Shipping Pan-India 🇮🇳
+                                    </span>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                                    {SWAG_CATALOG.map((item) => {
+                                        const canAfford = coinData.availableCoins >= item.coinCost;
+                                        return (
+                                            <div
+                                                key={item.id}
+                                                className="bg-white dark:bg-[#0c1222] border border-gray-200/60 dark:border-white/5 rounded-3xl p-5 shadow-sm flex flex-col justify-between hover:border-amber-500/30 transition-all group"
+                                            >
+                                                <div className="space-y-3">
+                                                    {/* Image */}
+                                                    <div className="h-44 rounded-2xl bg-slate-900 border border-white/5 overflow-hidden relative">
+                                                        <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                                        <span className="absolute top-2 left-2 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-amber-400 border border-white/10">
+                                                            {item.badgeLabel}
+                                                        </span>
+                                                        <span className="absolute bottom-2 right-2 text-xs font-black px-2.5 py-1 rounded-xl bg-black/70 backdrop-blur-md text-white border border-white/10 flex items-center gap-1">
+                                                            🪙 {item.coinCost}
+                                                        </span>
+                                                    </div>
+
+                                                    {/* Details */}
+                                                    <div className="space-y-1">
+                                                        <h4 className="text-sm font-black text-gray-900 dark:text-white line-clamp-1 group-hover:text-amber-400 transition-colors">
+                                                            {item.name}
+                                                        </h4>
+                                                        <p className="text-[11px] text-gray-400 line-clamp-2 leading-relaxed font-medium">
+                                                            {item.description}
+                                                        </p>
+                                                    </div>
+
+                                                    {/* Highlights */}
+                                                    <div className="flex flex-wrap gap-1 pt-1">
+                                                        {item.highlights.slice(0, 2).map((h, idx) => (
+                                                            <span key={idx} className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400">
+                                                                {h}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
+                                                {/* Action */}
+                                                <div className="pt-4 mt-2 border-t border-gray-100 dark:border-white/5">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setSelectedRewardItem(item);
+                                                            setIsRewardModalOpen(true);
+                                                        }}
+                                                        disabled={!canAfford}
+                                                        className={`w-full py-2.5 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer ${
+                                                            canAfford
+                                                                ? 'bg-gradient-to-r from-amber-500 to-red-600 hover:brightness-110 text-white active:scale-95'
+                                                                : 'bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                                                        }`}
+                                                    >
+                                                        {canAfford ? (
+                                                            <>
+                                                                <Gift className="w-3.5 h-3.5" />
+                                                                <span>Redeem / Order Now</span>
+                                                            </>
+                                                        ) : (
+                                                            <span>Need {item.coinCost - coinData.availableCoins} More Coins</span>
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* My Swag Orders Tracking */}
+                            <div className="bg-white dark:bg-[#0c1222] border border-gray-200/50 dark:border-white/5 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+                                <div className="flex items-center justify-between">
+                                    <h3 className="text-base font-black text-gray-900 dark:text-white flex items-center gap-2">
+                                        <Truck className="w-5 h-5 text-emerald-500" />
+                                        My Swag Orders & Delivery Status
+                                    </h3>
+                                    <span className="text-xs font-bold text-gray-400">
+                                        {myRewardOrders.length} Orders Placed
+                                    </span>
+                                </div>
+
+                                {myRewardOrders.length > 0 ? (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left text-xs">
+                                            <thead>
+                                                <tr className="border-b border-gray-200 dark:border-white/10 text-gray-400 font-bold uppercase text-[10px]">
+                                                    <th className="pb-3">Order ID</th>
+                                                    <th className="pb-3">Item</th>
+                                                    <th className="pb-3">Coins Spent</th>
+                                                    <th className="pb-3">Status</th>
+                                                    <th className="pb-3">Tracking ID</th>
+                                                    <th className="pb-3 text-right">Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-gray-100 dark:divide-white/5">
+                                                {myRewardOrders.map((ord) => (
+                                                    <tr key={ord.id} className="text-gray-300">
+                                                        <td className="py-3 font-mono font-bold text-amber-400">
+                                                            #ADV-SWAG-{ord.id}
+                                                        </td>
+                                                        <td className="py-3 font-bold text-white">
+                                                            {ord.itemName} {ord.apparelSize ? `(${ord.apparelSize})` : ''}
+                                                        </td>
+                                                        <td className="py-3 font-bold text-amber-400">
+                                                            🪙 {ord.coinCost}
+                                                        </td>
+                                                        <td className="py-3">
+                                                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                                                {ord.status}
+                                                            </span>
+                                                        </td>
+                                                        <td className="py-3 font-mono text-gray-400">
+                                                            {ord.trackingNumber || 'Pending'}
+                                                        </td>
+                                                        <td className="py-3 text-right text-gray-400">
+                                                            {new Date(ord.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                ) : (
+                                    <div className="py-8 text-center text-gray-400 font-semibold text-xs border border-dashed border-gray-200 dark:border-white/5 rounded-2xl">
+                                        No reward orders placed yet. Choose any swag item above to redeem using your coins!
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
                     {/* Tab 3: History & Logs */}
                     {activeTab === 'history' && (
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-in fade-in duration-300">
@@ -1097,6 +1296,17 @@ const DashboardPage: React.FC = () => {
                     badge={selectedBadge}
                     streak={streak}
                     customTitle="Official Achievement Badge"
+                />
+
+                <RewardOrderModal
+                    isOpen={isRewardModalOpen}
+                    onClose={() => setIsRewardModalOpen(false)}
+                    item={selectedRewardItem}
+                    availableCoins={coinData.availableCoins}
+                    onOrderSuccess={() => {
+                        fetchMyRewardOrders();
+                        fetchProfileData();
+                    }}
                 />
                 
             </div>

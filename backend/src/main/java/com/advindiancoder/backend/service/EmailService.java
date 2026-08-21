@@ -93,4 +93,56 @@ public class EmailService {
             return true; // Return true as a fallback so that login is never blocked
         }
     }
+
+    public boolean sendRewardOrderConfirmationEmail(String toEmail, com.advindiancoder.backend.entity.RewardOrder order) {
+        String htmlBody = "<div style=\"font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0f172a; color: #f8fafc; border-radius: 16px; overflow: hidden; border: 1px solid #1e293b;\">"
+                + "<div style=\"background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); padding: 32px 24px; text-align: center;\">"
+                + "<h1 style=\"color: #ffffff; margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;\">ADV INDIAN CODER</h1>"
+                + "<p style=\"color: #fecaca; margin: 6px 0 0 0; font-size: 14px; font-weight: 600;\">Swag & Rewards Order Confirmation 🎁</p>"
+                + "</div>"
+                + "<div style=\"padding: 32px 24px;\">"
+                + "<p style=\"color: #e2e8f0; font-size: 16px; margin: 0 0 16px 0;\">Dear <strong>" + order.getFullName() + "</strong>,</p>"
+                + "<p style=\"color: #94a3b8; font-size: 14px; line-height: 1.6; margin: 0 0 24px 0;\">Congratulations on your coding achievements! Your swag reward order has been successfully placed and confirmed.</p>"
+                + "<div style=\"background-color: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 24px; border: 1px solid #334155;\">"
+                + "<table style=\"width: 100%; border-collapse: collapse; font-size: 14px;\">"
+                + "<tr><td style=\"color: #94a3b8; padding: 6px 0;\">Order ID:</td><td style=\"color: #f8fafc; font-weight: bold; text-align: right;\">#ADV-SWAG-" + order.getId() + "</td></tr>"
+                + "<tr><td style=\"color: #94a3b8; padding: 6px 0;\">Item:</td><td style=\"color: #f8fafc; font-weight: bold; text-align: right;\">" + order.getItemName() + "</td></tr>"
+                + "<tr><td style=\"color: #94a3b8; padding: 6px 0;\">Cost:</td><td style=\"color: #eab308; font-weight: bold; text-align: right;\">🪙 " + order.getCoinCost() + " ADV Coins</td></tr>"
+                + "<tr><td style=\"color: #94a3b8; padding: 6px 0;\">Shipping Status:</td><td style=\"color: #10b981; font-weight: bold; text-align: right;\">" + order.getStatus() + "</td></tr>"
+                + "</table>"
+                + "</div>"
+                + "<div style=\"background-color: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 24px; border: 1px solid #334155;\">"
+                + "<h4 style=\"margin: 0 0 8px 0; color: #f8fafc; font-size: 13px; text-transform: uppercase;\">Shipping Address:</h4>"
+                + "<p style=\"color: #cbd5e1; font-size: 13px; line-height: 1.5; margin: 0;\">"
+                + order.getFullName() + "<br/>"
+                + order.getAddressLine() + "<br/>"
+                + order.getCity() + ", " + order.getState() + " - " + order.getPincode() + "<br/>"
+                + "Phone: " + order.getPhone()
+                + "</p>"
+                + "</div>"
+                + "<p style=\"color: #94a3b8; font-size: 12px; text-align: center; margin: 0;\">Your swag package will be dispatched within 2-3 business days. Keep coding and earning badges!</p>"
+                + "</div>"
+                + "</div>";
+
+        if (mailSender == null || "your-gmail-here@gmail.com".equalsIgnoreCase(fromEmail) || fromEmail.isEmpty()) {
+            System.out.println("[Reward Email] DRY-RUN mode. Confirmation logged for order #" + order.getId());
+            return true;
+        }
+
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            helper.setFrom(fromEmail, "ADV Indian Coder Rewards");
+            helper.setReplyTo(fromEmail);
+            helper.setTo(toEmail);
+            helper.setSubject("🎁 Swag Order Confirmed: " + order.getItemName() + " [#ADV-SWAG-" + order.getId() + "]");
+            helper.setText(htmlBody, true);
+            mailSender.send(message);
+            System.out.println("[Reward Email] Confirmation email sent to " + toEmail);
+            return true;
+        } catch (Throwable e) {
+            System.err.println("[Reward Email Notice] Failed to send email: " + e.getMessage());
+            return true;
+        }
+    }
 }
