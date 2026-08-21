@@ -149,4 +149,55 @@ public class PublicProfileController {
                 .header("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600")
                 .body(publicProfile);
     }
+
+    @GetMapping(value = "/og-html/{username}", produces = "text/html")
+    public ResponseEntity<String> getPublicProfileOgHtml(@PathVariable String username) {
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("<!DOCTYPE html><html><head><title>User Not Found</title></head><body>User not found</body></html>");
+        }
+
+        User user = userOpt.get();
+        String avatar = getAvatarUrl(user);
+        String bio = user.getBio() != null && !user.getBio().trim().isEmpty() ? user.getBio().trim() : "Developer profile and coding portfolio on ADV Indian Coder.";
+        int streak = user.getStreak();
+        int codingHours = (int) user.getCodingHours();
+        int totalCompiles = user.getTotalCompiles();
+
+        String title = user.getUsername() + " - Overview | ADV Indian Coder";
+        String description = bio + " | 🔥 " + streak + " Day Streak | 💻 " + codingHours + "h Coding | 🚀 " + totalCompiles + " Compiles";
+
+        String html = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "  <meta charset=\"UTF-8\">\n"
+                + "  <title>" + title + "</title>\n"
+                + "  <meta name=\"description\" content=\"" + description + "\" />\n"
+                + "  <meta property=\"og:type\" content=\"profile\" />\n"
+                + "  <meta property=\"og:site_name\" content=\"ADV Indian Coder\" />\n"
+                + "  <meta property=\"og:title\" content=\"" + title + "\" />\n"
+                + "  <meta property=\"og:description\" content=\"" + description + "\" />\n"
+                + "  <meta property=\"og:image\" content=\"" + avatar + "\" />\n"
+                + "  <meta property=\"og:image:secure_url\" content=\"" + avatar + "\" />\n"
+                + "  <meta property=\"og:image:width\" content=\"600\" />\n"
+                + "  <meta property=\"og:image:height\" content=\"600\" />\n"
+                + "  <meta property=\"og:url\" content=\"https://www.advindiancoder.com/u/" + user.getUsername() + "\" />\n"
+                + "  <meta name=\"twitter:card\" content=\"summary\" />\n"
+                + "  <meta name=\"twitter:site\" content=\"@advindiancoder\" />\n"
+                + "  <meta name=\"twitter:title\" content=\"" + title + "\" />\n"
+                + "  <meta name=\"twitter:description\" content=\"" + description + "\" />\n"
+                + "  <meta name=\"twitter:image\" content=\"" + avatar + "\" />\n"
+                + "  <meta http-equiv=\"refresh\" content=\"0;url=https://www.advindiancoder.com/u/" + user.getUsername() + "\" />\n"
+                + "</head>\n"
+                + "<body style=\"font-family: sans-serif; background: #0c1222; color: #fff; text-align: center; padding: 40px;\">\n"
+                + "  <img src=\"" + avatar + "\" style=\"width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #ef4444;\" />\n"
+                + "  <h2>" + user.getUsername() + "</h2>\n"
+                + "  <p>" + description + "</p>\n"
+                + "</body>\n"
+                + "</html>";
+
+        return ResponseEntity.ok()
+                .header("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600")
+                .body(html);
+    }
 }
