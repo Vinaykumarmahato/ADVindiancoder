@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { 
     BookOpen, Sparkles, Code, Award, Target, Flame, 
     ArrowRight, Search, CheckCircle, HelpCircle, ChevronRight,
-    TrendingUp, Award as BadgeIcon
+    TrendingUp, Trophy, Award as BadgeIcon
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { useAuth } from '../contexts/AuthContext';
@@ -71,7 +71,7 @@ const PracticeHubPage: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedDifficulty, setSelectedDifficulty] = useState<string>('ALL');
     const [selectedTopic, setSelectedTopic] = useState<string>('ALL');
-    const [selectedTrack, setSelectedTrack] = useState<string | null>(null);
+    const [streak, setStreak] = useState(0);
 
     useEffect(() => {
         const fetchProblems = async () => {
@@ -82,6 +82,14 @@ const PracticeHubPage: React.FC = () => {
             }
 
             try {
+                // Fetch profile for streak
+                if (token) {
+                    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/profile`, { headers })
+                        .then(res => res.ok ? res.json() : null)
+                        .then(p => { if (p && p.streak) setStreak(p.streak); })
+                        .catch(() => {});
+                }
+
                 const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems`, { headers });
                 if (!response.ok) {
                     throw new Error('Failed to fetch practice problems.');
