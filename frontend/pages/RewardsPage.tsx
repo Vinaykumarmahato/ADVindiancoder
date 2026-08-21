@@ -472,6 +472,10 @@ const RewardsPage: React.FC = () => {
                                     <button
                                         type="button"
                                         onClick={() => {
+                                            if (!user) {
+                                                window.dispatchEvent(new CustomEvent('open_auth_modal'));
+                                                return;
+                                            }
                                             setSelectedItem(item);
                                             setOrderModalMode('cash');
                                             setIsOrderModalOpen(true);
@@ -479,7 +483,7 @@ const RewardsPage: React.FC = () => {
                                         className="w-full py-2.5 rounded-xl text-xs font-black bg-gradient-to-r from-red-600 to-rose-600 hover:brightness-110 text-white transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer active:scale-95"
                                     >
                                         <ShoppingBag className="w-3.5 h-3.5" />
-                                        <span>Shop Now (₹{item.inrPrice})</span>
+                                        <span>{user ? `Shop Now (₹${item.inrPrice})` : `Sign In to Shop (₹${item.inrPrice})`}</span>
                                     </button>
 
                                     {/* 2. Redeem with Coins */}

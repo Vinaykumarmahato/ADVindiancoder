@@ -99,6 +99,12 @@ const RewardOrderModal: React.FC<RewardOrderModalProps> = ({
         e.preventDefault();
         setError(null);
 
+        if (!user) {
+            window.dispatchEvent(new CustomEvent('open_auth_modal'));
+            setError('Please sign in or create an account so your order and tracking details are linked to your profile dashboard.');
+            return;
+        }
+
         if (purchaseMode === 'coins' && !canAffordCoins) {
             setError(`Insufficient coins! You need ${item.coinCost - availableCoins} more coins to redeem this item, or you can switch to "Buy with INR (₹)".`);
             return;
@@ -163,6 +169,12 @@ const RewardOrderModal: React.FC<RewardOrderModalProps> = ({
     };
 
     const handleWhatsAppDirectOrder = () => {
+        if (!user) {
+            window.dispatchEvent(new CustomEvent('open_auth_modal'));
+            setError('Please sign in or create an account to link this order with your profile.');
+            return;
+        }
+
         if (purchaseMode === 'coins' && !canAffordCoins) {
             setError(`Insufficient coins! You need ${item.coinCost - availableCoins} more coins to redeem with coins. Please switch to "Buy Direct (₹)" to order with money.`);
             return;
