@@ -352,14 +352,40 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
         }
     };
 
+    const handleOtpPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const pastedData = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6);
+        if (!pastedData) return;
+
+        const newDigits = ['', '', '', '', '', ''];
+        for (let i = 0; i < pastedData.length; i++) {
+            newDigits[i] = pastedData[i];
+        }
+        setOtpDigits(newDigits);
+        const nextIndex = Math.min(pastedData.length, 5);
+        document.getElementById(`otp-input-${nextIndex}`)?.focus();
+    };
+
     const handleOtpChange = (index: number, value: string) => {
-        if (!/^\d*$/.test(value)) return;
+        // If user typed or pasted multiple digits directly in the box
+        const cleanVal = value.replace(/\D/g, '');
+        if (cleanVal.length > 1) {
+            const newDigits = [...otpDigits];
+            for (let i = 0; i < cleanVal.length && (index + i) < 6; i++) {
+                newDigits[index + i] = cleanVal[i];
+            }
+            setOtpDigits(newDigits);
+            const nextIndex = Math.min(index + cleanVal.length, 5);
+            document.getElementById(`otp-input-${nextIndex}`)?.focus();
+            return;
+        }
+
         const newDigits = [...otpDigits];
-        newDigits[index] = value.substring(value.length - 1);
+        newDigits[index] = cleanVal;
         setOtpDigits(newDigits);
 
         // Auto-advance cursor
-        if (value && index < 5) {
+        if (cleanVal && index < 5) {
             const nextInput = document.getElementById(`otp-input-${index + 1}`);
             nextInput?.focus();
         }
@@ -561,8 +587,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
                                                                     key={idx}
                                                                     id={`otp-input-${idx}`}
                                                                     type="text"
-                                                                    maxLength={1}
+                                                                    inputMode="numeric"
+                                                                    autoComplete="one-time-code"
+                                                                    maxLength={6}
                                                                     value={digit}
+                                                                    onPaste={handleOtpPaste}
                                                                     onChange={(e) => handleOtpChange(idx, e.target.value)}
                                                                     onKeyDown={(e) => handleOtpKeyDown(idx, e)}
                                                                     className="w-11 h-12 text-center text-lg font-black rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-red-500 dark:focus:border-red-500 focus:bg-white dark:focus:bg-transparent focus:ring-1 focus:ring-red-500 outline-none transition-all text-gray-900 dark:text-white"
@@ -682,8 +711,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
                                                                     key={idx}
                                                                     id={`otp-input-${idx}`}
                                                                     type="text"
-                                                                    maxLength={1}
+                                                                    inputMode="numeric"
+                                                                    autoComplete="one-time-code"
+                                                                    maxLength={6}
                                                                     value={digit}
+                                                                    onPaste={handleOtpPaste}
                                                                     onChange={(e) => handleOtpChange(idx, e.target.value)}
                                                                     onKeyDown={(e) => handleOtpKeyDown(idx, e)}
                                                                     className="w-11 h-12 text-center text-lg font-black rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-red-500 dark:focus:border-red-500 focus:bg-white dark:focus:bg-transparent focus:ring-1 focus:ring-red-500 outline-none transition-all text-gray-900 dark:text-white"
