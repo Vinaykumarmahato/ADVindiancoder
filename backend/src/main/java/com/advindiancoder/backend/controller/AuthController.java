@@ -69,6 +69,18 @@ public class AuthController {
     @Autowired
     private com.advindiancoder.backend.repository.PracticeSubmissionRepository practiceSubmissionRepository;
 
+    private String getAvatarUrl(User user) {
+        if (user != null && user.getAvatarUrl() != null && !user.getAvatarUrl().trim().isEmpty()) {
+            return user.getAvatarUrl();
+        }
+        String name = user != null ? user.getUsername() : "coder";
+        String role = user != null ? user.getRole() : "student";
+        if ("mobile_user".equals(role)) {
+            return "https://api.dicebear.com/7.x/bottts/svg?seed=" + name;
+        }
+        return "https://api.dicebear.com/7.x/adventurer/svg?seed=" + name;
+    }
+
     private String getAvatarUrl(String name, String role) {
         if ("mobile_user".equals(role)) {
             return "https://api.dicebear.com/7.x/bottts/svg?seed=" + name;
@@ -575,7 +587,7 @@ public class AuthController {
             user.getSocialLinksJson() != null ? user.getSocialLinksJson() : "{}",
             user.getEducationJson() != null ? user.getEducationJson() : "{}",
             user.getRole() != null ? user.getRole() : "student",
-            getAvatarUrl(user.getUsername(), user.getRole()),
+            getAvatarUrl(user),
             user.getBio() != null ? user.getBio() : "",
             enrolledCourses,
             codingHours,
@@ -614,6 +626,10 @@ public class AuthController {
                 return ResponseEntity.badRequest().body(new MessageResponse("Username is already taken!"));
             }
             user.setUsername(updateRequest.getUsername());
+        }
+
+        if (updateRequest.getAvatarUrl() != null && !updateRequest.getAvatarUrl().trim().isEmpty()) {
+            user.setAvatarUrl(updateRequest.getAvatarUrl().trim());
         }
         
         if (updateRequest.getMobileNumber() != null) {

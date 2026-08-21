@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Phone, Linkedin, Save, Loader2, Link as LinkIcon, Facebook, Instagram, Twitter, Github, Code, LayoutTemplate } from 'lucide-react';
+import { X, User, Phone, Linkedin, Save, Loader2, Link as LinkIcon, Facebook, Instagram, Twitter, Github, Code, LayoutTemplate, Camera, UploadCloud, CheckCircle2 } from 'lucide-react';
 import { DashboardData } from '../pages/DashboardPage';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -16,6 +16,12 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, da
     const [activeTab, setActiveTab] = useState<'basic' | 'social' | 'education'>('basic');
     const [updating, setUpdating] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // Profile Photo / Avatar
+    const [avatarUrl, setAvatarUrl] = useState('');
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [uploadSuccess, setUploadSuccess] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Basic Info
     const [editUsername, setEditUsername] = useState('');
@@ -46,6 +52,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, da
 
     useEffect(() => {
         if (isOpen && data) {
+            setAvatarUrl(data.avatar || '');
             setEditUsername(data.username || '');
             setEditMobile(data.mobileNumber || '');
             setEditLinkedin(data.linkedinUrl || '');
@@ -66,6 +73,48 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, da
         }
     }, [isOpen, data]);
 
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        // Size check: max 5MB
+        if (file.size > 5 * 1024 * 1024) {
+            setError('Image size should be less than 5MB.');
+            return;
+        }
+
+        setError(null);
+        setUploadingImage(true);
+        setUploadSuccess(false);
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', 'adv_profile_upload');
+
+            const response = await fetch('https://api.cloudinary.com/v1_1/feay2i5h/image/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errJson = await response.json().catch(() => ({}));
+                throw new Error(errJson.error?.message || 'Failed to upload photo to Cloudinary.');
+            }
+
+            const resJson = await response.json();
+            if (resJson.secure_url) {
+                setAvatarUrl(resJson.secure_url);
+                setUploadSuccess(true);
+                setTimeout(() => setUploadSuccess(false), 3000);
+            }
+        } catch (err: any) {
+            setError(err.message || 'Error uploading photo. Please try again.');
+        } finally {
+            setUploadingImage(false);
+        }
+    };
+
     const handleUpdateProfile = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -83,6 +132,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, da
                 },
                 body: JSON.stringify({
                     username: editUsername,
+                    avatarUrl: avatarUrl,
                     mobileNumber: editMobile,
                     linkedinUrl: editLinkedin,
                     bio: editBio,
@@ -168,7 +218,64 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ isOpen, onClose, da
 
                         <form id="profile-form" onSubmit={handleUpdateProfile} className="space-y-4">
                             {activeTab === 'basic' && (
-                                <div className="space-y-4">
+                                <div className="space-y-5">
+                                    {/* Profile Photo Uploader */}
+                                    <div className="p-4 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex flex-col sm:flex-row items-center gap-4">
+                                        <div className="relative group shrink-0">
+                                            <img 
+                                                src={avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(editUsername || 'User')}&background=ef4444&color=fff`} 
+                                                alt="Avatar Preview" 
+                                                className="w-20 h-20 rounded-full object-cover border-2 border-red-500/30 shadow-md bg-slate-800"
+                                            />
+                                            {uploadingImage && (
+                                                <div className="absolute inset-0 bg-black/60 rounded-full flex items-center justify-center">
+                                                    <Loader2 className="w-6 h-6 text-white animate-spin" />
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="flex-1 text-center sm:text-left space-y-1.5">
+                                            <div className="text-sm font-black text-gray-900 dark:text-white flex items-center justify-center sm:justify-start gap-2">
+                                                <span>Profile Picture</span>
+                                                {uploadSuccess && (
+                                                    <span className="text-[10px] font-bold text-emerald-500 flex items-center gap-1">
+                                                        <CheckCircle2 className="w-3.5 h-3.5" /> Uploaded!
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                                                Upload your real photo (PNG, JPG, max 5MB). It will appear across your profile & shared links.
+                                            </p>
+                                            
+                                            <input 
+                                                type="file" 
+                                                ref={fileInputRef} 
+                                                onChange={handleImageUpload} 
+                                                accept="image/png, image/jpeg, image/webp" 
+                                                className="hidden" 
+                                            />
+
+                                            <button 
+                                                type="button"
+                                                onClick={() => fileInputRef.current?.click()}
+                                                disabled={uploadingImage}
+                                                className="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-xl bg-red-600 hover:bg-red-700 text-white shadow-sm transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
+                                            >
+                                                {uploadingImage ? (
+                                                    <>
+                                                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                                        <span>Uploading...</span>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Camera className="w-3.5 h-3.5" />
+                                                        <span>{avatarUrl ? 'Change Photo' : 'Upload Photo'}</span>
+                                                    </>
+                                                )}
+                                            </button>
+                                        </div>
+                                    </div>
+
                                     <div className="space-y-1.5">
                                         <label className="text-xs font-bold text-gray-500 dark:text-gray-400">Username</label>
                                         <div className="relative">

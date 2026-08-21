@@ -33,7 +33,12 @@ public class PublicProfileController {
     @Autowired
     private UserActivityLogRepository userActivityLogRepository;
 
-    private String getAvatarUrl(String name, String role) {
+    private String getAvatarUrl(User user) {
+        if (user != null && user.getAvatarUrl() != null && !user.getAvatarUrl().trim().isEmpty()) {
+            return user.getAvatarUrl();
+        }
+        String name = user != null ? user.getUsername() : "coder";
+        String role = user != null ? user.getRole() : "student";
         if ("mobile_user".equals(role)) {
             return "https://api.dicebear.com/7.x/bottts/svg?seed=" + name;
         }
@@ -107,7 +112,7 @@ public class PublicProfileController {
 
         java.util.Map<String, Object> publicProfile = new java.util.HashMap<>();
         publicProfile.put("username", user.getUsername());
-        publicProfile.put("avatar", getAvatarUrl(user.getUsername(), user.getRole()));
+        publicProfile.put("avatar", getAvatarUrl(user));
         publicProfile.put("linkedinUrl", user.getLinkedinUrl() != null ? user.getLinkedinUrl() : "");
         publicProfile.put("socialLinksJson", user.getSocialLinksJson() != null ? user.getSocialLinksJson() : "{}");
         publicProfile.put("educationJson", user.getEducationJson() != null ? user.getEducationJson() : "{}");

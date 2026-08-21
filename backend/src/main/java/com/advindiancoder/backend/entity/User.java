@@ -30,6 +30,9 @@ public class User {
 
     private String role;
 
+    @Column(name = "avatar_url", length = 500)
+    private String avatarUrl;
+
     @Column(name = "bio", length = 200)
     private String bio;
 

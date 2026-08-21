@@ -10,6 +10,7 @@ import ContributionGraph from '../components/ContributionGraph';
 import { useAuth } from '../contexts/AuthContext';
 import ShareProfileModal from '../components/ShareProfileModal';
 import EditProfileModal from '../components/EditProfileModal';
+import SEO from '../components/SEO';
 
 const PublicProfilePage: React.FC = () => {
     const { username } = useParams<{ username: string }>();
@@ -108,6 +109,13 @@ const PublicProfilePage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#070b13] pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-12 px-4 sm:px-6 lg:px-8">
+            <SEO 
+                title={`${data.username} (@${data.username}) — Developer Profile`}
+                description={data.bio || `View ${data.username}'s coding progress, activity streak, skills, and developer profile on ADV Indian Coder.`}
+                ogImage={data.avatar || '/assets/og-image.png'}
+                ogType="profile"
+                canonical={`/u/${data.username}`}
+            />
             <div className="max-w-6xl mx-auto space-y-8">
                 
                 {/* Hero Profile Banner */}
