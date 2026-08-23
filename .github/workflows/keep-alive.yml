@@ -1,0 +1,47 @@
+name: Keep-Alive Server Cron Job
+
+on:
+  schedule:
+    # Run every 10 minutes to prevent Render free tier (15 min idle spin-down) from sleeping
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+    # Allows manual triggering from GitHub Actions tab for instant testing
+
+jobs:
+  ping-server:
+    name: Ping Actuator Health Endpoint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Ping Render Backend Health Endpoint
+        run: |
+          # Use BACKEND_URL secret if set, otherwise fallback to default Render backend URL
+          TARGET_URL="${{ secrets.BACKEND_URL }}"
+          if [ -z "$TARGET_URL" ]; then
+            TARGET_URL="https://adv-indian-coder-backend.onrender.com"
+          fi
+
+          HEALTH_ENDPOINT="${TARGET_URL%/}/actuator/health"
+          echo "=========================================================="
+          echo "🚀 [Keep-Alive] Sending health check ping to: $HEALTH_ENDPOINT"
+          echo "⏰ Timestamp: $(date -u)"
+          echo "=========================================================="
+
+          # Perform HTTP GET request with retry logic (3 attempts, 5s timeout)
+          HTTP_RESPONSE=$(curl -s -o response.json -w "%{http_code}" --retry 3 --retry-delay 5 --max-time 30 "$HEALTH_ENDPOINT" || echo "000")
+
+          echo "📡 HTTP Response Status Code: $HTTP_RESPONSE"
+          
+          if [ "$HTTP_RESPONSE" -eq 200 ]; then
+            echo "✅ Server is ACTIVE and HEALTHY! (Status: 200 OK)"
+            cat response.json || true
+            echo ""
+            echo "🎉 Server spin-down successfully prevented."
+          elif [ "$HTTP_RESPONSE" -eq 503 ]; then
+            echo "⚠️ Server is running but reporting degraded/unhealthy status (503 Service Unavailable)."
+            cat response.json || true
+          else
+            echo "⚠️ Server woke up or returned status code: $HTTP_RESPONSE"
+            cat response.json || true
+          fi
