@@ -112,12 +112,14 @@ export default function JavaCompilerPage() {
                 schema={javaStructuredData}
             />
             {/* The IDE Component */}
-            <div className="h-screen w-full">
+            <div className="w-full">
                 <CompilerWorkspace language="java" />
             </div>
             
             {/* The SEO Content rendered below the fold */}
-            <JavaCompilerSEO />
+            <div className="w-full relative z-10 border-t border-white/5">
+                <JavaCompilerSEO />
+            </div>
         </PageWrapper>
     );
 }

@@ -84,7 +84,7 @@ const CertificateModal = ({ isOpen, onClose, userName, score, certId }: { isOpen
                                     <div className="w-48 border-b-2 border-gray-300 mb-2 ml-auto" />
                                     <p className="font-black text-[10px] uppercase tracking-widest text-gray-400">Credential ID</p>
                                     <p className="font-bold text-[#0a0f1c] font-mono text-sm">{certId}</p>
-                                    <p className="text-[8px] font-bold text-gray-300 mt-1">Verify at: advindiancoder.tech/verify</p>
+                                    <p className="text-[8px] font-bold text-gray-300 mt-1">Verify at: advindiancoder.com/verify</p>
                                 </div>
                             </div>
                         </div>

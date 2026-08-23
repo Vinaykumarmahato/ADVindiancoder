@@ -39,16 +39,22 @@ const generateXml = (pages) => {
 // Pages
 const pagesSitemap = [
     { url: '/', priority: '1.0', changefreq: 'daily', lastmod: today },
-    { url: '/about', priority: '0.6', changefreq: 'monthly', lastmod: today },
-    { url: '/contact', priority: '0.6', changefreq: 'monthly', lastmod: today },
-    { url: '/faq', priority: '0.6', changefreq: 'monthly', lastmod: today },
-    { url: '/success-stories', priority: '0.6', changefreq: 'monthly', lastmod: today },
-    { url: '/masterclass', priority: '0.8', changefreq: 'monthly', lastmod: today },
-    { url: '/exam-hub', priority: '0.8', changefreq: 'weekly', lastmod: today },
-    { url: '/resources', priority: '0.7', changefreq: 'weekly', lastmod: today },
-    { url: '/community', priority: '0.7', changefreq: 'daily', lastmod: today },
+    { url: '/about', priority: '0.7', changefreq: 'monthly', lastmod: today },
+    { url: '/contact', priority: '0.7', changefreq: 'monthly', lastmod: today },
+    { url: '/faq', priority: '0.7', changefreq: 'monthly', lastmod: today },
+    { url: '/success-stories', priority: '0.8', changefreq: 'monthly', lastmod: today },
+    { url: '/masterclass', priority: '0.9', changefreq: 'weekly', lastmod: today },
+    { url: '/exam-hub', priority: '0.95', changefreq: 'daily', lastmod: today },
+    { url: '/resources', priority: '0.8', changefreq: 'weekly', lastmod: today },
+    { url: '/community', priority: '0.8', changefreq: 'daily', lastmod: today },
     { url: '/career', priority: '0.7', changefreq: 'weekly', lastmod: today },
-    { url: '/upsc-syllabus', priority: '0.7', changefreq: 'monthly', lastmod: today }
+    { url: '/rewards', priority: '0.85', changefreq: 'weekly', lastmod: today },
+    { url: '/verify', priority: '0.8', changefreq: 'monthly', lastmod: today },
+    { url: '/upsc-syllabus', priority: '0.7', changefreq: 'monthly', lastmod: today },
+    { url: '/terms', priority: '0.5', changefreq: 'monthly', lastmod: today },
+    { url: '/privacy', priority: '0.5', changefreq: 'monthly', lastmod: today },
+    { url: '/refund', priority: '0.5', changefreq: 'monthly', lastmod: today },
+    { url: '/cookies', priority: '0.5', changefreq: 'monthly', lastmod: today }
 ];
 fs.writeFileSync(path.join(publicDir, 'sitemap-pages.xml'), generateXml(pagesSitemap));
 
@@ -83,4 +89,18 @@ courseList.forEach(c => {
 fs.writeFileSync(path.join(publicDir, 'sitemap-courses.xml'), generateXml(coursesSitemap));
 
 generateSitemapIndex();
+
+// Also copy to dist if it exists
+const distDir = path.join(__dirname, '../dist');
+if (fs.existsSync(distDir)) {
+    const sitemapFiles = ['sitemap.xml', 'sitemap-pages.xml', 'sitemap-courses.xml', 'sitemap-jobs.xml', 'sitemap-tools.xml'];
+    sitemapFiles.forEach(f => {
+        const src = path.join(publicDir, f);
+        if (fs.existsSync(src)) {
+            fs.copyFileSync(src, path.join(distDir, f));
+        }
+    });
+    console.log('Sitemaps also copied to dist folder.');
+}
+
 console.log('Sitemaps generated successfully.');

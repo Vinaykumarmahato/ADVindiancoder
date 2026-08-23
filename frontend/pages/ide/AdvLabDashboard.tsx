@@ -133,13 +133,13 @@ const AdvLabDashboard = () => {
                 </div>
 
                 {/* ─── Hero + Language Picker ─── */}
-                <section className="relative z-10 flex flex-col items-center justify-center px-4 pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-16">
+                <section className="relative z-10 flex flex-col items-center justify-center px-4 pt-24 sm:pt-32 md:pt-40 lg:pt-44 pb-16">
                     <div className="text-center mb-12">
                         <div className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/5 border border-gray-250 dark:border-white/10 rounded-full px-4 py-1.5 mb-6 text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-widest">
                             <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
                             Free • No Installation • No Signup
                         </div>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 dark:text-white mb-5 tracking-tight leading-tight">
+                        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
                             Welcome to{' '}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-blue-500">
                                 ADV Lab
@@ -152,7 +152,7 @@ const AdvLabDashboard = () => {
                     </div>
                     
                     {/* Language Cards */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 max-w-5xl mx-auto w-full">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6 max-w-5xl mx-auto w-full">
                         {LANGUAGES.map((lang, i) => {
                             const Icon = lang.icon;
                             return (
@@ -160,10 +160,10 @@ const AdvLabDashboard = () => {
                                     key={lang.id}
                                     onClick={() => navigate(lang.route)}
                                     style={{ animationDelay: `${i * 60}ms` }}
-                                    className="group relative bg-white dark:bg-[#0a0f1c] border border-gray-200 dark:border-white/10 rounded-3xl p-6 md:p-8 flex flex-col items-center justify-center gap-4 hover:border-primary/30 dark:hover:border-white/30 transition-all duration-500 hover:shadow-lg dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] hover:-translate-y-2 overflow-hidden animate-fade-in-up"
+                                    className="group relative bg-white dark:bg-[#0a0f1c] border border-gray-200 dark:border-white/10 rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center gap-3 sm:gap-4 hover:border-primary/30 dark:hover:border-white/30 transition-all duration-500 hover:shadow-lg dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] hover:-translate-y-2 active:scale-95 overflow-hidden animate-fade-in-up"
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${lang.bg} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                                    <Icon className={`w-12 h-12 md:w-16 md:h-16 ${lang.color} group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]`} />
+                                    <Icon className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 ${lang.color} group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]`} />
                                     <h3 className="text-xl md:text-2xl font-black text-gray-900 dark:text-white">{lang.name}</h3>
                                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono bg-gray-100 dark:bg-white/5 px-3 py-1 rounded-full border border-gray-250 dark:border-white/5">v{lang.version}</span>
                                 </button>

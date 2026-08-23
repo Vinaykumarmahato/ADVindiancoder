@@ -106,12 +106,14 @@ export default function CppCompilerPage() {
                 schema={cppStructuredData}
             />
             {/* The IDE Component */}
-            <div className="h-screen w-full">
+            <div className="w-full">
                 <CompilerWorkspace language="cpp" />
             </div>
             
             {/* The SEO Content rendered below the fold */}
-            <CppCompilerSEO />
+            <div className="w-full relative z-10 border-t border-white/5">
+                <CppCompilerSEO />
+            </div>
         </PageWrapper>
     );
 }

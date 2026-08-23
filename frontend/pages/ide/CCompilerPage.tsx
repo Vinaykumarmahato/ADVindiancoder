@@ -102,12 +102,14 @@ export default function CCompilerPage() {
                 schema={cStructuredData}
             />
             {/* The IDE Component */}
-            <div className="h-screen w-full">
+            <div className="w-full">
                 <CompilerWorkspace language="c" />
             </div>
             
             {/* The SEO Content rendered below the fold */}
-            <CCompilerSEO />
+            <div className="w-full relative z-10 border-t border-white/5">
+                <CCompilerSEO />
+            </div>
         </PageWrapper>
     );
 }

@@ -102,12 +102,14 @@ export default function PythonCompilerPage() {
                 schema={pythonStructuredData}
             />
             {/* The IDE Component */}
-            <div className="h-screen w-full">
+            <div className="w-full">
                 <CompilerWorkspace language="python" />
             </div>
             
             {/* The SEO Content rendered below the fold */}
-            <PythonCompilerSEO />
+            <div className="w-full relative z-10 border-t border-white/5">
+                <PythonCompilerSEO />
+            </div>
         </PageWrapper>
     );
 }

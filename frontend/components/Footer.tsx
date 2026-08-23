@@ -148,56 +148,57 @@ const Footer = () => {
                 {/* Middle Section: Categorized Quick Links */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 text-xs font-semibold">
                     
-                    {/* Group 1: Coding Environment */}
+                    {/* Group 1: Coding Arena & Compilers */}
                     <div className="space-y-4">
-                        <h4 className="text-[10px] font-black text-gray-900 dark:text-white uppercase tracking-widest">Coding Arena</h4>
+                        <h4 className="text-[10px] font-black text-gray-900 dark:text-white uppercase tracking-widest">Compilers & IDE</h4>
+                        <ul className="space-y-2.5 text-gray-600 dark:text-gray-400">
+                            <li><Link to="/online-java-compiler" className="hover:text-primary transition-colors">Online Java Compiler</Link></li>
+                            <li><Link to="/online-python-compiler" className="hover:text-primary transition-colors">Online Python Compiler</Link></li>
+                            <li><Link to="/online-c-compiler" className="hover:text-primary transition-colors">Online C Compiler</Link></li>
+                            <li><Link to="/online-cpp-compiler" className="hover:text-primary transition-colors">Online C++ Compiler</Link></li>
+                            <li><Link to="/online-javascript-compiler" className="hover:text-primary transition-colors">Online JS Compiler</Link></li>
+                            <li><Link to="/adv-lab" className="hover:text-primary transition-colors flex items-center gap-1.5">ADV Lab Cloud IDE <ExternalLink className="w-3 h-3 opacity-50" /></Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Group 2: Practice & Assessments */}
+                    <div className="space-y-4">
+                        <h4 className="text-[10px] font-black text-gray-900 dark:text-white uppercase tracking-widest">Skill Arena</h4>
                         <ul className="space-y-2.5 text-gray-600 dark:text-gray-400">
                             <li>
-                                <Link to="/adv-lab" className="hover:text-primary transition-colors flex items-center gap-1.5">
-                                    Launch Cloud IDE
-                                    <ExternalLink className="w-3 h-3 opacity-50" />
-                                </Link>
-                            </li>
-                            <li>
                                 <Link to="/practice" className="hover:text-primary transition-colors flex items-center gap-1.5">
-                                    Practice Hub
+                                    DSA Practice Hub
                                     <span className="text-[8px] font-black text-green-600 dark:text-green-400 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded uppercase">New</span>
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/exam-hub" className="hover:text-primary transition-colors flex items-center gap-1.5">
-                                    AI ExamHub
+                                    AI ExamHub & Tests
                                     <span className="text-[8px] font-black text-orange-600 dark:text-orange-400 bg-orange-500/10 border border-orange-500/20 px-1.5 py-0.5 rounded uppercase">Hot</span>
                                 </Link>
                             </li>
-                            <li><Link to="/courses" className="hover:text-primary transition-colors">Course Library</Link></li>
+                            <li><Link to="/rewards" className="hover:text-primary transition-colors">Swag Store & Rewards</Link></li>
+                            <li><Link to="/masterclass" className="hover:text-primary transition-colors">Live Masterclasses</Link></li>
+                            <li><Link to="/resources" className="hover:text-primary transition-colors">Technical PDF Notes</Link></li>
+                            <li><Link to="/verify" className="hover:text-primary transition-colors">Verify Certificate</Link></li>
                         </ul>
                     </div>
 
-                    {/* Group 2: Quick Links */}
+                    {/* Group 3: Opportunities & Community */}
                     <div className="space-y-4">
-                        <h4 className="text-[10px] font-black text-gray-900 dark:text-white uppercase tracking-widest">Quick Resources</h4>
-                        <ul className="space-y-2.5 text-gray-600 dark:text-gray-400">
-                            <li><Link to="/resources" className="hover:text-primary transition-colors">Technical Notes</Link></li>
-                            <li><Link to="/success-stories" className="hover:text-primary transition-colors">Success Stories</Link></li>
-                            <li><Link to="/about" className="hover:text-primary transition-colors">About Vinay</Link></li>
-                            <li><Link to="/faq" className="hover:text-primary transition-colors">Help & FAQ</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Group 3: Opportunities */}
-                    <div className="space-y-4">
-                        <h4 className="text-[10px] font-black text-gray-900 dark:text-white uppercase tracking-widest">Opportunities</h4>
+                        <h4 className="text-[10px] font-black text-gray-900 dark:text-white uppercase tracking-widest">Ecosystem</h4>
                         <ul className="space-y-2.5 text-gray-600 dark:text-gray-400">
                             <li>
                                 <Link to="/jobs" className="hover:text-primary transition-colors flex items-center gap-1.5">
-                                    Latest Tech Jobs
+                                    Tech Jobs & Hiring
                                     <span className="text-[8px] font-black text-blue-600 dark:text-blue-400 bg-blue-500/10 border border-blue-500/20 px-1.5 py-0.5 rounded uppercase">New</span>
                                 </Link>
                             </li>
-                            <li><a href="https://wa.me/919931860964" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Direct Mentorship</a></li>
-                            <li><Link to="/career" className="hover:text-primary transition-colors">Join Our Team</Link></li>
+                            <li><Link to="/community" className="hover:text-primary transition-colors">Developer Community</Link></li>
+                            <li><Link to="/success-stories" className="hover:text-primary transition-colors">Student Success Stories</Link></li>
+                            <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
                             <li><Link to="/contact" className="hover:text-primary transition-colors">Contact Support</Link></li>
+                            <li><Link to="/faq" className="hover:text-primary transition-colors">Help & FAQ</Link></li>
                         </ul>
                     </div>
 
@@ -209,9 +210,53 @@ const Footer = () => {
                             <li><Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
                             <li><Link to="/refund" className="hover:text-primary transition-colors">Refund Policies</Link></li>
                             <li><Link to="/cookies" className="hover:text-primary transition-colors">Cookie Preferences</Link></li>
+                            <li><Link to="/career" className="hover:text-primary transition-colors">Join Our Team</Link></li>
                         </ul>
                     </div>
 
+                </div>
+
+                {/* Popular Courses Grid for High Internal PageRank & Indexing */}
+                <div className="py-8 border-t border-gray-200 dark:border-white/5">
+                    <div className="flex items-center justify-between mb-4">
+                        <h4 className="text-[11px] font-black text-gray-900 dark:text-white uppercase tracking-wider">
+                            Popular Free Programming Courses & Tutorials
+                        </h4>
+                        <Link to="/courses" className="text-[10px] font-bold text-primary hover:underline">View All Courses →</Link>
+                    </div>
+                    <div className="flex flex-wrap gap-2 text-[11px]">
+                        <Link to="/course/java" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-red-500/10 hover:text-red-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Java Course</Link>
+                        <Link to="/course/python" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-yellow-500/10 hover:text-yellow-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Python Course</Link>
+                        <Link to="/course/dsa" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-purple-500/10 hover:text-purple-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">DSA in Java & C++</Link>
+                        <Link to="/course/cpp" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-blue-500/10 hover:text-blue-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">C++ Course</Link>
+                        <Link to="/course/c" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-blue-500/10 hover:text-blue-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">C Programming</Link>
+                        <Link to="/course/javascript" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-amber-500/10 hover:text-amber-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">JavaScript Course</Link>
+                        <Link to="/course/typescript" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-sky-500/10 hover:text-sky-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">TypeScript</Link>
+                        <Link to="/course/react" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-cyan-500/10 hover:text-cyan-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">React.js Course</Link>
+                        <Link to="/course/nodejs" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-green-500/10 hover:text-green-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Node.js</Link>
+                        <Link to="/course/sql" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">SQL Database</Link>
+                        <Link to="/course/mysql" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-blue-500/10 hover:text-blue-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">MySQL</Link>
+                        <Link to="/course/postgresql" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-indigo-500/10 hover:text-indigo-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">PostgreSQL</Link>
+                        <Link to="/course/mongodb" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-green-500/10 hover:text-green-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">MongoDB</Link>
+                        <Link to="/course/html" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-orange-500/10 hover:text-orange-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">HTML5</Link>
+                        <Link to="/course/css" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-blue-500/10 hover:text-blue-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">CSS3</Link>
+                        <Link to="/course/adv-css" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-violet-500/10 hover:text-violet-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Advanced CSS</Link>
+                        <Link to="/course/bootstrap" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-purple-500/10 hover:text-purple-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Bootstrap</Link>
+                        <Link to="/course/angular" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-red-500/10 hover:text-red-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Angular</Link>
+                        <Link to="/course/vue" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Vue.js</Link>
+                        <Link to="/course/go" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-cyan-500/10 hover:text-cyan-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Go (Golang)</Link>
+                        <Link to="/course/rust" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-amber-500/10 hover:text-amber-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Rust</Link>
+                        <Link to="/course/kotlin" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-purple-500/10 hover:text-purple-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Kotlin</Link>
+                        <Link to="/course/swift" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-orange-500/10 hover:text-orange-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Swift</Link>
+                        <Link to="/course/csharp" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-violet-500/10 hover:text-violet-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">C#</Link>
+                        <Link to="/course/php" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-indigo-500/10 hover:text-indigo-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">PHP</Link>
+                        <Link to="/course/django" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Django</Link>
+                        <Link to="/course/data-science" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-blue-500/10 hover:text-blue-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Data Science</Link>
+                        <Link to="/course/ai" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-pink-500/10 hover:text-pink-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Artificial Intelligence</Link>
+                        <Link to="/course/gen-ai" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-purple-500/10 hover:text-purple-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Generative AI</Link>
+                        <Link to="/course/cybersecurity" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-red-500/10 hover:text-red-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Cybersecurity</Link>
+                        <Link to="/course/git" className="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-orange-500/10 hover:text-orange-500 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/5 transition-all">Git & GitHub</Link>
+                    </div>
                 </div>
 
                 {/* Bottom Section: Copyright & Powered Tag */}
