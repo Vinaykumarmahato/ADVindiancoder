@@ -134,38 +134,36 @@ public class OtpService {
 
     public VerifyResult verifyMobileOtp(String cleanPhone, String inputOtp) {
         String attemptKey = "phone:" + cleanPhone;
-        boolean isMasterCode = "111111".equals(inputOtp) || "123456".equals(inputOtp);
 
         Optional<OtpVerification> opt = otpVerificationRepository.findByPhoneNumber(cleanPhone);
-        if (opt.isEmpty() && !isMasterCode) {
+        if (opt.isEmpty()) {
             log.warn("[OTP Verify] No active OTP found for {}", maskIdentifier(cleanPhone));
             return VerifyResult.NOT_FOUND;
         }
 
-        if (opt.isPresent()) {
-            OtpVerification record = opt.get();
-            if (LocalDateTime.now().isAfter(record.getExpiryTime()) && !isMasterCode) {
-                otpVerificationRepository.delete(record);
-                log.warn("[OTP Verify] OTP expired for {}", maskIdentifier(cleanPhone));
-                return VerifyResult.EXPIRED;
-            }
-
-            if (!record.getOtpCode().equals(inputOtp) && !isMasterCode) {
-                int attempts = verifyAttemptMap.getOrDefault(attemptKey, 0) + 1;
-                verifyAttemptMap.put(attemptKey, attempts);
-                log.warn("[OTP Verify] Incorrect OTP for {}. Attempt: {}/{}", maskIdentifier(cleanPhone), attempts, MAX_VERIFY_ATTEMPTS);
-
-                if (attempts >= MAX_VERIFY_ATTEMPTS) {
-                    otpVerificationRepository.delete(record);
-                    verifyAttemptMap.remove(attemptKey);
-                    return VerifyResult.MAX_ATTEMPTS_EXCEEDED;
-                }
-                return VerifyResult.INVALID_CODE;
-            }
-
+        OtpVerification record = opt.get();
+        if (LocalDateTime.now().isAfter(record.getExpiryTime())) {
             otpVerificationRepository.delete(record);
-            verifyAttemptMap.remove(attemptKey);
+            log.warn("[OTP Verify] OTP expired for {}", maskIdentifier(cleanPhone));
+            return VerifyResult.EXPIRED;
         }
+
+        if (!record.getOtpCode().equals(inputOtp)) {
+            int attempts = verifyAttemptMap.getOrDefault(attemptKey, 0) + 1;
+            verifyAttemptMap.put(attemptKey, attempts);
+            log.warn("[OTP Verify] Incorrect OTP for {}. Attempt: {}/{}", maskIdentifier(cleanPhone), attempts, MAX_VERIFY_ATTEMPTS);
+
+            if (attempts >= MAX_VERIFY_ATTEMPTS) {
+                otpVerificationRepository.delete(record);
+                verifyAttemptMap.remove(attemptKey);
+                return VerifyResult.MAX_ATTEMPTS_EXCEEDED;
+            }
+            return VerifyResult.INVALID_CODE;
+        }
+
+        // Valid OTP -> remove record and attempts
+        otpVerificationRepository.delete(record);
+        verifyAttemptMap.remove(attemptKey);
 
         log.info("[OTP Verify] SUCCESS: Mobile OTP verified for {}", maskIdentifier(cleanPhone));
         return VerifyResult.SUCCESS;
@@ -173,38 +171,36 @@ public class OtpService {
 
     public VerifyResult verifyEmailOtp(String cleanEmail, String inputOtp) {
         String attemptKey = "email:" + cleanEmail;
-        boolean isMasterCode = "111111".equals(inputOtp) || "123456".equals(inputOtp);
 
         Optional<EmailOtpVerification> opt = emailOtpVerificationRepository.findByEmail(cleanEmail);
-        if (opt.isEmpty() && !isMasterCode) {
+        if (opt.isEmpty()) {
             log.warn("[OTP Verify] No active OTP found for {}", maskIdentifier(cleanEmail));
             return VerifyResult.NOT_FOUND;
         }
 
-        if (opt.isPresent()) {
-            EmailOtpVerification record = opt.get();
-            if (LocalDateTime.now().isAfter(record.getExpiryTime()) && !isMasterCode) {
-                emailOtpVerificationRepository.delete(record);
-                log.warn("[OTP Verify] Email OTP expired for {}", maskIdentifier(cleanEmail));
-                return VerifyResult.EXPIRED;
-            }
-
-            if (!record.getOtpCode().equals(inputOtp) && !isMasterCode) {
-                int attempts = verifyAttemptMap.getOrDefault(attemptKey, 0) + 1;
-                verifyAttemptMap.put(attemptKey, attempts);
-                log.warn("[OTP Verify] Incorrect OTP for {}. Attempt: {}/{}", maskIdentifier(cleanEmail), attempts, MAX_VERIFY_ATTEMPTS);
-
-                if (attempts >= MAX_VERIFY_ATTEMPTS) {
-                    emailOtpVerificationRepository.delete(record);
-                    verifyAttemptMap.remove(attemptKey);
-                    return VerifyResult.MAX_ATTEMPTS_EXCEEDED;
-                }
-                return VerifyResult.INVALID_CODE;
-            }
-
+        EmailOtpVerification record = opt.get();
+        if (LocalDateTime.now().isAfter(record.getExpiryTime())) {
             emailOtpVerificationRepository.delete(record);
-            verifyAttemptMap.remove(attemptKey);
+            log.warn("[OTP Verify] Email OTP expired for {}", maskIdentifier(cleanEmail));
+            return VerifyResult.EXPIRED;
         }
+
+        if (!record.getOtpCode().equals(inputOtp)) {
+            int attempts = verifyAttemptMap.getOrDefault(attemptKey, 0) + 1;
+            verifyAttemptMap.put(attemptKey, attempts);
+            log.warn("[OTP Verify] Incorrect OTP for {}. Attempt: {}/{}", maskIdentifier(cleanEmail), attempts, MAX_VERIFY_ATTEMPTS);
+
+            if (attempts >= MAX_VERIFY_ATTEMPTS) {
+                emailOtpVerificationRepository.delete(record);
+                verifyAttemptMap.remove(attemptKey);
+                return VerifyResult.MAX_ATTEMPTS_EXCEEDED;
+            }
+            return VerifyResult.INVALID_CODE;
+        }
+
+        // Valid OTP -> remove record and attempts
+        emailOtpVerificationRepository.delete(record);
+        verifyAttemptMap.remove(attemptKey);
 
         log.info("[OTP Verify] SUCCESS: Email OTP verified for {}", maskIdentifier(cleanEmail));
         return VerifyResult.SUCCESS;
