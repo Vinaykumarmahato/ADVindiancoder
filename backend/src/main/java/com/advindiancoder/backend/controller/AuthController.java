@@ -18,6 +18,7 @@ import com.advindiancoder.backend.repository.UserActivityLogRepository;
 import com.advindiancoder.backend.security.JwtTokenProvider;
 import com.advindiancoder.backend.service.SmsService;
 import com.advindiancoder.backend.service.EmailService;
+import com.advindiancoder.backend.service.OtpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -48,6 +49,9 @@ public class AuthController {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private OtpService otpService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -224,7 +228,6 @@ public class AuthController {
     }
 
     @PostMapping("/mobile/send-otp")
-    @Transactional
     public ResponseEntity<?> sendOtp(@RequestBody MobileLoginRequest mobileRequest) {
         String phone = mobileRequest.getPhoneNumber();
         if (phone == null || phone.trim().isEmpty()) {
@@ -232,24 +235,16 @@ public class AuthController {
         }
 
         String cleanPhone = phone.replaceAll("[^0-9+]", "").trim();
-        // Generate a 6-digit OTP code (between 100000 and 999999)
-        String code = String.valueOf((int) (100000 + Math.random() * 900000));
-
-        // Save or update the OTP in-place
-        OtpVerification verification = otpVerificationRepository.findByPhoneNumber(cleanPhone)
-                .orElse(new OtpVerification());
-        verification.setPhoneNumber(cleanPhone);
-        verification.setOtpCode(code);
-        verification.setExpiryTime(LocalDateTime.now().plusMinutes(15));
-        otpVerificationRepository.save(verification);
-
-        // Safe SMS dispatch: Never fail the HTTP request if SMS gateway has issues
-        try {
-            smsService.sendSmsOtp(cleanPhone, code);
-        } catch (Exception e) {
-            System.err.println("[SMS OTP Warning] Non-blocking dispatch notice: " + e.getMessage());
+        if (cleanPhone.length() < 10) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Please enter a valid mobile number with country code."));
         }
 
+        // Rate limiting: Max 3 requests in 10 minutes
+        if (otpService.isRateLimited("phone:" + cleanPhone)) {
+            return ResponseEntity.status(429).body(new MessageResponse("Too many OTP requests. Please wait 10 minutes before requesting again."));
+        }
+
+        otpService.sendMobileOtp(cleanPhone);
         return ResponseEntity.ok(new MessageResponse("OTP sent successfully to " + cleanPhone));
     }
 
@@ -266,26 +261,15 @@ public class AuthController {
         String cleanPhone = phone.replaceAll("[^0-9+]", "").trim();
         String cleanOtp = otpCode.trim();
 
-        Optional<OtpVerification> verificationOpt = otpVerificationRepository.findByPhoneNumber(cleanPhone);
-        boolean isMasterCode = "111111".equals(cleanOtp) || "123456".equals(cleanOtp);
-
-        if (verificationOpt.isEmpty() && !isMasterCode) {
+        OtpService.VerifyResult result = otpService.verifyMobileOtp(cleanPhone, cleanOtp);
+        if (result == OtpService.VerifyResult.NOT_FOUND) {
             return ResponseEntity.badRequest().body(new MessageResponse("No active OTP found. Please request a new OTP code."));
-        }
-
-        if (verificationOpt.isPresent()) {
-            OtpVerification verification = verificationOpt.get();
-            if (LocalDateTime.now().isAfter(verification.getExpiryTime()) && !isMasterCode) {
-                otpVerificationRepository.delete(verification);
-                return ResponseEntity.badRequest().body(new MessageResponse("OTP has expired! Please request a new one."));
-            }
-
-            if (!verification.getOtpCode().equals(cleanOtp) && !isMasterCode) {
-                return ResponseEntity.badRequest().body(new MessageResponse("Invalid OTP code. Please enter the correct code."));
-            }
-
-            // Valid OTP, delete to prevent reuse
-            otpVerificationRepository.delete(verification);
+        } else if (result == OtpService.VerifyResult.EXPIRED) {
+            return ResponseEntity.badRequest().body(new MessageResponse("OTP has expired! Please request a new one."));
+        } else if (result == OtpService.VerifyResult.MAX_ATTEMPTS_EXCEEDED) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Too many incorrect attempts. This OTP has been invalidated. Please request a new code."));
+        } else if (result == OtpService.VerifyResult.INVALID_CODE) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Invalid OTP code. Please enter the correct code."));
         }
 
         // Login / Register flow
@@ -328,32 +312,20 @@ public class AuthController {
     }
 
     @PostMapping("/email/send-otp")
-    @Transactional
     public ResponseEntity<?> sendEmailOtp(@RequestBody EmailLoginRequest emailRequest) {
         String email = emailRequest.getEmail();
-        if (email == null || email.trim().isEmpty()) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Email is required!"));
+        if (email == null || email.trim().isEmpty() || !email.contains("@")) {
+            return ResponseEntity.badRequest().body(new MessageResponse("A valid email address is required!"));
         }
 
         String cleanEmail = email.trim().toLowerCase();
-        // Generate a 6-digit OTP code
-        String code = String.valueOf((int) (100000 + Math.random() * 900000));
 
-        // Save or update in database
-        EmailOtpVerification verification = emailOtpVerificationRepository.findByEmail(cleanEmail)
-                .orElse(new EmailOtpVerification());
-        verification.setEmail(cleanEmail);
-        verification.setOtpCode(code);
-        verification.setExpiryTime(LocalDateTime.now().plusMinutes(15));
-        emailOtpVerificationRepository.save(verification);
-
-        // Safe email dispatch
-        try {
-            emailService.sendOtpEmail(cleanEmail, code);
-        } catch (Exception e) {
-            System.err.println("[Email OTP Warning] Non-blocking dispatch notice: " + e.getMessage());
+        // Rate limiting: Max 3 requests in 10 minutes
+        if (otpService.isRateLimited("email:" + cleanEmail)) {
+            return ResponseEntity.status(429).body(new MessageResponse("Too many OTP requests. Please wait 10 minutes before requesting again."));
         }
 
+        otpService.sendEmailOtp(cleanEmail);
         return ResponseEntity.ok(new MessageResponse("Verification code sent to " + cleanEmail));
     }
 
@@ -370,26 +342,15 @@ public class AuthController {
         String cleanEmail = email.trim().toLowerCase();
         String cleanOtp = otpCode.trim();
 
-        Optional<EmailOtpVerification> verificationOpt = emailOtpVerificationRepository.findByEmail(cleanEmail);
-        boolean isMasterCode = "111111".equals(cleanOtp) || "123456".equals(cleanOtp);
-
-        if (verificationOpt.isEmpty() && !isMasterCode) {
+        OtpService.VerifyResult result = otpService.verifyEmailOtp(cleanEmail, cleanOtp);
+        if (result == OtpService.VerifyResult.NOT_FOUND) {
             return ResponseEntity.badRequest().body(new MessageResponse("No active OTP found. Please request a new OTP code."));
-        }
-
-        if (verificationOpt.isPresent()) {
-            EmailOtpVerification verification = verificationOpt.get();
-            if (LocalDateTime.now().isAfter(verification.getExpiryTime()) && !isMasterCode) {
-                emailOtpVerificationRepository.delete(verification);
-                return ResponseEntity.badRequest().body(new MessageResponse("OTP has expired! Please request a new one."));
-            }
-
-            if (!verification.getOtpCode().equals(cleanOtp) && !isMasterCode) {
-                return ResponseEntity.badRequest().body(new MessageResponse("Invalid verification code. Please check and try again."));
-            }
-
-            // Valid OTP, delete to prevent reuse
-            emailOtpVerificationRepository.delete(verification);
+        } else if (result == OtpService.VerifyResult.EXPIRED) {
+            return ResponseEntity.badRequest().body(new MessageResponse("OTP has expired! Please request a new one."));
+        } else if (result == OtpService.VerifyResult.MAX_ATTEMPTS_EXCEEDED) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Too many incorrect attempts. This OTP has been invalidated. Please request a new code."));
+        } else if (result == OtpService.VerifyResult.INVALID_CODE) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Invalid verification code. Please check and try again."));
         }
 
         // Login / Register flow
@@ -401,8 +362,7 @@ public class AuthController {
         } else {
             // Auto-create user for email OTP login
             user = new User();
-            String baseUsername = cleanEmail.split("@")[0].toLowerCase().replaceAll("[^a-zA-Z0-9_]", "");
-            if (baseUsername.isEmpty()) baseUsername = "learner";
+            String baseUsername = cleanEmail.split("@")[0].replaceAll("[^a-zA-Z0-9_]", "_").toLowerCase();
             String username = baseUsername;
             int counter = 1;
             while (userRepository.existsByUsernameIgnoreCase(username)) {
@@ -410,7 +370,7 @@ public class AuthController {
             }
             user.setUsername(username);
             user.setEmail(cleanEmail);
-            user.setPassword(passwordEncoder.encode("email_secure_pwd_" + Math.random()));
+            user.setPassword(passwordEncoder.encode("email_otp_secure_pwd_" + Math.random()));
             user.setRole("student");
             user = userRepository.save(user);
         }
