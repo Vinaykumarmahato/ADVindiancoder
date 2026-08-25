@@ -64,7 +64,7 @@ const CertificateModal = ({ isOpen, onClose, userName, score, certId }: { isOpen
                                 <h2 className="text-5xl md:text-7xl font-black text-red-600 font-serif border-b-4 border-red-600/10 pb-2 px-8 inline-block">{userName || "Valued Student"}</h2>
                                 <p className="text-xl font-medium text-gray-700 max-w-2xl mx-auto leading-relaxed mt-6">
                                     has successfully mastered the <span className="font-black">Java Full Course 2026: Zero to Hero</span>. 
-                                    Demonstrating exceptional proficiency across 39 technical modules with a performance score of <span className="text-red-600 font-black">{score}%</span>.
+                                    Demonstrating exceptional proficiency across all 56 technical modules with a performance score of <span className="text-red-600 font-black">{score}%</span>.
                                 </p>
                             </div>
 

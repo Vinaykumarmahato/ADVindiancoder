@@ -4,7 +4,7 @@ export const JAVA_EPISODES = [
         "id": 1,
         "title": "EP 01 – What is Programming? | Introduction to Programming",
         "youtubeId": "IvTuFG-lXyw",
-        "thumbnail": "/Thumbnail/ep-01-programming-introduction-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/IvTuFG-lXyw/maxresdefault.jpg",
         "tags": [
             "Java",
             "Basics"
@@ -137,7 +137,7 @@ export const JAVA_EPISODES = [
         "id": 2,
         "title": "EP 02 – Low Level vs High Level Languages | How Computers Understand Code",
         "youtubeId": "nkV2BO3h5J8",
-        "thumbnail": "/Thumbnail/ep-02-low-vs-high-level-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/nkV2BO3h5J8/maxresdefault.jpg",
         "tags": [
             "Java",
             "Theory"
@@ -270,7 +270,7 @@ export const JAVA_EPISODES = [
         "id": 3,
         "title": "EP 03 – Why Java in 2026? | Best Language for Freshers to Learn",
         "youtubeId": "xoVVwGZE6gs",
-        "thumbnail": "/Thumbnail/ep-03-why-java-2026-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/xoVVwGZE6gs/maxresdefault.jpg",
         "tags": [
             "Java",
             "Career"
@@ -403,7 +403,7 @@ export const JAVA_EPISODES = [
         "id": 4,
         "title": "EP 04 – How Java Works | JDK → Compiler → Bytecode → JVM",
         "youtubeId": "AsMGN3NPSuI",
-        "thumbnail": "/Thumbnail/ep-04-how-java-works-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/AsMGN3NPSuI/maxresdefault.jpg",
         "tags": [
             "Java",
             "Theory"
@@ -536,7 +536,7 @@ export const JAVA_EPISODES = [
         "id": 5,
         "title": "EP 05 – Java Features | Why Java is Still Relevant in 2026",
         "youtubeId": "PegCLdjGMaE",
-        "thumbnail": "/Thumbnail/ep-05-java-features-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/PegCLdjGMaE/maxresdefault.jpg",
         "tags": [
             "Java",
             "Theory"
@@ -670,7 +670,7 @@ export const JAVA_EPISODES = [
         "id": 6,
         "title": "EP 06 – Java Setup | Install JDK + VS Code + Run First Program",
         "youtubeId": "84n9BAu0FCE",
-        "thumbnail": "/Thumbnail/ep-06-java-setup-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/84n9BAu0FCE/maxresdefault.jpg",
         "tags": [
             "Java",
             "Setup"
@@ -803,7 +803,7 @@ export const JAVA_EPISODES = [
         "id": 7,
         "title": "EP 07 – From Real World to Code | How Programmers Think",
         "youtubeId": "PDiqgM5mMUw",
-        "thumbnail": "/Thumbnail/ep-07-real-world-to-code-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/PDiqgM5mMUw/maxresdefault.jpg",
         "tags": [
             "Java",
             "Mindset"
@@ -936,7 +936,7 @@ export const JAVA_EPISODES = [
         "id": 8,
         "title": "EP 08 – Methods in Java | Functions Explained from Scratch",
         "youtubeId": "JldKp7pXRCM",
-        "thumbnail": "/Thumbnail/ep-08-java-methods-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/JldKp7pXRCM/maxresdefault.jpg",
         "tags": [
             "Java",
             "Methods"
@@ -1069,7 +1069,7 @@ export const JAVA_EPISODES = [
         "id": 9,
         "title": "EP 09 – Static vs Dynamic Programming Languages",
         "youtubeId": "qkfxULQ0YQE",
-        "thumbnail": "/Thumbnail/ep-09-static-vs-dynamic-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/qkfxULQ0YQE/maxresdefault.jpg",
         "tags": [
             "Java",
             "Theory"
@@ -1202,7 +1202,7 @@ export const JAVA_EPISODES = [
         "id": 10,
         "title": "EP 10 – Variables in Java | Storage, Scope & Memory",
         "youtubeId": "hnQlsMoyjZM",
-        "thumbnail": "/Thumbnail/ep-10-java-variables-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/hnQlsMoyjZM/maxresdefault.jpg",
         "tags": [
             "Java",
             "Variables"
@@ -1335,7 +1335,7 @@ export const JAVA_EPISODES = [
         "id": 11,
         "title": "EP 11 – Data Types in Java | Primitive & Non-Primitive Explained",
         "youtubeId": "k4aJBTHdu1Q",
-        "thumbnail": "/Thumbnail/ep-11-java-data-types-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/k4aJBTHdu1Q/maxresdefault.jpg",
         "tags": [
             "Java",
             "Types"
@@ -1468,7 +1468,7 @@ export const JAVA_EPISODES = [
         "id": 12,
         "title": "EP 12 – Student Management Project | Java Variables & Data Types",
         "youtubeId": "lvF3ZaW_KRg",
-        "thumbnail": "/Thumbnail/ep-12-student-management-project-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/lvF3ZaW_KRg/maxresdefault.jpg",
         "tags": [
             "Java",
             "Project"
@@ -1601,7 +1601,7 @@ export const JAVA_EPISODES = [
         "id": 13,
         "title": "EP 13 – Type Casting in Java | Implicit & Explicit Conversion",
         "youtubeId": "Xg9X_cdPNLk",
-        "thumbnail": "/Thumbnail/ep-13-type-casting-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/Xg9X_cdPNLk/maxresdefault.jpg",
         "tags": [
             "Java",
             "Types"
@@ -1734,7 +1734,7 @@ export const JAVA_EPISODES = [
         "id": 14,
         "title": "EP 14 – Why Do Operators Exist in Java? | The CPU-Level Truth",
         "youtubeId": "6JCqR59XA0k",
-        "thumbnail": "/Thumbnail/ep-14-why-operators-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/6JCqR59XA0k/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -1867,7 +1867,7 @@ export const JAVA_EPISODES = [
         "id": 15,
         "title": "EP 15 – Arithmetic Operators in Java",
         "youtubeId": "65R9jw3bxws",
-        "thumbnail": "/Thumbnail/ep-15-arithmetic-operators-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/65R9jw3bxws/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -2000,7 +2000,7 @@ export const JAVA_EPISODES = [
         "id": 16,
         "title": "EP 16 – Unary Operators in Java",
         "youtubeId": "h8TJDCHpjCc",
-        "thumbnail": "/Thumbnail/ep-16-unary-operators-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/h8TJDCHpjCc/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -2133,7 +2133,7 @@ export const JAVA_EPISODES = [
         "id": 17,
         "title": "EP 17 – Relational Operators in Java",
         "youtubeId": "i69PsllUNLI",
-        "thumbnail": "/Thumbnail/ep-17-relational-operators-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/i69PsllUNLI/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -2267,7 +2267,7 @@ export const JAVA_EPISODES = [
         "id": 18,
         "title": "EP 18 – Logical Operators in Java | &&, ||, ! Explained",
         "youtubeId": "mYMzF7UFjOs",
-        "thumbnail": "/Thumbnail/ep-18-logical-operators-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/mYMzF7UFjOs/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -2400,7 +2400,7 @@ export const JAVA_EPISODES = [
         "id": 19,
         "title": "EP 19 – Assignment Operators in Java | Shorthand Operators",
         "youtubeId": "UI-hXuWQJlo",
-        "thumbnail": "/Thumbnail/ep-19-assignment-operators-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/UI-hXuWQJlo/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -2532,8 +2532,8 @@ export const JAVA_EPISODES = [
     {
         "id": 20,
         "title": "EP 20 – Ternary Operator in Java | Single-Line if-else",
-        "youtubeId": "WlZnyin9dMo",
-        "thumbnail": "/Thumbnail/ep-27-Java Ternary Operator Explained  Find Maximum of 3 Numbers (Interview Quest.png",
+        "youtubeId": "TUwb1rXDE-k",
+        "thumbnail": "https://img.youtube.com/vi/TUwb1rXDE-k/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -2664,8 +2664,8 @@ export const JAVA_EPISODES = [
     {
         "id": 21,
         "title": "EP 21 – Bitwise Operators in Java | Binary Level Programming",
-        "youtubeId": "TUwb1rXDE-k",
-        "thumbnail": "/Thumbnail/ep-20-bitwise-operators-thumbnail.png",
+        "youtubeId": "1pcPoZqz08c",
+        "thumbnail": "https://img.youtube.com/vi/1pcPoZqz08c/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -2796,8 +2796,8 @@ export const JAVA_EPISODES = [
     {
         "id": 22,
         "title": "EP 22 – Calculator Project using Operators | Mini Project",
-        "youtubeId": "1pcPoZqz08c",
-        "thumbnail": "/Thumbnail/ep-21-result-analyser-project.png",
+        "youtubeId": "3eA3B1-0WSk",
+        "thumbnail": "https://img.youtube.com/vi/3eA3B1-0WSk/maxresdefault.jpg",
         "tags": [
             "Java",
             "Project"
@@ -2928,8 +2928,8 @@ export const JAVA_EPISODES = [
     {
         "id": 23,
         "title": "EP 23 – Introduction to Conditionals | Simple If Statement",
-        "youtubeId": "3eA3B1-0WSk",
-        "thumbnail": "/Thumbnail/ep-23-if-statement-thumbnail.png",
+        "youtubeId": "aPa1OjMA6bs",
+        "thumbnail": "https://img.youtube.com/vi/aPa1OjMA6bs/maxresdefault.jpg",
         "tags": [
             "Java",
             "Conditions"
@@ -3061,7 +3061,7 @@ export const JAVA_EPISODES = [
         "id": 24,
         "title": "EP 24 – If-Else with Real-World Logic | Decision Making",
         "youtubeId": "CSXI2E_VfKI",
-        "thumbnail": "/Thumbnail/ep-24-if-else-real-life-thumbnail.png",
+        "thumbnail": "https://img.youtube.com/vi/CSXI2E_VfKI/maxresdefault.jpg",
         "tags": [
             "Java",
             "Conditions"
@@ -3193,7 +3193,7 @@ export const JAVA_EPISODES = [
         "id": 25,
         "title": "EP 25 – Else-If Ladder in Java | Grade Calculator Project",
         "youtubeId": "ZOVaRsm9QCw",
-        "thumbnail": "/Thumbnail/ep-25-If Else If Statement in Java in Hindi  Java Conditional Statements Tutorial.png",
+        "thumbnail": "https://img.youtube.com/vi/ZOVaRsm9QCw/maxresdefault.jpg",
         "tags": [
             "Java",
             "Conditions"
@@ -3326,7 +3326,7 @@ export const JAVA_EPISODES = [
         "id": 26,
         "title": "EP 26 – Nested If in Java | Weather Decision App Project 🌦️",
         "youtubeId": "kCe5ZCjF5mU",
-        "thumbnail": "/Thumbnail/ep-26-Nested If in Java (Hindi) 🔥 Real Project  Weather Decision App 🌦️.png",
+        "thumbnail": "https://img.youtube.com/vi/kCe5ZCjF5mU/maxresdefault.jpg",
         "tags": [
             "Java",
             "Conditions"
@@ -3459,7 +3459,7 @@ export const JAVA_EPISODES = [
         "id": 27,
         "title": "EP 27 – Ternary Operator in Java | Find Maximum of 3 Numbers",
         "youtubeId": "WlZnyin9dMo",
-        "thumbnail": "/Thumbnail/ep-27-Java Ternary Operator Explained  Find Maximum of 3 Numbers (Interview Quest.png",
+        "thumbnail": "https://img.youtube.com/vi/WlZnyin9dMo/maxresdefault.jpg",
         "tags": [
             "Java",
             "Operators"
@@ -3592,7 +3592,7 @@ export const JAVA_EPISODES = [
         "id": 28,
         "title": "EP 28 – Switch Statement in Java | Real Project + Interview Questions",
         "youtubeId": "Yi0T-u4U_no",
-        "thumbnail": "/Thumbnail/ep-28-Switch Statement in Java.png",
+        "thumbnail": "https://img.youtube.com/vi/Yi0T-u4U_no/maxresdefault.jpg",
         "tags": [
             "Java",
             "Conditions"
@@ -3725,7 +3725,7 @@ export const JAVA_EPISODES = [
         "id": 29,
         "title": "EP 29 – Student Result Analyzer Project v3.0 🔥",
         "youtubeId": "AIzKCZIXH4I",
-        "thumbnail": "/Thumbnail/ep-29-Student Result Analyzer Project v3.0 🔥  Java Full Course.png",
+        "thumbnail": "https://img.youtube.com/vi/AIzKCZIXH4I/maxresdefault.jpg",
         "tags": [
             "Java",
             "Project"
@@ -3858,7 +3858,7 @@ export const JAVA_EPISODES = [
         "id": 30,
         "title": "EP 30 – Need of Loops in Java | Real Life Examples | DRY Principle",
         "youtubeId": "z7FeFJejgHA",
-        "thumbnail": "/Thumbnail/ep-30-Need of Loops in Java  Real Life Examples Explained  DRY Principle.png",
+        "thumbnail": "https://img.youtube.com/vi/z7FeFJejgHA/maxresdefault.jpg",
         "tags": [
             "Java",
             "Loops"
@@ -3991,7 +3991,7 @@ export const JAVA_EPISODES = [
         "id": 31,
         "title": "EP 31 – While Loop in Java 💯 | From Basics to Advanced",
         "youtubeId": "lYVyY7B5gLw",
-        "thumbnail": "/Thumbnail/ep-31-👉 One Video Enough to Master While Loop 💯  From Basics to Advanced.png",
+        "thumbnail": "https://img.youtube.com/vi/lYVyY7B5gLw/maxresdefault.jpg",
         "tags": [
             "Java",
             "Loops"
@@ -4124,7 +4124,7 @@ export const JAVA_EPISODES = [
         "id": 32,
         "title": "EP 32 – Do While Loop in Java | Why It Exists + Real Life Example 🔥",
         "youtubeId": "IJnotbUSbfI",
-        "thumbnail": "/Thumbnail/ep-32-do-while-loop-java.png",
+        "thumbnail": "https://img.youtube.com/vi/IJnotbUSbfI/maxresdefault.jpg",
         "tags": [
             "Java",
             "Loops"
@@ -4257,7 +4257,7 @@ export const JAVA_EPISODES = [
         "id": 33,
         "title": "EP 33 – For Loop in Java | You're Using Loops WRONG 😳",
         "youtubeId": "xQmsxjF7XP8",
-        "thumbnail": "/Thumbnail/ep-33-for-loop-wrong-java.png",
+        "thumbnail": "https://img.youtube.com/vi/xQmsxjF7XP8/maxresdefault.jpg",
         "tags": [
             "Java",
             "Loops"
@@ -4390,7 +4390,7 @@ export const JAVA_EPISODES = [
         "id": 34,
         "title": "EP 34 – Nested For Loop in Java | Complete Tutorial with Examples",
         "youtubeId": "BgOCdxjnJIk",
-        "thumbnail": "/Thumbnail/ep-34-Nested For Loop in Java  Complete Tutorial with Examples.png",
+        "thumbnail": "https://img.youtube.com/vi/BgOCdxjnJIk/maxresdefault.jpg",
         "tags": [
             "Java",
             "Loops"
@@ -4523,7 +4523,7 @@ export const JAVA_EPISODES = [
         "id": 35,
         "title": "EP 35 – ATM Machine Project in Java 💳 | Java Full Course",
         "youtubeId": "WQz4v5ZERJE",
-        "thumbnail": "/Thumbnail/ep-35-Can a Beginner Build an ATM in Java Yes — And So Can You 💳  Java Full Course.png",
+        "thumbnail": "https://img.youtube.com/vi/WQz4v5ZERJE/maxresdefault.jpg",
         "tags": [
             "Java",
             "Project"
@@ -4656,7 +4656,7 @@ export const JAVA_EPISODES = [
         "id": 36,
         "title": "EP 36 – Don't Start Pattern Programming ❌ Watch This First",
         "youtubeId": "OQ8-_LNw8M4",
-        "thumbnail": "/Thumbnail/ep-36-Don't Start Pattern Programming ❌ Watch This First.png",
+        "thumbnail": "https://img.youtube.com/vi/OQ8-_LNw8M4/maxresdefault.jpg",
         "tags": [
             "Java",
             "Patterns"
@@ -5861,8 +5861,1624 @@ export const JAVA_EPISODES = [
                 }
             ]
         }
+    },
+    {
+        "id": 45,
+        "title": "EP 45 – 2D Array in Java Tutorial | Matrix & Grid Representation",
+        "youtubeId": "NdBQvFb0jsU",
+        "thumbnail": "https://img.youtube.com/vi/NdBQvFb0jsU/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Arrays",
+            "2D Arrays",
+            "Matrix"
+        ],
+        "notes": {
+            "intro": "जब डेटा टेबल (Rows और Columns) के रूप में हो (जैसे Tic-Tac-Toe बोर्ड, एक्सेल शीट या इमेज पिक्सल्स), तब हम 2D Array का इस्तेमाल करते हैं। आज हम 2D Array के निर्माण, इनिशियलाइजेशन और ट्रैवर्सल को गहराई से समझेंगे।",
+            "topics": [
+                "🔲 What is a 2D Array? Rows, columns, and matrix mental model",
+                "💾 Contiguous row-major memory allocation in Heap",
+                "🛠️ 2D Array declaration, initialization, and direct literal syntax",
+                "🔄 Traversing 2D arrays using Nested Loops and Enhanced For-Each",
+                "📏 Understanding .length (row count) vs [0].length (column count)"
+            ],
+            "code": "public class TwoDArrayDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. 2D Array Creation & Memory Mapping ===\");\n        // Syntax 1: Explicit Declaration with dimensions (3 rows, 4 columns)\n        int[][] matrix = new int[3][4];\n\n        // Populate the 2D array\n        int count = 1;\n        for (int row = 0; row < matrix.length; row++) {\n            for (int col = 0; col < matrix[row].length; col++) {\n                matrix[row][col] = count++;\n            }\n        }\n\n        // Print row by row (Traditional nested for-loops)\n        System.out.println(\"Matrix elements (3x4):\");\n        for (int i = 0; i < matrix.length; i++) {\n            for (int j = 0; j < matrix[i].length; j++) {\n                System.out.printf(\"%4d\", matrix[i][j]);\n            }\n            System.out.println();\n        }\n\n        System.out.println(\"\\n=== 2. Direct Literal Initialization of 2D Array ===\");\n        int[][] marks = {\n            { 85, 90, 78 }, // Student 0\n            { 76, 88, 95 }, // Student 1\n            { 92, 79, 89 }  // Student 2\n        };\n\n        System.out.println(\"Student Marks Table (Using Enhanced For-Loop):\");\n        int studentId = 1;\n        for (int[] row : marks) {\n            System.out.print(\"Student \" + studentId++ + \": \");\n            int total = 0;\n            for (int mark : row) {\n                System.out.print(mark + \" \");\n                total += mark;\n            }\n            System.out.println(\"| Total: \" + total);\n        }\n\n        System.out.println(\"\\n=== 3. Behind the Scenes: Length in 2D Array ===\");\n        System.out.println(\"marks.length (Number of Rows): \" + marks.length);\n        System.out.println(\"marks[0].length (Columns in Row 0): \" + marks[0].length);\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What does 'matrix.length' return for a 2D array 'int[][] matrix = new int[3][4]'?",
+                    "answer": "matrix.length returns the number of rows (which is 3).",
+                    "options": [
+                        "The number of columns (4)",
+                        "The number of rows (3)",
+                        "The total elements (12)",
+                        "0"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does 'matrix[0].length' return in a 2D array?",
+                    "answer": "It returns the number of columns in row 0 (which is 4).",
+                    "options": [
+                        "Number of rows",
+                        "Number of columns in row 0",
+                        "Total size in bytes",
+                        "Array hashcode"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How is a 2D array represented in the JVM Heap?",
+                    "answer": "In Java, a 2D array is an array of references pointing to separate 1D array objects.",
+                    "options": [
+                        "A single flat continuous matrix block",
+                        "An array of references pointing to separate 1D array objects",
+                        "Stack memory buffer",
+                        "Bytecode registry"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What loop construct is standard for traversing all elements in a 2D array?",
+                    "answer": "Nested for-loops (outer loop for rows, inner loop for columns).",
+                    "options": [
+                        "Single while loop",
+                        "Nested for-loops",
+                        "Switch statement",
+                        "Ternary operator"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the total capacity of 'int[][] grid = new int[4][5]'?",
+                    "answer": "4 rows * 5 columns = 20 integer elements.",
+                    "options": [
+                        "9 elements",
+                        "20 elements",
+                        "4 elements",
+                        "5 elements"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the default value of elements in a newly allocated 'int[2][2]'?",
+                    "answer": "0 for primitive integer types.",
+                    "options": [
+                        "null",
+                        "0",
+                        "garbage value",
+                        "-1"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Can an enhanced for-each loop be used to iterate over a 2D array?",
+                    "answer": "Yes, by looping over 'int[] row' in the outer loop and 'int val' in the inner loop.",
+                    "options": [
+                        "No, impossible",
+                        "Yes, with nested for-each loops",
+                        "Only for 1D arrays",
+                        "Only if array is static"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What happens if you access 'matrix[3][0]' on 'int[][] matrix = new int[3][4]'?",
+                    "answer": "It throws ArrayIndexOutOfBoundsException because valid row indices are 0, 1, 2.",
+                    "options": [
+                        "Returns 0",
+                        "Returns null",
+                        "Throws ArrayIndexOutOfBoundsException",
+                        "Compiles with warning"
+                    ],
+                    "correctIndex": 2
+                },
+                {
+                    "question": "Which of the following correctly declares and initializes a 2D array with values?",
+                    "answer": "int[][] arr = { {1, 2}, {3, 4} };",
+                    "options": [
+                        "int[][] arr = (1, 2), (3, 4);",
+                        "int[][] arr = { {1, 2}, {3, 4} };",
+                        "int arr[2][2] = {1, 2, 3, 4};",
+                        "2D int arr = [1, 2, 3, 4];"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Are rows in a standard 2D array guaranteed to be stored sequentially adjacent in physical RAM?",
+                    "answer": "No, each 1D row array is an independent object in Heap memory allocated by the JVM.",
+                    "options": [
+                        "Yes, always contiguous",
+                        "No, each row is a separate object in Heap",
+                        "Stored on CPU registers",
+                        "Stored in Method Area"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 46,
+        "title": "EP 46 – Jagged Arrays in Java Explained (Uneven / Ragged Arrays)",
+        "youtubeId": "Tr2F6ySKGS4",
+        "thumbnail": "https://img.youtube.com/vi/Tr2F6ySKGS4/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Arrays",
+            "Jagged Arrays"
+        ],
+        "notes": {
+            "intro": "Jagged Array (विषम / Ragged Array) वह 2D Array होता है जिसमें हर Row की लंबाई (Columns की संख्या) अलग-अलग हो सकती है! यह मेमोरी की बर्बादी को रोकने का सबसे बेहतरीन तरीका है।",
+            "topics": [
+                "🧩 What is a Jagged (Ragged) Array and why does it exist?",
+                "💡 Real-world scenario: Uneven college branch batch sizes saving memory",
+                "🏗️ 2-step memory allocation: Defining rows first, then individual columns",
+                "⚡ Direct literal initialization with varying row lengths",
+                "🔍 Stack and Heap memory pointer structure for jagged arrays"
+            ],
+            "code": "public class JaggedArrayDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. What is a Jagged Array? (Ragged Array) ===\");\n        // A Jagged Array is an array of arrays where each member array can have a DIFFERENT length.\n        // Step 1: Declare the number of rows only! (Columns remain unspecified)\n        int[][] collegeBranches = new int[3][];\n\n        // Step 2: Allocate memory for each row individually\n        collegeBranches[0] = new int[2]; // Branch 0 (e.g. AI/ML - 2 students)\n        collegeBranches[1] = new int[4]; // Branch 1 (e.g. CSE - 4 students)\n        collegeBranches[2] = new int[3]; // Branch 2 (e.g. ECE - 3 students)\n\n        // Assign sample roll numbers\n        int roll = 101;\n        for (int i = 0; i < collegeBranches.length; i++) {\n            for (int j = 0; j < collegeBranches[i].length; j++) {\n                collegeBranches[i][j] = roll++;\n            }\n        }\n\n        // Print Jagged Array\n        System.out.println(\"College Branches Roster:\");\n        for (int i = 0; i < collegeBranches.length; i++) {\n            System.out.print(\"Branch \" + i + \" (Size \" + collegeBranches[i].length + \"): \");\n            for (int j = 0; j < collegeBranches[i].length; j++) {\n                System.out.print(collegeBranches[i][j] + \" \");\n            }\n            System.out.println();\n        }\n\n        System.out.println(\"\\n=== 2. Direct Literal Jagged Array Initialization ===\");\n        int[][] skillsLevel = {\n            { 1 },\n            { 1, 2, 3 },\n            { 1, 2, 3, 4, 5 },\n            { 1, 2 }\n        };\n\n        for (int[] row : skillsLevel) {\n            for (int val : row) {\n                System.out.print(val + \" \");\n            }\n            System.out.println();\n        }\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What is a Jagged Array in Java?",
+                    "answer": "A multidimensional array where member sub-arrays (rows) have varying column lengths.",
+                    "options": [
+                        "An array with fixed equal rows and columns",
+                        "A multidimensional array where rows have different column lengths",
+                        "An array with broken references",
+                        "A sorted 1D array"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How do you declare a Jagged Array with 3 rows without specifying column size initially?",
+                    "answer": "int[][] arr = new int[3][];",
+                    "options": [
+                        "int[][] arr = new int[][3];",
+                        "int[][] arr = new int[3][];",
+                        "int[][] arr = new int[3][0];",
+                        "int[] arr = new int[3];"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the initial value of 'arr[0]' right after 'int[][] arr = new int[3][]'?",
+                    "answer": "null, because individual row arrays have not been allocated yet.",
+                    "options": [
+                        "0",
+                        "null",
+                        "empty array of size 0",
+                        "Garbage address"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What happens if you access 'arr[0][0]' immediately after 'int[][] arr = new int[3][]'?",
+                    "answer": "NullPointerException because arr[0] is null.",
+                    "options": [
+                        "Returns 0",
+                        "NullPointerException",
+                        "ArrayIndexOutOfBoundsException",
+                        "Returns -1"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the primary advantage of Jagged Arrays over rectangular 2D arrays?",
+                    "answer": "Memory optimization by avoiding unused pre-allocated column slots.",
+                    "options": [
+                        "Faster compilation",
+                        "Memory optimization by allocating only required space per row",
+                        "Allows different data types",
+                        "Automatic resizing"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Can a Jagged Array be created using direct literal initialization?",
+                    "answer": "Yes, e.g. int[][] arr = { {1}, {2, 3, 4}, {5, 6} };",
+                    "options": [
+                        "No, must use new keyword",
+                        "Yes, using nested curly braces of different lengths",
+                        "Only in Java 21+",
+                        "Only for String arrays"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "In a Jagged Array, how do you find the number of elements in row 'i'?",
+                    "answer": "arr[i].length",
+                    "options": [
+                        "arr.length",
+                        "arr[i].length",
+                        "arr.columns(i)",
+                        "arr[i].size()"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Is 'int[][] a = new int[][4];' valid Java syntax?",
+                    "answer": "No, in Java the first dimension (rows) MUST be specified during size allocation.",
+                    "options": [
+                        "Yes, completely valid",
+                        "No, first dimension (row size) must be specified",
+                        "Only valid for float arrays",
+                        "Yes, creates column matrix"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How many total reference pointers are created for 'int[][] jagged = new int[3][]' in Heap?",
+                    "answer": "One array object containing 3 null reference pointers.",
+                    "options": [
+                        "3 objects with 0 pointers",
+                        "One array object holding 3 reference pointers",
+                        "0 references",
+                        "Infinite references"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Which real-life scenario is best suited for a Jagged Array?",
+                    "answer": "A college department where different classrooms have different numbers of enrolled students.",
+                    "options": [
+                        "A chessboard (8x8)",
+                        "Classrooms with different student counts per section",
+                        "Tic-Tac-Toe game board",
+                        "A mathematical square matrix"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 47,
+        "title": "EP 47 – Multidimensional Array in Java (3D Array with Memory Map)",
+        "youtubeId": "pTq116MR-Ds",
+        "thumbnail": "https://img.youtube.com/vi/pTq116MR-Ds/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Arrays",
+            "3D Arrays",
+            "Memory"
+        ],
+        "notes": {
+            "intro": "3D Array असल में '2D Arrays का एक Array' होता है (जैसे एक किताब जिसमें कई पन्ने या टेबल्स हों)। आज हम 3D Array के मेमोरी पॉइंटर्स और हीप आर्किटेक्चर को विजुअलाइज करेंगे।",
+            "topics": [
+                "🏢 Mental Model: 3D Array as an 'Array of 2D Arrays' (Blocks, Rows, Columns)",
+                "🧠 Multi-level pointer addressing in Heap (Block -> Row -> Value)",
+                "🛠️ Syntax new int[blocks][rows][cols] and nested 3-level loops",
+                "📍 Memory addresses and reference verification at each dimension",
+                "🚀 Real-world applications: 3D Graphics, Campus-Class-Student data"
+            ],
+            "code": "public class ThreeDArrayMemoryDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. 3D Array Creation & Concept ===\");\n        // Mental Model: A 3D Array is an \"Array of 2D Arrays\" (or a Book of Pages/Tables)\n        // [Blocks/Pages][Rows][Columns]\n        // 2 Blocks (Colleges), 3 Rows (Classes), 2 Columns (Students)\n        int[][][] university = new int[2][3][2];\n\n        int score = 50;\n        for (int b = 0; b < university.length; b++) {\n            for (int r = 0; r < university[b].length; r++) {\n                for (int c = 0; c < university[b][r].length; c++) {\n                    university[b][r][c] = score++;\n                }\n            }\n        }\n\n        // Print 3D Array block-by-block\n        for (int b = 0; b < university.length; b++) {\n            System.out.println(\"--- Campus / Block \" + (b + 1) + \" ---\");\n            for (int r = 0; r < university[b].length; r++) {\n                System.out.print(\"Class \" + (r + 1) + \": \");\n                for (int c = 0; c < university[b][r].length; c++) {\n                    System.out.print(university[b][r][c] + \" \");\n                }\n                System.out.println();\n            }\n        }\n\n        System.out.println(\"\\n=== 2. Memory References in 3D Array ===\");\n        System.out.println(\"university Reference: \" + university);\n        System.out.println(\"university[0] (Points to 2D Array): \" + university[0]);\n        System.out.println(\"university[0][0] (Points to 1D Array): \" + university[0][0]);\n        System.out.println(\"university[0][0][0] (Actual Value): \" + university[0][0][0]);\n    }\n}",
+            "quiz": [
+                {
+                    "question": "How is a 3D array structured mentally in Java?",
+                    "answer": "An array of 2D arrays (Blocks/Pages -> Rows -> Columns).",
+                    "options": [
+                        "A flat 1D memory array",
+                        "An array of 2D arrays",
+                        "A cube stored in CPU registers",
+                        "A hashmap of trees"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How many total elements are in 'int[][][] arr = new int[2][3][4]'?",
+                    "answer": "2 * 3 * 4 = 24 elements.",
+                    "options": [
+                        "9 elements",
+                        "24 elements",
+                        "12 elements",
+                        "14 elements"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does 'university[0]' represent in 'int[][][] university = new int[2][3][2]'?",
+                    "answer": "A reference pointer to a 2D array object in Heap.",
+                    "options": [
+                        "A single integer value",
+                        "A reference pointer to a 2D array",
+                        "The length of block 0",
+                        "Null always"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does 'university[0][0]' represent in a 3D array?",
+                    "answer": "A reference pointer to a 1D array object in Heap.",
+                    "options": [
+                        "A reference pointer to a 1D array",
+                        "The first integer value",
+                        "Total rows in 3D array",
+                        "Garbage collector address"
+                    ],
+                    "correctIndex": 0
+                },
+                {
+                    "question": "How many nested loops are typically needed to traverse a 3D array?",
+                    "answer": "3 nested loops (for blocks, rows, and columns).",
+                    "options": [
+                        "1 loop",
+                        "2 loops",
+                        "3 nested loops",
+                        "4 loops"
+                    ],
+                    "correctIndex": 2
+                },
+                {
+                    "question": "What is 'arr.length' for 'int[][][] arr = new int[4][5][6]'?",
+                    "answer": "4 (the size of the first dimension / number of 2D blocks).",
+                    "options": [
+                        "4",
+                        "5",
+                        "6",
+                        "120"
+                    ],
+                    "correctIndex": 0
+                },
+                {
+                    "question": "What is 'arr[0].length' for 'int[][][] arr = new int[4][5][6]'?",
+                    "answer": "5 (the number of rows in block 0).",
+                    "options": [
+                        "4",
+                        "5",
+                        "6",
+                        "30"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is 'arr[0][0].length' for 'int[][][] arr = new int[4][5][6]'?",
+                    "answer": "6 (the number of columns in row 0 of block 0).",
+                    "options": [
+                        "4",
+                        "5",
+                        "6",
+                        "120"
+                    ],
+                    "correctIndex": 2
+                },
+                {
+                    "question": "Which domain commonly utilizes 3D or N-dimensional arrays?",
+                    "answer": "3D Graphics, Physics simulations, Video processing, and spatial datasets.",
+                    "options": [
+                        "Simple hello world CLI apps",
+                        "3D Computer Graphics, Medical imaging (MRI/CT), & Physics modeling",
+                        "Single database queries",
+                        "CSS color styling"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Does Java store 3D arrays as true physical contiguous 3D memory cubes?",
+                    "answer": "No, Java uses multi-level arrays of references pointing to lower-dimensional array objects in Heap.",
+                    "options": [
+                        "Yes, continuous 3D hardware cube",
+                        "No, it uses multi-level reference pointer trees in Heap",
+                        "Stored on ROM",
+                        "None of these"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 48,
+        "title": "EP 48 – Array of Objects in Java | Real-Life OOP Integration",
+        "youtubeId": "qfo8fX5tHLA",
+        "thumbnail": "https://img.youtube.com/vi/qfo8fX5tHLA/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "OOPs",
+            "Arrays",
+            "Objects"
+        ],
+        "notes": {
+            "intro": "जब हमें अपने कस्टम क्लास (जैसे Student, Employee, BankAccount) के कई ऑब्जेक्ट्स को एक साथ मैनेज करना हो, तब हम Array of Objects का इस्तेमाल करते हैं। आज हम Reference allocation और NullPointerException के जाल को समझेंगे।",
+            "topics": [
+                "👥 Integrating OOP with Arrays: Array of Class References",
+                "⚠️ The NullPointerException trap: Array allocation vs Object instantiation",
+                "🏗️ 2-step object array creation: Reference array in Stack/Heap + new ClassName()",
+                "🏷️ Direct literal array of objects initialization",
+                "🔄 Iterating through object arrays using enhanced for loop & method calls"
+            ],
+            "code": "class Student {\n    int rollNo;\n    String name;\n    double marks;\n\n    // Parameterized Constructor\n    Student(int rollNo, String name, double marks) {\n        this.rollNo = rollNo;\n        this.name = name;\n        this.marks = marks;\n    }\n\n    void displayInfo() {\n        System.out.println(\"Roll No: \" + rollNo + \" | Name: \" + name + \" | Marks: \" + marks + \"%\");\n    }\n}\n\npublic class ArrayOfObjectsDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. Creating Array of Objects ===\");\n        // Step 1: Create the array of references (Capacity for 3 Student references)\n        // NOTE: This does NOT create 3 Student objects yet! It fills the array with null!\n        Student[] batch = new Student[3];\n\n        System.out.println(\"Initial value before object initialization: \" + batch[0]); // prints null\n\n        // Step 2: Initialize individual Student objects\n        batch[0] = new Student(101, \"Aman Kumar\", 89.5);\n        batch[1] = new Student(102, \"Priya Sharma\", 94.0);\n        batch[2] = new Student(103, \"Rohan Verma\", 76.2);\n\n        // Step 3: Traversal using Enhanced For Loop\n        System.out.println(\"\\n--- Batch Details ---\");\n        for (Student s : batch) {\n            s.displayInfo();\n        }\n\n        System.out.println(\"\\n=== 2. Direct Literal Array of Objects ===\");\n        Student[] topPerformers = {\n            new Student(1, \"Sneha\", 98.4),\n            new Student(2, \"Vikram\", 96.1)\n        };\n\n        for (Student s : topPerformers) {\n            System.out.println(\"Top Performer: \" + s.name + \" (\" + s.marks + \"%)\");\n        }\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What does 'Student[] arr = new Student[5];' actually allocate in memory?",
+                    "answer": "An array of 5 Student reference pointers initialized to null (no Student objects created yet).",
+                    "options": [
+                        "5 fully constructed Student objects",
+                        "An array of 5 null reference pointers",
+                        "A single Student object with size 5",
+                        "Stack memory variables"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What happens if you execute 'batch[0].displayInfo()' right after 'Student[] batch = new Student[3]'?",
+                    "answer": "NullPointerException because batch[0] is null.",
+                    "options": [
+                        "Displays default info",
+                        "NullPointerException",
+                        "ArrayIndexOutOfBoundsException",
+                        "Compiles fine, does nothing"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How do you instantiate an individual element in an Array of Objects?",
+                    "answer": "batch[0] = new Student(101, \"Aman\", 89.5);",
+                    "options": [
+                        "batch[0] = Student;",
+                        "batch[0] = new Student(101, \"Aman\", 89.5);",
+                        "Student[0] = new batch();",
+                        "batch.add(Student);"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Can an Array of Objects hold subclasses of the declared class type?",
+                    "answer": "Yes, due to Java polymorphism (e.g. Animal[] can hold Dog and Cat objects).",
+                    "options": [
+                        "No, exact type only",
+                        "Yes, polymorphism allows subclass objects in parent class array",
+                        "Only in interfaces",
+                        "Only with typecasting"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the default value of elements inside 'Employee[] staff = new Employee[10]'?",
+                    "answer": "null for all 10 slots.",
+                    "options": [
+                        "0",
+                        "null",
+                        "new Employee()",
+                        "empty object"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Which loop is cleanest for calling a display method on every object in an object array?",
+                    "answer": "Enhanced for-each loop: for (Student s : batch) { s.displayInfo(); }",
+                    "options": [
+                        "Enhanced for-each loop",
+                        "Infinite while loop",
+                        "do-while loop with counter",
+                        "Recursive helper only"
+                    ],
+                    "correctIndex": 0
+                },
+                {
+                    "question": "Can we initialize an array of objects using array literal syntax?",
+                    "answer": "Yes, e.g. Student[] s = { new Student(1, \"A\"), new Student(2, \"B\") };",
+                    "options": [
+                        "No, forbidden in Java",
+                        "Yes, with comma separated 'new ClassName()' objects inside curly braces",
+                        "Only for String class",
+                        "Only if constructor is private"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Where are the actual Student instances located when stored in an array of objects?",
+                    "answer": "In Heap memory; the array simply holds references to those Heap objects.",
+                    "options": [
+                        "Stack memory",
+                        "Heap memory",
+                        "JVM Registry",
+                        "Class metadata loader"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is 'batch.length' for 'Student[] batch = new Student[4]'?",
+                    "answer": "4 (the capacity of the reference array).",
+                    "options": [
+                        "0 until objects are added",
+                        "4",
+                        "Null",
+                        "Size of Student fields in bytes"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How can you safely iterate through an array of objects that might contain uninitialized slots?",
+                    "answer": "Check if 'element != null' before invoking methods on it.",
+                    "options": [
+                        "Use try-catch for all lines",
+                        "Check if 'element != null' before accessing methods/fields",
+                        "Set array size to 0",
+                        "Avoid using arrays"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 49,
+        "title": "EP 49 – Drawbacks & Limitations of Arrays in Java (Why Collections Framework?)",
+        "youtubeId": "iPV6PF28nlg",
+        "thumbnail": "https://img.youtube.com/vi/iPV6PF28nlg/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Arrays",
+            "Collections",
+            "Limitations"
+        ],
+        "notes": {
+            "intro": "जावा में Array शक्तिशाली और तेज़ है, लेकिन इसकी 4 बड़ी सीमाएं हैं। आज हम समझेंगे कि Array कहाँ विफल होता है और क्यों Java Collections Framework (ArrayList, LinkedList) का जन्म हुआ।",
+            "topics": [
+                "🔒 Drawback 1: Fixed Size & Static Allocation (ArrayIndexOutOfBoundsException)",
+                "🔠 Drawback 2: Homogeneous Elements only (Cannot mix types)",
+                "🧱 Drawback 3: Contiguous Memory Requirement & OutOfMemoryError risk",
+                "⚙️ Drawback 4: Lack of built-in ready-made methods for insertion, deletion, sorting",
+                "💡 The Gateway to Java Collections Framework (ArrayList, LinkedList)"
+            ],
+            "code": "public class ArrayDrawbacksDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. Drawback 1: Fixed Size (Static Allocation) ===\");\n        int[] fixedArray = new int[3];\n        fixedArray[0] = 10;\n        fixedArray[1] = 20;\n        fixedArray[2] = 30;\n\n        System.out.println(\"Array size fixed at: \" + fixedArray.length);\n        // Trying to add 4th element throws ArrayIndexOutOfBoundsException:\n        // fixedArray[3] = 40; // ERROR at runtime!\n\n        System.out.println(\"\\n=== 2. Drawback 2: Homogeneous Data Type Only ===\");\n        // An int array cannot hold Strings or Booleans!\n        // int[] mixed = { 10, \"Hello\", true }; // COMPILE TIME ERROR!\n\n        System.out.println(\"\\n=== 3. Drawback 3: Contiguous Memory Requirement ===\");\n        // Java requires a continuous uninterrupted block of Heap memory.\n        // Even if 1GB total RAM is free in fragments, allocating a large continuous array might throw OutOfMemoryError.\n\n        System.out.println(\"\\n=== 4. Drawback 4: Lack of Built-in Ready Methods ===\");\n        // No built-in methods to directly insert at index 0, delete, sort without manual shift or utility libraries.\n        System.out.println(\"To insert or delete, we must manually shift all elements!\");\n\n        System.out.println(\"\\n💡 Solution Preview: Java Collections Framework (ArrayList, LinkedList, etc.)!\");\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What is the biggest limitation of Arrays in Java?",
+                    "answer": "Fixed size: Once an array is created, its size cannot grow or shrink dynamically.",
+                    "options": [
+                        "Arrays are very slow",
+                        "Fixed size: Length cannot be altered after creation",
+                        "Arrays cannot store numbers",
+                        "Arrays don't work with loops"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What type of data can be stored inside 'int[]'?",
+                    "answer": "Homogeneous integer data only; incompatible types cause compilation error.",
+                    "options": [
+                        "Any mixed data types",
+                        "Homogeneous integer data only",
+                        "Only Strings",
+                        "Only objects"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What memory requirement does an array have in Heap?",
+                    "answer": "It requires a contiguous, unbroken block of memory for all its elements.",
+                    "options": [
+                        "Fragmented scattered blocks",
+                        "Contiguous continuous block of Heap memory",
+                        "Virtual page cache only",
+                        "Thread local stack only"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What exception is thrown if you try to insert an element past array capacity?",
+                    "answer": "ArrayIndexOutOfBoundsException",
+                    "options": [
+                        "NullPointerException",
+                        "ArrayIndexOutOfBoundsException",
+                        "ArrayOverflowException",
+                        "CapacityExceededException"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Does a primitive array have built-in methods like .add() or .remove()?",
+                    "answer": "No, standard Java arrays do not provide built-in dynamic insertion/deletion methods.",
+                    "options": [
+                        "Yes, arr.add() exists",
+                        "No, manual element shifting or Collections framework is required",
+                        "Yes, arr.insert() exists",
+                        "Only in Java 17+"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Which Java framework was designed to overcome the limitations of fixed arrays?",
+                    "answer": "Java Collections Framework (ArrayList, LinkedList, HashSet, HashMap, etc.).",
+                    "options": [
+                        "Java AWT Framework",
+                        "Java Collections Framework",
+                        "Java Spring Boot",
+                        "Java Swing"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How does ArrayList differ fundamentally from a standard Array in terms of sizing?",
+                    "answer": "ArrayList is dynamically resizable: it automatically grows when elements exceed capacity.",
+                    "options": [
+                        "ArrayList has fixed size 10 forever",
+                        "ArrayList automatically grows and shrinks dynamically",
+                        "ArrayList only holds primitives",
+                        "ArrayList cannot hold objects"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What happens if total free memory in RAM is 500MB, but fragmented so no continuous 100MB block is available for a huge array?",
+                    "answer": "JVM may throw OutOfMemoryError due to lack of contiguous memory.",
+                    "options": [
+                        "Array splits automatically across disks",
+                        "JVM throws OutOfMemoryError",
+                        "JVM freezes permanently",
+                        "Array shrinks to 10MB"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the time complexity of deleting an element at index 0 in an array of size N?",
+                    "answer": "O(N) because all remaining N-1 elements must be shifted left by one index.",
+                    "options": [
+                        "O(1)",
+                        "O(N) due to manual shifting of remaining elements",
+                        "O(log N)",
+                        "O(N^2)"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "When is a standard Java array still preferred over an ArrayList?",
+                    "answer": "When size is known, fixed, and maximum raw performance/memory efficiency with primitives is needed.",
+                    "options": [
+                        "When dynamic resizing is required",
+                        "When size is fixed, known, and maximum speed with primitive types is essential",
+                        "Never, arrays are deprecated",
+                        "When storing key-value pairs"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 50,
+        "title": "EP 50 – String in Java Explained | Class, Object & Heap Memory",
+        "youtubeId": "90HtCz7mNiM",
+        "thumbnail": "https://img.youtube.com/vi/90HtCz7mNiM/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Strings",
+            "Memory",
+            "OOPs"
+        ],
+        "notes": {
+            "intro": "जावा में String कोई प्रिमिटिव डेटा टाइप (जैसे int, char) नहीं है। यह java.lang पैकेज की एक Class है। आज हम String Object Creation और Stack vs Heap Memory Architecture को गहराई से समझेंगे।",
+            "topics": [
+                "📦 java.lang.String Class Architecture & Encapsulated char[]",
+                "🏗️ 3 Ways to create Strings: String Literal, new keyword, and char[]",
+                "🧠 Memory mapping: String Constant Pool (SCP) vs Normal Heap Area",
+                "⚖️ Reference comparison == vs content comparison .equals()",
+                "🔍 Why Strings represent 70%+ of enterprise application memory"
+            ],
+            "code": "public class _01_StringBasicsHeapDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. What is a String in Java? ===\");\n        // String is NOT a primitive data type; it is a CLASS in java.lang package.\n        // Behind the scenes (historically), String encapsulates a char[] array.\n\n        // Way 1: String Literal (Stored in String Constant Pool)\n        String str1 = \"Java2026\";\n\n        // Way 2: Using 'new' Keyword (Stored in normal Heap area + SCP)\n        String str2 = new String(\"Java2026\");\n\n        // Way 3: From Character Array\n        char[] charArr = { 'H', 'e', 'l', 'l', 'o' };\n        String str3 = new String(charArr);\n\n        System.out.println(\"str1 (Literal): \" + str1);\n        System.out.println(\"str2 (new keyword): \" + str2);\n        System.out.println(\"str3 (from char[]): \" + str3);\n\n        System.out.println(\"\\n=== 2. Memory References Check ===\");\n        // str1 points to SCP, str2 points to Heap\n        System.out.println(\"Are str1 and str2 pointing to same memory address? \" + (str1 == str2)); // false\n        System.out.println(\"Is content of str1 and str2 equal? \" + str1.equals(str2)); // true\n    }\n}",
+            "quiz": [
+                {
+                    "question": "Is String a primitive data type in Java?",
+                    "answer": "No, String is a class in the java.lang package.",
+                    "options": [
+                        "Yes, like int and boolean",
+                        "No, it is a Class in java.lang package",
+                        "It is an interface",
+                        "It is a primitive wrapper only"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Where are String Literals (e.g. String s = \"Java\";) stored in memory?",
+                    "answer": "In the String Constant Pool (SCP), a dedicated area inside the Heap.",
+                    "options": [
+                        "Stack memory",
+                        "String Constant Pool (SCP) inside Heap",
+                        "CPU cache",
+                        "Disk drive"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Where is a String created with the 'new' keyword (e.g. new String(\"Java\")) stored?",
+                    "answer": "In the general Heap memory (and guarantees \"Java\" exists in SCP).",
+                    "options": [
+                        "Directly on Stack",
+                        "In normal Heap memory",
+                        "In Method Area only",
+                        "In native code registry"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does 'str1 == str2' compare when str1 is a literal and str2 is created with 'new'?",
+                    "answer": "It compares memory reference addresses, returning false.",
+                    "options": [
+                        "Character content (true)",
+                        "Memory addresses (false)",
+                        "String length",
+                        "Alphabetical order"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Which method is used to compare the actual character content of two String objects?",
+                    "answer": ".equals()",
+                    "options": [
+                        "==",
+                        ".equals()",
+                        ".compareAddress()",
+                        ".isSame()"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Can a String be created from a 'char[]' array?",
+                    "answer": "Yes, using the constructor 'new String(charArr)'.",
+                    "options": [
+                        "No, never",
+                        "Yes, using 'new String(charArray)' constructor",
+                        "Only with loop",
+                        "Only in Java 8"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Which package does the String class belong to, and does it require an explicit import statement?",
+                    "answer": "java.lang package; it is imported automatically into every Java file.",
+                    "options": [
+                        "java.util (must import)",
+                        "java.lang (imported automatically by compiler)",
+                        "java.text (must import)",
+                        "java.io"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What underlying data structure was historically used inside the Java String class to store characters?",
+                    "answer": "An array of characters (char[]), optimized to byte[] with Latin-1/UTF-16 encoding in modern Java.",
+                    "options": [
+                        "LinkedList",
+                        "Character array (char[]) / Compact byte[]",
+                        "HashMap",
+                        "Stack buffer"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is printed by: String s = null; System.out.println(s);?",
+                    "answer": "It prints 'null'.",
+                    "options": [
+                        "NullPointerException",
+                        "null",
+                        "Empty string",
+                        "Compilation Error"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is printed by: String s = null; System.out.println(s.length());?",
+                    "answer": "NullPointerException because a method is called on a null reference.",
+                    "options": [
+                        "0",
+                        "null",
+                        "NullPointerException",
+                        "-1"
+                    ],
+                    "correctIndex": 2
+                }
+            ]
+        }
+    },
+    {
+        "id": 51,
+        "title": "EP 51 – Types of String in Java | Mutable vs Immutable | Why String is Immutable?",
+        "youtubeId": "e-cgU433hgU",
+        "thumbnail": "https://img.youtube.com/vi/e-cgU433hgU/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Strings",
+            "Immutability",
+            "Security"
+        ],
+        "notes": {
+            "intro": "Immutability (अपरिवर्तनीयता) का अर्थ: एक बार जब हीप मेमोरी में String का Object बन जाता है, तो उसके अंदर का डेटा कभी बदला नहीं जा सकता। आज हम समझेंगे कि String Immutable क्यों है और Mutable विकल्प (StringBuilder/StringBuffer) कब इस्तेमाल करें।",
+            "topics": [
+                "🔒 What is String Immutability (अपरिवर्तनीयता)?",
+                "💥 The .concat() behavior: Why original strings never change in-place",
+                "🛠️ Introduction to Mutable Strings: StringBuilder & StringBuffer",
+                "🔐 Top 4 Reasons String is Immutable: Security, Thread Safety, SCP, HashCode Caching",
+                "🎯 Top Interview Trap: Reassignment vs In-place mutation"
+            ],
+            "code": "public class _02_MutableVsImmutableDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. String Immutability (अपरिवर्तनीयता) ===\");\n        // Once a String object is created in Java, its state/content CANNOT be modified.\n        String original = \"Hello\";\n        \n        // Calling concat returns a BRAND NEW String object in Heap; original remains unchanged!\n        original.concat(\" World\");\n        \n        System.out.println(\"Original String after concat without re-assignment: \" + original); // Prints: Hello\n\n        // To keep the change, we must explicitly re-assign the reference:\n        original = original.concat(\" World\");\n        System.out.println(\"Original String after re-assignment: \" + original); // Prints: Hello World\n\n        System.out.println(\"\\n=== 2. Mutable Alternative: StringBuilder / StringBuffer ===\");\n        // Unlike String, StringBuilder allows in-place modifications without creating new objects\n        StringBuilder sb = new StringBuilder(\"Hello\");\n        sb.append(\" World\"); // Modifies same object in Heap!\n        System.out.println(\"StringBuilder modified in-place: \" + sb);\n\n        System.out.println(\"\\n=== 3. Why is String Immutable in Java? ===\");\n        System.out.println(\"1. Security: Database usernames, passwords & Network URLs cannot be hijacked.\");\n        System.out.println(\"2. Thread Safety: Multiple threads can safely read shared strings without synchronization.\");\n        System.out.println(\"3. String Constant Pool (SCP): Sharing identical strings saves huge memory.\");\n        System.out.println(\"4. HashCode Caching: Safe for use as Keys in HashMap and HashSet.\");\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What does 'Immutability' mean in the context of Java Strings?",
+                    "answer": "Once a String object is created in Heap memory, its content cannot be altered.",
+                    "options": [
+                        "The variable name cannot be changed",
+                        "The content of the String object cannot be modified after creation",
+                        "Strings cannot be printed",
+                        "Strings cannot be concatenated"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does 's.concat(\" World\");' do if 's = \"Hello\"' and the return value is NOT assigned back?",
+                    "answer": "It creates a new \"Hello World\" object in Heap, but 's' still points to \"Hello\".",
+                    "options": [
+                        "Modifies 's' to \"Hello World\"",
+                        "'s' remains \"Hello\" because String is immutable",
+                        "Throws an error",
+                        "Deletes 's'"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Why is String Immutability critical for application security?",
+                    "answer": "Critical data like database URLs, usernames, passwords, and socket ports cannot be changed by malicious code.",
+                    "options": [
+                        "It prevents all runtime exceptions",
+                        "It ensures sensitive configuration (passwords, URLs) cannot be corrupted or altered across threads",
+                        "It encrypts strings automatically",
+                        "It makes programs run without JVM"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How does String Immutability ensure Thread Safety?",
+                    "answer": "Because string state never changes, multiple concurrent threads can share and read strings without race conditions.",
+                    "options": [
+                        "It locks the CPU",
+                        "Multiple threads can safely read shared string instances without synchronization overhead",
+                        "It halts background threads",
+                        "It allows thread editing"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Why is HashCode caching a benefit of String Immutability?",
+                    "answer": "The hashCode is computed once and cached, making HashMap key lookups lightning fast.",
+                    "options": [
+                        "It prevents memory leaks",
+                        "Because content never changes, hashCode is calculated once and cached for fast HashMap operations",
+                        "It compresses strings",
+                        "It sorts arrays"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Which classes in Java provide MUTABLE string manipulation?",
+                    "answer": "StringBuilder and StringBuffer",
+                    "options": [
+                        "String and Character",
+                        "StringBuilder and StringBuffer",
+                        "StringArray and StringList",
+                        "CharBuffer and Scanner"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the primary difference between StringBuilder and StringBuffer?",
+                    "answer": "StringBuffer is synchronized (thread-safe, slower); StringBuilder is non-synchronized (faster).",
+                    "options": [
+                        "StringBuilder is immutable",
+                        "StringBuffer methods are synchronized (thread-safe); StringBuilder is not synchronized (faster)",
+                        "StringBuffer has fixed size",
+                        "StringBuilder is deprecated"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What happens when you do: String s = \"A\"; s = s + \"B\";?",
+                    "answer": "A new String object \"AB\" is created, and 's' points to this new object; the old \"A\" object is untouched.",
+                    "options": [
+                        "\"A\" is modified in place to \"AB\"",
+                        "A new String object \"AB\" is created and 's' points to it",
+                        "Compiler error",
+                        "Stack overflow"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Can you create a custom immutable class in Java similar to String?",
+                    "answer": "Yes, by declaring class 'final', fields 'private final', and not providing setter methods.",
+                    "options": [
+                        "No, only JVM internal classes can be immutable",
+                        "Yes, with final class, private final fields, and no setters",
+                        "Only using interfaces",
+                        "Only with abstract classes"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What happens to orphaned String objects in Heap that are no longer referenced?",
+                    "answer": "They become eligible for automatic Garbage Collection (except SCP literals retained during class lifespan).",
+                    "options": [
+                        "They crash the computer",
+                        "They are reclaimed by the Garbage Collector",
+                        "They are moved to ROM",
+                        "They stay forever in CPU cache"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 52,
+        "title": "EP 52 – Immutable String | String Constant Pool (SCP) vs Heap Memory",
+        "youtubeId": "qhYvvOd9a4k",
+        "thumbnail": "https://img.youtube.com/vi/qhYvvOd9a4k/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Strings",
+            "SCP",
+            "Memory"
+        ],
+        "notes": {
+            "intro": "String Constant Pool (SCP) हीप मेमोरी के अंदर का एक विशेष रिज़र्व एरिया है। आज हम समझेंगे कि SCP कैसे काम करता है, 'new' कीवर्ड से 2 ऑब्जेक्ट्स क्यों बनते हैं, और .intern() मेथड का जादू क्या है।",
+            "topics": [
+                "🏊 Deep Dive into String Constant Pool (SCP) in Heap Memory",
+                "⚡ Literal reuse mechanics: Reusing identical string references",
+                "2️⃣ Why new String(\"Java\") creates TWO objects (Heap + SCP)",
+                "🔑 The .intern() method: Accessing canonical SCP reference",
+                "💾 Memory conservation analysis in high-scale systems"
+            ],
+            "code": "public class _03_SCPVsHeapDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. String Constant Pool (SCP) Mechanics ===\");\n        // When using String Literals:\n        // JVM checks SCP: if \"Java\" already exists, it reuses the same memory reference!\n        String s1 = \"Java\";\n        String s2 = \"Java\";\n\n        // Both s1 and s2 point to the EXACT same object inside SCP\n        System.out.println(\"s1 == s2 (Both Literals in SCP): \" + (s1 == s2)); // true\n\n        System.out.println(\"\\n=== 2. 'new' Keyword Creates 2 Objects ===\");\n        // When using 'new String(\"Java\")', 2 objects are created:\n        // 1. One in normal Heap memory (pointed to by s3)\n        // 2. One in SCP (if \"Java\" is not already present)\n        String s3 = new String(\"Java\");\n        String s4 = new String(\"Java\");\n\n        System.out.println(\"s3 == s4 (Two separate objects in Heap): \" + (s3 == s4)); // false\n        System.out.println(\"s1 == s3 (SCP vs Heap Object): \" + (s1 == s3)); // false\n\n        System.out.println(\"\\n=== 3. The .intern() Method ===\");\n        // .intern() retrieves the canonical reference from the SCP\n        String s5 = s3.intern();\n        System.out.println(\"s1 == s3.intern() (SCP match): \" + (s1 == s5)); // true\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What is String Constant Pool (SCP)?",
+                    "answer": "A special cached memory region inside Heap where Java stores unique string literals for reuse.",
+                    "options": [
+                        "A file on the hard drive",
+                        "A special cache region in Heap storing unique string literals",
+                        "A compiler error log",
+                        "A Stack memory zone"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How many objects are created by: String s1 = \"Code\"; String s2 = \"Code\";?",
+                    "answer": "Only 1 object in SCP; s2 reuses the reference of s1.",
+                    "options": [
+                        "2 objects",
+                        "1 object in SCP (reused)",
+                        "0 objects",
+                        "4 objects"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How many objects are created by: String s = new String(\"Hello\"); (assuming \"Hello\" is not in SCP)?",
+                    "answer": "2 objects: 1 in normal Heap and 1 in SCP.",
+                    "options": [
+                        "1 object",
+                        "2 objects (1 in Heap, 1 in SCP)",
+                        "3 objects",
+                        "0 objects"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the return value of 's.intern()'?",
+                    "answer": "The canonical memory reference of that string from the String Constant Pool (SCP).",
+                    "options": [
+                        "A new integer hash",
+                        "The memory reference of the string from the SCP",
+                        "An array of characters",
+                        "True or False"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the result of: String a = \"Test\"; String b = new String(\"Test\"); System.out.println(a == b.intern());?",
+                    "answer": "true, because b.intern() returns the SCP reference which matches 'a'.",
+                    "options": [
+                        "false",
+                        "true",
+                        "NullPointerException",
+                        "Compilation Error"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Where was SCP located before Java 7 and where is it located in Java 8+?",
+                    "answer": "Before Java 7 it was in PermGen; in Java 7+ it was moved to main Heap memory.",
+                    "options": [
+                        "Always on Stack",
+                        "PermGen (pre-Java 7) -> Heap Memory (Java 7+)",
+                        "CPU Register -> Hard Drive",
+                        "No change ever"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the result of: String s1 = new String(\"Hi\"); String s2 = new String(\"Hi\"); System.out.println(s1 == s2);?",
+                    "answer": "false, because each 'new' creates a distinct object at a different Heap address.",
+                    "options": [
+                        "true",
+                        "false",
+                        "Compilation Error",
+                        "null"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Why did Java creators introduce the String Constant Pool?",
+                    "answer": "To save massive amounts of RAM by sharing identical string values across the entire application.",
+                    "options": [
+                        "To slow down string creation",
+                        "To reduce memory consumption through string literal reusability",
+                        "To encrypt text",
+                        "To eliminate the need for classes"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Can two identical String literals ever have different memory addresses in the same JVM?",
+                    "answer": "No, string literals with identical content always share the single canonical SCP address.",
+                    "options": [
+                        "Yes, every thread gets its own copy",
+                        "No, identical literals always share the exact same SCP object address",
+                        "Only if in different methods",
+                        "Only after garbage collection"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Is SCP subject to Garbage Collection in modern Java?",
+                    "answer": "Yes, unreferenced strings in SCP can be collected during Heap garbage collection cycles.",
+                    "options": [
+                        "No, never collected until JVM shutdowns",
+                        "Yes, unreferenced interned strings in Heap can be garbage collected",
+                        "Only when system runs out of disk",
+                        "Only in 32-bit JVMs"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 53,
+        "title": "EP 53 – String Comparison in Java | == vs equals vs equalsIgnoreCase vs compareTo",
+        "youtubeId": "P2y2j3V3hWw",
+        "thumbnail": "https://img.youtube.com/vi/P2y2j3V3hWw/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Strings",
+            "Comparison",
+            "Methods"
+        ],
+        "notes": {
+            "intro": "जावा में स्ट्रिंग्स की तुलना (Comparison) इंटरव्यू का सबसे पसंदीदा विषय है। आज हम '==' (Address check), .equals() (Content check), .equalsIgnoreCase(), और .compareTo() (Dictionary sorting) के बीच का अंतर समझेंगे।",
+            "topics": [
+                "⚖️ == Operator: Memory Address / Reference Comparison",
+                "📝 .equals(): Value / Character-by-character Content Comparison",
+                "🔤 .equalsIgnoreCase(): Case-Insensitive Content Comparison",
+                "📖 .compareTo(): Lexicographical / Dictionary Sorting Order (ASCII math)",
+                "🎯 Interview traps: Comparing literal strings with new strings"
+            ],
+            "code": "public class _04_StringComparisonDemo {\n    public static void main(String[] args) {\n        String a = \"Code\";\n        String b = \"Code\";\n        String c = new String(\"Code\");\n        String d = \"code\";\n\n        System.out.println(\"=== 1. '==' Operator (Reference / Address Comparison) ===\");\n        // Checks if BOTH variables point to the exact same memory location\n        System.out.println(\"a == b (Both in SCP): \" + (a == b)); // true\n        System.out.println(\"a == c (SCP vs Heap Address): \" + (a == c)); // false\n\n        System.out.println(\"\\n=== 2. '.equals()' Method (Content / Value Comparison) ===\");\n        // Overridden in String class to check character-by-character content\n        System.out.println(\"a.equals(b) (Content check): \" + a.equals(b)); // true\n        System.out.println(\"a.equals(c) (Content check): \" + a.equals(c)); // true\n        System.out.println(\"a.equals(d) (Case sensitive): \" + a.equals(d)); // false\n\n        System.out.println(\"\\n=== 3. '.equalsIgnoreCase()' (Case Insensitive Content Check) ===\");\n        System.out.println(\"a.equalsIgnoreCase(d): \" + a.equalsIgnoreCase(d)); // true\n\n        System.out.println(\"\\n=== 4. '.compareTo()' (Lexicographical / Dictionary Order) ===\");\n        // Returns:\n        // 0 if equal\n        // > 0 if string is lexicographically greater\n        // < 0 if string is lexicographically smaller\n        System.out.println(\"'Apple'.compareTo('Banana'): \" + \"Apple\".compareTo(\"Banana\")); // Negative value (-1)\n        System.out.println(\"'Banana'.compareTo('Apple'): \" + \"Banana\".compareTo(\"Apple\")); // Positive value (1)\n        System.out.println(\"'Code'.compareTo('Code'): \" + \"Code\".compareTo(\"Code\"));       // 0\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What does the '==' operator compare when applied to two String variables?",
+                    "answer": "It checks if both variables hold the exact same memory address (reference identity).",
+                    "options": [
+                        "The textual character contents",
+                        "The memory reference address of the objects",
+                        "The string length",
+                        "Alphabetical order"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does the '.equals()' method compare in the String class?",
+                    "answer": "It performs character-by-character content comparison.",
+                    "options": [
+                        "Memory address only",
+                        "Character-by-character textual content",
+                        "File size",
+                        "Hashcode only"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is returned by: \"Java\".equalsIgnoreCase(\"java\")?",
+                    "answer": "true (it ignores case differences).",
+                    "options": [
+                        "false",
+                        "true",
+                        "0",
+                        "-1"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does 's1.compareTo(s2)' return if s1 is equal to s2?",
+                    "answer": "0",
+                    "options": [
+                        "1",
+                        "-1",
+                        "0",
+                        "true"
+                    ],
+                    "correctIndex": 2
+                },
+                {
+                    "question": "What does '\"Apple\".compareTo(\"Banana\")' return?",
+                    "answer": "A negative integer, because 'A' (ASCII 65) comes before 'B' (ASCII 66).",
+                    "options": [
+                        "A positive integer",
+                        "A negative integer",
+                        "0",
+                        "false"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Why does 'new String(\"Admin\").equals(\"Admin\")' evaluate to true?",
+                    "answer": "Because .equals() inspects the sequence of characters regardless of Heap vs SCP memory location.",
+                    "options": [
+                        "Because they share memory address",
+                        "Because .equals() verifies character content match",
+                        "Because compiler converts new to literal",
+                        "It evaluates to false"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Why should you always write '\"ADMIN\".equals(input)' instead of 'input.equals(\"ADMIN\")'?",
+                    "answer": "To prevent a NullPointerException if 'input' happens to be null.",
+                    "options": [
+                        "It is 10x faster",
+                        "It prevents NullPointerException if input is null",
+                        "It converts input to upper case",
+                        "It is required by Java syntax"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the return type of '.compareTo() method?",
+                    "answer": "int",
+                    "options": [
+                        "boolean",
+                        "int",
+                        "String",
+                        "void"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does '\"cat\".compareTo(\"bat\")' return?",
+                    "answer": "A positive integer ('c' - 'b' = 1).",
+                    "options": [
+                        "A negative integer",
+                        "A positive integer (1)",
+                        "0",
+                        "false"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What happens if you invoke 's1.equals(s2)' when 's1' is null?",
+                    "answer": "NullPointerException is thrown at runtime.",
+                    "options": [
+                        "Returns false",
+                        "Throws NullPointerException",
+                        "Returns true",
+                        "Prints null"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 54,
+        "title": "EP 54 – String Concatenation in Java | Heap Memory & SCP | + vs concat",
+        "youtubeId": "iRcRXyllNTM",
+        "thumbnail": "https://img.youtube.com/vi/iRcRXyllNTM/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Strings",
+            "Concatenation",
+            "Memory"
+        ],
+        "notes": {
+            "intro": "जावा में स्ट्रिंग्स को जोड़ना (Concatenation) बहुत सरल लगता है, लेकिन इसके पीछे कंपाइलर और रन-टाइम मेमोरी का दिलचस्प खेल है। आज हम '+' ऑपरेटर और .concat() मेथड के आंतरिक अंतर को समझेंगे।",
+            "topics": [
+                "➕ Compile-time optimization for literal concatenation (\"Hello\" + \"World\")",
+                "🏃 Runtime concatenation with variables: How JVM uses StringBuilder behind the scenes",
+                "🛠️ The .concat() method: Explicit Heap object creation",
+                "⬅️ Left-to-Right evaluation rule of + operator with numbers and strings",
+                "⚠️ Performance considerations: Avoiding heavy string concatenation inside loops"
+            ],
+            "code": "public class _05_StringConcatenationMemoryDemo {\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. Concatenation using '+' Operator ===\");\n        // When using '+' with String literals, compiler optimizes at compile time!\n        String s1 = \"Hello\" + \"World\"; // Compiler converts directly to \"HelloWorld\" in SCP\n        String s2 = \"HelloWorld\";\n        System.out.println(\"s1 == s2 (Literal + Literal optimization): \" + (s1 == s2)); // true\n\n        // When variables are involved in '+':\n        String a = \"Hello\";\n        String s3 = a + \"World\"; // Computed at RUNTIME using StringBuilder; creates NEW object in Heap!\n        System.out.println(\"s2 == s3 (Variable + Literal at Runtime): \" + (s2 == s3)); // false\n\n        System.out.println(\"\\n=== 2. Concatenation using '.concat()' Method ===\");\n        String s4 = a.concat(\"World\"); // Always creates a new String object in Heap!\n        System.out.println(\"s2 == s4 (.concat() object): \" + (s2 == s4)); // false\n\n        System.out.println(\"\\n=== 3. Mixed Types Concatenation with '+' ===\");\n        // '+' is evaluated from left to right:\n        System.out.println(\"10 + 20 + \\\"Java\\\": \" + (10 + 20 + \"Java\")); // \"30Java\"\n        System.out.println(\"\\\"Java\\\" + 10 + 20: \" + (\"Java\" + 10 + 20)); // \"Java1020\"\n        System.out.println(\"\\\"Java\\\" + (10 + 20): \" + (\"Java\" + (10 + 20))); // \"Java30\"\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What is printed by: System.out.println(10 + 20 + \"Java\");?",
+                    "answer": "\"30Java\", because numeric addition happens first from left to right before string concatenation.",
+                    "options": [
+                        "1020Java",
+                        "30Java",
+                        "Java30",
+                        "Java1020"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is printed by: System.out.println(\"Java\" + 10 + 20);?",
+                    "answer": "\"Java1020\", because left operand is String, turning subsequent + operations into string concatenation.",
+                    "options": [
+                        "Java30",
+                        "Java1020",
+                        "30Java",
+                        "Error"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is printed by: System.out.println(\"Java\" + (10 + 20));?",
+                    "answer": "\"Java30\", because parentheses have highest evaluation precedence.",
+                    "options": [
+                        "Java1020",
+                        "Java30",
+                        "30Java",
+                        "Error"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How does the Java compiler optimize 'String s = \"A\" + \"B\";'?",
+                    "answer": "It concatenates literals at compile time, placing \"AB\" directly in the SCP.",
+                    "options": [
+                        "Creates 3 objects in Heap",
+                        "Concatenates directly to \"AB\" in SCP at compile time",
+                        "Throws warning",
+                        "Converts to char array"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does the JVM do at runtime when concatenating String variables with '+' (e.g. s1 + s2)?",
+                    "answer": "It uses StringBuilder (or invokedynamic) behind the scenes and creates a new object in Heap.",
+                    "options": [
+                        "Modifies s1 directly",
+                        "Uses StringBuilder.append() and creates a new Heap String object",
+                        "Stores in SCP",
+                        "Replaces s2"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does '.concat()' do if passed an empty string '\"\"'?",
+                    "answer": "It returns the same original String reference without creating a new object.",
+                    "options": [
+                        "Throws NullPointerException",
+                        "Returns the same original string object reference",
+                        "Creates new empty object",
+                        "Deletes string"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What happens if you pass 'null' to '.concat()' (e.g. s.concat(null))?",
+                    "answer": "It throws a NullPointerException.",
+                    "options": [
+                        "Appends \"null\"",
+                        "Throws NullPointerException",
+                        "Does nothing",
+                        "Returns empty string"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the performance drawback of using '+' inside a large for-loop (100,000 iterations)?",
+                    "answer": "It creates 100,000 temporary StringBuilder and String objects, creating severe memory pressure and GC pauses.",
+                    "options": [
+                        "Causes infinite loop",
+                        "Generates thousands of intermediate garbage objects in Heap",
+                        "Compile time error",
+                        "Corrupts variables"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What should you use instead of '+' when appending strings inside a large loop?",
+                    "answer": "StringBuilder with .append()",
+                    "options": [
+                        "Scanner",
+                        "StringBuilder with .append()",
+                        ".concat() method",
+                        "Arrays.sort()"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Can '+' concatenate non-string primitives (int, boolean, double) with a String?",
+                    "answer": "Yes, Java automatically converts primitives to string representation via String.valueOf().",
+                    "options": [
+                        "No, only strings can be concatenated",
+                        "Yes, primitives are automatically converted to string format",
+                        "Only integers",
+                        "Only booleans"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 55,
+        "title": "EP 55 – Java String Methods Complete Master Tutorial | 20+ Inbuilt Methods",
+        "youtubeId": "OfhO2PjAd7c",
+        "thumbnail": "https://img.youtube.com/vi/OfhO2PjAd7c/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Strings",
+            "Methods",
+            "CheatSheet"
+        ],
+        "notes": {
+            "intro": "जावा में String क्लास 50 से अधिक इनबिल्ट मेथड्स प्रदान करती है। आज हम 20+ सबसे आवश्यक मेथड्स (length, charAt, substring, trim, split, join, replace, indexOf आदि) को प्रैक्टिकल कोड के साथ मास्टर करेंगे।",
+            "topics": [
+                "🔍 Inspection Methods: length(), charAt(), indexOf(), lastIndexOf(), contains(), startsWith(), endsWith(), isEmpty(), isBlank()",
+                "🔄 Transformation Methods: trim(), toUpperCase(), toLowerCase(), replace(), substring()",
+                "✂️ Conversion & Splitting: toCharArray(), split(), String.join(), String.valueOf()",
+                "🎯 Practical code examples demonstrating each method with real input",
+                "💡 Best practices for string sanitization and parsing"
+            ],
+            "code": "public class _06_StringMethodsMasterDemo {\n    public static void main(String[] args) {\n        String msg = \"  Learn Java with Zero to Pro!  \";\n\n        System.out.println(\"Original String: '\" + msg + \"'\");\n\n        System.out.println(\"\\n=== 1. Inspection Methods ===\");\n        System.out.println(\"length(): \" + msg.length());\n        System.out.println(\"charAt(8): \" + msg.charAt(8)); // Character at 0-based index 8\n        System.out.println(\"indexOf('Java'): \" + msg.indexOf(\"Java\"));\n        System.out.println(\"lastIndexOf('o'): \" + msg.lastIndexOf('o'));\n        System.out.println(\"contains('Pro'): \" + msg.contains(\"Pro\"));\n        System.out.println(\"startsWith('  Learn'): \" + msg.startsWith(\"  Learn\"));\n        System.out.println(\"endsWith('!  '): \" + msg.endsWith(\"!  \"));\n        System.out.println(\"isEmpty(): \" + msg.isEmpty());\n        System.out.println(\"isBlank() [Java 11+]: \" + \"   \".isBlank());\n\n        System.out.println(\"\\n=== 2. Transformation Methods (Return New Strings) ===\");\n        String trimmed = msg.trim();\n        System.out.println(\"trim(): '\" + trimmed + \"'\");\n        System.out.println(\"toUpperCase(): \" + trimmed.toUpperCase());\n        System.out.println(\"toLowerCase(): \" + trimmed.toLowerCase());\n        System.out.println(\"replace('Java', 'Python'): \" + trimmed.replace(\"Java\", \"Python\"));\n        System.out.println(\"substring(6): \" + trimmed.substring(6)); // From index 6 to end\n        System.out.println(\"substring(6, 10): \" + trimmed.substring(6, 10)); // [6, 10) -> \"Java\"\n\n        System.out.println(\"\\n=== 3. Conversion & Splitting Methods ===\");\n        // toCharArray()\n        char[] chars = trimmed.toCharArray();\n        System.out.println(\"First char from toCharArray(): \" + chars[0]);\n\n        // split()\n        String csv = \"Java,Python,JavaScript,C++,Go\";\n        String[] languages = csv.split(\",\");\n        System.out.println(\"split(',') output:\");\n        for (String lang : languages) {\n            System.out.println(\" - \" + lang);\n        }\n\n        // join()\n        String joined = String.join(\" | \", languages);\n        System.out.println(\"String.join(): \" + joined);\n\n        // valueOf()\n        int number = 2026;\n        String strNum = String.valueOf(number);\n        System.out.println(\"String.valueOf(2026) length: \" + strNum.length());\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What does 'str.length()' return?",
+                    "answer": "The total number of characters in the string as an int.",
+                    "options": [
+                        "Number of words",
+                        "Total number of characters in the string",
+                        "Memory size in bytes",
+                        "Array hashcode"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is returned by '\"ZeroToPro\".charAt(0)'?",
+                    "answer": "'Z' (0-indexed character).",
+                    "options": [
+                        "'e'",
+                        "'Z'",
+                        "\"Zero\"",
+                        "'P'"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does '\"ZeroToPro\".substring(0, 4)' return?",
+                    "answer": "\"Zero\" (includes beginIndex 0, excludes endIndex 4).",
+                    "options": [
+                        "\"ZeroT\"",
+                        "\"Zero\"",
+                        "\"eroT\"",
+                        "\"Z\""
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does '.indexOf(\"notfound\")' return when the substring is absent?",
+                    "answer": "-1",
+                    "options": [
+                        "0",
+                        "null",
+                        "-1",
+                        "False"
+                    ],
+                    "correctIndex": 2
+                },
+                {
+                    "question": "What does '\"  hello  \".trim()' do?",
+                    "answer": "Removes leading and trailing whitespace characters.",
+                    "options": [
+                        "Removes all spaces between words",
+                        "Removes leading and trailing whitespace",
+                        "Converts to lower case",
+                        "Reverses string"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the difference between '.isEmpty()' and '.isBlank()'?",
+                    "answer": "isEmpty() checks length == 0; isBlank() returns true if string is empty OR contains only whitespace characters.",
+                    "options": [
+                        "No difference",
+                        "isEmpty checks length == 0; isBlank also returns true for whitespace-only strings",
+                        "isBlank checks null",
+                        "isEmpty is deprecated"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is returned by '\"apple,banana,cherry\".split(\",\")'?",
+                    "answer": "A String[] array containing [\"apple\", \"banana\", \"cherry\"].",
+                    "options": [
+                        "A single string",
+                        "A String[] array containing the split segments",
+                        "An integer count 3",
+                        "A character list"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does 'String.join(\"-\", \"2026\", \"08\", \"25\")' produce?",
+                    "answer": "\"2026-08-25\"",
+                    "options": [
+                        "\"20260825\"",
+                        "\"2026-08-25\"",
+                        "\"-2026-08-25-\"",
+                        "An array"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does '\"Java\".replace('a', 'o')' return?",
+                    "answer": "\"Jovo\" (all occurrences replaced with new char).",
+                    "options": [
+                        "\"Jova\"",
+                        "\"Jovo\"",
+                        "\"Javo\"",
+                        "\"Java\""
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What does 'str.toCharArray()' return?",
+                    "answer": "A newly allocated char[] array containing all characters of the string.",
+                    "options": [
+                        "A byte array",
+                        "A char[] array containing the string's characters",
+                        "An ArrayList of chars",
+                        "A string copy"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": 56,
+        "title": "EP 56 – String Problems Roadmap & Core Practice Algorithms | Interview Questions",
+        "youtubeId": "sNIOLHcelEs",
+        "thumbnail": "https://img.youtube.com/vi/sNIOLHcelEs/maxresdefault.jpg",
+        "tags": [
+            "Java",
+            "Strings",
+            "DSA",
+            "Interview"
+        ],
+        "notes": {
+            "intro": "स्ट्रिंग्स में महारत हासिल करने के लिए आवश्यक प्रॉब्लम-सॉल्विंग एल्गोरिदम। आज हम Reversal, Palindrome (Two-Pointer), Vowel Counting और टॉप इंटरव्यू प्रॉब्लम्स का रोडमैप समझेंगे।",
+            "topics": [
+                "🔄 Problem 1: Reversing a String without inbuilt methods (Loop technique)",
+                "🔍 Problem 2: Palindrome Checker using Two-Pointer approach (left & right)",
+                "🔠 Problem 3: Vowels and Consonants Counter with character range checking",
+                "🧩 Problem 4: Anagram Checker strategy (Sorting vs Frequency map)",
+                "🚀 Roadmap to Mutable Strings: When to transition to StringBuilder / StringBuffer"
+            ],
+            "code": "public class _07_StringRoadmapProblemsDemo {\n\n    // Problem 1: Reverse a String without inbuilt reverse\n    public static String reverseString(String str) {\n        String reversed = \"\";\n        for (int i = str.length() - 1; i >= 0; i--) {\n            reversed += str.charAt(i);\n        }\n        return reversed;\n    }\n\n    // Problem 2: Check Palindrome (e.g. \"MADAM\", \"RACECAR\")\n    public static boolean isPalindrome(String str) {\n        int left = 0;\n        int right = str.length() - 1;\n        while (left < right) {\n            if (str.charAt(left) != str.charAt(right)) {\n                return false;\n            }\n            left++;\n            right--;\n        }\n        return true;\n    }\n\n    // Problem 3: Count Vowels and Consonants\n    public static void countVowelsAndConsonants(String str) {\n        int vowels = 0, consonants = 0;\n        str = str.toLowerCase();\n        for (int i = 0; i < str.length(); i++) {\n            char ch = str.charAt(i);\n            if (ch >= 'a' && ch <= 'z') {\n                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {\n                    vowels++;\n                } else {\n                    consonants++;\n                }\n            }\n        }\n        System.out.println(\"Vowels: \" + vowels + \", Consonants: \" + consonants);\n    }\n\n    public static void main(String[] args) {\n        System.out.println(\"=== 1. String Reversal ===\");\n        String input = \"Java2026\";\n        System.out.println(\"Input: \" + input + \" -> Reversed: \" + reverseString(input));\n\n        System.out.println(\"\\n=== 2. Palindrome Check ===\");\n        String word1 = \"racecar\";\n        String word2 = \"hello\";\n        System.out.println(word1 + \" is Palindrome? \" + isPalindrome(word1));\n        System.out.println(word2 + \" is Palindrome? \" + isPalindrome(word2));\n\n        System.out.println(\"\\n=== 3. Vowels & Consonants Counter ===\");\n        String sentence = \"Full Course Zero to Pro\";\n        System.out.println(\"Analyzing: '\" + sentence + \"'\");\n        countVowelsAndConsonants(sentence);\n\n        System.out.println(\"\\n🗺️ NEXT LEVEL ROADMAP:\");\n        System.out.println(\"1. Anagram Check (Using Sorting or Frequency Array)\");\n        System.out.println(\"2. Longest Substring Without Repeating Characters\");\n        System.out.println(\"3. Transition to Mutable Strings: StringBuilder vs StringBuffer!\");\n    }\n}",
+            "quiz": [
+                {
+                    "question": "What is a Palindrome string?",
+                    "answer": "A string that reads the exact same forwards and backwards (e.g. \"racecar\", \"madam\").",
+                    "options": [
+                        "A string with no spaces",
+                        "A string that reads the same forwards and backwards",
+                        "A string with only numbers",
+                        "An empty string"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the optimal time complexity of checking a Palindrome using Two Pointers?",
+                    "answer": "O(N) time complexity with O(1) auxiliary space.",
+                    "options": [
+                        "O(N^2)",
+                        "O(N) time with O(1) space",
+                        "O(log N)",
+                        "O(2^N)"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What are Anagram strings?",
+                    "answer": "Two strings that contain the exact same characters in different orders (e.g. \"listen\" and \"silent\").",
+                    "options": [
+                        "Two strings of different lengths",
+                        "Two strings with identical characters in different permutation order",
+                        "Strings with identical memory addresses",
+                        "Uppercase only strings"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Which data structure or algorithm is most efficient to check if two strings are Anagrams?",
+                    "answer": "An integer frequency count array of size 26 (O(N) time, O(1) space).",
+                    "options": [
+                        "Nested loops with O(N^2)",
+                        "A frequency count array of size 26 or sorting both arrays",
+                        "Recursion",
+                        "Binary search"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "How can you reverse a string in-place most memory-efficiently in Java?",
+                    "answer": "Convert to char[] and swap characters from start and end pointers towards center.",
+                    "options": [
+                        "Using + in loop",
+                        "Convert to char[] and swap using two pointers, or use StringBuilder.reverse()",
+                        "Use recursion without base condition",
+                        "Call System.gc()"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the time complexity of 'str += charAt(i)' in a loop of size N for String reversal?",
+                    "answer": "O(N^2) because each concatenation allocates a new String copy of increasing size.",
+                    "options": [
+                        "O(1)",
+                        "O(N)",
+                        "O(N^2) due to repeated string copying",
+                        "O(log N)"
+                    ],
+                    "correctIndex": 2
+                },
+                {
+                    "question": "What is the recommended class to avoid O(N^2) overhead during string accumulation?",
+                    "answer": "StringBuilder",
+                    "options": [
+                        "String",
+                        "StringBuilder",
+                        "Scanner",
+                        "Integer"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Which characters are considered vowels in standard English?",
+                    "answer": "a, e, i, o, u (both lowercase and uppercase).",
+                    "options": [
+                        "b, c, d, f, g",
+                        "a, e, i, o, u",
+                        "x, y, z",
+                        "1, 2, 3"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "What is the next topic to study after mastering immutable Strings in Java?",
+                    "answer": "Mutable Strings (StringBuilder and StringBuffer), followed by Java Collections.",
+                    "options": [
+                        "Assembly language",
+                        "Mutable Strings (StringBuilder & StringBuffer) and Java Collections Framework",
+                        "HTML and CSS only",
+                        "Operating system kernel"
+                    ],
+                    "correctIndex": 1
+                },
+                {
+                    "question": "Why should you convert a string to lowercase before counting vowels?",
+                    "answer": "To simplify conditional checks and avoid separate checks for uppercase 'A, E, I, O, U'.",
+                    "options": [
+                        "Required by JVM to avoid crash",
+                        "To simplify comparison logic for both lower and uppercase input",
+                        "To save memory",
+                        "To reverse string"
+                    ],
+                    "correctIndex": 1
+                }
+            ]
+        }
     }
 ];
-
-
-
