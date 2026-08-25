@@ -9,7 +9,8 @@ const sitemaps = [
     { url: '/sitemap-pages.xml' },
     { url: '/sitemap-courses.xml' },
     { url: '/sitemap-jobs.xml' },
-    { url: '/sitemap-tools.xml' }
+    { url: '/sitemap-tools.xml' },
+    { url: '/video-sitemap.xml' }
 ];
 
 const generateSitemapIndex = () => {
@@ -61,24 +62,25 @@ fs.writeFileSync(path.join(publicDir, 'sitemap-pages.xml'), generateXml(pagesSit
 
 // 2. Jobs & Hiring (Hub + All Individual Job Postings)
 const jobList = [
-    'capgemini-associate-technician-2026',
-    'danaher-ai-ml-intern-2026',
-    'sharechat-manual-qa-intern-2026',
-    'volvo-group-apprentice-2026',
-    'sp-global-data-analyst-2026',
-    'deloitte-qa-intern-2026',
-    'accenture-tech-support-2026',
-    'cognizant-service-desk-2026',
-    'trimble-software-engineer-2026',
-    'tech-mahindra-voice-chat-support-2026',
-    'amazon-sde-i-2026',
-    'harman-devops-2026'
+    { id: 'capgemini-associate-technician-2026', title: 'Capgemini Associate Products & Systems Technician Off Campus 2026', company: 'Capgemini' },
+    { id: 'danaher-ai-ml-intern-2026', title: 'Danaher AI/ML Engineering Internship 2026', company: 'Danaher' },
+    { id: 'sharechat-manual-qa-intern-2026', title: 'ShareChat Manual QA Testing Internship 2026', company: 'ShareChat' },
+    { id: 'volvo-group-apprentice-2026', title: 'Volvo Group Graduate Apprentice Trainee 2026', company: 'Volvo' },
+    { id: 'sp-global-data-analyst-2026', title: 'S&P Global Data Analyst & Associate Recruitment 2026', company: 'S&P Global' },
+    { id: 'deloitte-qa-intern-2026', title: 'Deloitte QA & Test Automation Internship 2026', company: 'Deloitte' },
+    { id: 'accenture-tech-support-2026', title: 'Accenture Tech Support Associate Services Off Campus 2026', company: 'Accenture' },
+    { id: 'cognizant-service-desk-2026', title: 'Cognizant Service Desk Digital Workplace Hiring 2026', company: 'Cognizant' },
+    { id: 'trimble-software-engineer-2026', title: 'Trimble Software Engineer 1 Recruitment 2026', company: 'Trimble' },
+    { id: 'tech-mahindra-voice-chat-support-2026', title: 'Tech Mahindra Voice & Chat Support Hiring 2026', company: 'Tech Mahindra' },
+    { id: 'amazon-sde-i-2026', title: 'Amazon Software Development Engineer (SDE-I) Hiring 2026', company: 'Amazon' },
+    { id: 'harman-devops-2026', title: 'Harman AWS DevOps Associate Engineer Hiring 2026', company: 'Harman' }
 ];
+
 const jobsSitemap = [
     { url: '/jobs', priority: '0.9', changefreq: 'daily', lastmod: today }
 ];
 jobList.forEach(j => {
-    jobsSitemap.push({ url: `/jobs/${j}`, priority: '0.75', changefreq: 'weekly', lastmod: today });
+    jobsSitemap.push({ url: `/jobs/${j.id}`, priority: '0.75', changefreq: 'weekly', lastmod: today });
 });
 fs.writeFileSync(path.join(publicDir, 'sitemap-jobs.xml'), generateXml(jobsSitemap));
 
@@ -106,20 +108,87 @@ courseList.forEach(c => {
 });
 fs.writeFileSync(path.join(publicDir, 'sitemap-courses.xml'), generateXml(coursesSitemap));
 
+// 5. Video Sitemap (Google Video XML Specification)
+const videoPages = [
+    {
+        url: '/course/java',
+        videoId: 'IvTuFG-lXyw',
+        title: 'Java Full Course 2026: Zero to Hero (Complete Playlist & 44 Episodes)',
+        description: 'Complete Java masterclass covering Object-Oriented Programming, JVM memory architecture, multithreading, Collections Framework, and real-world software engineering projects.',
+        duration: 2400
+    },
+    {
+        url: '/jobs',
+        videoId: 'IvTuFG-lXyw',
+        title: 'Java Full Course 2026: Placement & Interview Prep Masterclass',
+        description: 'Comprehensive Java tutorial and interview preparation video series with hands-on coding exercises, design patterns, and placement guidance.',
+        duration: 2400
+    }
+];
+
+// Add each job page which embeds the tech interview preparation video playlist
+jobList.forEach(j => {
+    videoPages.push({
+        url: `/jobs/${j.id}`,
+        videoId: 'IvTuFG-lXyw',
+        title: `${j.company} Tech Placement Preparation - Java & Coding Masterclass`,
+        description: `Complete technical video training to crack ${j.company} coding rounds and technical interviews. Master OOP concepts, data structures, and algorithms.`,
+        duration: 2400
+    });
+});
+
+const generateVideoXml = (videos) => {
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+    xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n`;
+    xml += `        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n`;
+    videos.forEach(v => {
+        const thumb = `https://img.youtube.com/vi/${v.videoId}/maxresdefault.jpg`;
+        const contentUrl = `https://www.youtube.com/watch?v=${v.videoId}`;
+        const playerUrl = `https://www.youtube.com/embed/${v.videoId}`;
+        
+        xml += `  <url>\n`;
+        xml += `    <loc>${baseUrl}${v.url}</loc>\n`;
+        xml += `    <video:video>\n`;
+        xml += `      <video:thumbnail_loc>${thumb}</video:thumbnail_loc>\n`;
+        xml += `      <video:title><![CDATA[${v.title}]]></video:title>\n`;
+        xml += `      <video:description><![CDATA[${v.description}]]></video:description>\n`;
+        xml += `      <video:content_loc>${contentUrl}</video:content_loc>\n`;
+        xml += `      <video:player_loc allow_embed="yes" autoplay="ap=0">${playerUrl}</video:player_loc>\n`;
+        xml += `      <video:duration>${v.duration}</video:duration>\n`;
+        xml += `      <video:publication_date>2026-01-15T00:00:00+00:00</video:publication_date>\n`;
+        xml += `      <video:family_friendly>yes</video:family_friendly>\n`;
+        xml += `      <video:uploader info="https://www.advindiancoder.com">AdvIndianCoder</video:uploader>\n`;
+        xml += `    </video:video>\n`;
+        xml += `  </url>\n`;
+    });
+    xml += `</urlset>`;
+    return xml;
+};
+
+fs.writeFileSync(path.join(publicDir, 'video-sitemap.xml'), generateVideoXml(videoPages));
+
 generateSitemapIndex();
 
-// Also copy to dist if it exists
+// Also copy all sitemaps to dist if it exists
 const distDir = path.join(__dirname, '../dist');
 if (fs.existsSync(distDir)) {
-    const sitemapFiles = ['sitemap.xml', 'sitemap-pages.xml', 'sitemap-courses.xml', 'sitemap-jobs.xml', 'sitemap-tools.xml'];
+    const sitemapFiles = [
+        'sitemap.xml',
+        'sitemap-pages.xml',
+        'sitemap-courses.xml',
+        'sitemap-jobs.xml',
+        'sitemap-tools.xml',
+        'video-sitemap.xml'
+    ];
     sitemapFiles.forEach(f => {
         const src = path.join(publicDir, f);
         if (fs.existsSync(src)) {
             fs.copyFileSync(src, path.join(distDir, f));
         }
     });
-    console.log('Sitemaps also copied to dist folder.');
+    console.log('All sitemaps (including video-sitemap.xml) copied to dist folder.');
 }
 
 console.log('Sitemaps generated successfully.');
+
 

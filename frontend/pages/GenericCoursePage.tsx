@@ -171,12 +171,44 @@ const GenericCoursePage = () => {
         );
     }
 
+    const videoSchema = youtubeId ? {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": courseInfo.title,
+        "description": `${courseInfo.title} - ${courseInfo.description} Complete video lecture with code examples and live cloud execution in ADV Lab.`,
+        "thumbnailUrl": `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`,
+        "uploadDate": "2026-01-15T00:00:00+00:00",
+        "duration": "PT35M00S",
+        "embedUrl": `https://www.youtube.com/embed/${youtubeId}`,
+        "contentUrl": `https://www.youtube.com/watch?v=${youtubeId}`,
+        "publisher": {
+            "@type": "Organization",
+            "name": "AdvIndianCoder",
+            "url": "https://www.advindiancoder.com"
+        }
+    } : null;
+
+    const courseSchema = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": courseInfo.title,
+        "description": courseInfo.description,
+        "provider": {
+            "@type": "Organization",
+            "name": "ADV Indian Coder",
+            "sameAs": "https://www.advindiancoder.com"
+        }
+    };
+
+    const schemas = [courseSchema, ...(videoSchema ? [videoSchema] : [])];
+
     return (
         <PageWrapper>
             <SEO 
                 title={courseInfo.title} 
                 description={courseInfo.description}
                 ogType="course"
+                schema={schemas}
             />
             <div className="min-h-screen bg-white dark:bg-[#050914] text-gray-900 dark:text-white overflow-x-hidden relative transition-colors duration-300">
                 {/* Background Glow */}
@@ -222,6 +254,7 @@ const GenericCoursePage = () => {
                                             className="w-full h-full"
                                             src={`https://www.youtube.com/embed/${youtubeId}?autoplay=0&rel=0`}
                                             title={courseInfo.title}
+                                            aria-label={`Video: ${courseInfo.title}`}
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowFullScreen
                                         />

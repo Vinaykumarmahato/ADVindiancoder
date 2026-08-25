@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Info, MoreVertical, Youtube, PlayCircle, CheckCircle } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 interface PlaylistAdProps {
     className?: string;
@@ -8,6 +9,26 @@ interface PlaylistAdProps {
 }
 
 const PlaylistAd: React.FC<PlaylistAdProps> = ({ className = "", variant = "wide" }) => {
+    const videoTitle = "Java Full Course 2026: Master Coding from Zero to Hero";
+    const videoDesc = "Master Java programming from ground zero to industry placement readiness. This comprehensive video series covers Java syntax, Object-Oriented Programming (OOP) fundamentals, JVM memory internals, exception handling, Java Collections Framework, multithreading, Streams API, and real-world project building. Designed specifically for freshers, college students, and software engineering aspirants preparing for technical coding interviews and enterprise careers.";
+
+    const videoSchema = {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": videoTitle,
+        "description": videoDesc,
+        "thumbnailUrl": "https://img.youtube.com/vi/IvTuFG-lXyw/maxresdefault.jpg",
+        "uploadDate": "2026-01-15T00:00:00+00:00",
+        "duration": "PT40H00M00S",
+        "embedUrl": "https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO",
+        "contentUrl": "https://www.youtube.com/watch?v=IvTuFG-lXyw",
+        "publisher": {
+            "@type": "Organization",
+            "name": "AdvIndianCoder",
+            "url": "https://www.advindiancoder.com"
+        }
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -15,18 +36,24 @@ const PlaylistAd: React.FC<PlaylistAdProps> = ({ className = "", variant = "wide
             viewport={{ once: true }}
             className={`max-w-4xl mx-auto w-full bg-[#f8f9fa] dark:bg-[#1a1c1e] border border-[#dadce0] dark:border-[#3c4043] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow ${className}`}
         >
-            {/* Ad Header */}
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(videoSchema)}
+                </script>
+            </Helmet>
+
+            {/* Ad / Video Header */}
             <div className="px-4 py-2 border-b border-[#dadce0] dark:border-[#3c4043] flex items-center justify-between bg-white dark:bg-[#202124]">
                 <div className="flex items-center gap-2">
                     <span className="bg-[#202124] dark:bg-white text-white dark:text-[#202124] px-1.5 py-0.5 rounded text-[11px] font-bold uppercase leading-none">
-                        Ad
+                        Featured Video
                     </span>
                     <span className="text-xs text-[#3c4043] dark:text-[#bdc1c6] font-medium flex items-center gap-1.5">
                         advindiancoder.com <Info className="w-3 h-3" />
                         <span className="mx-1 text-[#dadce0] dark:text-[#3c4043]">|</span>
                         <span className="flex items-center gap-1 text-green-600 dark:text-green-400 font-bold uppercase text-[10px] tracking-wider">
                             <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                            Ongoing
+                            Free Masterclass
                         </span>
                     </span>
                 </div>
@@ -41,6 +68,7 @@ const PlaylistAd: React.FC<PlaylistAdProps> = ({ className = "", variant = "wide
                         className="w-full h-full absolute inset-0"
                         src="https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO" 
                         title="Java Full Course Playlist"
+                        aria-label={`Video: ${videoTitle}`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowFullScreen
@@ -55,28 +83,28 @@ const PlaylistAd: React.FC<PlaylistAdProps> = ({ className = "", variant = "wide
                                 <div className="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center shrink-0">
                                     <Youtube className="w-3.5 h-3.5 text-white" />
                                 </div>
-                                <span className="text-[12px] sm:text-[13px] text-[#202124] dark:text-white font-semibold truncate">ADV Indian Coder • Course</span>
+                                <span className="text-[12px] sm:text-[13px] text-[#202124] dark:text-white font-semibold truncate">ADV Indian Coder • Complete Tutorial Series</span>
                             </div>
-                            <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[9px] font-bold px-2 py-0.5 rounded-full border border-green-200 dark:border-green-800/50 shrink-0 whitespace-nowrap">ONGOING</span>
+                            <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[9px] font-bold px-2 py-0.5 rounded-full border border-green-200 dark:border-green-800/50 shrink-0 whitespace-nowrap">44+ EPISODES</span>
                         </div>
                         
-                        <h3 className={`${variant === 'wide' ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'} font-medium text-[#1a0dab] dark:text-[#8ab4f8] mb-2 leading-tight hover:underline cursor-pointer`}>
-                            Java Full Course 2026: Master Coding from Zero to Hero
-                        </h3>
+                        <h2 className={`${variant === 'wide' ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'} font-bold text-[#1a0dab] dark:text-[#8ab4f8] mb-2 leading-tight hover:underline cursor-pointer`}>
+                            {videoTitle}
+                        </h2>
                         
                         <p className="text-[#4d5156] dark:text-[#bdc1c6] text-sm leading-relaxed mb-4">
-                            Start your coding journey with our most comprehensive Java playlist. Learn OOPS, Data Structures, and Collections with real-world projects. Perfect for students and job seekers.
+                            {videoDesc}
                         </p>
 
                         <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6">
                             <div className="flex items-center gap-2 text-[13px] text-[#70757a] dark:text-[#9aa0a6]">
-                                <PlayCircle className="w-4 h-4" /> 50+ Episodes
+                                <PlayCircle className="w-4 h-4" /> 44+ Episodes
                             </div>
                             <div className="flex items-center gap-2 text-[13px] text-[#70757a] dark:text-[#9aa0a6]">
                                 <span className="w-1 h-1 rounded-full bg-[#70757a] dark:bg-[#9aa0a6]"></span> Certified Path
                             </div>
                             <div className="flex items-center gap-2 text-[13px] text-[#70757a] dark:text-[#9aa0a6]">
-                                <span className="w-1 h-1 rounded-full bg-[#70757a] dark:bg-[#9aa0a6]"></span> Free Notes
+                                <span className="w-1 h-1 rounded-full bg-[#70757a] dark:bg-[#9aa0a6]"></span> Free Code &amp; Notes
                             </div>
                         </div>
                     </div>
@@ -89,7 +117,7 @@ const PlaylistAd: React.FC<PlaylistAdProps> = ({ className = "", variant = "wide
                             href="/course/java" 
                             className={`w-full ${variant === 'wide' ? 'sm:w-auto' : ''} bg-[#1a73e8] hover:bg-[#185abc] text-white px-6 py-2.5 rounded-full text-sm font-bold transition-colors shadow-sm flex items-center justify-center gap-2`}
                         >
-                            Watch Now <ExternalLink className="w-4 h-4" />
+                            Watch Video Course <ExternalLink className="w-4 h-4" />
                         </a>
                     </div>
                 </div>
@@ -101,16 +129,16 @@ const PlaylistAd: React.FC<PlaylistAdProps> = ({ className = "", variant = "wide
                 <span className="hidden sm:block w-1 h-1 rounded-full bg-[#dadce0] dark:bg-[#5f6368]"></span>
                 <span className="flex items-center gap-1.5"><CheckCircle className="w-3 h-3 text-green-600" /> Placement Focused</span>
                 <span className="hidden sm:block w-1 h-1 rounded-full bg-[#dadce0] dark:bg-[#5f6368]"></span>
-                <span className="flex items-center gap-1.5"><CheckCircle className="w-3 h-3 text-green-600" /> No Ads during video</span>
+                <span className="flex items-center gap-1.5"><CheckCircle className="w-3 h-3 text-green-600" /> Free Certificate</span>
             </div>
         </motion.div>
     );
 };
 
-// Add Sparkles import if missing
 const Sparkles = ({ className }: { className?: string }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
 );
 
 export default PlaylistAd;
+
 

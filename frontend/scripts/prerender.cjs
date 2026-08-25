@@ -889,16 +889,47 @@ PAGES.forEach(page => {
                     `).join('')}
                 </div>
             </section>
+
+            <section style="margin-top: 2.5rem; background: #0f172a; color: #f8fafc; padding: 2rem; border-radius: 1rem;">
+                <h2 style="font-size: 1.5rem; font-weight: 800; color: #38bdf8; margin-bottom: 0.75rem;">🎥 Tech Placement &amp; Interview Preparation Video Series</h2>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 1.5rem;">
+                    Master technical coding interviews with our 44-episode Java and Data Structures video masterclass. Learn OOP fundamentals, JVM architecture, algorithmic problem solving, and system design tailored for freshers and engineers targeting top MNC placement drives.
+                </p>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; margin-bottom: 1rem;">
+                    <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO" title="Tech Placement Video Series" aria-label="Video: Tech Placement and Interview Preparation" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </section>
             ` : ''}
         </article>
     `;
+
+    const pageVideoSchema = (page.slug === 'jobs') ? {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        'name': 'Tech Placement & Interview Preparation Video Series',
+        'description': 'Comprehensive technical interview preparation and coding practice video playlist to help freshers and engineers crack placement drives at top MNCs.',
+        'thumbnailUrl': 'https://img.youtube.com/vi/IvTuFG-lXyw/maxresdefault.jpg',
+        'uploadDate': '2026-01-15T00:00:00+00:00',
+        'duration': 'PT40H00M00S',
+        'embedUrl': 'https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO',
+        'contentUrl': 'https://www.youtube.com/watch?v=IvTuFG-lXyw',
+        'publisher': {
+            '@type': 'Organization',
+            'name': 'AdvIndianCoder',
+            'url': 'https://www.advindiancoder.com'
+        }
+    } : null;
+
+    const pageSchemas = [];
+    if (breadcrumbSchema) pageSchemas.push(breadcrumbSchema);
+    if (pageVideoSchema) pageSchemas.push(pageVideoSchema);
 
     const html = renderPageHtml({
         canonicalUrl,
         title: page.title,
         description: page.description,
         keywords: page.keywords,
-        schema: breadcrumbSchema ? [breadcrumbSchema] : undefined,
+        schema: pageSchemas.length > 0 ? pageSchemas : undefined,
         breadcrumbs,
         bodyHtml
     });
@@ -974,6 +1005,23 @@ courseEntries.forEach(([slug, course], courseIndex) => {
         }
     };
 
+    const videoSchema = (slug === 'java') ? {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        'name': 'Java Full Course 2026: Zero to Hero (Complete Playlist & 44 Episodes)',
+        'description': 'Master Java programming from ground zero to industry placement readiness. This comprehensive video series covers Java syntax, Object-Oriented Programming (OOP) fundamentals, JVM memory internals, exception handling, Java Collections Framework, multithreading, Streams API, and real-world project building.',
+        'thumbnailUrl': 'https://img.youtube.com/vi/IvTuFG-lXyw/maxresdefault.jpg',
+        'uploadDate': '2026-01-15T00:00:00+00:00',
+        'duration': 'PT40H00M00S',
+        'embedUrl': 'https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO',
+        'contentUrl': 'https://www.youtube.com/watch?v=IvTuFG-lXyw',
+        'publisher': {
+            '@type': 'Organization',
+            'name': 'AdvIndianCoder',
+            'url': 'https://www.advindiancoder.com'
+        }
+    } : null;
+
     const bodyHtml = `
         <article>
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
@@ -984,6 +1032,18 @@ courseEntries.forEach(([slug, course], courseIndex) => {
             <h1 style="font-size: 2.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 0.75rem;">${escapeHtml(course.title)}</h1>
             <p style="font-size: 1.25rem; font-weight: 600; color: #4b5563; margin-bottom: 1.5rem;">${escapeHtml(course.tagline)}</p>
             <p style="font-size: 1.125rem; line-height: 1.7; color: #374151; margin-bottom: 2rem;">${escapeHtml(course.description)}</p>
+
+            ${slug === 'java' ? `
+            <section style="margin-bottom: 2.5rem; background: #0f172a; color: #f8fafc; padding: 2rem; border-radius: 1rem;">
+                <h2 style="font-size: 1.5rem; font-weight: 800; color: #38bdf8; margin-bottom: 0.75rem;">🎥 Java Full Course 2026: Video Lectures &amp; Live Coding Series</h2>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 1.5rem;">
+                    Watch our step-by-step 44-episode Java video masterclass designed for college students, freshers, and developers preparing for technical placement exams. Learn core syntax, OOP design principles, JVM memory allocation, multithreading, and enterprise Collections framework with hands-on live code examples.
+                </p>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; margin-bottom: 1rem;">
+                    <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO" title="Java Full Course Playlist Video" aria-label="Video: Java Full Course 2026 Video Lectures" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </section>
+            ` : ''}
 
             <div style="background: rgba(16, 185, 129, 0.05); border-left: 4px solid #10b981; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2.5rem;">
                 <h2 style="font-size: 1.125rem; font-weight: 800; color: #047857; margin-bottom: 0.5rem;">💡 Interactive Cloud IDE &amp; Assessment</h2>
@@ -1032,13 +1092,15 @@ courseEntries.forEach(([slug, course], courseIndex) => {
         </article>
     `;
 
+    const schemas = [courseSchema, breadcrumbSchema, learningResourceSchema, ...(videoSchema ? [videoSchema] : [])];
+
     const html = renderPageHtml({
         canonicalUrl,
         title: `${course.title} | ADV Indian Coder`,
         description: course.description,
         keywords: course.keywords,
         ogType: 'article',
-        schema: [courseSchema, breadcrumbSchema, learningResourceSchema],
+        schema: schemas,
         breadcrumbs,
         bodyHtml
     });
@@ -1088,6 +1150,23 @@ JOBS.forEach(job => {
         ]
     };
 
+    const videoSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        'name': `${job.company} Technical Interview & Placement Preparation Video`,
+        'description': `Comprehensive technical video lecture series to prepare for ${job.company} coding rounds and software engineering assessments. Covers core Java, data structures, algorithms, and system design fundamentals.`,
+        'thumbnailUrl': 'https://img.youtube.com/vi/IvTuFG-lXyw/maxresdefault.jpg',
+        'uploadDate': '2026-01-15T00:00:00+00:00',
+        'duration': 'PT40H00M00S',
+        'embedUrl': 'https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO',
+        'contentUrl': 'https://www.youtube.com/watch?v=IvTuFG-lXyw',
+        'publisher': {
+            '@type': 'Organization',
+            'name': 'AdvIndianCoder',
+            'url': 'https://www.advindiancoder.com'
+        }
+    };
+
     const bodyHtml = `
         <article>
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
@@ -1106,6 +1185,16 @@ JOBS.forEach(job => {
                     <a href="/courses" style="border: 1px solid #2563eb; color: #2563eb; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 700; text-decoration: none;">Prepare for Tech Interviews</a>
                 </div>
             </div>
+
+            <section style="margin-top: 2.5rem; background: #0f172a; color: #f8fafc; padding: 2rem; border-radius: 1rem;">
+                <h2 style="font-size: 1.5rem; font-weight: 800; color: #38bdf8; margin-bottom: 0.75rem;">🎥 Recommended Technical Interview Preparation Video for ${escapeHtml(job.company)}</h2>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 1.5rem;">
+                    Preparing for ${escapeHtml(job.company)} off-campus drives requires solid understanding of core computer science fundamentals, Object-Oriented Programming, Data Structures, and Algorithmic problem solving. Watch our curated 44-episode Java and coding interview roadmap to master data structures, JVM internals, memory management, and live coding rounds.
+                </p>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; margin-bottom: 1rem;">
+                    <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO" title="Technical Interview Preparation Video" aria-label="Video: Technical Interview Preparation Video" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </section>
         </article>
     `;
 
@@ -1115,7 +1204,7 @@ JOBS.forEach(job => {
         description: job.description.slice(0, 155),
         keywords: `${job.title}, ${job.company} jobs, ${job.company} careers, fresher jobs 2026, off campus drive 2026, adv indian coder jobs`,
         ogType: 'article',
-        schema: [jobPostingSchema, breadcrumbSchema],
+        schema: [jobPostingSchema, breadcrumbSchema, videoSchema],
         breadcrumbs,
         bodyHtml
     });

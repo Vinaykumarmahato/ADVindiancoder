@@ -655,8 +655,25 @@ const CourseTutorialPage = () => {
             "courseMode": "Online",
             "instructor": {
                 "@type": "Person",
-                "name": "Vinay"
+                "name": "Vinay Kumar Mahato"
             }
+        }
+    };
+
+    const videoSchema = {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": ep.title,
+        "description": `${ep.title} - ${ep.notes.intro} Learn Java programming step by step with complete code examples, architecture diagrams, and interactive quiz.`,
+        "thumbnailUrl": ep.thumbnail.startsWith('http') ? ep.thumbnail : `https://img.youtube.com/vi/${ep.youtubeId}/maxresdefault.jpg`,
+        "uploadDate": "2026-01-15T00:00:00+00:00",
+        "duration": "PT25M00S",
+        "embedUrl": `https://www.youtube.com/embed/${ep.youtubeId}`,
+        "contentUrl": `https://www.youtube.com/watch?v=${ep.youtubeId}`,
+        "publisher": {
+            "@type": "Organization",
+            "name": "AdvIndianCoder",
+            "url": "https://www.advindiancoder.com"
         }
     };
 
@@ -666,7 +683,7 @@ const CourseTutorialPage = () => {
                 title={ep.title} 
                 description={`${ep.title}. ${ep.notes.intro} Learn Java programming from scratch with complete notes, code, and interactive quiz.`}
                 ogType="course"
-                schema={courseSchema}
+                schema={[courseSchema, videoSchema]}
             />
             <div className="min-h-screen bg-white dark:bg-[#050914] text-gray-900 dark:text-white overflow-x-hidden transition-colors duration-300">
                 <div className="absolute top-0 w-full h-[500px] bg-gradient-to-b from-red-700/10 to-transparent pointer-events-none" />
@@ -706,6 +723,7 @@ const CourseTutorialPage = () => {
                                         className="w-full h-full"
                                         src={`https://www.youtube.com/embed/${ep.youtubeId}?autoplay=0&rel=0`}
                                         title={ep.title}
+                                        aria-label={`Video: ${ep.title}`}
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
                                     />
