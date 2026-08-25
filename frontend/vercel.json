@@ -1,4 +1,28 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/store",
+      "destination": "/rewards",
+      "permanent": true
+    },
+    {
+      "source": "/career",
+      "destination": "/jobs",
+      "permanent": true
+    },
+    {
+      "source": "/career/:jobId",
+      "destination": "/jobs/:jobId",
+      "permanent": true
+    },
+    {
+      "source": "/notes",
+      "destination": "/resources",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/u/:username",

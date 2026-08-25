@@ -28,9 +28,12 @@ const SEO: React.FC<SEOProps> = ({
     const fullTitle = exactTitle ? title : (title ? `${title} | ${siteTitle}` : siteTitle);
     const siteUrl = "https://www.advindiancoder.com"; 
     
-    // Auto-detect canonical if not provided
-    const currentPath = canonical || location.pathname;
-    const fullCanonical = `${siteUrl}${currentPath === '/' ? '' : currentPath}`;
+    // Auto-detect canonical if not provided (strictly no trailing slash for subpaths, root has /)
+    let currentPath = (canonical || location.pathname || '/').trim();
+    if (currentPath !== '/' && currentPath.endsWith('/')) {
+        currentPath = currentPath.slice(0, -1);
+    }
+    const fullCanonical = currentPath === '/' ? `${siteUrl}/` : `${siteUrl}${currentPath.startsWith('/') ? currentPath : '/' + currentPath}`;
 
     // Helper to render schema safely
     const renderSchema = () => {

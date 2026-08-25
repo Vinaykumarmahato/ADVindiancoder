@@ -87,6 +87,7 @@ const XmlCoursePage = React.lazy(() => import('./pages/courses/XmlCoursePage'));
 const CybersecurityCoursePage = React.lazy(() => import('./pages/courses/CybersecurityCoursePage'));
 const DsaCoursePage = React.lazy(() => import('./pages/courses/DsaCoursePage'));
 const GitCoursePage = React.lazy(() => import('./pages/courses/GitCoursePage'));
+const GitHubCoursePage = React.lazy(() => import('./pages/courses/GitHubCoursePage'));
 
 const LoadingFallback = () => (
     <div className="flex items-center justify-center min-h-screen">
@@ -153,6 +154,7 @@ const AnimatedRoutes = () => {
                 <Route path="/course/cybersecurity" element={<CybersecurityCoursePage />} />
                 <Route path="/course/dsa" element={<DsaCoursePage />} />
                 <Route path="/course/git" element={<GitCoursePage />} />
+                <Route path="/course/github" element={<GitHubCoursePage />} />
 
                 {/* Dynamic Route for other courses */}
                 <Route path="/course/:courseId" element={<GenericCoursePage />} />
