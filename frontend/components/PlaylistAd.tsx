@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Info, MoreVertical, Youtube, PlayCircle, CheckCircle } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 
 interface PlaylistAdProps {
     className?: string;
@@ -12,23 +11,6 @@ const PlaylistAd: React.FC<PlaylistAdProps> = ({ className = "", variant = "wide
     const videoTitle = "Java Full Course 2026: Master Coding from Zero to Hero";
     const videoDesc = "Master Java programming from ground zero to industry placement readiness. This comprehensive video series covers Java syntax, Object-Oriented Programming (OOP) fundamentals, JVM memory internals, exception handling, Java Collections Framework, multithreading, Streams API, and real-world project building. Designed specifically for freshers, college students, and software engineering aspirants preparing for technical coding interviews and enterprise careers.";
 
-    const videoSchema = {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": videoTitle,
-        "description": videoDesc,
-        "thumbnailUrl": "https://img.youtube.com/vi/IvTuFG-lXyw/maxresdefault.jpg",
-        "uploadDate": "2026-01-15T00:00:00+00:00",
-        "duration": "PT40H00M00S",
-        "embedUrl": "https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO",
-        "contentUrl": "https://www.youtube.com/watch?v=IvTuFG-lXyw",
-        "publisher": {
-            "@type": "Organization",
-            "name": "AdvIndianCoder",
-            "url": "https://www.advindiancoder.com"
-        }
-    };
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -36,11 +18,6 @@ const PlaylistAd: React.FC<PlaylistAdProps> = ({ className = "", variant = "wide
             viewport={{ once: true }}
             className={`max-w-4xl mx-auto w-full bg-[#f8f9fa] dark:bg-[#1a1c1e] border border-[#dadce0] dark:border-[#3c4043] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow ${className}`}
         >
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify(videoSchema)}
-                </script>
-            </Helmet>
 
             {/* Ad / Video Header */}
             <div className="px-4 py-2 border-b border-[#dadce0] dark:border-[#3c4043] flex items-center justify-between bg-white dark:bg-[#202124]">

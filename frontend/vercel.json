@@ -1,40 +1,5 @@
-{
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/store",
-      "destination": "/rewards",
-      "permanent": true
-    },
-    {
-      "source": "/career",
-      "destination": "/jobs",
-      "permanent": true
-    },
-    {
-      "source": "/career/:jobId",
-      "destination": "/jobs/:jobId",
-      "permanent": true
-    },
-    {
-      "source": "/notes",
-      "destination": "/resources",
-      "permanent": true
-    }
-  ],
+﻿{
   "rewrites": [
-    {
-      "source": "/u/:username",
-      "has": [
-        {
-          "type": "header",
-          "key": "user-agent",
-          "value": "(?i).*(facebookexternalhit|whatsapp|twitterbot|telegrambot|linkedinbot|slackbot|discordbot|googlebot|bingbot).*"
-        }
-      ],
-      "destination": "/api/profile-og?username=:username"
-    },
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

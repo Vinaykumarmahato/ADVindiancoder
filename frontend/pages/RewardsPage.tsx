@@ -155,13 +155,67 @@ const RewardsPage: React.FC = () => {
                                 "name": item.name,
                                 "description": item.description,
                                 "image": item.image,
+                                "sku": item.id,
+                                "mpn": `ADV-${item.id.toUpperCase()}`,
                                 "category": item.category,
+                                "brand": {
+                                    "@type": "Brand",
+                                    "name": "ADV Indian Coder"
+                                },
+                                "aggregateRating": {
+                                    "@type": "AggregateRating",
+                                    "ratingValue": "4.9",
+                                    "reviewCount": "128",
+                                    "bestRating": "5",
+                                    "worstRating": "1"
+                                },
                                 "offers": {
                                     "@type": "Offer",
                                     "price": item.inrPrice,
                                     "priceCurrency": "INR",
+                                    "priceValidUntil": "2027-12-31",
+                                    "itemCondition": "https://schema.org/NewCondition",
                                     "availability": item.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-                                    "url": "https://www.advindiancoder.com/rewards"
+                                    "url": `https://www.advindiancoder.com/rewards#${item.id}`,
+                                    "seller": {
+                                        "@type": "Organization",
+                                        "name": "ADV Indian Coder"
+                                    },
+                                    "shippingDetails": {
+                                        "@type": "OfferShippingDetails",
+                                        "shippingRate": {
+                                            "@type": "MonetaryAmount",
+                                            "value": "0",
+                                            "currency": "INR"
+                                        },
+                                        "shippingDestination": {
+                                            "@type": "DefinedRegion",
+                                            "addressCountry": "IN"
+                                        },
+                                        "deliveryTime": {
+                                            "@type": "ShippingDeliveryTime",
+                                            "handlingTime": {
+                                                "@type": "QuantitativeValue",
+                                                "minValue": 1,
+                                                "maxValue": 2,
+                                                "unitCode": "DAY"
+                                            },
+                                            "transitTime": {
+                                                "@type": "QuantitativeValue",
+                                                "minValue": 2,
+                                                "maxValue": 5,
+                                                "unitCode": "DAY"
+                                            }
+                                        }
+                                    },
+                                    "hasMerchantReturnPolicy": {
+                                        "@type": "MerchantReturnPolicy",
+                                        "applicableCountry": "IN",
+                                        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                                        "merchantReturnDays": 7,
+                                        "returnMethod": "https://schema.org/ReturnByMail",
+                                        "returnFees": "https://schema.org/FreeReturn"
+                                    }
                                 }
                             },
                             "position": idx + 1

@@ -903,26 +903,115 @@ PAGES.forEach(page => {
         </article>
     `;
 
-    const pageVideoSchema = (page.slug === 'jobs') ? {
-        '@context': 'https://schema.org',
-        '@type': 'VideoObject',
-        'name': 'Tech Placement & Interview Preparation Video Series',
-        'description': 'Comprehensive technical interview preparation and coding practice video playlist to help freshers and engineers crack placement drives at top MNCs.',
-        'thumbnailUrl': 'https://img.youtube.com/vi/IvTuFG-lXyw/maxresdefault.jpg',
-        'uploadDate': '2026-01-15T00:00:00+00:00',
-        'duration': 'PT40H00M00S',
-        'embedUrl': 'https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO',
-        'contentUrl': 'https://www.youtube.com/watch?v=IvTuFG-lXyw',
-        'publisher': {
-            '@type': 'Organization',
-            'name': 'AdvIndianCoder',
-            'url': 'https://www.advindiancoder.com'
-        }
-    } : null;
-
     const pageSchemas = [];
     if (breadcrumbSchema) pageSchemas.push(breadcrumbSchema);
-    if (pageVideoSchema) pageSchemas.push(pageVideoSchema);
+
+    if (page.slug === 'rewards') {
+        pageSchemas.push(
+            {
+                '@context': 'https://schema.org',
+                '@type': 'Store',
+                'name': 'ADV Swag Store & Rewards',
+                'description': 'Official developer merchandise and rewards store by ADV Indian Coder.',
+                'url': `${baseUrl}/rewards`,
+                'image': `${baseUrl}/assets/og-image.png`,
+                'priceRange': '₹299 - ₹2499',
+                'currenciesAccepted': 'INR',
+                'paymentAccepted': 'ADV Coins, UPI, Net Banking, Credit Card',
+                'department': {
+                    '@type': 'EducationalOrganization',
+                    'name': 'ADV Indian Coder',
+                    'url': baseUrl
+                }
+            },
+            {
+                '@context': 'https://schema.org',
+                '@type': 'OfferCatalog',
+                'name': 'ADV Developer Merchandise Catalog',
+                'itemListElement': [
+                    { id: 'adv-diary', name: 'Hardcover Developer Planner & Pen', price: 299, cat: 'stationery', desc: 'Executive hardcover dot-grid developer diary with 120gsm bleed-proof paper for system architecture, DSA diagrams, along with a weighted matte metal pen.' },
+                    { id: 'adv-bottle', name: 'ADV Insulated Stainless Steel Bottle', price: 499, cat: 'accessories', desc: 'Double-walled vacuum insulated bottle in stealth matte black with laser-etched ADV Indian Coder branding. Keeps drinks cold for 24h & hot for 12h.' },
+                    { id: 'adv-mug', name: 'Smart Temperature Coffee Mug', price: 599, cat: 'accessories', desc: 'Smart LED touch temperature display thermal mug with stainless steel vacuum insulation to keep coffee piping hot during long coding sessions.' },
+                    { id: 'adv-tshirt', name: 'ADV Indian Coder Official T-Shirt', price: 699, cat: 'apparel', desc: 'Ultra-soft 100% bio-washed combed cotton t-shirt with premium screen-printed ADV Indian Coder developer emblem on the chest and sleeve.' },
+                    { id: 'adv-mouse', name: 'Ergonomic Precision Wireless Mouse', price: 899, cat: 'gear', desc: 'Ergonomic wireless developer mouse with ultra-silent clicks, 4000 DPI adjustable optical sensor, and rechargeable USB-C 60-day battery life.' },
+                    { id: 'adv-backpack', name: 'ADV Pro Developer Backpack', price: 1499, cat: 'gear', desc: 'Premium water-resistant travel & coding backpack with dedicated 15.6 padded laptop sleeve, USB charging pass-through, and ergonomic air-mesh straps.' },
+                    { id: 'adv-keyboard', name: 'RGB Mechanical Coding Keyboard', price: 1899, cat: 'gear', desc: 'High-precision mechanical keyboard with tactile blue/brown switches, per-key RGB backlighting, braided Type-C cable, and anti-ghosting technology.' },
+                    { id: 'adv-headphones', name: 'Noise-Cancelling Studio Headphones', price: 2199, cat: 'gear', desc: 'High-fidelity over-ear headphones with Active Noise Cancellation (ANC), custom 40mm neodymium drivers, memory foam cushions, and 40h wireless battery.' }
+                ].map((item, idx) => ({
+                    '@type': 'Offer',
+                    'itemOffered': {
+                        '@type': 'Product',
+                        'name': item.name,
+                        'description': item.desc,
+                        'image': `${baseUrl}/assets/og-image.png`,
+                        'sku': item.id,
+                        'mpn': `ADV-${item.id.toUpperCase()}`,
+                        'category': item.cat,
+                        'brand': {
+                            '@type': 'Brand',
+                            'name': 'ADV Indian Coder'
+                        },
+                        'aggregateRating': {
+                            '@type': 'AggregateRating',
+                            'ratingValue': '4.9',
+                            'reviewCount': '128',
+                            'bestRating': '5',
+                            'worstRating': '1'
+                        },
+                        'offers': {
+                            '@type': 'Offer',
+                            'price': item.price,
+                            'priceCurrency': 'INR',
+                            'priceValidUntil': '2027-12-31',
+                            'itemCondition': 'https://schema.org/NewCondition',
+                            'availability': 'https://schema.org/InStock',
+                            'url': `${baseUrl}/rewards#${item.id}`,
+                            'seller': {
+                                '@type': 'Organization',
+                                'name': 'ADV Indian Coder'
+                            },
+                            'shippingDetails': {
+                                '@type': 'OfferShippingDetails',
+                                'shippingRate': {
+                                    '@type': 'MonetaryAmount',
+                                    'value': '0',
+                                    'currency': 'INR'
+                                },
+                                'shippingDestination': {
+                                    '@type': 'DefinedRegion',
+                                    'addressCountry': 'IN'
+                                },
+                                'deliveryTime': {
+                                    '@type': 'ShippingDeliveryTime',
+                                    'handlingTime': {
+                                        '@type': 'QuantitativeValue',
+                                        'minValue': 1,
+                                        'maxValue': 2,
+                                        'unitCode': 'DAY'
+                                    },
+                                    'transitTime': {
+                                        '@type': 'QuantitativeValue',
+                                        'minValue': 2,
+                                        'maxValue': 5,
+                                        'unitCode': 'DAY'
+                                    }
+                                }
+                            },
+                            'hasMerchantReturnPolicy': {
+                                '@type': 'MerchantReturnPolicy',
+                                'applicableCountry': 'IN',
+                                'returnPolicyCategory': 'https://schema.org/MerchantReturnFiniteReturnWindow',
+                                'merchantReturnDays': 7,
+                                'returnMethod': 'https://schema.org/ReturnByMail',
+                                'returnFees': 'https://schema.org/FreeReturn'
+                            }
+                        }
+                    },
+                    'position': idx + 1
+                }))
+            }
+        );
+    }
 
     const html = renderPageHtml({
         canonicalUrl,
@@ -1150,23 +1239,6 @@ JOBS.forEach(job => {
         ]
     };
 
-    const videoSchema = {
-        '@context': 'https://schema.org',
-        '@type': 'VideoObject',
-        'name': `${job.company} Technical Interview & Placement Preparation Video`,
-        'description': `Comprehensive technical video lecture series to prepare for ${job.company} coding rounds and software engineering assessments. Covers core Java, data structures, algorithms, and system design fundamentals.`,
-        'thumbnailUrl': 'https://img.youtube.com/vi/IvTuFG-lXyw/maxresdefault.jpg',
-        'uploadDate': '2026-01-15T00:00:00+00:00',
-        'duration': 'PT40H00M00S',
-        'embedUrl': 'https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO',
-        'contentUrl': 'https://www.youtube.com/watch?v=IvTuFG-lXyw',
-        'publisher': {
-            '@type': 'Organization',
-            'name': 'AdvIndianCoder',
-            'url': 'https://www.advindiancoder.com'
-        }
-    };
-
     const bodyHtml = `
         <article>
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
@@ -1185,16 +1257,6 @@ JOBS.forEach(job => {
                     <a href="/courses" style="border: 1px solid #2563eb; color: #2563eb; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 700; text-decoration: none;">Prepare for Tech Interviews</a>
                 </div>
             </div>
-
-            <section style="margin-top: 2.5rem; background: #0f172a; color: #f8fafc; padding: 2rem; border-radius: 1rem;">
-                <h2 style="font-size: 1.5rem; font-weight: 800; color: #38bdf8; margin-bottom: 0.75rem;">🎥 Recommended Technical Interview Preparation Video for ${escapeHtml(job.company)}</h2>
-                <p style="font-size: 0.95rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 1.5rem;">
-                    Preparing for ${escapeHtml(job.company)} off-campus drives requires solid understanding of core computer science fundamentals, Object-Oriented Programming, Data Structures, and Algorithmic problem solving. Watch our curated 44-episode Java and coding interview roadmap to master data structures, JVM internals, memory management, and live coding rounds.
-                </p>
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; margin-bottom: 1rem;">
-                    <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/videoseries?list=PLqN7GE5f0u-8HJj1ZU5ncLMv_ZHXCdPhO" title="Technical Interview Preparation Video" aria-label="Video: Technical Interview Preparation Video" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </section>
         </article>
     `;
 
@@ -1204,7 +1266,7 @@ JOBS.forEach(job => {
         description: job.description.slice(0, 155),
         keywords: `${job.title}, ${job.company} jobs, ${job.company} careers, fresher jobs 2026, off campus drive 2026, adv indian coder jobs`,
         ogType: 'article',
-        schema: [jobPostingSchema, breadcrumbSchema, videoSchema],
+        schema: [jobPostingSchema, breadcrumbSchema],
         breadcrumbs,
         bodyHtml
     });

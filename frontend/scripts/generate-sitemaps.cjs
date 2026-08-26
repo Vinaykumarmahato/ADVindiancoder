@@ -108,7 +108,7 @@ courseList.forEach(c => {
 });
 fs.writeFileSync(path.join(publicDir, 'sitemap-courses.xml'), generateXml(coursesSitemap));
 
-// 5. Video Sitemap (Google Video XML Specification)
+// 5. Video Sitemap (Google Video XML Specification - dedicated watch pages only)
 const videoPages = [
     {
         url: '/course/java',
@@ -116,26 +116,8 @@ const videoPages = [
         title: 'Java Full Course 2026: Zero to Hero (Complete Playlist & 44 Episodes)',
         description: 'Complete Java masterclass covering Object-Oriented Programming, JVM memory architecture, multithreading, Collections Framework, and real-world software engineering projects.',
         duration: 2400
-    },
-    {
-        url: '/jobs',
-        videoId: 'IvTuFG-lXyw',
-        title: 'Java Full Course 2026: Placement & Interview Prep Masterclass',
-        description: 'Comprehensive Java tutorial and interview preparation video series with hands-on coding exercises, design patterns, and placement guidance.',
-        duration: 2400
     }
 ];
-
-// Add each job page which embeds the tech interview preparation video playlist
-jobList.forEach(j => {
-    videoPages.push({
-        url: `/jobs/${j.id}`,
-        videoId: 'IvTuFG-lXyw',
-        title: `${j.company} Tech Placement Preparation - Java & Coding Masterclass`,
-        description: `Complete technical video training to crack ${j.company} coding rounds and technical interviews. Master OOP concepts, data structures, and algorithms.`,
-        duration: 2400
-    });
-});
 
 const generateVideoXml = (videos) => {
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
