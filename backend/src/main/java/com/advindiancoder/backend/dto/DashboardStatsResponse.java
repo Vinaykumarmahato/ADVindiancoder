@@ -33,4 +33,12 @@ public class DashboardStatsResponse {
     private List<FileStatsResponse> fileStats;
     private List<UserActivityLog> recentActivities;
     private List<DailyActivityDto> weeklyActivity;
+
+    // --- Server-computed coin balance (authoritative, tamper-proof) ---
+    private int totalCoinsEarned;
+    private int availableCoins;
+    private int spentCoins;
+    private int badgesCount;
+    private boolean hasCheckedInToday;
+    private boolean secretBoxClaimed;
 }

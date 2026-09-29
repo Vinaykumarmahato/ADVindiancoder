@@ -15,10 +15,12 @@ import com.advindiancoder.backend.repository.EnrollmentRepository;
 import com.advindiancoder.backend.repository.UserCourseProgressRepository;
 import com.advindiancoder.backend.repository.CodeSubmissionRepository;
 import com.advindiancoder.backend.repository.UserActivityLogRepository;
+import com.advindiancoder.backend.repository.UserCheckinRepository;
 import com.advindiancoder.backend.security.JwtTokenProvider;
 import com.advindiancoder.backend.service.SmsService;
 import com.advindiancoder.backend.service.EmailService;
 import com.advindiancoder.backend.service.OtpService;
+import com.advindiancoder.backend.service.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -73,6 +75,13 @@ public class AuthController {
 
     @Autowired
     private com.advindiancoder.backend.repository.PracticeSubmissionRepository practiceSubmissionRepository;
+
+    @Autowired
+    private CoinService coinService;
+
+    @Autowired
+    private UserCheckinRepository userCheckinRepository;
+
 
     private String getAvatarUrl(User user) {
         if (user != null && user.getAvatarUrl() != null && !user.getAvatarUrl().trim().isEmpty()) {
@@ -604,7 +613,17 @@ public class AuthController {
             weeklyActivity.add(new DailyActivityDto(dayName, percent, count, minutes));
         }
 
-        return ResponseEntity.ok(new DashboardStatsResponse(
+
+        // --- Compute authoritative coin balance server-side ---
+        CoinService.CoinBalance coinBalance = coinService.calculateBalance(user);
+        java.time.LocalDate today2 = java.time.LocalDate.now();
+        boolean hasCheckedInToday = userCheckinRepository
+            .findByUserEmailAndCheckinDateAndCheckinType(email, today2, "DAILY")
+            .isPresent();
+        boolean secretBoxClaimed = userCheckinRepository
+            .existsByUserEmailAndCheckinType(email, "SECRET_BOX");
+
+        DashboardStatsResponse resp = new DashboardStatsResponse(
             user.getUsername(),
             user.getEmail(),
             user.getMobileNumber() != null ? user.getMobileNumber() : "",
@@ -626,8 +645,15 @@ public class AuthController {
             user.getPotdSolves(),
             fileStats,
             recentActivities,
-            weeklyActivity
-        ));
+            weeklyActivity,
+            coinBalance.totalCoinsEarned,
+            coinBalance.availableCoins,
+            coinBalance.spentCoins,
+            coinBalance.badgesCount,
+            hasCheckedInToday,
+            secretBoxClaimed
+        );
+        return ResponseEntity.ok(resp);
     }
 
     @PutMapping("/profile")
