@@ -29,6 +29,7 @@ public class DashboardStatsResponse {
     private List<UserCourseProgress> courseProgressList;
     private int successfulCompiles;
     private int failedCompiles;
+    private int potdSolves;
     private List<FileStatsResponse> fileStats;
     private List<UserActivityLog> recentActivities;
     private List<DailyActivityDto> weeklyActivity;

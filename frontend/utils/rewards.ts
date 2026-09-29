@@ -253,8 +253,9 @@ export function calculateUserCoins(
         }
     }
 
-    // 7. General Solved Problems (+2 coins/solve)
-    coins += Math.max(0, successfulCompiles) * 2;
+    // 7. General Solved Problems (+2 coins/solve for non-POTD solves, or all compiles if potdSolves is 0)
+    const nonPotdSolves = Math.max(0, successfulCompiles - potdSolves);
+    coins += nonPotdSolves * 2;
 
     // 8. Grand All-10 Badges Bonus (+500 coins)
     const allTenCompleted = unlockedBadges >= 10;

@@ -21,6 +21,8 @@ const RewardsPage: React.FC = () => {
     const [myOrders, setMyOrders] = useState<any[]>([]);
     const [userStreak, setUserStreak] = useState(0);
     const [successfulCompiles, setSuccessfulCompiles] = useState(0);
+    const [potdSolves, setPotdSolves] = useState(0);
+    const [potdInfo, setPotdInfo] = useState<{ slug: string; title: string; hasSolvedToday: boolean } | null>(null);
     const [loading, setLoading] = useState(true);
 
     // Daily Check-in & Secret Box states
@@ -53,7 +55,24 @@ const RewardsPage: React.FC = () => {
                 const profileData = await profileRes.json();
                 setUserStreak(profileData.streak || 0);
                 setSuccessfulCompiles(profileData.successfulCompiles || 0);
+                setPotdSolves(profileData.potdSolves || 0);
             }
+
+            // Fetch POTD Info
+            fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/potd`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+                .then(res => res.ok ? res.json() : null)
+                .then(data => {
+                    if (data && data.problem) {
+                        setPotdInfo({
+                            slug: data.problem.slug,
+                            title: data.problem.title,
+                            hasSolvedToday: data.hasSolvedToday
+                        });
+                    }
+                })
+                .catch(() => {});
 
             const ordersRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/rewards/my-orders`, {
                 headers: { 'Authorization': `Bearer ${token}` }
@@ -71,6 +90,14 @@ const RewardsPage: React.FC = () => {
 
     useEffect(() => {
         fetchUserData();
+
+        const handleProgressUpdate = () => {
+            fetchUserData();
+        };
+        window.addEventListener('user_progress_updated', handleProgressUpdate);
+        return () => {
+            window.removeEventListener('user_progress_updated', handleProgressUpdate);
+        };
     }, [user]);
 
     const handleDailyCheckin = () => {
@@ -112,7 +139,7 @@ const RewardsPage: React.FC = () => {
         successfulCompiles, 
         spentCoins, 
         bonusCheckinCoins, 
-        successfulCompiles > 0 ? 1 : 0
+        potdSolves
     );
 
     const filteredItems = selectedCategory === 'all' 
@@ -339,17 +366,36 @@ const RewardsPage: React.FC = () => {
                                 <Zap className="w-3.5 h-3.5" />
                                 Problem of the Day
                             </span>
-                            <h3 className="text-sm font-black text-gray-900 dark:text-white">
-                                Solve Today's Challenge
+                            <h3 className="text-sm font-black text-gray-900 dark:text-white truncate max-w-[180px] sm:max-w-xs">
+                                {potdInfo ? potdInfo.title : "Solve Today's Challenge"}
                             </h3>
                             <p className="text-[11px] text-gray-400 font-semibold">Earn +10 coins on completion.</p>
                         </div>
                         <button
-                            onClick={() => navigate('/practice')}
-                            className="px-4 py-2.5 rounded-2xl text-xs font-black shrink-0 bg-red-600 hover:bg-red-500 text-white transition-all shadow-sm flex items-center gap-1.5 cursor-pointer active:scale-95"
+                            onClick={() => {
+                                if (potdInfo?.slug) {
+                                    navigate(`/practice/${potdInfo.slug}`);
+                                } else {
+                                    navigate('/practice');
+                                }
+                            }}
+                            className={`px-4 py-2.5 rounded-2xl text-xs font-black shrink-0 transition-all shadow-sm flex items-center gap-1.5 cursor-pointer active:scale-95 ${
+                                potdInfo?.hasSolvedToday
+                                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                    : 'bg-red-600 hover:bg-red-500 text-white'
+                            }`}
                         >
-                            <span>Solve (+10 🪙)</span>
-                            <ArrowRight className="w-3.5 h-3.5" />
+                            {potdInfo?.hasSolvedToday ? (
+                                <>
+                                    <Check className="w-3.5 h-3.5" />
+                                    <span>Solved ✓</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span>Solve (+10 🪙)</span>
+                                    <ArrowRight className="w-3.5 h-3.5" />
+                                </>
+                            )}
                         </button>
                     </div>
 

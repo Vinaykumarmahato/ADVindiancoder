@@ -73,40 +73,66 @@ const PracticeHubPage: React.FC = () => {
     const [selectedTopic, setSelectedTopic] = useState<string>('ALL');
     const [streak, setStreak] = useState(0);
 
-    useEffect(() => {
-        const fetchProblems = async () => {
-            const token = localStorage.getItem('adv_coder_token');
-            const headers: HeadersInit = {};
+    // Problem of the Day (POTD) state
+    const [potdData, setPotdData] = useState<{
+        date: string;
+        problem: PracticeProblemItem;
+        rewardCoins: number;
+        hasSolvedToday: boolean;
+    } | null>(null);
+
+    const fetchProblems = async () => {
+        const token = localStorage.getItem('adv_coder_token');
+        const headers: HeadersInit = {};
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        try {
+            // Fetch profile for streak
             if (token) {
-                headers['Authorization'] = `Bearer ${token}`;
+                fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/profile`, { headers })
+                    .then(res => res.ok ? res.json() : null)
+                    .then(p => { if (p && p.streak) setStreak(p.streak); })
+                    .catch(() => {});
             }
 
-            try {
-                // Fetch profile for streak
-                if (token) {
-                    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/profile`, { headers })
-                        .then(res => res.ok ? res.json() : null)
-                        .then(p => { if (p && p.streak) setStreak(p.streak); })
-                        .catch(() => {});
-                }
+            // Fetch dynamic Problem of the Day (POTD)
+            fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/potd`, { headers })
+                .then(res => res.ok ? res.json() : null)
+                .then(data => {
+                    if (data && data.problem) {
+                        setPotdData(data);
+                    }
+                })
+                .catch(() => {});
 
-                const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems`, { headers });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch practice problems.');
-                }
-                const data = await response.json();
-                setProblems(Array.isArray(data) && data.length > 0 ? data : FALLBACK_PRACTICE_PROBLEMS);
-            } catch (err: any) {
-                console.warn('Backend server unavailable, loading fallback practice problems.', err);
-                setProblems(FALLBACK_PRACTICE_PROBLEMS);
-                setError(null);
-            } finally {
-                setLoading(false);
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems`, { headers });
+            if (!response.ok) {
+                throw new Error('Failed to fetch practice problems.');
             }
-        };
+            const data = await response.json();
+            setProblems(Array.isArray(data) && data.length > 0 ? data : FALLBACK_PRACTICE_PROBLEMS);
+        } catch (err: any) {
+            console.warn('Backend server unavailable, loading fallback practice problems.', err);
+            setProblems(FALLBACK_PRACTICE_PROBLEMS);
+            setError(null);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchProblems();
-    }, []);
+
+        const handleProgressUpdate = () => {
+            fetchProblems();
+        };
+        window.addEventListener('user_progress_updated', handleProgressUpdate);
+        return () => {
+            window.removeEventListener('user_progress_updated', handleProgressUpdate);
+        };
+    }, [user]);
 
     // Unique topics list for dropdown
     const topics = ['ALL', ...Array.from(new Set(problems.map(p => p.topic)))];
@@ -448,7 +474,6 @@ const PracticeHubPage: React.FC = () => {
                                     key={i}
                                     onClick={() => {
                                         setSelectedTopic(isActive ? 'ALL' : topic.name);
-                                        setSelectedTrack(null);
                                     }}
                                     className={`p-3.5 rounded-2xl cursor-pointer transition-all border flex flex-col gap-1.5 ${
                                         isActive
@@ -513,25 +538,39 @@ const PracticeHubPage: React.FC = () => {
                     <div className="space-y-4">
                         <h3 className="text-lg font-black text-gray-900 dark:text-white flex items-center gap-2">
                             <Flame className="w-5 h-5 text-orange-500" />
-                            Special Challenge Collections
+                            Special Challenge Collections & POTD
                         </h3>
                         <div className="bg-white dark:bg-[#0c1222] border border-gray-200/50 dark:border-white/5 rounded-3xl p-6 shadow-sm space-y-4">
                             <div className="flex items-center justify-between border-b border-gray-100 dark:border-white/5 pb-3">
-                                <div>
-                                    <h4 className="text-sm font-bold text-gray-800 dark:text-gray-200">Daily Coding Challenge</h4>
-                                    <p className="text-[10px] text-gray-400 font-semibold mt-0.5">Maintain your streak by solving a daily puzzle.</p>
+                                <div className="space-y-0.5">
+                                    <div className="flex items-center gap-2">
+                                        <h4 className="text-sm font-bold text-gray-800 dark:text-gray-200">
+                                            {potdData ? `POTD: ${potdData.problem.title}` : 'Daily Coding Challenge'}
+                                        </h4>
+                                        <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 border border-red-500/20">
+                                            +10 🪙 POTD
+                                        </span>
+                                    </div>
+                                    <p className="text-[10px] text-gray-400 font-semibold">
+                                        {potdData ? `Topic: ${potdData.problem.topic} • ${potdData.problem.difficulty}` : 'Maintain your streak by solving a daily puzzle.'}
+                                    </p>
                                 </div>
                                 <button 
                                     onClick={() => {
                                         if (!user) {
                                             window.dispatchEvent(new CustomEvent('open_auth_modal'));
                                         } else {
-                                            navigate('/practice/two-sum');
+                                            const slug = potdData?.problem?.slug || 'two-sum';
+                                            navigate(`/practice/${slug}`);
                                         }
                                     }} 
-                                    className="text-xs font-bold text-green-400 hover:underline cursor-pointer"
+                                    className={`text-xs font-bold px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
+                                        potdData?.hasSolvedToday
+                                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                            : 'bg-green-500/10 hover:bg-green-500/20 text-green-400 border border-green-500/30 hover:underline'
+                                    }`}
                                 >
-                                    Solve Now
+                                    {potdData?.hasSolvedToday ? 'Solved Today ✓' : 'Solve POTD (+10 🪙)'}
                                 </button>
                             </div>
                             <div className="flex items-center justify-between border-b border-gray-100 dark:border-white/5 pb-3">

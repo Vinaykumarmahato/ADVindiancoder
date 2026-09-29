@@ -539,9 +539,9 @@ public class AuthController {
 
         // Aggregate Practice Hub submissions into fileStats
         java.util.List<com.advindiancoder.backend.entity.PracticeSubmission> practiceSubmissions = practiceSubmissionRepository.findByEmail(email);
-        java.util.List<com.advindiancoder.backend.entity.PracticeProblem> allProblems = practiceProblemRepository.findAll();
-        java.util.Map<String, String> slugToTitle = allProblems.stream()
-            .collect(java.util.stream.Collectors.toMap(com.advindiancoder.backend.entity.PracticeProblem::getSlug, com.advindiancoder.backend.entity.PracticeProblem::getTitle, (a, b) -> a));
+        java.util.List<com.advindiancoder.backend.repository.PracticeProblemRepository.SlugTitleProjection> allSlugTitles = practiceProblemRepository.findAllSlugAndTitles();
+        java.util.Map<String, String> slugToTitle = allSlugTitles.stream()
+            .collect(java.util.stream.Collectors.toMap(com.advindiancoder.backend.repository.PracticeProblemRepository.SlugTitleProjection::getSlug, com.advindiancoder.backend.repository.PracticeProblemRepository.SlugTitleProjection::getTitle, (a, b) -> a));
 
         java.util.Map<String, java.util.List<com.advindiancoder.backend.entity.PracticeSubmission>> groupedPractice = practiceSubmissions.stream()
             .collect(java.util.stream.Collectors.groupingBy(ps -> ps.getProblemSlug() + "|" + ps.getLanguage()));
@@ -623,6 +623,7 @@ public class AuthController {
             progressList,
             successfulCompiles,
             failedCompiles,
+            user.getPotdSolves(),
             fileStats,
             recentActivities,
             weeklyActivity
@@ -837,9 +838,9 @@ public class AuthController {
         }
         
         // Find problems to map slug to title
-        java.util.List<com.advindiancoder.backend.entity.PracticeProblem> allProblems = practiceProblemRepository.findAll();
-        java.util.Map<String, String> slugToTitle = allProblems.stream()
-            .collect(java.util.stream.Collectors.toMap(com.advindiancoder.backend.entity.PracticeProblem::getSlug, com.advindiancoder.backend.entity.PracticeProblem::getTitle, (a, b) -> a));
+        java.util.List<com.advindiancoder.backend.repository.PracticeProblemRepository.SlugTitleProjection> allSlugTitles = practiceProblemRepository.findAllSlugAndTitles();
+        java.util.Map<String, String> slugToTitle = allSlugTitles.stream()
+            .collect(java.util.stream.Collectors.toMap(com.advindiancoder.backend.repository.PracticeProblemRepository.SlugTitleProjection::getSlug, com.advindiancoder.backend.repository.PracticeProblemRepository.SlugTitleProjection::getTitle, (a, b) -> a));
 
         for (com.advindiancoder.backend.entity.PracticeSubmission ps : practices) {
             String title = slugToTitle.getOrDefault(ps.getProblemSlug(), ps.getProblemSlug());

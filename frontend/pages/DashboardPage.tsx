@@ -41,6 +41,8 @@ export interface DashboardData {
     fileStats: FileStatsData[];
     recentActivities: ActivityLogData[];
     weeklyActivity?: { day: string; percent: number; compiles: number; minutes: number }[];
+    streak?: number;
+    potdSolves?: number;
 }
 
 interface UserCourseProgress {
@@ -195,6 +197,17 @@ const DashboardPage: React.FC = () => {
         }
         fetchProfileData();
         fetchSubmissionsHistory();
+        fetchMyRewardOrders();
+
+        const handleProgressUpdate = () => {
+            fetchProfileData();
+            fetchSubmissionsHistory();
+            fetchMyRewardOrders();
+        };
+        window.addEventListener('user_progress_updated', handleProgressUpdate);
+        return () => {
+            window.removeEventListener('user_progress_updated', handleProgressUpdate);
+        };
     }, [user, navigate]);
 
     if (loading) {
@@ -222,6 +235,16 @@ const DashboardPage: React.FC = () => {
     try { education = JSON.parse(data.educationJson || '{}'); } catch (e) {}
 
     const hasEducation = Object.values(education).some((v: any) => v && v.trim() !== '');
+
+    const bonusCheckinCoins = parseInt(localStorage.getItem('adv_bonus_checkin_coins') || '0', 10);
+    const spentCoins = myRewardOrders.reduce((acc, o) => acc + (o.coinCost || 0), 0);
+    const coinData = calculateUserCoins(
+        data.streak || streak,
+        data.successfulCompiles || 0,
+        spentCoins,
+        bonusCheckinCoins,
+        data.potdSolves || 0
+    );
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#070b13] pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-12 px-4 sm:px-6 lg:px-8">

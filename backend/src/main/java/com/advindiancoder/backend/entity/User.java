@@ -63,6 +63,9 @@ public class User {
     @Column(name = "exam_mock_score", nullable = false)
     private int examMockScore = 0;
 
+    @Column(name = "potd_solves", nullable = false)
+    private int potdSolves = 0;
+
     @Column(name = "projects_json", columnDefinition = "MEDIUMTEXT")
     private String projectsJson = "[]";
 

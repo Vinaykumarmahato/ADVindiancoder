@@ -554,6 +554,8 @@ const PracticeWorkspacePage: React.FC = () => {
     const [earnedBadge, setEarnedBadge] = useState<Badge | null>(null);
     const [earnedStreak, setEarnedStreak] = useState<number>(1);
     const [showBadgeModal, setShowBadgeModal] = useState<boolean>(false);
+    const [celebrationTitle, setCelebrationTitle] = useState<string>("Challenge Solved & Milestone Earned!");
+    const [celebrationMessage, setCelebrationMessage] = useState<string>("Outstanding performance! All test cases passed with zero runtime errors.");
     const [submitSuccess, setSubmitSuccess] = useState(false);
 
     // Custom input states
@@ -781,33 +783,43 @@ const PracticeWorkspacePage: React.FC = () => {
 
             // Persist progress to DB
             const token = localStorage.getItem('adv_coder_token');
+            let submitData: any = null;
             if (token && isSubmit) {
-                await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems/${problemSlug}/submit`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        language,
-                        code,
-                        success: allPassed
-                    })
-                });
+                try {
+                    const submitRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/practice/problems/${problemSlug}/submit`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            language,
+                            code,
+                            success: allPassed
+                        })
+                    });
+                    if (submitRes.ok) {
+                        submitData = await submitRes.json();
+                    }
+                } catch (e) {
+                    console.error("Failed to post submission:", e);
+                }
             }
 
             if (isSubmit && allPassed) {
                 // Determine streak and earned badge
-                let currentStreak = 1;
-                try {
-                    const profileRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/user`, {
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
-                    if (profileRes.ok) {
-                        const userData = await profileRes.json();
-                        currentStreak = userData.streak || 1;
-                    }
-                } catch (e) {}
+                let currentStreak = submitData?.streak || 1;
+                if (!submitData?.streak) {
+                    try {
+                        const profileRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api/auth/profile`, {
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
+                        if (profileRes.ok) {
+                            const userData = await profileRes.json();
+                            currentStreak = userData.streak || 1;
+                        }
+                    } catch (e) {}
+                }
 
                 setEarnedStreak(currentStreak);
 
@@ -817,7 +829,33 @@ const PracticeWorkspacePage: React.FC = () => {
                     matchingBadge = BADGES_CATALOGUE[0]; // Day 1 Pioneer fallback
                 }
                 setEarnedBadge(matchingBadge);
+
+                // Configure celebration modal content
+                const isPotd = submitData?.isPotd;
+                const coinsAwarded = submitData?.coinsEarned || (isPotd ? 10 : 2);
+
+                if (isPotd) {
+                    setCelebrationTitle(`🌟 Problem of the Day (POTD) Solved! (+${coinsAwarded} 🪙)`);
+                    setCelebrationMessage(`Outstanding dedication! You solved today's spotlight challenge, maintained your daily streak, and earned +${coinsAwarded} ADV Coins for the Swag Store!`);
+                } else {
+                    setCelebrationTitle(`Challenge Solved (+${coinsAwarded} ADV Coins)!`);
+                    setCelebrationMessage(`Outstanding performance! All test cases passed with zero runtime errors. Your daily coding streak and +${coinsAwarded} ADV Coins have been credited to your wallet.`);
+                }
+
                 setShowBadgeModal(true);
+
+                // Immediately trigger real-time profile refresh and notify all components
+                if (refreshUser) {
+                    refreshUser().catch(() => {});
+                }
+                window.dispatchEvent(new CustomEvent('user_progress_updated', {
+                    detail: {
+                        slug: problemSlug,
+                        coinsEarned: coinsAwarded,
+                        isPotd: isPotd,
+                        streak: currentStreak
+                    }
+                }));
             }
 
         } catch (err: any) {
@@ -1110,8 +1148,8 @@ const PracticeWorkspacePage: React.FC = () => {
                 onClose={() => setShowBadgeModal(false)}
                 badge={earnedBadge}
                 streak={earnedStreak}
-                customTitle="Challenge Solved & Milestone Earned!"
-                customMessage="Outstanding performance! All test cases passed with zero runtime errors. Your daily coding streak and achievement badge have been officially recorded."
+                customTitle={celebrationTitle}
+                customMessage={celebrationMessage}
                 onRequireLogin={() => {
                     setShowBadgeModal(false);
                     window.dispatchEvent(new CustomEvent('open_auth_modal'));
