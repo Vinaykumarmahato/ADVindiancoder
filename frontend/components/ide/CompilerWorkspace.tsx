@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import { Play, RotateCcw, Copy, Share2, Terminal, Code2, Coffee, Zap, Award, Github, PartyPopper, CheckCircle2, ChevronDown, ChevronRight, Folder, FolderOpen, FolderPlus, FileCode, FilePlus, Plus, X, Download, Trash2, Linkedin, Briefcase, Archive, Bot, Users } from 'lucide-react';
 import JSZip from 'jszip';
@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { JAVA_EPISODES } from '../../data/javaEpisodes';
 import { useAuth } from '../../contexts/AuthContext';
+import { executeCode } from '../../services/codeExecution';
 
 const BOILERPLATE: Record<string, string> = {
     python: `def main():\n    print("Hello from ADV Indian Coder!")\n\nif __name__ == "__main__":\n    main()`,
@@ -20,7 +21,7 @@ const LESSON_TEMPLATES: Record<string, Record<string, string>> = {
         'Default Blueprint': BOILERPLATE['java'],
         ...JAVA_EPISODES.reduce((acc, ep) => {
             if (!ep.notes || !ep.notes.code) return acc;
-            const cleanTitle = ep.title.replace('EP ' + (ep.id < 10 ? '0' + ep.id : ep.id), '').replace('–', '').replace('—', '').trim();
+            const cleanTitle = ep.title.replace('EP ' + (ep.id < 10 ? '0' + ep.id : ep.id), '').replace('â€“', '').replace('â€”', '').trim();
             acc[`EP ${ep.id}: ${cleanTitle.split('|')[0].trim()}`] = ep.notes.code;
             return acc;
         }, {} as Record<string, string>),
@@ -397,7 +398,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                     const profileData = await profileRes.json();
                     if (profileData.streak > 0) {
                         setPopup({
-                            title: `🔥 ${profileData.streak} Day Streak!`,
+                            title: `ðŸ”¥ ${profileData.streak} Day Streak!`,
                             msg: "Amazing job! You ran code today. Keep this streak alive tomorrow!",
                             type: 'success'
                         });
@@ -753,7 +754,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         URL.revokeObjectURL(url);
         
         setPopup({
-            title: "Downloaded! 💾",
+            title: "Downloaded! ðŸ’¾",
             msg: `Your file ${activeFile.name} has been saved to your computer.`,
             type: 'success'
         });
@@ -799,7 +800,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         const activeFile = files.find(f => f.id === activeFileId);
         if (!activeFile) return;
 
-        const text = `I am excited to share my latest programming milestone! 🚀 I have successfully implemented a new solution in ${language.toUpperCase()} using the advanced ADV Lab IDE environment.\n\nContinuous practice and hands-on coding are the keys to mastering software engineering. Here is the core logic of my approach:\n\n\`\`\`${language}\n${activeFile.content}\n\`\`\`\n\nLooking forward to tackling more complex challenges and continuously improving my skills! Let me know your thoughts on this approach.\n\n#vinaykumarmahato #advindiancoder #softwaredevelopment #programming #${language.toLowerCase()} #codingjourney`;
+        const text = `I am excited to share my latest programming milestone! ðŸš€ I have successfully implemented a new solution in ${language.toUpperCase()} using the advanced ADV Lab IDE environment.\n\nContinuous practice and hands-on coding are the keys to mastering software engineering. Here is the core logic of my approach:\n\n\`\`\`${language}\n${activeFile.content}\n\`\`\`\n\nLooking forward to tackling more complex challenges and continuously improving my skills! Let me know your thoughts on this approach.\n\n#vinaykumarmahato #advindiancoder #softwaredevelopment #programming #${language.toLowerCase()} #codingjourney`;
         
         const linkedInUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(text)}`;
         window.open(linkedInUrl, '_blank');
@@ -840,7 +841,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         
         if (!silent) {
             setPopup({
-                title: "Project Downloaded! 📦",
+                title: "Project Downloaded! ðŸ“¦",
                 msg: `Your entire project '${project?.name || projectName}' has been saved as a ZIP file.`,
                 type: 'success'
             });
@@ -877,7 +878,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
         
         if (!silent) {
             setPopup({
-                title: "Folder Downloaded! 📦",
+                title: "Folder Downloaded! ðŸ“¦",
                 msg: `Folder '${folder.name}' has been saved as a ZIP file.`,
                 type: 'success'
             });
@@ -907,8 +908,8 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                     logActivity('GITHUB_UPLOAD', `Uploaded folder "${folder.name}" to GitHub Repository: ${url}`);
                     
                     setPopup({
-                        title: "Ready to Upload! 🚀",
-                        msg: `The file '${folder.name}.zip' is downloaded.\n\n⚠️ IMPORTANT: First EXTRACT (Unzip) this file on your computer, then drag & drop the extracted folder onto the GitHub page.`,
+                        title: "Ready to Upload! ðŸš€",
+                        msg: `The file '${folder.name}.zip' is downloaded.\n\nâš ï¸ IMPORTANT: First EXTRACT (Unzip) this file on your computer, then drag & drop the extracted folder onto the GitHub page.`,
                         type: 'success'
                     });
                 }
@@ -940,8 +941,8 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                     logActivity('GITHUB_UPLOAD', `Uploaded project "${pName}" to GitHub Repository: ${url}`);
                     
                     setPopup({
-                        title: "Ready to Upload! 🚀",
-                        msg: `Your project ZIP is downloaded.\n\n⚠️ IMPORTANT: First EXTRACT (Unzip) this file on your computer, then drag & drop the extracted folder onto the GitHub page.`,
+                        title: "Ready to Upload! ðŸš€",
+                        msg: `Your project ZIP is downloaded.\n\nâš ï¸ IMPORTANT: First EXTRACT (Unzip) this file on your computer, then drag & drop the extracted folder onto the GitHub page.`,
                         type: 'success'
                     });
                 }
@@ -1039,13 +1040,13 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
     const runCode = async () => {
         const langLabel = language === 'cpp' ? 'C++' : language.charAt(0).toUpperCase() + language.slice(1);
         setIsLoading(true);
-        setOutput(`🚀 Compiling ${langLabel}...`);
+        setOutput(`ðŸš€ Compiling ${langLabel}...`);
         setExecutionTime(null);
         const startTime = performance.now();
 
         try {
             if (!activeFileId) {
-                setOutput('❌ No active file selected. Please select or create a file to run.');
+                setOutput('âŒ No active file selected. Please select or create a file to run.');
                 setIsLoading(false);
                 return;
             }
@@ -1054,7 +1055,7 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
             let finalCode = currentCode;
 
             if (language === 'java') {
-                // Simple single-file execution — only active file runs
+                // Simple single-file execution â€” only active file runs
                 // Strip package declaration (Judge0 doesn't need it)
                 finalCode = finalCode.replace(/^\s*package\s+[\w.]+\s*;/gm, '').trim();
 
@@ -1096,71 +1097,30 @@ const CompilerWorkspace = ({ language }: { language: string }) => {
                 }
             }
 
-            const judge0LangMap: Record<string, number> = {
-                python: 71,
-                java: 62,
-                c: 50,
-                cpp: 54,
-                javascript: 63,
-            };
-
-            const langId = judge0LangMap[language];
-            if (!langId) {
-                setOutput('Unsupported language.');
-                setIsLoading(false);
-                return;
-            }
-
-            const b64 = (str: string) => btoa(unescape(encodeURIComponent(str)));
-
-            const judgeRes = await axios.post(
-                'https://ce.judge0.com/submissions?base64_encoded=true&wait=true',
-                {
-                    language_id: langId,
-                    source_code: b64(finalCode),
-                    stdin: b64(''),
-                },
-                { headers: { 'Content-Type': 'application/json' } }
-            );
+            const res = await executeCode({
+                language,
+                code: finalCode,
+                stdin: '',
+            });
 
             const endTime = performance.now();
-            setExecutionTime(Math.round(endTime - startTime));
+            setExecutionTime(res.executionTimeMs || Math.round(endTime - startTime));
 
-            const data = judgeRes.data;
-
-            const safeDecode = (s: string) => {
-                if (!s) return '';
-                try { return decodeURIComponent(escape(atob(s))); } catch { try { return atob(s); } catch { return s; } }
-            };
-
-            const statusId   = data?.status?.id;
-            const statusDesc = data?.status?.description || 'Unknown';
-            const outText    = safeDecode(data?.stdout || '');
-            const errText    = safeDecode(data?.stderr || '');
-            const compText   = safeDecode(data?.compile_output || '');
-            const msgText    = data?.message || '';
-
-            if (statusId === 3) {
-                setOutput(outText.trim() || '✅ Code executed successfully (no output).');
+            if (res.success) {
+                setOutput(res.stdout.trim() || '✅ Code executed successfully (no output).');
                 trackCompilation(true);
             } else {
                 trackCompilation(false);
-                if (statusId === 6) {
-                    setOutput(`❌ Compilation Error:\n${compText || msgText}`);
-                } else if (statusId === 5) {
-                    setOutput('⏱️ Time Limit Exceeded. Check for infinite loops.');
-                } else {
-                    let errMsg = errText || compText || msgText || 'Runtime error occurred.';
-                    if (errMsg.includes('NoSuchElementException') || errMsg.includes('EOFException')) {
-                        errMsg += '\n\n💡 HINT: If you have Scanner inputs, please remove them as this compiler does not support interactive STDIN yet.';
-                    }
-                    setOutput(`❌ ${statusDesc}:\n${errMsg}`);
+                let errMsg = res.stderr || res.compileOutput || 'Runtime error occurred.';
+                if (errMsg.includes('NoSuchElementException') || errMsg.includes('EOFException')) {
+                    errMsg += '\n\n💡 HINT: If you have Scanner inputs, please remove or provide input.';
                 }
+                setOutput(`❌ Execution Error:\n${errMsg}`);
             }
 
         } catch (error: any) {
             console.error('[ADV Lab] Error:', error);
-            setOutput(`❌ Execution failed: ${error?.response?.data?.message || error?.message || 'Unknown error'}`);
+            setOutput(`âŒ Execution failed: ${error?.response?.data?.message || error?.message || 'Unknown error'}`);
         } finally {
             setIsLoading(false);
         }
@@ -1219,7 +1179,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
 
         setAiLoading(true);
         setTerminalTab('ai_debug');
-        setAiResponse('🤖 ADV AI is analyzing your workspace...');
+        setAiResponse('ðŸ¤– ADV AI is analyzing your workspace...');
 
         try {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
@@ -1250,7 +1210,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
             setAiResponse(textResult);
         } catch (error: any) {
             console.error('Gemini API Error:', error);
-            setAiResponse(`❌ Failed to connect to Gemini API: ${error.message}\n\nPlease check your internet connection and verify that your API key is correct.`);
+            setAiResponse(`âŒ Failed to connect to Gemini API: ${error.message}\n\nPlease check your internet connection and verify that your API key is correct.`);
         } finally {
             setAiLoading(false);
         }
@@ -1259,12 +1219,12 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
     const seoContent = {
         java: {
             title: "Online Java Compiler - Free Java IDE | ADV Lab",
-            description: "Free online Java compiler and IDE by ADV Indian Coder. Write, compile and run Java code instantly in your browser — no installation needed. Perfect for students and developers learning Java programming.",
+            description: "Free online Java compiler and IDE by ADV Indian Coder. Write, compile and run Java code instantly in your browser â€” no installation needed. Perfect for students and developers learning Java programming.",
             keywords: "online java compiler, java compiler online, run java code online, java ide online, free java compiler, java programming online, compile java code, java online editor, java code runner, adv lab java",
             schema: {
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "ADV Lab – Online Java Compiler",
+                "name": "ADV Lab â€“ Online Java Compiler",
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Web Browser",
                 "url": "https://advindiancoder.com/online-java-compiler",
@@ -1280,7 +1240,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
             schema: {
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "ADV Lab – Online Python Compiler",
+                "name": "ADV Lab â€“ Online Python Compiler",
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Web Browser",
                 "url": "https://advindiancoder.com/online-python-compiler",
@@ -1296,7 +1256,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
             schema: {
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "ADV Lab – Online C Compiler",
+                "name": "ADV Lab â€“ Online C Compiler",
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Web Browser",
                 "url": "https://advindiancoder.com/online-c-compiler",
@@ -1312,7 +1272,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
             schema: {
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "ADV Lab – Online C++ Compiler",
+                "name": "ADV Lab â€“ Online C++ Compiler",
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Web Browser",
                 "url": "https://advindiancoder.com/online-cpp-compiler",
@@ -1328,7 +1288,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
             schema: {
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "ADV Lab – Online JavaScript Compiler",
+                "name": "ADV Lab â€“ Online JavaScript Compiler",
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Web Browser",
                 "url": "https://advindiancoder.com/online-javascript-compiler",
@@ -1499,7 +1459,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                         </div>
 
                         
-                {/* ─── Mobile View Tabs (Segmented Control for small screens) ─── */}
+                {/* â”€â”€â”€ Mobile View Tabs (Segmented Control for small screens) â”€â”€â”€ */}
                 <div className="max-w-[1700px] mx-auto w-full lg:hidden mb-2 px-1">
                     <div className="grid grid-cols-4 gap-1 bg-[#121624]/90 backdrop-blur-xl border border-white/10 p-1 rounded-2xl shadow-xl">
                         <button
@@ -1685,7 +1645,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                     
                                     <div className="flex-1 overflow-y-auto p-2 space-y-0.5 custom-scrollbar">
 
-                                        {/* ── New Folder Input ── */}
+                                        {/* â”€â”€ New Folder Input â”€â”€ */}
                                         {isCreatingFolder && (
                                             <form
                                                 onSubmit={(e) => {
@@ -1717,7 +1677,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                             </form>
                                         )}
 
-                                        {/* ── New File Input (root level only — no open folder) ── */}
+                                        {/* â”€â”€ New File Input (root level only â€” no open folder) â”€â”€ */}
                                         {isCreatingFile && !activeFolderId && (() => {
                                             const resolvedName = newFileName.trim() ? resolveFileName(newFileName, language) : '';
                                             const isDuplicate = !!resolvedName && files.some(f => f.name === resolvedName && f.language === language && (f.folderId ?? null) === null);
@@ -1741,17 +1701,17 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                                     </form>
                                                     {isDuplicate && (
                                                         <div className="flex items-center gap-1.5 px-2 py-1 bg-red-500/10 border border-red-500/20 rounded-lg">
-                                                            <span className="text-red-400 text-[10px] font-bold">⚠ "{resolvedName}" already exists</span>
+                                                            <span className="text-red-400 text-[10px] font-bold">âš  "{resolvedName}" already exists</span>
                                                         </div>
                                                     )}
                                                 </div>
                                             );
                                         })()}
 
-                                        {/* ── Folders with files inside ── */}
+                                        {/* â”€â”€ Folders with files inside â”€â”€ */}
                                         {folders.filter(fo => fo.language === language && fo.projectId === activeProjectId).map(folder => (
                                             <div key={folder.id}>
-                                                {/* Folder row — clicking toggles open/close AND selects it */}
+                                                {/* Folder row â€” clicking toggles open/close AND selects it */}
                                                 <div
                                                     className={`flex items-center justify-between px-2 py-1.5 rounded-lg cursor-pointer group transition-colors ${
                                                         activeFolderId === folder.id && !isCreatingFile ? 'bg-white/5' : 'hover:bg-white/5'
@@ -1842,7 +1802,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                                                         />
                                                                     </form>
                                                                     {isDuplicate && (
-                                                                        <span className="text-red-400 text-[10px] font-bold px-1">⚠ "{resolvedName}" exists</span>
+                                                                        <span className="text-red-400 text-[10px] font-bold px-1">âš  "{resolvedName}" exists</span>
                                                                     )}
                                                                 </div>
                                                             );
@@ -1876,7 +1836,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                             </div>
                                         ))}
 
-                                        {/* ── Root-level files (no folder) ── */}
+                                        {/* â”€â”€ Root-level files (no folder) â”€â”€ */}
                                         {files.filter(f => f.language === language && (!f.folderId || !folders.some(fo => fo.id === f.folderId)) && f.projectId === activeProjectId).map(f => (
                                             <div
                                                 key={f.id}
@@ -1982,7 +1942,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                                                 setCode('');
                                                             }
                                                         }
-                                                        // Remove from open tabs (visual close only — file still exists in explorer)
+                                                        // Remove from open tabs (visual close only â€” file still exists in explorer)
                                                         setOpenTabIds(prev => prev.filter(id => id !== f.id));
                                                     }}
                                                     className={`shrink-0 p-0.5 rounded transition-all hover:bg-white/20 hover:text-white ${
@@ -1997,7 +1957,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                     </div>
                                     
                                     
-                                    {/* ─── Mobile Quick-Symbol Toolbar ─── */}
+                                    {/* â”€â”€â”€ Mobile Quick-Symbol Toolbar â”€â”€â”€ */}
                                     <div className="lg:hidden flex items-center gap-1 px-2 py-1.5 bg-[#141926] border-b border-white/10 overflow-x-auto no-scrollbar select-none shrink-0">
                                         <div className="flex items-center gap-1">
                                             {[
@@ -2044,7 +2004,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                         {collabSessionId && (
                                             <div className="absolute top-2 left-4 z-30 pointer-events-none">
                                                 <span className="bg-green-500/90 backdrop-blur-md border border-green-400/20 text-[8px] md:text-[9px] font-black uppercase tracking-[0.1em] px-3 py-1 rounded-full text-white shadow-xl flex items-center gap-1.5 animate-pulse">
-                                                    <Users className="w-2.5 h-2.5 shrink-0" /> Collab Active {lastSyncBy && `• Changed by: ${lastSyncBy}`}
+                                                    <Users className="w-2.5 h-2.5 shrink-0" /> Collab Active {lastSyncBy && `â€¢ Changed by: ${lastSyncBy}`}
                                                 </span>
                                             </div>
                                         )}
@@ -2198,7 +2158,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
 
                                                 <div className="whitespace-pre-wrap flex-1 scroll-auto select-text">
                                                     {output ? (
-                                                        <div className={output.startsWith('❌') ? 'text-red-400' : 'text-gray-100'}>
+                                                        <div className={output.startsWith('âŒ') ? 'text-red-400' : 'text-gray-100'}>
                                                             {output}
                                                         </div>
                                                     ) : (
@@ -2247,7 +2207,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                                             rel="noopener noreferrer"
                                                             className="text-[10px] text-purple-400 hover:underline mt-3"
                                                         >
-                                                            Get a Free Google Gemini API Key →
+                                                            Get a Free Google Gemini API Key â†’
                                                         </a>
                                                     </div>
                                                 ) : (
@@ -2284,7 +2244,7 @@ Analyze this code for performance, cleanliness, and time/space complexity. Sugge
                                                         disabled={aiLoading}
                                                         onClick={() => runAiQuery('fix')}
                                                         type="button"
-                                                        className={`py-2 rounded-xl bg-white/5 border text-[10px] font-bold hover:bg-white/10 text-gray-300 hover:text-white transition-all text-center shrink-0 flex items-center justify-center gap-1.5 ${output && output.startsWith('❌') ? 'border-red-500/40 text-red-300 hover:bg-red-500/10' : 'border-white/10 hover:border-purple-500/40'}`}
+                                                        className={`py-2 rounded-xl bg-white/5 border text-[10px] font-bold hover:bg-white/10 text-gray-300 hover:text-white transition-all text-center shrink-0 flex items-center justify-center gap-1.5 ${output && output.startsWith('âŒ') ? 'border-red-500/40 text-red-300 hover:bg-red-500/10' : 'border-white/10 hover:border-purple-500/40'}`}
                                                     >
                                                         Fix Errors
                                                     </button>

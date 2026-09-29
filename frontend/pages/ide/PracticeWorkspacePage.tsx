@@ -10,6 +10,7 @@ import SEO from '../../components/SEO';
 import { useAuth } from '../../contexts/AuthContext';
 import { BADGES_CATALOGUE, Badge, evaluateUserBadges } from '../../utils/badges';
 import BadgeCelebrationModal from '../../components/badges/BadgeCelebrationModal';
+import { executeCode } from '../../services/codeExecution';
 
 interface ProblemDetails {
     id: number;
@@ -652,30 +653,18 @@ const PracticeWorkspacePage: React.FC = () => {
         if (useCustomInput) {
             setExecOutput("🚀 Running code against custom input...\n");
             try {
-                const judgeRes = await axios.post(
-                    'https://ce.judge0.com/submissions?base64_encoded=true&wait=true',
-                    {
-                        language_id: langId,
-                        source_code: b64Encode(finalRunnableCode),
-                        stdin: b64Encode(customInput),
-                    },
-                    { headers: { 'Content-Type': 'application/json' } }
-                );
-
-                const data = judgeRes.data;
-                const statusDesc = data?.status?.description || 'Unknown';
-                const stdout = b64Decode(data?.stdout || '').trim();
-                const stderr = b64Decode(data?.stderr || '').trim();
-                const compileOutput = b64Decode(data?.compile_output || '').trim();
-                const messageOutput = data?.message || '';
+                const res = await executeCode({
+                    language,
+                    code: finalRunnableCode,
+                    stdin: customInput,
+                });
 
                 let out = '';
-                if (compileOutput) out += `Compile Output:\n${compileOutput}\n\n`;
-                if (stdout) out += `Standard Output:\n${stdout}\n\n`;
-                if (stderr) out += `Standard Error:\n${stderr}\n\n`;
-                if (messageOutput) out += `Execution Message:\n${messageOutput}\n\n`;
-                if (!compileOutput && !stdout && !stderr && !messageOutput) {
-                    out += `Execution completed: ${statusDesc}\n`;
+                if (res.compileOutput) out += `Compile Output:\n${res.compileOutput}\n\n`;
+                if (res.stdout) out += `Standard Output:\n${res.stdout}\n\n`;
+                if (res.stderr) out += `Standard Error / Message:\n${res.stderr}\n\n`;
+                if (!res.compileOutput && !res.stdout && !res.stderr) {
+                    out += `Execution completed successfully (no output).\n`;
                 }
 
                 setExecOutput(out);
@@ -690,7 +679,7 @@ const PracticeWorkspacePage: React.FC = () => {
                             'Authorization': `Bearer ${token}`
                         },
                         body: JSON.stringify({
-                            success: data?.status?.id === 3,
+                            success: res.success,
                             fileName: problem.title,
                             language: language,
                             code: code
@@ -702,14 +691,6 @@ const PracticeWorkspacePage: React.FC = () => {
             } finally {
                 setIsExecuting(false);
             }
-            return;
-        }
-
-        if (isSubmit && !user) {
-            // Save state to auto-resume on login
-            sessionStorage.setItem('pending_practice_submit', JSON.stringify({ slug: problemSlug, language, code }));
-            setExecOutput(prev => prev + "\n🔒 Sign In Required: Please log in or create a free account to submit your solution, maintain your daily streak, and earn official achievement badges!\n");
-            window.dispatchEvent(new CustomEvent('open_auth_modal'));
             return;
         }
 
@@ -728,38 +709,30 @@ const PracticeWorkspacePage: React.FC = () => {
         let allPassed = true;
 
         try {
-            // Run tests in parallel
+            // Run tests in parallel using robust execution engine
             setExecOutput(prev => prev + `Running ${parsedTests.length} Test Cases in parallel...\n`);
 
             const testPromises = parsedTests.map((test) =>
-                axios.post(
-                    'https://ce.judge0.com/submissions?base64_encoded=true&wait=true',
-                    {
-                        language_id: langId,
-                        source_code: b64Encode(finalRunnableCode),
-                        stdin: b64Encode(test.input),
-                    },
-                    { headers: { 'Content-Type': 'application/json' } }
-                )
+                executeCode({
+                    language,
+                    code: finalRunnableCode,
+                    stdin: test.input,
+                })
             );
 
-            const judgeResponses = await Promise.all(testPromises);
+            const testResponses = await Promise.all(testPromises);
 
             for (let idx = 0; idx < parsedTests.length; idx++) {
                 const test = parsedTests[idx];
-                const data = judgeResponses[idx].data;
-                const statusId = data?.status?.id;
-                const statusDesc = data?.status?.description || 'Unknown';
-                const stdout = b64Decode(data?.stdout || '').trim();
-                const stderr = b64Decode(data?.stderr || '').trim();
-                const compileOutput = b64Decode(data?.compile_output || '').trim();
-                const messageOutput = data?.message || '';
+                const res = testResponses[idx];
+                const stdout = (res.stdout || '').trim();
+                const stderr = (res.stderr || '').trim();
 
-                if (statusId === 3) { // Success
+                if (res.success) {
                     const expectedOut = test.output.trim();
                     const passed = stdout === expectedOut;
                     if (!passed) allPassed = false;
-                    
+
                     results.push({
                         input: test.input,
                         expected: expectedOut,
@@ -768,11 +741,10 @@ const PracticeWorkspacePage: React.FC = () => {
                     });
                 } else {
                     allPassed = false;
-                    let errorMsg = stderr || compileOutput || messageOutput || statusDesc;
                     results.push({
                         input: test.input,
                         expected: test.output,
-                        actual: `Error: ${statusDesc}\n${errorMsg}`,
+                        actual: `Error:\n${stderr || 'Runtime error or non-zero exit code'}`,
                         passed: false
                     });
                 }
@@ -780,6 +752,7 @@ const PracticeWorkspacePage: React.FC = () => {
 
             setTestResults(results);
             setExecOutput(prev => prev + `\n📊 Completed: ${results.filter(r => r.passed).length} / ${results.length} Test Cases Passed.\n`);
+
 
             // Persist progress to DB
             const token = localStorage.getItem('adv_coder_token');
