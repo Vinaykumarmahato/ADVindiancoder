@@ -543,6 +543,7 @@ const PracticeWorkspacePage: React.FC = () => {
     
     // Console outputs
     const [isExecuting, setIsExecuting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [execOutput, setExecOutput] = useState<string>('');
     const [testResults, setTestResults] = useState<{
         input: string;
@@ -629,7 +630,11 @@ const PracticeWorkspacePage: React.FC = () => {
 
     const runCodeAgainstTestCases = async (isSubmit: boolean = false) => {
         if (!problem) return;
-        setIsExecuting(true);
+        if (isSubmit) {
+            setIsSubmitting(true);
+        } else {
+            setIsExecuting(true);
+        }
         setExecOutput('');
         setTestResults([]);
 
@@ -637,6 +642,7 @@ const PracticeWorkspacePage: React.FC = () => {
         if (!langId) {
             setExecOutput(`❌ Error: Language ${language} execution not configured.`);
             setIsExecuting(false);
+            setIsSubmitting(false);
             return;
         }
 
@@ -690,6 +696,7 @@ const PracticeWorkspacePage: React.FC = () => {
                 setExecOutput(`❌ Network Error calling execution server: ${err.message || err}\n`);
             } finally {
                 setIsExecuting(false);
+                setIsSubmitting(false);
             }
             return;
         }
@@ -700,6 +707,7 @@ const PracticeWorkspacePage: React.FC = () => {
         } catch (e) {
             setExecOutput("❌ Error: Invalid test cases configuration on backend.");
             setIsExecuting(false);
+            setIsSubmitting(false);
             return;
         }
 
@@ -796,12 +804,28 @@ const PracticeWorkspacePage: React.FC = () => {
 
                 setEarnedStreak(currentStreak);
 
-                // Find matching milestone badge
-                let matchingBadge = BADGES_CATALOGUE.find(b => b.requiredDays === currentStreak);
-                if (!matchingBadge) {
-                    matchingBadge = BADGES_CATALOGUE[0]; // Day 1 Pioneer fallback
+                // Find if this streak specifically hits a milestone badge
+                const milestoneBadge = BADGES_CATALOGUE.find(b => b.requiredDays === currentStreak);
+                const hasClaimedDay1 = localStorage.getItem('adv_claimed_badge_day-1') === 'true';
+
+                let shouldShowModal = false;
+                if (milestoneBadge) {
+                    if (milestoneBadge.id === 'day-1') {
+                        if (!hasClaimedDay1) {
+                            localStorage.setItem('adv_claimed_badge_day-1', 'true');
+                            setEarnedBadge(milestoneBadge);
+                            shouldShowModal = true;
+                        }
+                    } else {
+                        // Check if this milestone badge was already celebrated
+                        const claimedKey = `adv_claimed_badge_${milestoneBadge.id}`;
+                        if (localStorage.getItem(claimedKey) !== 'true') {
+                            localStorage.setItem(claimedKey, 'true');
+                            setEarnedBadge(milestoneBadge);
+                            shouldShowModal = true;
+                        }
+                    }
                 }
-                setEarnedBadge(matchingBadge);
 
                 // Configure celebration modal content
                 const isPotd = submitData?.isPotd;
@@ -815,7 +839,9 @@ const PracticeWorkspacePage: React.FC = () => {
                     setCelebrationMessage(`Outstanding performance! All test cases passed with zero runtime errors. Your daily coding streak and +${coinsAwarded} ADV Coins have been credited to your wallet.`);
                 }
 
-                setShowBadgeModal(true);
+                if (shouldShowModal) {
+                    setShowBadgeModal(true);
+                }
 
                 // Immediately trigger real-time profile refresh and notify all components
                 if (refreshUser) {
@@ -835,6 +861,7 @@ const PracticeWorkspacePage: React.FC = () => {
             setExecOutput(prev => prev + `\n❌ Network Error calling execution server: ${err.message || err}\n`);
         } finally {
             setIsExecuting(false);
+            setIsSubmitting(false);
         }
     };
 
@@ -1028,26 +1055,35 @@ const PracticeWorkspacePage: React.FC = () => {
                         <div className="flex gap-4">
                             <button
                                 onClick={() => runCodeAgainstTestCases(false)}
-                                disabled={isExecuting}
+                                disabled={isExecuting || isSubmitting}
                                 className="flex-1 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-50"
-                            >
-                                <Play className="w-4 h-4 text-green-400" />
-                                Run Code Against Samples
-                            </button>
-                            <button
-                                onClick={() => runCodeAgainstTestCases(true)}
-                                disabled={isExecuting}
-                                className="flex-1 py-3 rounded-2xl bg-green-500 hover:bg-green-600 text-white font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-green-500/20 transition-all cursor-pointer disabled:opacity-50"
                             >
                                 {isExecuting ? (
                                     <>
+                                        <Loader2 className="w-4 h-4 animate-spin text-green-400" />
+                                        <span>Running...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Play className="w-4 h-4 text-green-400" />
+                                        <span>Run Code Against Samples</span>
+                                    </>
+                                )}
+                            </button>
+                            <button
+                                onClick={() => runCodeAgainstTestCases(true)}
+                                disabled={isExecuting || isSubmitting}
+                                className="flex-1 py-3 rounded-2xl bg-green-500 hover:bg-green-600 text-white font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-green-500/20 transition-all cursor-pointer disabled:opacity-50"
+                            >
+                                {isSubmitting ? (
+                                    <>
                                         <Loader2 className="w-4 h-4 animate-spin" />
-                                        Submitting...
+                                        <span>Submitting...</span>
                                     </>
                                 ) : (
                                     <>
                                         <Check className="w-4 h-4" />
-                                        Submit Code
+                                        <span>Submit Code</span>
                                     </>
                                 )}
                             </button>
