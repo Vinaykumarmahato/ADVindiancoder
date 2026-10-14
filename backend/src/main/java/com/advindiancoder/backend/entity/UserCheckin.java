@@ -11,13 +11,20 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
     name = "user_checkins",
-    uniqueConstraints = @UniqueConstraint(columnNames = {"user_email", "checkin_date"})
+    uniqueConstraints = @UniqueConstraint(columnNames = {"user_email", "checkin_date"}),
+    indexes = {
+        @Index(name = "idx_uc_user_id", columnList = "user_id"),
+        @Index(name = "idx_uc_email", columnList = "user_email")
+    }
 )
 public class UserCheckin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "user_email", nullable = false)
     private String userEmail;
@@ -43,7 +50,17 @@ public class UserCheckin {
         this.checkinType = checkinType;
     }
 
+    public UserCheckin(Long userId, String userEmail, LocalDate checkinDate, int coinsAwarded, String checkinType) {
+        this.userId = userId;
+        this.userEmail = userEmail;
+        this.checkinDate = checkinDate;
+        this.coinsAwarded = coinsAwarded;
+        this.checkinType = checkinType;
+    }
+
     public Long getId() { return id; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
     public String getUserEmail() { return userEmail; }
     public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
     public LocalDate getCheckinDate() { return checkinDate; }

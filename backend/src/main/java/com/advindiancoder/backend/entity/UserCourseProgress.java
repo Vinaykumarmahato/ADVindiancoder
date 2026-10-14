@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user_course_progress")
+@Table(name = "user_course_progress", indexes = {
+    @Index(name = "idx_ucp_email", columnList = "email"),
+    @Index(name = "idx_ucp_user_id", columnList = "user_id")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +19,9 @@ public class UserCourseProgress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(nullable = false)
     private String email;

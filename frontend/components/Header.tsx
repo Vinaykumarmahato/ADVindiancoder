@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Sun, Moon, Menu, X, Search, ChevronDown, Rocket, Sparkles, ExternalLink, Home, LogOut, LayoutDashboard, BookOpen, FileText, Trophy, HelpCircle, Mail, Users, Briefcase, Gift } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
@@ -18,7 +18,25 @@ const Header = () => {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const [authModalTab, setAuthModalTab] = useState<'login' | 'register'>('login');
     const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const profileDropdownRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
+
+    // Close profile dropdown on outside click
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (profileDropdownRef.current && !profileDropdownRef.current.contains(event.target as Node)) {
+                setIsProfileOpen(false);
+            }
+        };
+
+        if (isProfileOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isProfileOpen]);
 
     // Global listener to trigger Auth Modal from other pages
     useEffect(() => {
@@ -42,9 +60,10 @@ const Header = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
-    // Close menu on route change
+    // Close menu and profile dropdown on route change
     useEffect(() => {
         setIsMenuOpen(false);
+        setIsProfileOpen(false);
     }, [location.pathname]);
 
     // Prevent body scroll when menu is open
@@ -187,7 +206,7 @@ const Header = () => {
                             : 'bg-white/95 text-gray-900 border-gray-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]'
                     }`}>
                         {/* Row 1: Main Header Navigation Bar */}
-                        <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-2.5 w-full">
+                        <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-2.5 w-full relative z-20">
                             {/* Logo Section */}
                             <Link to="/" className="flex items-center shrink-0 group transition-transform duration-300 hover:scale-105">
                                 <div className="relative">
@@ -290,41 +309,91 @@ const Header = () => {
                                 {/* Desktop Profile / Sign In */}
                                 <div className="hidden md:block">
                                     {user ? (
-                                        <div className="relative leading-none" onMouseEnter={() => setIsProfileOpen(true)} onMouseLeave={() => setIsProfileOpen(false)}>
-                                            <button className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all text-xs font-black border border-white/10 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/5 whitespace-nowrap shrink-0 ${isDarkPage ? 'text-gray-200' : 'text-gray-700 dark:text-gray-300 hover:text-white'}`}>
+                                        <div ref={profileDropdownRef} className="relative leading-none">
+                                            <button 
+                                                type="button"
+                                                onClick={() => setIsProfileOpen(prev => !prev)}
+                                                aria-expanded={isProfileOpen}
+                                                aria-haspopup="true"
+                                                className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all text-xs font-black border border-white/10 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/5 whitespace-nowrap shrink-0 cursor-pointer ${
+                                                    isProfileOpen
+                                                        ? 'bg-white/15 border-red-500/50 text-white shadow-sm'
+                                                        : (isDarkPage ? 'text-gray-200' : 'text-gray-700 dark:text-gray-300 hover:text-white')
+                                                }`}
+                                            >
                                                 <img src={user.avatar} alt={user.name} className="h-6.5 w-6.5 rounded-full object-cover border border-white/20 shrink-0" />
                                                 <span className="hidden lg:inline-block max-w-[120px] truncate">{user.name.split(' ')[0]}</span>
-                                                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 shrink-0 ${isProfileOpen ? 'rotate-180' : ''}`} />
+                                                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 shrink-0 ${isProfileOpen ? 'rotate-180 text-red-500' : ''}`} />
                                             </button>
                                             <AnimatePresence>
                                                 {isProfileOpen && (
                                                     <MotionDiv
-                                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
                                                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                        className="absolute top-full right-0 mt-2 w-56 p-2 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden text-gray-200"
+                                                        exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                                                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                                                        className={`absolute top-full right-0 mt-2.5 w-60 p-2.5 border rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] z-50 overflow-hidden ${
+                                                            theme === 'dark'
+                                                                ? 'bg-[#0b0f19] border-white/15 text-gray-200'
+                                                                : 'bg-white border-gray-200 text-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.18)]'
+                                                        }`}
                                                     >
-                                                        <div className="px-4 py-3 border-b border-white/10 mb-1">
-                                                            <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Signed in as</p>
-                                                            <p className="text-sm font-black text-white truncate">{user.name}</p>
-                                                            <p className="text-[10px] text-gray-400 truncate mt-0.5">{user.email}</p>
+                                                        <div className={`px-3.5 py-3 border-b mb-1.5 rounded-xl ${
+                                                            theme === 'dark' ? 'border-white/10 bg-white/[0.04]' : 'border-gray-100 bg-gray-50'
+                                                        }`}>
+                                                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Signed in as</p>
+                                                            <p className={`text-sm font-black truncate mt-0.5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{user.name}</p>
+                                                            <p className="text-[11px] text-gray-400 truncate mt-0.5">{user.email}</p>
                                                         </div>
                                                         
-                                                        <Link to={`/u/${user.name}`} className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold hover:text-white hover:bg-white/10 rounded-xl transition-all">
-                                                            <LayoutDashboard className="w-4 h-4 text-red-500" />
-                                                            <span>View Profile</span>
-                                                        </Link>
-                                                        <Link to="/adv-lab" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold hover:text-white hover:bg-white/10 rounded-xl transition-all">
-                                                            <Sparkles className="w-4 h-4 text-orange-400" />
-                                                            <span>ADV Lab IDE</span>
-                                                        </Link>
-                                                        <Link to="/my-courses" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold hover:text-white hover:bg-white/10 rounded-xl transition-all">
-                                                            <BookOpen className="w-4 h-4 text-blue-400" />
-                                                            <span>My Courses</span>
-                                                        </Link>
+                                                        <div className="space-y-1">
+                                                            <Link 
+                                                                to={`/u/${user.name}`} 
+                                                                onClick={() => setIsProfileOpen(false)}
+                                                                className={`flex items-center gap-2.5 px-3 py-2 text-xs font-bold rounded-xl transition-all ${
+                                                                    theme === 'dark'
+                                                                        ? 'text-gray-300 hover:text-white hover:bg-white/10'
+                                                                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                                                                }`}
+                                                            >
+                                                                <LayoutDashboard className="w-4 h-4 text-red-500" />
+                                                                <span>View Profile</span>
+                                                            </Link>
+                                                            <Link 
+                                                                to="/adv-lab" 
+                                                                onClick={() => setIsProfileOpen(false)}
+                                                                className={`flex items-center gap-2.5 px-3 py-2 text-xs font-bold rounded-xl transition-all ${
+                                                                    theme === 'dark'
+                                                                        ? 'text-gray-300 hover:text-white hover:bg-white/10'
+                                                                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                                                                }`}
+                                                            >
+                                                                <Sparkles className="w-4 h-4 text-orange-400" />
+                                                                <span>ADV Lab IDE</span>
+                                                            </Link>
+                                                            <Link 
+                                                                to="/my-courses" 
+                                                                onClick={() => setIsProfileOpen(false)}
+                                                                className={`flex items-center gap-2.5 px-3 py-2 text-xs font-bold rounded-xl transition-all ${
+                                                                    theme === 'dark'
+                                                                        ? 'text-gray-300 hover:text-white hover:bg-white/10'
+                                                                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                                                                }`}
+                                                            >
+                                                                <BookOpen className="w-4 h-4 text-blue-400" />
+                                                                <span>My Courses</span>
+                                                            </Link>
+                                                        </div>
                                                         
-                                                        <div className="h-px bg-white/10 my-1" />
-                                                        <button onClick={logout} className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-black text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl transition-all text-left cursor-pointer">
+                                                        <div className={`h-px my-1.5 ${theme === 'dark' ? 'bg-white/10' : 'bg-gray-100'}`} />
+                                                        <button 
+                                                            type="button"
+                                                            onClick={() => {
+                                                                setIsProfileOpen(false);
+                                                                logout();
+                                                            }} 
+                                                            className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-black text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all text-left cursor-pointer"
+                                                        >
                                                             <LogOut className="w-4 h-4" />
                                                             <span>Sign Out</span>
                                                         </button>
@@ -368,7 +437,7 @@ const Header = () => {
                         </div>
 
                         {/* Row 2: W3Schools-Style Attached Course Sub-Navbar Bar (ON EVERY PAGE!) */}
-                        <div className={`border-t w-full py-1 rounded-b-2xl overflow-hidden ${
+                        <div className={`border-t w-full py-1 rounded-b-2xl overflow-hidden relative z-10 ${
                             theme === 'dark' 
                                 ? 'border-white/10 bg-black/60 text-gray-200' 
                                 : 'border-gray-200 bg-[#1e293b] text-gray-100'

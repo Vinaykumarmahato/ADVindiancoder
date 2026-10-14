@@ -1,9 +1,11 @@
 package com.advindiancoder.backend.controller;
 
+import com.advindiancoder.backend.entity.CoinTransaction;
 import com.advindiancoder.backend.entity.RewardOrder;
 import com.advindiancoder.backend.entity.User;
 import com.advindiancoder.backend.entity.UserActivityLog;
 import com.advindiancoder.backend.entity.UserCheckin;
+import com.advindiancoder.backend.repository.CoinTransactionRepository;
 import com.advindiancoder.backend.repository.RewardOrderRepository;
 import com.advindiancoder.backend.repository.UserRepository;
 import com.advindiancoder.backend.repository.UserActivityLogRepository;
@@ -30,10 +32,9 @@ public class RewardsController {
     @Autowired private UserCheckinRepository userCheckinRepository;
     @Autowired private CoinService coinService;
     @Autowired private EmailService emailService;
+    @Autowired private CoinTransactionRepository coinTransactionRepository;
 
-    // ─────────────────────────────────────────────────────────────────────────
     // GET /api/rewards/my-orders
-    // ─────────────────────────────────────────────────────────────────────────
     @GetMapping("/my-orders")
     public ResponseEntity<?> getMyOrders(Principal principal) {
         if (principal == null) return ResponseEntity.status(401).body(new MessageResponse("Unauthorized"));
@@ -41,16 +42,50 @@ public class RewardsController {
         return ResponseEntity.ok(orders);
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // POST /api/rewards/checkin
-    // Handles both DAILY check-in and SECRET_BOX claim
-    // ─────────────────────────────────────────────────────────────────────────
+    // GET /api/rewards/order/track/{trackingNumber}
+    // Returns order status to the authenticated owner only.
+    @GetMapping("/order/track/{trackingNumber}")
+    public ResponseEntity<?> trackOrder(@PathVariable String trackingNumber, Principal principal) {
+        if (principal == null) return ResponseEntity.status(401).body(new MessageResponse("Please log in to track your order."));
+        String email = principal.getName();
+
+        Optional<RewardOrder> orderOpt = rewardOrderRepository.findByTrackingNumber(trackingNumber);
+        if (orderOpt.isEmpty()) {
+            return ResponseEntity.status(404).body(new MessageResponse(
+                "Order with tracking number '" + trackingNumber + "' was not found in our system. " +
+                "If you believe this is an error, please contact support with your order confirmation email."
+            ));
+        }
+
+        RewardOrder order = orderOpt.get();
+        // Ownership check - only the order owner may view it
+        if (!email.equalsIgnoreCase(order.getUserEmail())) {
+            return ResponseEntity.status(403).body(new MessageResponse("You are not authorized to view this order."));
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("orderId", order.getId());
+        response.put("trackingNumber", order.getTrackingNumber());
+        response.put("itemName", order.getItemName());
+        response.put("status", order.getStatus());
+        response.put("fullName", order.getFullName());
+        response.put("city", order.getCity());
+        response.put("state", order.getState());
+        response.put("createdAt", order.getCreatedAt());
+        return ResponseEntity.ok(response);
+    }
+
+    // POST /api/rewards/checkin - DAILY check-in and SECRET_BOX claim
     @PostMapping("/checkin")
     @Transactional
     public ResponseEntity<?> dailyCheckin(Principal principal,
                                           @RequestBody Map<String, String> body) {
         if (principal == null) return ResponseEntity.status(401).body(new MessageResponse("Please log in to claim your daily check-in."));
         String email = principal.getName();
+
+        // Resolve userId for ledger linkage
+        Optional<User> userOpt = userRepository.findByEmail(email);
+        Long userId = userOpt.map(User::getId).orElse(null);
 
         String type = body.getOrDefault("type", "DAILY").toUpperCase();
         if (!type.equals("DAILY") && !type.equals("SECRET_BOX")) {
@@ -68,13 +103,14 @@ public class RewardsController {
                 return ResponseEntity.badRequest().body(new MessageResponse("You have already claimed your daily check-in today. Come back tomorrow!"));
             }
             UserCheckin checkin = new UserCheckin(email, today, 1, "DAILY");
+            if (userId != null) checkin.setUserId(userId);
             userCheckinRepository.save(checkin);
 
-            // Log activity
             UserActivityLog log = new UserActivityLog();
             log.setEmail(email);
             log.setActivityType("DAILY_CHECKIN");
             log.setDetails("Claimed daily login check-in (+1 coin)");
+            if (userId != null) log.setUserId(userId);
             activityLogRepository.save(log);
 
             Map<String, Object> resp = new HashMap<>();
@@ -90,12 +126,14 @@ public class RewardsController {
                 return ResponseEntity.badRequest().body(new MessageResponse("You have already claimed the Secret Mystery Gift!"));
             }
             UserCheckin checkin = new UserCheckin(email, today, 10, "SECRET_BOX");
+            if (userId != null) checkin.setUserId(userId);
             userCheckinRepository.save(checkin);
 
             UserActivityLog log = new UserActivityLog();
             log.setEmail(email);
             log.setActivityType("SECRET_BOX_CLAIM");
             log.setDetails("Claimed Secret Mystery Gift Easter Egg (+10 coins)");
+            if (userId != null) log.setUserId(userId);
             activityLogRepository.save(log);
 
             Map<String, Object> resp = new HashMap<>();
@@ -107,10 +145,7 @@ public class RewardsController {
         return ResponseEntity.badRequest().body(new MessageResponse("Unknown error."));
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // POST /api/rewards/order
-    // Places a reward order with server-side coin validation
-    // ─────────────────────────────────────────────────────────────────────────
+    // POST /api/rewards/order - Places a reward order with server-side coin validation
     public static class PlaceOrderRequest {
         public String itemId;
         public String itemName;
@@ -135,7 +170,6 @@ public class RewardsController {
         if (principal == null) return ResponseEntity.status(401).body(new MessageResponse("Please log in to redeem rewards."));
         String email = principal.getName();
 
-        // Validate shipping address
         if (isBlank(request.fullName) || isBlank(request.phone) ||
             isBlank(request.addressLine) || isBlank(request.city) || isBlank(request.pincode)) {
             return ResponseEntity.badRequest().body(new MessageResponse("Please complete all required shipping address fields."));
@@ -147,23 +181,22 @@ public class RewardsController {
 
         String mode = (request.paymentMode != null) ? request.paymentMode.toLowerCase() : "coins";
 
-        // ── Coin redemption: validate server-side balance ──────────────────
         if (mode.equals("coins")) {
             if (request.coinCost <= 0) {
                 return ResponseEntity.badRequest().body(new MessageResponse("Invalid coin cost."));
             }
             CoinService.CoinBalance balance = coinService.calculateBalance(user);
             if (balance.availableCoins < request.coinCost) {
-                return ResponseEntity.badRequest().body(new MessageResponse(
+                return ResponseEntity.status(400).body(new MessageResponse(
                     "Insufficient coins. You have " + balance.availableCoins +
                     " coins but this item costs " + request.coinCost + " coins."
                 ));
             }
         }
 
-        // Create and persist order
         RewardOrder order = new RewardOrder();
         order.setUserEmail(email);
+        order.setUserId(user.getId());
         order.setItemId(request.itemId);
         order.setItemName(request.itemName);
         order.setItemCategory(request.itemCategory);
@@ -179,18 +212,37 @@ public class RewardsController {
         order.setTrackingNumber("ADV-" + (100000 + new Random().nextInt(900000)));
         RewardOrder savedOrder = rewardOrderRepository.save(order);
 
-        // Log activity
+        // Record coin debit in ledger (idempotent via order id)
+        if (mode.equals("coins") && request.coinCost > 0) {
+            String idempotencyKey = user.getId() + ":SWAG_REDEEM:ORDER-" + savedOrder.getId();
+            if (!coinTransactionRepository.existsByIdempotencyKey(idempotencyKey)) {
+                CoinService.CoinBalance balanceAfterDebit = coinService.calculateBalance(user);
+                int balanceAfter = Math.max(0, balanceAfterDebit.availableCoins - request.coinCost);
+                CoinTransaction debit = new CoinTransaction(
+                    user.getId(),
+                    email,
+                    "SWAG_REDEEM",
+                    -request.coinCost,
+                    balanceAfter,
+                    "ORDER-" + savedOrder.getId(),
+                    idempotencyKey,
+                    "Redeemed \"" + request.itemName + "\" (Tracking: " + savedOrder.getTrackingNumber() + ")"
+                );
+                coinTransactionRepository.save(debit);
+            }
+        }
+
         String detail = mode.equals("coins")
             ? "Redeemed \"" + request.itemName + "\" for " + request.coinCost + " ADV Coins (Order #" + savedOrder.getId() + ")"
-            : "Purchased \"" + request.itemName + "\" via Cash/UPI ₹" + request.inrPrice + " (Order #" + savedOrder.getId() + ")";
+            : "Purchased \"" + request.itemName + "\" via Cash/UPI Rs." + request.inrPrice + " (Order #" + savedOrder.getId() + ")";
 
         UserActivityLog activity = new UserActivityLog();
         activity.setEmail(email);
+        activity.setUserId(user.getId());
         activity.setActivityType("REWARD_REDEEM");
         activity.setDetails(detail);
         activityLogRepository.save(activity);
 
-        // Send email confirmation
         try {
             emailService.sendRewardOrderConfirmationEmail(email, savedOrder);
         } catch (Exception e) {

@@ -43,6 +43,12 @@ export interface DashboardData {
     weeklyActivity?: { day: string; percent: number; compiles: number; minutes: number }[];
     streak?: number;
     potdSolves?: number;
+    totalCoinsEarned?: number;
+    availableCoins?: number;
+    spentCoins?: number;
+    badgesCount?: number;
+    hasCheckedInToday?: boolean;
+    secretBoxClaimed?: boolean;
 }
 
 interface UserCourseProgress {
@@ -238,13 +244,21 @@ const DashboardPage: React.FC = () => {
 
     const bonusCheckinCoins = parseInt(localStorage.getItem('adv_bonus_checkin_coins') || '0', 10);
     const spentCoins = myRewardOrders.reduce((acc, o) => acc + (o.coinCost || 0), 0);
-    const coinData = calculateUserCoins(
+    const fallbackCoinData = calculateUserCoins(
         data.streak || streak,
         data.successfulCompiles || 0,
         spentCoins,
         bonusCheckinCoins,
         data.potdSolves || 0
     );
+
+    // Prefer authoritative database-calculated values from backend (MySQL via CoinService)
+    const coinData = {
+        availableCoins: (data.availableCoins !== undefined && data.availableCoins !== null) ? data.availableCoins : fallbackCoinData.availableCoins,
+        totalCoinsEarned: (data.totalCoinsEarned !== undefined && data.totalCoinsEarned !== null) ? data.totalCoinsEarned : fallbackCoinData.totalCoinsEarned,
+        spentCoins: (data.spentCoins !== undefined && data.spentCoins !== null) ? data.spentCoins : spentCoins,
+        badgesCount: (data.badgesCount !== undefined && data.badgesCount !== null) ? data.badgesCount : fallbackCoinData.badgesCount,
+    };
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#070b13] pt-36 sm:pt-40 md:pt-44 lg:pt-48 pb-12 px-4 sm:px-6 lg:px-8">

@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "code_submissions", indexes = {
-    @Index(name = "idx_code_sub_email", columnList = "email")
+    @Index(name = "idx_code_sub_email", columnList = "email"),
+    @Index(name = "idx_cs_user_id", columnList = "user_id")
 })
 @Data
 @NoArgsConstructor
@@ -18,6 +19,9 @@ public class CodeSubmission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(nullable = false)
     private String email;
@@ -39,6 +43,8 @@ public class CodeSubmission {
 
     @PrePersist
     protected void onCreate() {
-        timestamp = LocalDateTime.now();
+        if (timestamp == null) {
+            timestamp = LocalDateTime.now();
+        }
     }
 }

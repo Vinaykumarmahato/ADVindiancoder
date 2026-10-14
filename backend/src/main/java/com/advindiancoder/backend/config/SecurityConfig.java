@@ -58,6 +58,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/practice/problems/*/submit").authenticated()
                 .requestMatchers(HttpMethod.GET, "/api/practice/problems").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/practice/problems/*").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/contributors").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/rewards/order/track/*").authenticated()
                 .anyRequest().authenticated()
             );
 
