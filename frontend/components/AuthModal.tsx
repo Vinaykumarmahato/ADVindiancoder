@@ -915,20 +915,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialTab = 'lo
                                                     <div className="flex-1 h-px bg-gray-200 dark:bg-white/10" />
                                                 </div>
 
-                                                {/* Continue with Email OTP Button */}
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        setError(null);
-                                                        setAuthMethod('email-otp');
-                                                        setEmailOtpStep('enter-email');
-                                                    }}
-                                                    disabled={isLoading}
-                                                    className="w-full py-3.5 mb-3 rounded-2xl bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200/50 dark:border-white/5 text-gray-800 dark:text-gray-200 font-bold text-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-sm"
-                                                >
-                                                    <Mail className="h-4.5 w-4.5 text-red-500" />
-                                                    <span>Continue with Email OTP</span>
-                                                </button>
 
                                                 {/* Continue with Mobile Button */}
                                                 <button
