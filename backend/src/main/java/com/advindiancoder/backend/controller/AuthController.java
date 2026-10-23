@@ -282,15 +282,32 @@ public class AuthController {
         }
 
         // Login / Register flow
-        Optional<User> userOpt = userRepository.findByMobileNumber(cleanPhone);
-        User user;
+        String digitsOnly = cleanPhone.replaceAll("[^0-9]", "");
+        String phoneEmail = "phone-" + digitsOnly + "@advcoder.com";
 
+        Optional<User> userOpt = userRepository.findByMobileNumber(cleanPhone);
+        if (userOpt.isEmpty() && cleanPhone.startsWith("+91") && cleanPhone.length() == 13) {
+            String spacedPhone = "+91 " + cleanPhone.substring(3);
+            userOpt = userRepository.findByMobileNumber(spacedPhone);
+        }
+        if (userOpt.isEmpty() && digitsOnly.length() >= 10) {
+            String last10 = digitsOnly.substring(digitsOnly.length() - 10);
+            userOpt = userRepository.findByMobileNumber(last10);
+        }
+        if (userOpt.isEmpty()) {
+            userOpt = userRepository.findByEmailIgnoreCase(phoneEmail);
+        }
+
+        User user;
         if (userOpt.isPresent()) {
             user = userOpt.get();
+            if (user.getMobileNumber() == null || !user.getMobileNumber().equals(cleanPhone)) {
+                user.setMobileNumber(cleanPhone);
+                userRepository.save(user);
+            }
         } else {
             // Auto-create user for mobile login
             user = new User();
-            String digitsOnly = cleanPhone.replaceAll("[^0-9]", "");
             String baseUsername = "coder_" + (digitsOnly.length() > 6 ? digitsOnly.substring(digitsOnly.length() - 6) : digitsOnly);
             String username = baseUsername;
             int counter = 1;
@@ -298,7 +315,7 @@ public class AuthController {
                 username = baseUsername + "_" + counter++;
             }
             user.setUsername(username);
-            user.setEmail("phone-" + digitsOnly + "@advcoder.com");
+            user.setEmail(phoneEmail);
             user.setMobileNumber(cleanPhone);
             user.setPassword(passwordEncoder.encode("mobile_secure_pwd_" + Math.random()));
             user.setRole("student");
